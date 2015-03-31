@@ -1,6 +1,6 @@
 <?require_once('ifrm-valida-sesion.php')?>	
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 	<head>
 
 		<title>SGC2</title>
@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="../javascript/includes/jquery-ui-1.8.18.custom.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
+        <script type="text/javascript" src="../javascript/includes/angular.min.js" ></script>
 
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
@@ -46,7 +47,7 @@
                     
                     <div id="panel_matricula" style="display:block">
                         <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>CONSOLIDADO MATRICULA <?   /*aqui va el titulo q presentara  */ ?></b></div>         
-                        <div class="cont-der">
+                        <div class="cont-der" ng-controller="ConsolidadoMatricula">
 							<div class="t-center">
                                 <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
                        
@@ -73,11 +74,31 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="t-left label input-large">Fecha Matrícula:</td>
+                                            <td class="t-left label input-large">Mes Matrícula:</td>
                                             <td class="t-left">
-                                            <input type="text" id="txt_fecha_matric" class="input-medium" value="">
+                                                <select id="matriculaMes"
+                                                        name="matricula_mes"
+                                                        ng-change="actualizarRango()"
+                                                        ng-model="matriculaMes"
+                                                        ng-options="value for value in meses">
+                                                </select>
                                             </td>
-                                       </tr>                                       
+                                       </tr>
+                                        <tr>
+                                            <td class="t-left label input-large">Rango de días:</td>
+                                            <td class="t-left">
+                                                <select id="DiaIni"
+                                                        name="DiaIni"
+                                                        ng-model="DiaIni"
+                                                        ng-options="value for value in dias">
+                                                </select> -
+                                                <select id="DiaIni"
+                                                        name="DiaFin"
+                                                        ng-model="DiaFin"
+                                                        ng-options="value for value in dias">
+                                                </select>
+                                            </td>
+                                        </tr>
                                     </table>
                                 <!--fin talba-->                                
                                 <br>

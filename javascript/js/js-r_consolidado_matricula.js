@@ -19,8 +19,45 @@ $(document).ready(function(){
 		nextText:'Siguiente',
 		prevText:'Anterior'
 	});
-        
-})
+});
+(function () {
+	angular.module('myApp', [])
+
+		.controller('ConsolidadoMatricula', function($scope) {
+			$scope.date = new Date();
+
+			$scope.meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+			$scope.matriculaMes = $scope.meses[$scope.date.getMonth()];
+			$scope.lastDay = new Date(new Date().getYear(), $scope.date.getMonth() + 1, 0).getDate();
+			$scope.dias = [];
+			$scope.ActualizarDiasMes = function () {
+				var i;
+
+				$scope.dias = [];
+				for (i = 1; i <= $scope.lastDay; i++) {
+					$scope.dias.push(i);
+				}
+			};
+
+			$scope.ActualizarDiasMes();
+			$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+
+			$scope.actualizarRango = function () {
+				if ($scope.meses[$scope.date.getMonth()] == $scope.matriculaMes) {
+					$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+				} else {
+					$scope.DiaIni = $scope.DiaFin = $scope.lastDay = new Date(new Date().getYear(), $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
+					$scope.ActualizarDiasMes();
+				}
+			};
+
+
+
+		});
+})()
+
+
+
 
 Exportar=function(){
     if( $.trim($("#slct_filial").val())=="" ){
@@ -35,7 +72,9 @@ Exportar=function(){
     }else{
 	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?cfilial='+$("#slct_filial").val().join(",")                    
                     +'&cinstit='+$("#slct_instituto").val().join(",")
-                    +'&fmatric='+$("#txt_fecha_matric").val()
+                    +'&mes='+$("#matriculaMes").val()
+                    +'&ini='+$("#DiaIni").val()
+                    +'&fin='+$("#DiaFin").val()
                     +'&usuario='+$("#hd_idUsuario").val();
     }
 }
