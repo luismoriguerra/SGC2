@@ -1,0 +1,129 @@
+INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('CAREQUI101300000000006','000','0000000','002','','','1','2','2013-03-25','2013-03-25','CAREQUI1','CAREQUI1','2013-03-25','I','02','90')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000013','002','CAREQUI101300000000006','B','abcde00201100000226','','','90','2013-03-25','P','C','E','','','abcde0020110000024','','2','C','C','2013-03-25','2013-03-25','CAREQUI1','2013-03-25','I','M','','C')$&*INSERT INTO detbolp (cboleta,crecibo,ttiprec,ncantidad,nmonto,cfilial) VALUES('CAREQUI101300000000006','CAREQUI10130000000013','1','1','90','002')$&*INSERT INTO conmatp (cconmat,fmatric,cingalu,testmat,nnomina,cgruaca,cgracan,fusuari,cusuari,tgrupo,testalu,titptra,tforpag,cpromot,cfilial,sermatr) VALUES('CAREQUI101300000003','2013-03-25','CAREQUI101300000003','1','','abcde002011000000108','','2013-03-25 18:24:30','CAREQUI1','2','TE','I','C','','002','001-00000001')$&*UPDATE postulm SET cingalu='CAREQUI101300000003',cestado='2' 
+						 WHERE cperson='abcde00201100000226'
+						 AND cestado='1'
+						 AND (cingalu is null or trim(cingalu)='')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000014','002','','','','CAREQUI101300000003','2','80','2011-05-02','A','','','','','abcde0020110000002','abcde002011000000108','2','P','P','','','CAREQUI1','2013-03-25 18:24:30','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000015','002','','','','CAREQUI101300000003','3','80','2011-06-01','A','','','','','abcde0020110000002','abcde002011000000108','2','P','P','','','CAREQUI1','2013-03-25 18:24:30','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000016','002','','','','CAREQUI101300000003','4','80','2011-07-01','A','','','','','abcde0020110000002','abcde002011000000108','2','P','P','','','CAREQUI1','2013-03-25 18:24:31','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000017','002','','','','CAREQUI101300000003','5','80','2011-08-01','A','','','','','abcde0020110000002','abcde002011000000108','2','P','P','','','CAREQUI1','2013-03-25 18:24:31','I','P','','')$&*INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('CAREQUI101300000000007','000','0000000','002','','','1','2','2013-03-25','2013-03-25','CAREQUI1','CAREQUI1','2013-03-25','I','02','80')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000018','002','CAREQUI101300000000007','B','','CAREQUI101300000003','1','80','2011-04-04','A','','','','','abcde0020110000002','abcde002011000000108','2','C','C','2013-03-25','2013-03-25','CAREQUI1','2013-03-25','I','M','','C')$&*INSERT INTO detbolp (cboleta,crecibo,ttiprec,ncantidad,nmonto,cfilial) VALUES('CAREQUI101300000000007','CAREQUI10130000000018','1','1','80','002')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000019','002','','','','CAREQUI101300000003','1','19','2011-04-04','A','','','','','abcde0020110000002','abcde002011000000108','2','P','P','2013-03-25','2013-03-25','CAREQUI1','2013-03-25','I','M','','P')$&*INSERT INTO ingalum (cingalu,cperson,finscri,cmoding,ctipcap,cpromot,cmedpre,cconcep,ccarrer,ccurric,cfilial,cinstit,cseming,ciniing,testalu,consnew,comauma,compuma,tusorec,crecmat,thorari,cgrupo,cmodali,ctipcar,fusuari,cusuari,ctiptra,sermatr,dcodlib,certest,partnac,fotodni)
+			  VALUES ('CAREQUI101300000003'
+			  ,'abcde00201100000226'
+			  ,'2013-03-25'
+			  ,'01'
+			  ,'14'
+			  ,''
+			  ,''
+			  ,'abcde0020110000024'
+			  ,'008'
+			  ,'010000008'
+			  ,'002'
+			  ,'02'
+			  ,'2011-1'
+			  ,'B'
+			  ,'TE'
+			  ,'CAREQUI101300000003'
+			  ,'CAREQUI101300000003'
+			  ,'CAREQUI101300000003'
+			  ,'V'
+			  ,'CAREQUI10130000000013'
+			  ,'R'
+			  ,'03'
+			  ,'2'
+			  ,'2'
+			  ,now()
+			  ,'CAREQUI1'
+			  ,'I'
+			  ,'001-00000001'
+			  ,'UPT000011111'
+			  ,'cer'
+			  ,'part'
+			  ,'2'
+			  )$&*Insert Into personm (cfilial,cperson,dnomper,dappape,dapmape,ndniper,email1,ntelpe2,ntelper,ntellab,dtipsan,tipdocper,fnacper,tsexo,coddpto,codprov,coddist,ddirper,ddirref,cdptlab,cprvlab,cdislab,ddirlab,dnomlab,tcolegi,dcolpro,fusuari,cusuari,ttiptra)
+			  values ('002','CAREQUI101300000002','perico',
+				'percdopq',
+				'iodfkj',
+				'00000003',
+				'dsdsf',
+				'969',
+				'65',
+				'',
+				'S',
+				'DNI',
+				'',
+				'M',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'',
+				now(),'CAREQUI1','I')$&*Insert Into postulm (cfilial,cpostul,tmodpos,csemadm,cinicio,ccarrer,ctipcap,cvended,cmedpre,serinsc,cinstit,dcodlib,cperson,finscri,crecepc,tinstip,dinstip,dcarrep,ultanop,cciclo,cestado,cusuari,fusuari)
+			  values ('002','CAREQUI101300000006','01',
+				'2011-1',
+				'A',
+				'008',	
+				'04',	
+				'abcde01301100000003',	
+				'',
+				'002-00000100',				
+				'02',	
+				'AOP000000000',	
+				'CAREQUI101300000002',
+				'2013-03-29',	
+				'abcde00201100000005',	
+				'',	
+				'',	
+				'',	
+				'',	
+				'',	
+				'1','CAREQUI1',now())$&*UPDATE postulm SET cestado='0' 
+					  WHERE cperson='CAREQUI101300000002'
+					  AND cinstit='02'
+					  AND ccarrer='008'
+					  AND cpostul!='CAREQUI101300000006'$&*INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('CAREQUI101300000000008','001','0000000','002','','','1','2','2013-03-28','2013-03-28','CAREQUI1','CAREQUI1','2013-03-29','I','02','40')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000020','002','CAREQUI101300000000008','B','CAREQUI101300000002','','','40','2013-03-28','P','C','E','','','abcde0020100000121','','2','C','C','2013-03-28','2013-03-28','CAREQUI1','2013-03-29','I','M','','C')$&*INSERT INTO detbolp (cboleta,crecibo,ttiprec,ncantidad,nmonto,cfilial) VALUES('CAREQUI101300000000008','CAREQUI10130000000020','1','1','40','002')$&*UPDATE postulm SET
+			  ccarrer='009'
+			  ,csemadm='2011-1'
+			  ,cinicio='B'
+			  ,cusuari='CAREQUI1'
+			  ,fusuari=now()
+			  WHERE cperson='CAREQUI101300000002'
+			  AND cestado='1'
+			  AND (cingalu is null or trim(cingalu)='') $&*INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('CAREQUI101300000000009','001','0000001','002','','','1','2','2013-03-28','2013-03-28','CAREQUI1','CAREQUI1','2013-03-29','I','02','40')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000021','002','CAREQUI101300000000009','B','CAREQUI101300000002','','','40','2013-03-28','P','C','E','','','abcde0020110000015','','2','C','C','2013-03-28','2013-03-28','CAREQUI1','2013-03-29','I','M','','C')$&*INSERT INTO detbolp (cboleta,crecibo,ttiprec,ncantidad,nmonto,cfilial) VALUES('CAREQUI101300000000009','CAREQUI10130000000021','1','1','40','002')$&*INSERT INTO conmatp (cconmat,fmatric,cingalu,testmat,nnomina,cgruaca,cgracan,fusuari,cusuari,tgrupo,testalu,titptra,tforpag,cpromot,cfilial,sermatr) VALUES('CAREQUI101300000004','2013-03-29','CAREQUI101300000004','1','','abcde002011000000057','','2013-03-29 11:49:44','CAREQUI1','2','RE','I','C','','002','001-01000000')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000473','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000474','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000475','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000476','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000477','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000478','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000479','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000480','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000481','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*INSERT INTO decomap (ccurpro,cconmat,cestado,tgruaca,tprocur,nnoficu,dmonofi,tmonofi,nregist,tusbeno,nnomadi,fusuari,cusuari,cesgeac,tesalgr,fincute,cfilial) VALUES('abcde002011000000482','CAREQUI101300000004','1','2','U','','','','','','',now(),'CAREQUI1','N','A','','002')$&*UPDATE postulm SET cingalu='CAREQUI101300000004',cestado='2' 
+						 WHERE cperson='CAREQUI101300000002'
+						 AND cestado='1'
+						 AND (cingalu is null or trim(cingalu)='')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000022','002','','','','CAREQUI101300000004','2','109','2011-05-02','A','','','','','abcde0020100000118','abcde002011000000057','2','P','P','','','CAREQUI1','2013-03-29 11:49:44','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000023','002','','','','CAREQUI101300000004','3','109','2011-06-01','A','','','','','abcde0020100000118','abcde002011000000057','2','P','P','','','CAREQUI1','2013-03-29 11:49:44','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000024','002','','','','CAREQUI101300000004','4','109','2011-07-01','A','','','','','abcde0020100000118','abcde002011000000057','2','P','P','','','CAREQUI1','2013-03-29 11:49:44','I','P','','')$&*INSERT INTO recacap VALUES ('CAREQUI10130000000025','002','','','','CAREQUI101300000004','5','109','2011-08-01','A','','','','','abcde0020100000118','abcde002011000000057','2','P','P','','','CAREQUI1','2013-03-29 11:49:45','I','P','','')$&*INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('CAREQUI101300000000010','001','0000001','002','','','1','2','2013-03-29','2013-03-29','CAREQUI1','CAREQUI1','2013-03-29','I','02','109')$&*INSERT INTO recacap (crecaca,cfilial,cdocpag,tdocpag,cperson,cingalu,ccuota,nmonrec,fvencim,tpagant,dmodpag,tpagcaj,nvouche,nctabco,cconcep,cgruaca,tgruaca,cestini,testfin,festini,festfin,cusuari,fusuari,ttiptra,tpago,cfut,cestpag) VALUES('CAREQUI10130000000026','002','CAREQUI101300000000010','B','','CAREQUI101300000004','1','109','2011-04-04','A','','','','','abcde0020100000118','abcde002011000000057','2','C','C','2013-03-29','2013-03-29','CAREQUI1','2013-03-29','I','M','','C')$&*INSERT INTO detbolp (cboleta,crecibo,ttiprec,ncantidad,nmonto,cfilial) VALUES('CAREQUI101300000000010','CAREQUI10130000000026','1','1','109','002')$&*INSERT INTO ingalum (cingalu,cperson,finscri,cmoding,ctipcap,cpromot,cmedpre,cconcep,ccarrer,ccurric,cfilial,cinstit,cseming,ciniing,testalu,consnew,comauma,compuma,tusorec,crecmat,thorari,cgrupo,cmodali,ctipcar,fusuari,cusuari,ctiptra,sermatr,dcodlib,certest,partnac,fotodni)
+			  VALUES ('CAREQUI101300000004'
+			  ,'CAREQUI101300000002'
+			  ,'2013-03-29'
+			  ,'01'
+			  ,'04'
+			  ,''
+			  ,''
+			  ,'abcde0020110000015'
+			  ,'009'
+			  ,'010000009'
+			  ,'002'
+			  ,'02'
+			  ,'2011-1'
+			  ,'B'
+			  ,'RE'
+			  ,'CAREQUI101300000004'
+			  ,'CAREQUI101300000004'
+			  ,'CAREQUI101300000004'
+			  ,'V'
+			  ,'CAREQUI10130000000021'
+			  ,'R'
+			  ,'03'
+			  ,'2'
+			  ,'2'
+			  ,now()
+			  ,'CAREQUI1'
+			  ,'I'
+			  ,'001-01000000'
+			  ,'ut00000111'
+			  ,'JHJHJ65566'
+			  ,'23156JHHG'
+			  ,'0'
+			  )$&*

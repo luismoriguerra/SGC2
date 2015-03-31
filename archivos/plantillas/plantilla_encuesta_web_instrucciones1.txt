@@ -1,0 +1,6 @@
+<div class='wysiwyg-text-align-justify wysiwyg-color-navy'>
+                                            El objetivo de esta encuesta es conocer en qué aspectos del trabajo el personal se encuentra satisfecho y en cuáles está disconforme.<br><br>
+                                            Sus respuestas y las de sus compañeros de trabajo permitirán a la empresa tomar acciones de mejora.<br><br>
+                                            Este no es un examen. No hay respuestas correctas o incorrectas.<br><br>
+                                            La encuesta es completamente anónima. Siéntase libre de expresar su opinión.
+                                        </div>

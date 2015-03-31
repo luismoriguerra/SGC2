@@ -1,0 +1,4 @@
+<div class='wysiwyg-text-align-justify wysiwyg-color-navy'>
+                                            Para grabar su encuesta <span class='wysiwyg-color-red'>haga clic en el botón <b>«Finalizar»</b></span> antes de abandonar la sesión. Si no lo hace sus respuestas se perderán y tendrá que empezar nuevamente.<br><br>
+                                            Gracias por su participación.
+                                        </div>

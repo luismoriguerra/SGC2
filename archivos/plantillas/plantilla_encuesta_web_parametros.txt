@@ -1,0 +1,4 @@
+<div class='wysiwyg-text-align-justify wysiwyg-color-navy'>
+                                            La información que le pedimos a continuación servirá <b>exclusivamente</b> para la elaboración de estadísticas.<br><br>
+                                            Por favor haga clic donde corresponda.
+                                        </div>

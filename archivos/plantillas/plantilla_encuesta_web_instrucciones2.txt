@@ -1,0 +1,9 @@
+<div class='wysiwyg-text-align-justify wysiwyg-color-navy'>
+                                            La encuesta consiste en expresar mediante una escala de 1 a 5 en <span class='wysiwyg-color-red'>qué grado usted está de acuerdo</span> con cada uno de los enunciados que verá en su pantalla.<br><br>
+                                            Marque:<br><br>
+                                            <span class='wysiwyg-color-red'>5</span> para indicar que está <span class='wysiwyg-color-red'>totalmente de acuerdo</span><br>
+                                            <span class='wysiwyg-color-red'>1</span> para expresar que está en <span class='wysiwyg-color-red'>total desacuerdo</span><br>
+                                            <span class='wysiwyg-color-red'>2, 3 y 4</span> son niveles intermedios.
+                                        </div><br>
+                                        <div class='wysiwyg-text-align-center'>{1-5web-con-texto}</div><br>
+                                        <div class='wysiwyg-text-align-justify wysiwyg-color-navy'>Para elegir una opción, haga clic en los círculos que corresponda.</div>

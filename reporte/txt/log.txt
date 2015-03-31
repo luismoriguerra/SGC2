@@ -1,0 +1,60 @@
+2012-05-08 15:28:49	Empresa anatec creada	
+2012-05-08 15:33:57	Se creo Encuesta (anatec 2007)	
+2012-05-08 15:42:28	Se configuro la encuesta -anatec 2007- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-08 15:50:22	Se cargaron datos por plantilla (anatec 2007 - 2 formularios)	
+2012-05-08 15:51:50	Se cargaron datos por plantilla (Encuesta: anatec 2007 - archivo: PLANTILLADIGITACION.xlsx - 2 formularios)	
+2012-05-11 09:37:04	Se creo Encuesta (anatec2008)	
+2012-05-11 09:38:26	Se creo Empresa (repsol)	
+2012-05-11 09:39:08	Se creo Empresa (celima)	
+2012-05-11 09:39:33	Se creo Empresa (hdec)	
+2012-05-11 09:42:42	Se creo Empresa (css)	
+2012-05-11 09:44:57	Se creo Empresa (telegestion)	
+2012-05-11 11:13:12	Se cargo lista de destinatarios (Encuesta: anatec 2007 - archivo: PLANTILLADESTINATARIOS.xlsx - 2 direcciones)	
+2012-05-11 11:14:35	Se cargo lista de destinatarios (Encuesta: anatec 2007 - archivo: PLANTILLADESTINATARIOS.xlsx - 2 direcciones)	
+2012-05-11 11:19:45	Se cargo lista de destinatarios (Encuesta: anatec 2007 - archivo: PLANTILLADESTINATARIOS.xlsx - 101 direcciones)	
+2012-05-11 15:28:27	Se configuro la encuesta -anatec2008- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-11 15:32:17	Se cargo lista de destinatarios (Encuesta: anatec2008 - archivo: PLANTILLADESTINATARIOS.xlsx - 2 direcciones)	
+2012-05-14 11:18:54	Se cargo lista de destinatarios (Encuesta: anatec2008 - archivo: PLANTILLADESTINATARIOS.xlsx - 1 direcciones)	
+2012-05-14 11:22:04	Se cargo lista de destinatarios (Encuesta: anatec2008 - archivo: PLANTILLADESTINATARIOS.xlsx - 5 direcciones)	
+2012-05-14 12:01:02	Se envió correo a los destinatarios:	
+2012-05-14 12:32:44	Se envió correo a los destinatarios:cesarpiro@hotmail.com,orabanal@hdec.pe,juliocpiro@hotmail.com,hbruno@hdec.pe,jmore@hdec.pe,jpiro@hdec.pe,mreategui@hdec.pe,vtomailla@hdec.pe	
+2012-05-14 12:33:23	Se envió correo a los destinatarios:cesarpiro@hotmail.com,orabanal@hdec.pe,juliocpiro@hotmail.com,hbruno@hdec.pe,jmore@hdec.pe,jpiro@hdec.pe,mreategui@hdec.pe,vtomailla@hdec.pe	
+2012-05-14 12:34:48	Se envió correo a los destinatarios: cesarpiro@hotmail.com, orabanal@hdec.pe, juliocpiro@hotmail.com, hbruno@hdec.pe, jmore@hdec.pe, jpiro@hdec.pe, mreategui@hdec.pe, vtomailla@hdec.pe	
+2012-05-14 14:46:42	Se creo Encuesta (2007)	
+2012-05-14 14:49:38	Se configuro la encuesta -2007- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 14:57:13	Se cargaron datos por plantilla (Encuesta: 2007 - archivo: PLANTILLADIGITACION.xlsx - 3 formularios)	
+2012-05-14 15:01:29	Se creo Encuesta (2008)	
+2012-05-14 15:01:45	Se configuro la encuesta -2008- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 15:03:03	Se creo Encuesta (2009)	
+2012-05-14 15:03:35	Se configuro la encuesta -2009- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 15:05:06	Se creo Encuesta (2010)	
+2012-05-14 15:05:42	Se configuro la encuesta -2010- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 15:06:11	Se cargaron datos por plantilla (Encuesta: 2010 - archivo: PLANTILLADIGITACION.xlsx - 3 formularios)	
+2012-05-14 15:06:34	Se cargo lista de destinatarios (Encuesta: 2010 - archivo: PLANTILLADESTINATARIOS.xlsx - 3 direcciones)	
+2012-05-14 15:07:18	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-14 15:13:46	Se cargo lista de destinatarios (Encuesta: 2007 - archivo: PLANTILLADESTINATARIOS.xlsx - 3 direcciones)	
+2012-05-14 15:13:54	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-14 15:20:50	Se creo Encuesta (2009)	
+2012-05-14 15:21:02	Se configuro la encuesta -2009- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 15:21:12	Se cargaron datos por plantilla (Encuesta: 2009 - archivo: PLANTILLADIGITACION.xlsx - 3 formularios)	
+2012-05-14 15:21:24	Se cargo lista de destinatarios (Encuesta: 2009 - archivo: PLANTILLADESTINATARIOS.xlsx - 3 direcciones)	
+2012-05-14 15:21:29	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-14 15:37:11	Se creo Encuesta (2010)	
+2012-05-14 15:37:24	Se configuro la encuesta -2010- mediante archivo -PLANTILLACONFIGURACION.xlsx-	
+2012-05-14 15:38:00	Se cargaron datos por plantilla (Encuesta: 2010 - archivo: PLANTILLADIGITACION.xlsx - 3 formularios)	
+2012-05-14 15:38:17	Se cargo lista de destinatarios (Encuesta: 2010 - archivo: PLANTILLADESTINATARIOS.xlsx - 3 direcciones)	
+2012-05-14 15:38:42	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-14 16:07:21	Se cargo lista de destinatarios (Encuesta: 2008 - archivo: PLANTILLADESTINATARIOS.xlsx - 3 direcciones)	
+2012-05-15 12:03:19	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 12:23:30	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 12:34:45	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 12:40:45	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 12:45:29	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 14:50:42	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 15:15:06	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 15:19:51	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 15:23:27	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 15:35:38	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 15:51:23	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-15 16:03:24	Se envió correo a los destinatarios: juliocpiro@hotmail.com, cesarpiro@hotmail.com, xyz123456jwxd@hotmail.com	
+2012-05-16 08:13:46	Se envió correo a los destinatarios: cesarpiro@hotmail.com, orabanal@hdec.pe, juliocpiro@hotmail.com, hbruno@hdec.pe, jmore@hdec.pe, jpiro@hdec.pe, mreategui@hdec.pe, vtomailla@hdec.pe	

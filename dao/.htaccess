@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ %{REQUEST_URI}public [R,NC,L]

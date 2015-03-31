@@ -1,0 +1,33 @@
+Estimado (a) {nombre_apell},<br><br>
+                    Reciba el cordial saludo de Consultores Segura.<br>
+                    Por encargo de la empresa donde usted trabaja, nuestra consultora viene realizando la encuesta de clima organizacional. 
+                    Estos son los datos para el acceso al Panel de Informes.
+                    <br><br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {nombre_encuesta}
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {enlace}
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {txt_usuario}
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {txt_contrasena}
+                    <br><br>
+                    Por disposici&oacute;n de su empresa, usted tiene acceso a los siguientes segmentos de la organizaci&oacute;n:
+                    <br>
+                    {segmentos}                                         
+                    <br><br><br>
+                    Muchas gracias.<br>
+                    <b>Consultores Segura.</b><br><br>
+                    <p class='wysiwyg-color-blue'>
+                    <b>--------------------------------<br>
+                    NOTA IMPORTANTE<br>
+                    --------------------------------</b><br>
+                    </p>
+                    Si por alguna raz&oacute;n no pudiera ingresar, haga el favor de copiar y pegar la siguiente direcci&oacute;n en la barra de direcciones de su navegador (Google Chrome, Firefox, Explorer u otros).<br>
+                    {url}
+                    <br><br>
+                    <div class='wysiwyg-text-align-left'>Gracias</div>
+                    <br><br><br><br>
