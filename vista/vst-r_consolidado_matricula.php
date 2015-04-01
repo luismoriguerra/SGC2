@@ -82,6 +82,12 @@
                                                         ng-model="matriculaMes"
                                                         ng-options="value for value in meses">
                                                 </select>
+                                                <select id="anio"
+                                                        name="anio"
+                                                        ng-change="actualizarRango()"
+                                                        ng-model="anio"
+                                                        ng-options="option for option in anios">
+                                                </select>
                                             </td>
                                        </tr>
                                         <tr>
@@ -90,12 +96,12 @@
                                                 <select id="DiaIni"
                                                         name="DiaIni"
                                                         ng-model="DiaIni"
-                                                        ng-options="value for value in dias">
+                                                        ng-options="option as option for option in dias">
                                                 </select> -
-                                                <select id="DiaIni"
+                                                <select id="DiaFin"
                                                         name="DiaFin"
                                                         ng-model="DiaFin"
-                                                        ng-options="value for value in dias">
+                                                        ng-options="option as option for option in dias">
                                                 </select>
                                             </td>
                                         </tr>

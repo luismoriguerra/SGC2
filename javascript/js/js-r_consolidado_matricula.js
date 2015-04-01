@@ -24,12 +24,22 @@ $(document).ready(function(){
 	angular.module('myApp', [])
 
 		.controller('ConsolidadoMatricula', function($scope) {
+			// fecha actual
 			$scope.date = new Date();
 
 			$scope.meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+			// mes actual en texto
 			$scope.matriculaMes = $scope.meses[$scope.date.getMonth()];
-			$scope.lastDay = new Date(new Date().getYear(), $scope.date.getMonth() + 1, 0).getDate();
 			$scope.dias = [];
+			$scope.anio = $scope.date.getFullYear();
+			// rango de anios a mostrar
+			$scope.anios = [
+				$scope.date.getFullYear() -2 ,
+				$scope.date.getFullYear() -1 ,
+				$scope.date.getFullYear()
+			];
+			//ultimo dia del mes
+			$scope.lastDay = new Date($scope.anio, $scope.date.getMonth() + 1, 0).getDate();
 			$scope.ActualizarDiasMes = function () {
 				var i;
 
@@ -39,17 +49,24 @@ $(document).ready(function(){
 				}
 			};
 
+			$scope.actualizarRango = function () {
+				// actualiza el ulitmo dia
+				$scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
+				// actualiza el total de dias
+				$scope.ActualizarDiasMes();
+				//selecciona el presente dia del mes o el ultimo dia del mes antiguo
+				if ($scope.meses[$scope.date.getMonth()] == $scope.matriculaMes && $scope.anio == $scope.date.getFullYear()) {
+					$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+				} else {
+					$scope.DiaIni = $scope.DiaFin = $scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
+				}
+			};
+
+
 			$scope.ActualizarDiasMes();
 			$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
 
-			$scope.actualizarRango = function () {
-				if ($scope.meses[$scope.date.getMonth()] == $scope.matriculaMes) {
-					$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
-				} else {
-					$scope.DiaIni = $scope.DiaFin = $scope.lastDay = new Date(new Date().getYear(), $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
-					$scope.ActualizarDiasMes();
-				}
-			};
+
 
 
 
@@ -72,9 +89,10 @@ Exportar=function(){
     }else{
 	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?cfilial='+$("#slct_filial").val().join(",")                    
                     +'&cinstit='+$("#slct_instituto").val().join(",")
+                    +'&anio='+$("#anio option:selected").attr("label")
                     +'&mes='+$("#matriculaMes").val()
-                    +'&ini='+$("#DiaIni").val()
-                    +'&fin='+$("#DiaFin").val()
+                    +'&ini='+$("#DiaIni option:selected").attr("label")
+                    +'&fin='+$("#DiaFin option:selected").attr("label")
                     +'&usuario='+$("#hd_idUsuario").val();
     }
 }
