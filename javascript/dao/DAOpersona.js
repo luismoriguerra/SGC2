@@ -755,6 +755,35 @@ var personaDAO={
             error: this.msjErrorAjax
         });
     },
+    /**
+     * Guarda todos los sueldos de todos los vendedores listados
+     * @param data : cadena de id vendedor y sueldos concatenados id*sueldo|id*sueldo|....
+     */
+    guardarSueldosVendedores: function (data) {
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando: 'persona',
+                accion: 'guardarSueldosVendedores',
+                cfilial:$('#hd_idFilial').val(),
+                cusuari: $('#hd_idUsuario').val(),
+                data: data
+            },
+            beforeSend : function ( ) {
+            },
+            success : function ( obj ) {
+                if(obj.rst=='1'){
+                    sistema.msjOk(obj.msj,3000);
+                } else {
+                    this.msjErrorAjax
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },
 	msjErrorAjax:function(){
         sistema.cierraCargando();
         sistema.msjErrorCerrar('<b>Error, pongase en contacto con Sistemas</b>');

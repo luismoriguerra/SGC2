@@ -838,6 +838,28 @@ class MySqlPersonaDAO{
 			}
 		}
 	}
+
+    public function guardarSueldosVendedores ($data) {
+        $db=creadorConexion::crear('MySql');
+        $db->iniciaTransaccion();
+
+        $rows = explode("|", $data['data']);
+        foreach($rows as $vendedor) {
+            $dataVen = explode("*", $vendedor);
+            $sql = "UPDATE vendedm set sueldo = " . $dataVen[1] . " where cvended = '".$dataVen[0]."'";
+            $db->setQuery($sql);
+            if(!$db->executeQuery()){
+                $db->rollbackTransaccion();
+                return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql'=>$sql);exit();
+            }
+            if(!MySqlTransaccionDAO::insertarTransaccion($sql,$data['cfilial']) ){
+                $db->rollbackTransaccion();
+                return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sql);exit();
+            }
+        }
+        $db->commitTransaccion();
+        return array('rst'=>'1','msj'=>'Sueldos de Vendedores actualizados');exit();
+    }
 	
 	public function JQGridCountTrabajador($where){
 		$db=creadorConexion::crear('MySql');
@@ -856,7 +878,7 @@ class MySqlPersonaDAO{
 	$sql="	select v.cfilial,v.cvended,v.dnombre,v.dapepat,v.dapemat,v.demail,v.dtelefo,v.ndocper,
 			v.tdocper,v.fingven,v.fretven,v.tsexo,v.coddpto,v.codprov,v.coddist,
 			v.ddirecc,v.codintv,v.tvended,v.cinstit,
-			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven
+			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo
 			from vendedm v		
 			WHERE 1=1 $where
             ORDER BY $sidx $sord

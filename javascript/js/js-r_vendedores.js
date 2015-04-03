@@ -17,11 +17,64 @@ $(document).ready(function(){
 		prevText:'Anterior'
 	});
         
-})
+});
+
+(function () {
+    angular.module('myApp', [])
+
+        .controller('ConsolidadoMatricula', function($scope) {
+            // fecha actual
+            $scope.date = new Date();
+
+            $scope.meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+            // mes actual en texto
+            $scope.matriculaMes = $scope.meses[$scope.date.getMonth()];
+            $scope.dias = [];
+            $scope.anio = $scope.date.getFullYear();
+            // rango de anios a mostrar
+            $scope.anios = [
+                $scope.date.getFullYear() -2 ,
+                $scope.date.getFullYear() -1 ,
+                $scope.date.getFullYear()
+            ];
+            //ultimo dia del mes
+            $scope.lastDay = new Date($scope.anio, $scope.date.getMonth() + 1, 0).getDate();
+            $scope.ActualizarDiasMes = function () {
+                var i;
+
+                $scope.dias = [];
+                for (i = 1; i <= $scope.lastDay; i++) {
+                    $scope.dias.push(i);
+                }
+            };
+
+            $scope.actualizarRango = function () {
+                // actualiza el ulitmo dia
+                $scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
+                // actualiza el total de dias
+                $scope.ActualizarDiasMes();
+                //selecciona el presente dia del mes o el ultimo dia del mes antiguo
+                if ($scope.meses[$scope.date.getMonth()] == $scope.matriculaMes && $scope.anio == $scope.date.getFullYear()) {
+                    $scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+                } else {
+                    $scope.DiaIni = $scope.DiaFin = $scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
+                }
+            };
+
+
+            $scope.ActualizarDiasMes();
+            $scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+
+
+
+
+
+        });
+})();
 
 ActualizaCentroOpe=function(){
     personaDAO.listarOpeven(sistema.llenaSelect,"slct_opeven","");
-}
+};
 
 Exportar=function(){
     if( $.trim($("#slct_vendedor").val())=="" ){
@@ -42,7 +95,10 @@ Exportar=function(){
                     +'&dopeven='+$("#slct_opeven option[value='"+$("#slct_opeven").val()+"']").html()
                     +'&tvended='+$("#slct_vendedor").val()
                     +'&dvendedor='+$("#slct_vendedor option[value='"+$("#slct_vendedor").val()+"']").html()
-                    +'&fmatric='+$("#txt_fecha_matric").val()
+                    +'&anio='+$("#anio option:selected").attr("label")
+                    +'&mes='+$("#matriculaMes").val()
+                    +'&ini='+$("#DiaIni option:selected").attr("label")
+                    +'&fin='+$("#DiaFin option:selected").attr("label")
                     +'&pago='+$("#txt_pago_mensual").val()
                     +'&usuario='+$("#hd_idUsuario").val();
     }
