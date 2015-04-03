@@ -3,7 +3,7 @@
 <html ng-app="myApp">
 <head>
 
-    <title>SGC2</title>
+    <title>SGC2 | Mantenimiento Vendedor Sueldos</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -42,7 +42,7 @@
         <div class="secc-der" id="secc-der" ng-controller="angularController">
 
             <div id="panel_matricula" style="display:block">
-                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Mantenimiento Vendedor(es) <? /*aqui va el titulo q presentara  */ ?></b></div>
+                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Mantenimiento Vendedor(es) Sueldo <? /*aqui va el titulo q presentara  */ ?></b></div>
                 <div class="cont-der" style="text-align: center">
                     <? /*
                             	aqui va todo tu diseño ... dentro de cont-der 
