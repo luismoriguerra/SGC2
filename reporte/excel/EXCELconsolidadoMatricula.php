@@ -135,13 +135,13 @@ $styleAlignmentRight= array(
 );
 $styleColor = array(
 	'fill' => array(
-		'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,		
+		'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
 		'startcolor' => array(
 			'argb' => 'FFA0A0A0',
-			),
+		),
 		'endcolor' => array(
 			'argb' => 'FFFFFFFF',
-			)
+		)
 	),
 );
 
@@ -149,32 +149,32 @@ function color(){
 	$color=array(0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F");
 	$dcolor="";
 	for($i=0;$i<6;$i++){
-	$dcolor.=$color[rand(0,15)];
+		$dcolor.=$color[rand(0,15)];
 	}
 	$num='FA'.$dcolor;
-	
+
 	$styleColorFunction = array(
-	'fill' => array(
-		'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,		
-		'startcolor' => array(
-			'argb' => $num,
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+			'startcolor' => array(
+				'argb' => $num,
 			),
-		'endcolor' => array(
-			'argb' => 'FFFFFFFF',
+			'endcolor' => array(
+				'argb' => 'FFFFFFFF',
 			)
 		),
 	);
-return $styleColorFunction;
+	return $styleColorFunction;
 }
 
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
-							 ->setLastModifiedBy("Jorge Salcedo")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Test result file");
+	->setLastModifiedBy("Jorge Salcedo")
+	->setTitle("Office 2007 XLSX Test Document")
+	->setSubject("Office 2007 XLSX Test Document")
+	->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+	->setKeywords("office 2007 openxml php")
+	->setCategory("Test result file");
 
 $objPHPExcel->getDefaultStyle()->getFont()->setName('Bookman Old Style');
 $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
@@ -200,7 +200,7 @@ $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 $cabecera=array('N°','ODE');
 $cantidadaz=1;
 // cantidad de grupos
-for($i=1;$i<=$cantidadDias*1 + 2 ;$i++){
+for ($i=1; $i <= $cantidadDias * 1 + 2; $i++) {
 	$cantidadaz++;
 	$azcount[$cantidadaz]=5.5;
 	array_push($cabecera, 'TOTALES');
@@ -213,14 +213,14 @@ for($i=1;$i<=$cantidadDias*1 + 2 ;$i++){
 }
 
 // llenamos la fila subcabecera
-	for($i=0;$i<count($cabecera);$i++) {
-		$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."6",$cabecera[$i]);
-			if ($i>=2) {
-				$objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setTextRotation(90);
-			}
-		$objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setWrapText(true);
-		$objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
+for($i=0;$i<count($cabecera);$i++) {
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."6",$cabecera[$i]);
+	if ($i>=2) {
+		$objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setTextRotation(90);
 	}
+	$objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setWrapText(true);
+	$objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
+}
 
 $objPHPExcel->getActiveSheet()->mergeCells('A2:'.$az[($i-1)].'2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[($i-1)].'2')->applyFromArray($styleAlignmentBold);
@@ -266,7 +266,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 //
 //$objPHPExcel->getActiveSheet()->setCellValue($az[(2+count($rpt3)*3+3)]."5", $anteayer);
 //$objPHPExcel->getActiveSheet()->mergeCells($az[(2+count($rpt3)*3+3)]."5:".$az[(2+count($rpt3)*4+4-1)]."5");
-	
+
 $objPHPExcel->getActiveSheet()->getStyle("B5:".$az[(2+count($rpt3)*$y+$y-1)]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 $objPHPExcel->getActiveSheet()->getStyle("A6:".$az[(2+count($rpt3)*$y+$y-1)]."6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 
@@ -279,7 +279,7 @@ foreach ($rpt as $r) {
 	if ($countrpt3 ==1) {
 
 		$cont++;
-		$valorinicial++;		
+		$valorinicial++;
 		$objPHPExcel->getActiveSheet()->setCellValue("A".$valorinicial, $cont);
 		$objPHPExcel->getActiveSheet()->setCellValue("B".$valorinicial, $r['dfilial']);
 		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, '=SUM(D'.$valorinicial.':'.$az[(2+count($rpt3)*1+1-1)].$valorinicial.")");
@@ -301,7 +301,7 @@ foreach ($rpt as $r) {
 	}
 
 	$posicionaz = 2 + count($rpt3) + $countrpt3;
-	
+
 	$posicionaz++;
 	if ($r['c0']*1>0){
 		$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
@@ -353,14 +353,14 @@ $objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz].$valorinicial)->
 $valorinicial++;
 
 $cantidadaz=1;
-	for($i=1;$i<=$cantidadDias + 2;$i++){
+for($i=1;$i<=$cantidadDias + 2;$i++){
+	$cantidadaz++;
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz].$valorinicial, "=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");
+	for($j=0;$j<count($rpt3);$j++){
 		$cantidadaz++;
 		$objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz].$valorinicial, "=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");
-		for($j=0;$j<count($rpt3);$j++){
-			$cantidadaz++;
-			$objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz].$valorinicial, "=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");			
-		}
 	}
+}
 $objPHPExcel->getActiveSheet()->getStyle('C'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('C'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
 
