@@ -51,20 +51,14 @@ $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 			SELECT g.cfilial ft,g.cinstit it,c.fmatric
 			$sql_dias_column
 			FROM conmatp c
-			INNER JOIN recacap r 
-				ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca 
-						AND r.ccuota='1' AND r.testfin!='F' 
-						AND (r.testfin IN ('P','C') 
-									OR (r.testfin='S' AND r.tdocpag!='')
-								)
-						)
+			INNER JOIN recacap r
+				ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
 			INNER JOIN concepp co 
 				ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
 			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			$sql_dias
 			WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
 			GROUP BY c.cconmat
-			HAVING MIN(r.tdocpag)!=''
 		) g ON (f.cfilial=g.ft AND i.cinstit=g.it)
 		WHERE f.cfilial IN ('$cfilial')
 		AND i.cinstit IN ('$cinstit')
