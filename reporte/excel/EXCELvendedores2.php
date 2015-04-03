@@ -13,9 +13,15 @@ $tvended=$_GET['tvended'];
 $dvendedor=$_GET['dvendedor'];
 $copeven=$_GET['copeven'];
 $dopeven=$_GET['dopeven'];
-$fechafin = $_GET['fmatric'];
+
+//ahora esta en la bd vendedm campo sueldo
 $pago= $_GET['pago'];
-$fechainicio = date("Y-m-01" , strtotime($fechafin));
+
+$fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
+
+
+$fechainicio = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
+
 $diastotales = date("Y-m-d" , strtotime("+1 month",strtotime($fechainicio)));
 $diastotales = date("d" , strtotime("-1 day",strtotime($diastotales)));
 
@@ -23,18 +29,35 @@ $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
 $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
 $cinstit=str_replace(",","','",$_GET['cinstit']);
 
-$diaspromedio=explode("-",$_GET['fmatric']);
+$diaspromedio=explode("-",$fechafin);
+
+
+$cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
+for ($i = 0; $i < $cantidadDias ; $i++) {
+	$cam = $i + 1;
+	$dia = date("Y-m-d" , strtotime("-$i day",strtotime($fechafin)));
+	$sql_dias .=" LEFT JOIN conmatp c$i ON (c$i.cconmat=c.cconmat AND c$i.fmatric='$dia')
+				  LEFT JOIN gracprp g$i ON g$i.cgracpr=c$i.cgruaca ";
+	$sql_dias_column .=" ,g$i.cfilial f$cam, g$i.cinstit i$cam ";
+	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
+}
 
 $sql="	SELECT v.cvended,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS dfilial,v.fretven,i.dinstit,o.ctipcap,v.cestado,
-			count(IF(g.it=i.cinstit,g.ft,NULL)) c0,count(IF(g.i1=i.cinstit,g.f1,NULL)) c1,
-			count(IF(g.i2=i.cinstit,g.f2,NULL)) c2,v.codintv,v.fingven
+			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
+
+			$sql_column_count
+
+			,v.codintv,v.fingven
         FROM instita i
 		INNER JOIN vendedm v 
 		INNER JOIN opevena o ON o.copeven=v.copeven
         LEFT JOIN
         (
             SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,			
-			c.fmatric,g2.cfilial f1,g2.cinstit i1,g3.cfilial f2,g3.cinstit i2
+			c.fmatric
+
+			$sql_dias_column
+
             FROM conmatp c
 			INNER JOIN ingalum i ON c.cingalu=i.cingalu	
             INNER JOIN recacap r 
@@ -48,10 +71,9 @@ $sql="	SELECT v.cvended,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre)
                 ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
-            LEFT JOIN conmatp c2 ON (c2.cconmat=c.cconmat AND c2.fmatric='$ayer')
-            LEFT JOIN gracprp g2 ON g2.cgracpr=c2.cgruaca
-            LEFT JOIN conmatp c3 ON (c3.cconmat=c.cconmat AND c3.fmatric='$anteayer')
-            LEFT JOIN gracprp g3 ON g3.cgracpr=c3.cgruaca
+
+            $sql_dias
+
             WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''

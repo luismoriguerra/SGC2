@@ -22,7 +22,7 @@ $(document).ready(function(){
 (function () {
     angular.module('myApp', [])
 
-        .controller('ConsolidadoMatricula', function($scope) {
+        .controller('rangoFechas', function($scope) {
             // fecha actual
             $scope.date = new Date();
 
@@ -99,7 +99,6 @@ Exportar=function(){
                     +'&mes='+$("#matriculaMes").val()
                     +'&ini='+$("#DiaIni option:selected").attr("label")
                     +'&fin='+$("#DiaFin option:selected").attr("label")
-                    +'&pago='+$("#txt_pago_mensual").val()
                     +'&usuario='+$("#hd_idUsuario").val();
     }
 }
