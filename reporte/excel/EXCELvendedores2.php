@@ -48,7 +48,6 @@ $sql_column_count = "";
 
 $query1 = "";
 $query2 = "";
-$query3 = "";
 
 $cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
 for ($i = 0; $i < $cantidadDias ; $i++) {
@@ -62,36 +61,25 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$query1 = "
 		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
-
 			 $sql_column_count
-
 			,v.codintv,v.fingven, v.sueldo pago
         FROM instita i
-				INNER JOIN vendedm v
-				INNER JOIN opevena o ON o.copeven=v.copeven
+		INNER JOIN vendedm v
+		INNER JOIN opevena o ON o.copeven=v.copeven
         LEFT JOIN
         (
-            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
-			c.fmatric
-
+            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric
 			 $sql_dias_column
-
             FROM conmatp c
-						INNER JOIN ingalum i ON c.cingalu=i.cingalu
+			INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
                 ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
                         AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C')
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
-            INNER JOIN concepp co
-                ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+                        AND (r.testfin IN ('P','C')  OR (r.testfin='S' AND r.tdocpag!='') ))
+            INNER JOIN concepp co   ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-						INNER JOIN filialm f ON f.cfilial=g.cfilial
-
+			INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
-
             WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
@@ -110,35 +98,25 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 		}
 	} elseif ($i < 40) {
 		$query2 = "
-			SELECT v.cvended,i.cinstit,v.cestado /*g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS dfilial,v.fretven,i.dinstit,o.ctipcap,v.cestado,*/
-
+			SELECT v.cvended,i.cinstit,v.cestado
 			$sql_column_count
-
-			/*,v.codintv,v.fingven, v.sueldo pago*/
         FROM instita i
 				INNER JOIN vendedm v
 				INNER JOIN opevena o ON o.copeven=v.copeven
         LEFT JOIN
         (
-            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
-			c.fmatric
-
+            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric
 			$sql_dias_column
-
             FROM conmatp c
-						INNER JOIN ingalum i ON c.cingalu=i.cingalu
+			INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
                 ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
                         AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C')
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
-            INNER JOIN concepp co
-                ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+                        AND (r.testfin IN ('P','C') OR (r.testfin='S' AND r.tdocpag!='')) )
+            INNER JOIN concepp co  ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-						INNER JOIN filialm f ON f.cfilial=g.cfilial
-						$sql_dias
+			INNER JOIN filialm f ON f.cfilial=g.cfilial
+			$sql_dias
             WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
@@ -152,70 +130,9 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 
 	}
 }
-/*
-$sql="	SELECT v.cvended
-				,g.cpromot
-				,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS dfilial
-				,v.fretven
-				,i.dinstit
-				,o.ctipcap
-				,v.cestado,
-				count(IF(g.it=i.cinstit,g.ft,NULL)) c0
 
-				$sql_column_count
-
-			,v.codintv
-			,v.fingven
-			, v.sueldo pago
-        FROM instita i
-		INNER JOIN vendedm v 
-		INNER JOIN opevena o ON o.copeven=v.copeven
-        LEFT JOIN
-        (
-            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,			
-			c.fmatric
-
-			$sql_dias_column
-
-            FROM conmatp c
-			INNER JOIN ingalum i ON c.cingalu=i.cingalu	
-            INNER JOIN recacap r 
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca 
-                        AND r.ccuota='1' AND r.testfin!='F' 
-                        AND (r.testfin IN ('P','C') 
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
-            INNER JOIN concepp co 
-                ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
-            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-			INNER JOIN filialm f ON f.cfilial=g.cfilial
-
-            $sql_dias
-
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
-            GROUP BY c.cconmat
-            HAVING MIN(r.tdocpag)!=''
-        ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
-
-        WHERE v.tvended='$tvended'
-		AND o.copeven='$copeven'
-		AND i.cinstit IN ('$cinstit')
-		GROUP BY v.cvended,i.cinstit
-		HAVING (v.cestado='1' or count(g.ft)>0 )
-		ORDER BY v.dapepat,v.dapemat,v.dnombre,i.dinstit
-";
-
-$sql = "select * from ($query1) q1
-		inner join	() q2 ON q2.cvended=q1.cvended AND q2.cinstit=q1.cinstit
-		inner join  () q3 ON q3.cvended=q2.cvended AND q3.cinstit=q2.cinstitORDER
-
-";
-*/
 $sql = " select * from ($query1) q1 ";
-if ($query2) {
-	$sql.= " inner join	($query2) q2 ON q2.cvended=q1.cvended AND q2.cinstit=q1.cinstit ";
-}
+if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.cvended=q1.cvended AND q2.cinstit=q1.cinstit ";}
 $sql .= " order BY q1.vendedor,q1.dinstit ";
 
 $cn->setQuery($sql);

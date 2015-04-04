@@ -12,8 +12,24 @@ require_once '../../conexion/configMySql.php';
 /*crea obj conexion*/
 $cn=MySqlConexion::getInstance();
 
-$az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
-$azcount=array(5,20,12.5,50,6,6,6,6,18,12,12,4,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+
+$az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+$azcount=array(5,24.5,9,9,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,
+	15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+	15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+	15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+	15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+	15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+
+$letras=array(
+	'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+// AUMENTAMOS LA CANTIDAD DE COLUMNAS
+for ($i = 0; $letras[$i]; $i++) {
+	for ($j = 0; $letras[$j]; $j++) {
+		$az[] = $letras[$i].$letras[$j];
+		$azcount[] = 15;
+	}
+}
 
 $cfilial=str_replace(",","','",$_GET['cfilial']);
 
@@ -22,10 +38,15 @@ $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD
 
 $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
 $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
-
+$cinstit=str_replace(",","','",$_GET['cinstit']);
+$diaspromedio=explode("-",$fechafin);
 $sql_dias = "";
 $sql_dias_column = "";
 $sql_column_count = "";
+
+
+$query1 = "";
+$query2 = "";
 
 $cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
 for ($i = 0; $i < $cantidadDias ; $i++) {
@@ -35,12 +56,64 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 				  LEFT JOIN gracprp g$i ON g$i.cgracpr=c$i.cgruaca ";
 	$sql_dias_column .=" ,g$i.cfilial f$cam, g$i.cinstit i$cam ";
 	$sql_column_count .= " ,count(g.i$cam) c$cam ";
+
+	if ($i <= 20) {
+		$query1 = "
+		SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
+		,count(g.it) c0
+		$sql_column_count
+		FROM filialm f
+		INNER JOIN instita i
+		LEFT JOIN
+		(
+			SELECT g.cfilial ft,g.cinstit it,c.fmatric
+			$sql_dias_column
+			FROM conmatp c
+			INNER JOIN recacap r ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+			INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+			$sql_dias
+			WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+			GROUP BY c.cconmat
+		) g ON (f.cfilial=g.ft AND i.cinstit=g.it)
+		WHERE f.cfilial IN ('$cfilial')
+		AND i.cinstit IN ('$cinstit')
+		GROUP BY f.cfilial,i.cinstit
+		ORDER BY f.dfilial,i.dinstit
+	";
+		if ($i == 20) {
+			// reiniciamos variables
+			$sql_dias = "";
+			$sql_dias_column = "";
+			$sql_column_count = "";
+		}
+	} elseif ($i < 40) {
+		$query2 = "
+			SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
+		,count(g.it) c0
+		$sql_column_count
+		FROM filialm f
+		INNER JOIN instita i
+		LEFT JOIN
+		(
+			SELECT g.cfilial ft,g.cinstit it,c.fmatric
+			$sql_dias_column
+			FROM conmatp c
+			INNER JOIN recacap r ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+			INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+			$sql_dias
+			WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+			GROUP BY c.cconmat
+		) g ON (f.cfilial=g.ft AND i.cinstit=g.it)
+		WHERE f.cfilial IN ('$cfilial')
+		AND i.cinstit IN ('$cinstit')
+		GROUP BY f.cfilial,i.cinstit
+		ORDER BY f.dfilial,i.dinstit
+		";
+	}
 }
-
-
-$cinstit=str_replace(",","','",$_GET['cinstit']);
-$diaspromedio=explode("-",$fechafin);
-
+/*
 $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 		,count(g.it) c0
 		$sql_column_count
@@ -51,10 +124,8 @@ $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 			SELECT g.cfilial ft,g.cinstit it,c.fmatric
 			$sql_dias_column
 			FROM conmatp c
-			INNER JOIN recacap r
-				ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-			INNER JOIN concepp co 
-				ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+			INNER JOIN recacap r ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+			INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
 			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			$sql_dias
 			WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
@@ -63,7 +134,19 @@ $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 		WHERE f.cfilial IN ('$cfilial')
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY f.cfilial,i.cinstit
-		ORDER BY f.dfilial,i.dinstit";
+		ORDER BY f.dfilial,i.dinstit ";
+*/
+
+
+
+
+
+$sql = " select * from ($query1) q1 ";
+if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.cfilial=q1.cfilial AND q2.cinstit=q1.cinstit ";}
+$sql .= " order BY q1.cfilial,q1.dinstit ";
+
+
+
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 
