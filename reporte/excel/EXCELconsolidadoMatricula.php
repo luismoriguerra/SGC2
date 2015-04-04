@@ -286,7 +286,8 @@ foreach ($rpt as $r) {
 
 		for ($i = 1; $i <= $cantidadDias + 1 ; $i++) {
 			$x = $i + 1;
-			$objPHPExcel->getActiveSheet()->setCellValue($az[(2+count($rpt3)*$i+$i)].$valorinicial,
+			$objPHPExcel->getActiveSheet()->setCellValue(
+				$az[(2+count($rpt3)*$i+$i)].$valorinicial,
 				"=SUM(".$az[(2+count($rpt3)*$i+$i+1)].$valorinicial.":".$az[(2+count($rpt3)*$x+$x-1)].$valorinicial.")");
 
 		}
