@@ -20,7 +20,7 @@ $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
 
 $diaspromedio=explode("-",$_GET['fmatric']);
 
-$sql="  SELECT o.copeven,o.dopeven,t.dtipcap,o.ctipcap,COUNT(IF(v.cestado=1,V.cestado,NULL)) estado1,COUNT(IF(v.cestado=0,V.cestado,NULL)) estado0,
+$sql="  SELECT o.copeven,o.dopeven,t.dtipcap,o.ctipcap,COUNT(IF(v.cestado=1,v.cestado,NULL)) estado1,COUNT(IF(v.cestado=0,v.cestado,NULL)) estado0,
             count(v.cvended) totalv,o.ntelefo telefono,o.ncelula celular,(o.ntelefo+o.ncelula) totalc,count(g.ft) c0,count(g.f1) c1,
             count(g.f2) c2,(count(g.ft)/17) promedio
         FROM opevena o 
@@ -32,15 +32,6 @@ $sql="  SELECT o.copeven,o.dopeven,t.dtipcap,o.ctipcap,COUNT(IF(v.cestado=1,V.ce
             c.fmatric,g2.cfilial f1,g2.cinstit i1,g3.cfilial f2,g3.cinstit i2
             FROM conmatp c
                         INNER JOIN ingalum i ON c.cingalu=i.cingalu 
-            INNER JOIN recacap r 
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca 
-                        AND r.ccuota='1' AND r.testfin!='F' 
-                        AND (r.testfin IN ('P','C') 
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
-            INNER JOIN concepp co 
-                ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
                         INNER JOIN filialm f ON f.cfilial=g.cfilial
             LEFT JOIN conmatp c2 ON (c2.cconmat=c.cconmat AND c2.fmatric='$ayer')
@@ -49,12 +40,12 @@ $sql="  SELECT o.copeven,o.dopeven,t.dtipcap,o.ctipcap,COUNT(IF(v.cestado=1,V.ce
             LEFT JOIN gracprp g3 ON g3.cgracpr=c3.cgruaca
             WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
             GROUP BY c.cconmat
-            HAVING MIN(r.tdocpag)!=''
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE o.cestado=1
         GROUP BY o.copeven,o.ctipcap
         ORDER BY o.dopeven,t.dtipcap
 ";
+//exit($sql);
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 
