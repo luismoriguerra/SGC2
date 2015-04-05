@@ -465,7 +465,7 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
     $.each(obj,function(i,e){
        
         cuerpo +="<tr class='iu_row'>";
-        cuerpo +="<td>"+ (i+1)+"</td><td class='text-left'>("+ e.cingalu + ")<br>" + e.nombres +"</td>";
+        cuerpo +="<td>"+ (i+1)+"</td><td class='text-left'>("+ e.dcodlib + ")<br>" + e.nombres +"</td>";
         cuerpo +="<td class='text-left'>"+ e.telefono +"</td>"; //TELEFONO
         
         

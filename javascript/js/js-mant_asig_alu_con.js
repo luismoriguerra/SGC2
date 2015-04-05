@@ -140,22 +140,22 @@ edit_jqgrid=function(){
         $('#spanBtnFormProcedencia').html('Modificar');
         $('#frmProcedencia').dialog('open'); 
     }else {
-      sistema.msjAdvertencia('Seleccione <b>Curso de Procedencia</b> a Editar')
+      sistema.msjAdvertencia('Seleccione <b>Curso de Procedencia</b> a Editar');
   }
 }
 
-modificar=function(){    
-  var a=new Array();   
+modificar=function(){
+  var a=new Array();
   a[0] = sistema.requeridoTxt('txt_daspral');
   a[1] = sistema.requeridoSlct('slct_ciclo');
   a[2] = sistema.requeridoTxt('txt_ncredit');
   a[3] = sistema.requeridoTxt('txt_nhorteo');
   a[4] = sistema.requeridoTxt('txt_nhorpra');
   a[5] = sistema.requeridoSlct('slct_estado');
-  for(var i=0;i<6;i++){
-    if(!a[i]){
+  for(var i=0;i<6;i++) {
+    if (!a[i]) {
     return false;
-    break;        
+    break;
     }
   }
 

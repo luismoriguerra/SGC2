@@ -1,5 +1,7 @@
 <?php
 /*conexion*/
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -196,7 +198,7 @@ for($i = 0 ; $i<$clase;$i++){
 //DATOS DE LOS ALUMNOS DEL GRUPO
 $sql = "select s.*,
                 CONCAT_WS(' ',p.dappape,p.dapmape,p.dnomper) nombres,
-                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono
+                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono, i.dcodlib
                 $asis_sql
                 from seinggr s
                 inner join personm p on p.cperson = s.cperson
@@ -277,28 +279,29 @@ $excel =$objPHPExcel->getActiveSheet();
 $fila = 5;
 $f = $fila;
 $excel->setCellValue("A$f","Nro")
-      ->setCellValue("B$f","APELLIDOS Y NOMBRES")
-      ->setCellValue("C$f","CEL/TEL")
-      ->setCellValue("D$f","1")
-      ->setCellValue("E$f","2")
-        ->setCellValue("F$f","3")
-        ->setCellValue("G$f","4")
-        ->setCellValue("H$f","5")
-        ->setCellValue("I$f","6")
-        ->setCellValue("J$f","7")
-        ->setCellValue("K$f","8")
-        ->setCellValue("L$f","9")
-        ->setCellValue("M$f","10")
-        ->setCellValue("N$f","11")
-        ->setCellValue("O$f","12")
-        ->setCellValue("P$f","13")
-        ->setCellValue("Q$f","14")
-        ->setCellValue("R$f","15")
-        ->setCellValue("S$f","TOT")
+      ->setCellValue("B$f","CODIGO ALUMNO")
+      ->setCellValue("C$f","APELLIDOS Y NOMBRES")
+      ->setCellValue("D$f","CEL/TEL")
+      ->setCellValue("E$f","1")
+      ->setCellValue("F$f","2")
+        ->setCellValue("G$f","3")
+        ->setCellValue("H$f","4")
+        ->setCellValue("I$f","5")
+        ->setCellValue("J$f","6")
+        ->setCellValue("K$f","7")
+        ->setCellValue("L$f","8")
+        ->setCellValue("M$f","9")
+        ->setCellValue("N$f","10")
+        ->setCellValue("O$f","11")
+        ->setCellValue("P$f","12")
+        ->setCellValue("Q$f","13")
+        ->setCellValue("R$f","14")
+        ->setCellValue("S$f","15")
+        ->setCellValue("T$f","TOT")
         //->setCellValue("O$f",$sql)
         ;
 
-$excel->getStyle("A$f:S$f")->applyFromArray($styleThinBlackBorderAllborders);
+$excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);
 $excel->getColumnDimension("C")->setWidth(15);
 $excel->getColumnDimension("D")->setWidth(4);
 $excel->getColumnDimension("E")->setWidth(4);
@@ -316,6 +319,7 @@ $excel->getColumnDimension("P")->setWidth(4);
 $excel->getColumnDimension("Q")->setWidth(4);
 $excel->getColumnDimension("R")->setWidth(4);
 $excel->getColumnDimension("S")->setWidth(4);
+$excel->getColumnDimension("T")->setWidth(4);
 
 //FILAS DE LOS ALUMNOS
 $c=0;
@@ -323,17 +327,19 @@ $c=0;
 foreach ($alumnos as $alu){
 $f++;
 $c++;
-$excel->setCellValue("A$f",$c)->setCellValue("B$f", "(". $alu["cingalu"] .")\n" . $alu["nombres"]);
-$excel->setCellValue("c$f",$alu["telefono"]);
-$excel->getStyle("A$f:S$f")->applyFromArray($styleThinBlackBorderAllborders);
+$excel->setCellValue("A$f",$c)
+	  ->setCellValue("B$f",$alu["dcodlib"])
+	  ->setCellValue("C$f", $alu["nombres"]);
+$excel->setCellValue("D$f",$alu["telefono"]);
+$excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);
 //LLENAR ASISTENCIA
 if($asistencia){
- $dias = array("D","E","F","G","H","I","J","K","L","M","N",'O','P','Q','R');
+ $dias = array("E","F","G","H","I","J","K","L","M","N",'O','P','Q','R','S');
  for($A=0;$A < $clase;$A++){
   $asis = ($alu["dia$A"])?$alu["dia$A"] : 0 ;
   $excel->setCellValue( $dias[$A].$f,$asis);
  }
- $excel->setCellValue("S$f","=SUM(D$f:R$f)");
+ $excel->setCellValue("T$f","=SUM(D$f:S$f)");
 }
 
 

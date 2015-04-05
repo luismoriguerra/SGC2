@@ -150,7 +150,7 @@ order by  conceptos desc ,p.dappape ASC;
         //OBTENIENDO ALUMNOS
         $sql = "select s.*,
                 CONCAT_WS(' ',p.dappape,p.dapmape,p.dnomper) nombres
-                ,CONCAT(p.ntelpe2,' | ',p.ntelper) telefono
+                ,CONCAT(p.ntelpe2,' | ',p.ntelper) telefono , i.dcodlib
                 from seinggr s 
                 inner join personm p on p.cperson = s.cperson
                 inner join ingalum i on (i.cingalu=s.cingalu)
