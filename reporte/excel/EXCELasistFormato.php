@@ -109,7 +109,7 @@ $seccion = $_GET["secc"];
 $asistencia= ($_GET["asistencia"])?$_GET["asistencia"]:'';
 //DATOS DEL GRUPO
 $sql="
-SELECT 
+SELECT
 (SELECT c.dtitulo from curricm as c where c.ccurric = g.ccurric) as curricula,
 (select f.dfilial from filialm as f where f.cfilial = g.cfilial) as filial,
 (select i.dinstit from instita as i where i.cinstit = g.cinstit) as institucion,
@@ -123,29 +123,29 @@ select GROUP_CONCAT(d.dnemdia SEPARATOR '-')
 				where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0
 ) as dias,
 esg.desgrpr as gestado,
-g.* 
-from gracprp as g 
+g.*
+from gracprp as g
 left join esgrpra as esg on esg.cesgrpr = g.cesgrpr
-where 
-g.cgracpr = '$cgrupo'    
+where
+g.cgracpr = '$cgrupo'
 ";
 $cn->setQuery($sql);
 $grupos=$cn->loadObjectList();
 
 //DATA DE LAS CLASES DEL GRUPO
  $sql="
-           select 
+           select
 CONCAT(finicio,'|',ffin) fgrupos
-,DATE_FORMAT(now(),'%Y-%m-%d') fhoy 
+,DATE_FORMAT(now(),'%Y-%m-%d') fhoy
 ,if(finicio> now() , 0,1) estado
 ,cfrecue
 from gracprp g where g.cgracpr = '$cgrupo';
-            
+
         ";
-        
+
         $cn->setQuery($sql);
         $data=$cn->loadObject();
-        
+
         //OBTENIENDO LA FECHA DE LOS PRIMEROS 10 DIAS
         $fechas = $data->fgrupos;
         list($finicio,$ffin) = explode("|", $fechas);
@@ -153,8 +153,8 @@ from gracprp g where g.cgracpr = '$cgrupo';
         $fre = explode("-", $data->cfrecue);
         $dias = 0;
         $dfechas = array();
-        while($dias < 10){
-             
+        while($dias < 15){
+
             $dd = date("w" , strtotime($finicio) );
             $dd++;
             if(in_array($dd, $fre)){
@@ -164,13 +164,13 @@ from gracprp g where g.cgracpr = '$cgrupo';
             $fecha = date_create($finicio);
             date_add($fecha, date_interval_create_from_date_string('1 days'));
             $finicio = date_format($fecha, 'Y-m-d');
-            
-            
+
+
         }
-       
+
         $data->ffin = $ffin;
         $data->fechas = $dfechas;
-        
+
         $hoy = date("Y-m-d");
         $data->registrar = 0;
         foreach($dfechas as $i=>$v){
@@ -184,11 +184,11 @@ from gracprp g where g.cgracpr = '$cgrupo';
                  break;
             }
         }
-        
+
         $data->nroclase = $clase;
 $asis_sql= "";
 for($i = 0 ; $i<$clase;$i++){
-    
+
     $asis_sql .=", ( select estasist from aluasist where idseing = s.id and fecha = '".$dfechas[$i]."' ) as dia$i";
 }
 
@@ -196,13 +196,13 @@ for($i = 0 ; $i<$clase;$i++){
 //DATOS DE LOS ALUMNOS DEL GRUPO
 $sql = "select s.*,
                 CONCAT_WS(' ',p.dappape,p.dapmape,p.dnomper) nombres,
-                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono 
+                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono
                 $asis_sql
-                from seinggr s 
+                from seinggr s
                 inner join personm p on p.cperson = s.cperson
-                inner join ingalum i on (i.cingalu=s.cingalu) 
-                where s.cgrupo = '$cgrupo' and s.seccion = '$seccion' 
-                AND i.cestado='1' 
+                inner join ingalum i on (i.cingalu=s.cingalu)
+                where s.cgrupo = '$cgrupo' and s.seccion = '$seccion'
+                AND i.cestado='1'
 				ORDER BY nombres";
 
 $cn->setQuery($sql);
@@ -265,13 +265,13 @@ $objPHPExcel->getActiveSheet()->mergeCells('C3:F3');
 $objPHPExcel->getActiveSheet()->mergeCells('G4:N4');
 
 //$objPHPExcel->getActiveSheet()->mergeCells('G2:N2');
-//$objPHPExcel->getActiveSheet()->mergeCells('G3:N3'); 
+//$objPHPExcel->getActiveSheet()->mergeCells('G3:N3');
 $objPHPExcel->getActiveSheet()->mergeCells('G2:N3')
            ->getStyle("G2:N3")
             ->getAlignment()->setWrapText(true)
-            ->applyFromArray($styleAlignmentBold) ;        
-       
-        
+            ->applyFromArray($styleAlignmentBold) ;
+
+
 $excel =$objPHPExcel->getActiveSheet();
 //CABECERA DE LA TABLA DE REGISTRO
 $fila = 5;
@@ -289,11 +289,16 @@ $excel->setCellValue("A$f","Nro")
         ->setCellValue("K$f","8")
         ->setCellValue("L$f","9")
         ->setCellValue("M$f","10")
-        ->setCellValue("N$f","TOT")
+        ->setCellValue("N$f","11")
+        ->setCellValue("O$f","12")
+        ->setCellValue("P$f","13")
+        ->setCellValue("Q$f","14")
+        ->setCellValue("R$f","15")
+        ->setCellValue("S$f","TOT")
         //->setCellValue("O$f",$sql)
         ;
 
-$excel->getStyle("A$f:N$f")->applyFromArray($styleThinBlackBorderAllborders);
+$excel->getStyle("A$f:S$f")->applyFromArray($styleThinBlackBorderAllborders);
 $excel->getColumnDimension("C")->setWidth(15);
 $excel->getColumnDimension("D")->setWidth(4);
 $excel->getColumnDimension("E")->setWidth(4);
@@ -306,6 +311,11 @@ $excel->getColumnDimension("K")->setWidth(4);
 $excel->getColumnDimension("L")->setWidth(4);
 $excel->getColumnDimension("M")->setWidth(4);
 $excel->getColumnDimension("N")->setWidth(4);
+$excel->getColumnDimension("O")->setWidth(4);
+$excel->getColumnDimension("P")->setWidth(4);
+$excel->getColumnDimension("Q")->setWidth(4);
+$excel->getColumnDimension("R")->setWidth(4);
+$excel->getColumnDimension("S")->setWidth(4);
 
 //FILAS DE LOS ALUMNOS
 $c=0;
@@ -313,21 +323,21 @@ $c=0;
 foreach ($alumnos as $alu){
 $f++;
 $c++;
-$excel->setCellValue("A$f",$c)->setCellValue("B$f",$alu["nombres"]);
+$excel->setCellValue("A$f",$c)->setCellValue("B$f", "(". $alu["cingalu"] .")\n" . $alu["nombres"]);
 $excel->setCellValue("c$f",$alu["telefono"]);
-$excel->getStyle("A$f:N$f")->applyFromArray($styleThinBlackBorderAllborders);
+$excel->getStyle("A$f:S$f")->applyFromArray($styleThinBlackBorderAllborders);
 //LLENAR ASISTENCIA
 if($asistencia){
- $dias = array("D","E","F","G","H","I","J","K","L","M");
+ $dias = array("D","E","F","G","H","I","J","K","L","M","N",'O','P','Q','R');
  for($A=0;$A < $clase;$A++){
   $asis = ($alu["dia$A"])?$alu["dia$A"] : 0 ;
-  $excel->setCellValue( $dias[$A].$f,$asis);   
+  $excel->setCellValue( $dias[$A].$f,$asis);
  }
- $excel->setCellValue("N$f","=SUM(D$f:M$f)");
+ $excel->setCellValue("S$f","=SUM(D$f:R$f)");
 }
 
-    
-  
+
+
 }//fin foreach
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex($pestana);

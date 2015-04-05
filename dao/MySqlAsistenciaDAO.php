@@ -44,16 +44,8 @@ order by  conceptos desc ,p.dappape ASC;
     }
 
     public function rangoFechasGrupo($cgrupo){
-        $sql="
-           select 
-CONCAT(finicio,'|',ffin) fgrupos
-,DATE_FORMAT(now(),'%Y-%m-%d') fhoy 
-,if(finicio> now() , 0,1) estado
-,cfrecue
-from gracprp g where g.cgracpr = '$cgrupo';
-            
-        ";
         $db=creadorConexion::crear('MySql');
+        $sql=" select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr = '$cgrupo'; ";
         $db->setQuery($sql);
         $data=$db->loadObject();
         
@@ -64,7 +56,7 @@ from gracprp g where g.cgracpr = '$cgrupo';
         $fre = explode("-", $data->cfrecue);
         $dias = 0;
         $dfechas = array();
-        while($dias < 10){
+        while($dias < 15){
              
             $dd = date("w" , strtotime($finicio) );
             $dd++;

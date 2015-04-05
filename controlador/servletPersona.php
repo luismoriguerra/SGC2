@@ -902,6 +902,7 @@ class servletPersona extends controladorComandos{
 							$data[$i]['cestado'],
                             $data[$i]['copeven'],
                             $data[$i]['sueldo'],
+                            $data[$i]['faltas'],
                             )
                         )
                     );

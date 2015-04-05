@@ -62,9 +62,6 @@ $(document).ready(function(){
         $("#btnExportarReporte").click(function(){
             ExportarAsistencia();
         });
-        
-        
-        
 });
 
 ListarCiclos = function(){
