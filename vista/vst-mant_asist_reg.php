@@ -1,6 +1,7 @@
-<?
+<?php
 set_time_limit(300);
-require_once('ifrm-valida-sesion.php')?>	
+require_once('ifrm-valida-sesion.php')
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -226,6 +227,6 @@ require_once('ifrm-valida-sesion.php')?>
 		
         <div id="capaMensaje" class="capaMensaje" style="display:none"></div>		
 		<hr>
-		<?require_once('ifrm-footer.php')?>	
+		<? require_once('ifrm-footer.php') ?>
 	</body>
 </html>
