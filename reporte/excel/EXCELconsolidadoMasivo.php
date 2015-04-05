@@ -6,54 +6,123 @@ require_once '../../conexion/configMySql.php';
 /*crea obj conexion*/
 $cn=MySqlConexion::getInstance();
 
-$az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
-$azcount=array(5,14.5,24.5,11.5,5.5,5.5,5.5,5.5,5.5,7.5,5.5,5.5,5.5,5.5,5.5,5.5,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+$az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+$azcount=array(5,24.5,9,9,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,
+    15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+    15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+    15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+    15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
+    15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+$letras=array(
+    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+// AUMENTAMOS LA CANTIDAD DE COLUMNAS
+for ($i = 0; $letras[$i]; $i++) {
+    for ($j = 0; $letras[$j]; $j++) {
+        $az[] = $letras[$i].$letras[$j];
+        $azcount[] = 15;
+    }
+}
 
-$fechafin = $_GET['fmatric'];
-$pago= $_GET['pago'];
-$fechainicio = date("Y-m-01" , strtotime($fechafin));
+
+$fechainicio =$_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
+$fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
+
 $diastotales = date("Y-m-d" , strtotime("+1 month",strtotime($fechainicio)));
 $diastotales = date("d" , strtotime("-1 day",strtotime($diastotales)));
 
 $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
 $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
 
-$diaspromedio=explode("-",$_GET['fmatric']);
+$diaspromedio=explode("-",$fechafin);
 
+/*
 $sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
-            count(g.ft) c0,count(g.f1) c1,
-            count(g.f2) c2
+            count(g.ft) c0
+            ,count(g.f1) c1
+            ,count(g.f2) c2
         FROM tipcapa t
         INNER JOIN medprea m ON (t.didetip=m.tmedpre)
         LEFT JOIN
         (
             SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,           
-            c.fmatric,g2.cfilial f1,g2.cinstit i1,g3.cfilial f2,g3.cinstit i2
+            c.fmatric
+            ,g2.cfilial f1,g2.cinstit i1
+            ,g3.cfilial f2,g3.cinstit i2
             FROM conmatp c
-                        INNER JOIN ingalum i ON c.cingalu=i.cingalu 
-            INNER JOIN recacap r 
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca 
-                        AND r.ccuota='1' AND r.testfin!='F' 
-                        AND (r.testfin IN ('P','C') 
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
-            INNER JOIN concepp co 
-                ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-                        INNER JOIN filialm f ON f.cfilial=g.cfilial
+            INNER JOIN filialm f ON f.cfilial=g.cfilial
+
             LEFT JOIN conmatp c2 ON (c2.cconmat=c.cconmat AND c2.fmatric='$ayer')
             LEFT JOIN gracprp g2 ON g2.cgracpr=c2.cgruaca
             LEFT JOIN conmatp c3 ON (c3.cconmat=c.cconmat AND c3.fmatric='$anteayer')
             LEFT JOIN gracprp g3 ON g3.cgracpr=c3.cgruaca
+
             WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
             GROUP BY c.cconmat
-            HAVING MIN(r.tdocpag)!=''
         ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
         WHERE t.dclacap=3
         GROUP BY t.dtipcap,m.dmedpre
         ORDER BY t.dtipcap,m.dmedpre
 ";
+*/
+
+    //***************/
+        // query dinamico
+$sql_dias = "";
+$sql_dias_column = "";
+$sql_column_count = "";
+$query1 = "";
+$query2 = "";
+$cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
+for ($i = 0; $i < $cantidadDias ; $i++) {
+    $cam = $i + 1;
+    $dia = date("Y-m-d" , strtotime("-$i day",strtotime($fechafin)));
+    $sql_dias .=" LEFT JOIN conmatp c$i ON (c$i.cconmat=c.cconmat AND c$i.fmatric='$dia')
+				  LEFT JOIN gracprp g$i ON g$i.cgracpr=c$i.cgruaca ";
+    $sql_dias_column .=" ,g$i.cfilial f$cam, g$i.cinstit i$cam ";
+    $sql_column_count .= " ,count(g.f$cam) c$cam ";
+
+}
+
+$sql = " select * from ($query1) q1 ";
+if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.dtipcap=q1.dtipcap AND q2.dmedpre=q1.dmedpre ";}
+$sql .= " order BY q1.dtipcap,q1.dmedpre ";
+
+
+/********/
+
+
+$sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
+            count(g.ft) c0
+            $sql_column_count
+        FROM tipcapa t
+        INNER JOIN medprea m ON (t.didetip=m.tmedpre)
+        LEFT JOIN
+        (
+            SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
+            c.fmatric
+           $sql_dias_column
+            FROM conmatp c
+            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+            INNER JOIN filialm f ON f.cfilial=g.cfilial
+            $sql_dias
+            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            GROUP BY c.cconmat
+        ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
+        WHERE t.dclacap=3
+        GROUP BY t.dtipcap,m.dmedpre
+        ORDER BY t.dtipcap,m.dmedpre
+";
+
+
+
+
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 
@@ -196,6 +265,15 @@ $cantidadaz=$iniciadinamica-1;
     $objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setWrapText(true);
     $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
     }
+    $colActual = $i;
+    $restaDias = 0;
+// GENERA LAS CABECERAS DE LAS FECHAS
+for ($i = $colActual; $i < $cantidadDias + $colActual ; $i++) {
+    $dia = date("Y-m-d" , strtotime("-$restaDias day",strtotime($fechafin)));
+    $restaDias++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."6", $dia);
+    $objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setTextRotation(90);
+}
 
 $objPHPExcel->getActiveSheet()->mergeCells('A2:'.$az[($i-1)].'2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[($i-1)].'2')->applyFromArray($styleAlignmentBold);
@@ -226,14 +304,28 @@ $posicionaz=0;
 foreach($rpt as $r){
     $cont++;
     $posicionaz=0;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $cont); $posicionaz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['dtipcap']); $posicionaz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['dmedpre']); $posicionaz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c0']); 
-    if($r['c0']*1>0){
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $cont);
+    $posicionaz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['dtipcap']);
+    $posicionaz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['dmedpre']);
+    $posicionaz++;
+
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c0']);
+    if ($r['c0'] * 1 > 0) {
         $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
     }
     $posicionaz++;
+
+    for ($i = 1; $i <= $cantidadDias ; $i++) {
+        $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c'.$i]);
+        if ($r['c'.$i] * 1 > 0) {
+            $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
+        }
+        $posicionaz++;
+    }
+
+
     $valorinicial++;
 }
 
