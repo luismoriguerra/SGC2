@@ -84,18 +84,10 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 				  LEFT JOIN gracprp g$i ON g$i.cgracpr=c$i.cgruaca ";
     $sql_dias_column .=" ,g$i.cfilial f$cam, g$i.cinstit i$cam ";
     $sql_column_count .= " ,count(g.f$cam) c$cam ";
+    if( $i <=  20) {
+        $query1 = "
 
-}
-
-$sql = " select * from ($query1) q1 ";
-if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.dtipcap=q1.dtipcap AND q2.dmedpre=q1.dmedpre ";}
-$sql .= " order BY q1.dtipcap,q1.dmedpre ";
-
-
-/********/
-
-
-$sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
+            SELECT t.dtipcap,t.ctipcap,m.dmedpre,
             count(g.ft) c0
             $sql_column_count
         FROM tipcapa t
@@ -118,7 +110,77 @@ $sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
         WHERE t.dclacap=3
         GROUP BY t.dtipcap,m.dmedpre
         ORDER BY t.dtipcap,m.dmedpre
-";
+        ";
+        if ($i == 20) {
+            $sql_dias = "";
+            $sql_dias_column = "";
+            $sql_column_count = "";
+        }
+    } elseif ($i < 40) {
+        $query2 = "
+
+            SELECT t.dtipcap,t.ctipcap,m.dmedpre,
+            count(g.ft) c0
+            $sql_column_count
+        FROM tipcapa t
+        INNER JOIN medprea m ON (t.didetip=m.tmedpre)
+        LEFT JOIN
+        (
+            SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
+            c.fmatric
+           $sql_dias_column
+            FROM conmatp c
+            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+            INNER JOIN filialm f ON f.cfilial=g.cfilial
+            $sql_dias
+            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            GROUP BY c.cconmat
+        ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
+        WHERE t.dclacap=3
+        GROUP BY t.dtipcap,m.dmedpre
+        ORDER BY t.dtipcap,m.dmedpre
+        ";
+    }
+
+
+
+}
+
+$sql = " select * from ($query1) q1 ";
+if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.dtipcap=q1.dtipcap AND q2.dmedpre=q1.dmedpre ";}
+$sql .= " order BY q1.dtipcap,q1.dmedpre ";
+
+
+/********/
+
+
+//$sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
+//            count(g.ft) c0
+//            $sql_column_count
+//        FROM tipcapa t
+//        INNER JOIN medprea m ON (t.didetip=m.tmedpre)
+//        LEFT JOIN
+//        (
+//            SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
+//            c.fmatric
+//           $sql_dias_column
+//            FROM conmatp c
+//            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+//            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
+//            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
+//            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+//            INNER JOIN filialm f ON f.cfilial=g.cfilial
+//            $sql_dias
+//            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+//            GROUP BY c.cconmat
+//        ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
+//        WHERE t.dclacap=3
+//        GROUP BY t.dtipcap,m.dmedpre
+//        ORDER BY t.dtipcap,m.dmedpre
+//";
 
 
 
