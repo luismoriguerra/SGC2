@@ -1,1 +1,10 @@
-2015/04/03 ALTER TABLE vendedm add COLUMN sueldo int(11)
+2015/04/05
+CREATE TABLE `cpdteles_caja1`.`venfala` (
+	`cvended` varchar(19) NOT NULL,
+	`diafalt` date NOT NULL,
+	`cestado` char(1) DEFAULT NULL,
+	`cusuari` varchar(19) DEFAULT NULL,
+	`fusuari` datetime DEFAULT NULL
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ROW_FORMAT=COMPACT COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
+
+2015/04/03 ALTER TABLE vendedm add COLUMN sueldo decimal(10,2)

@@ -1,5 +1,7 @@
 <?php
 /*conexion*/
+ini_set("memory_limit", "128M");
+ini_set("max_execution_time", 300);
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -66,12 +68,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
-                        AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C')
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
+                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
             INNER JOIN concepp co
                 ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
@@ -105,12 +102,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
-                        AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C')
-                                    OR (r.testfin='S' AND r.tdocpag!='')
-                                )
-                        )
+                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca )
             INNER JOIN concepp co
                 ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca

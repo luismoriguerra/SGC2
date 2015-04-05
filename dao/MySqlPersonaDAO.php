@@ -845,16 +845,38 @@ class MySqlPersonaDAO{
 
         $rows = explode("|", $data['data']);
         foreach($rows as $vendedor) {
+            // array de datos por vendeor 0 id , 1 sueld , 2 faltas unidos por D
             $dataVen = explode("*", $vendedor);
             $sql = "UPDATE vendedm set sueldo = " . $dataVen[1] . " where cvended = '".$dataVen[0]."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
                 $db->rollbackTransaccion();
-                return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql'=>$sql);exit();
+                return array('rst'=>'3','msj'=>'Error al Registrar sueldos','sql'=>$sql);exit();
+            }
+            // REGISTRAR FALTAS
+            // deshabilitamos las anteriores
+            $sql = "update venfala set cestado = 0, cusuari = '".$data['cusuari']."' where  cvended = '".$dataVen[0]."'";
+            $db->setQuery($sql);
+            if(!$db->executeQuery()){
+                $db->rollbackTransaccion();
+                return array('rst'=>'3','msj'=>'Error al actualizar las faltas de '.$dataVen[0] ,'sql'=>$sql);exit();
+            }
+            $faltas = explode("D", $dataVen[2]);
+            foreach ($faltas as $f) {
+                if ($f) {
+                    $fecha = date("Y-m-d",$f/1000);
+                    //agregamos el nuevo grupo
+                    $sql = "Insert into venfala set cvended = '".$dataVen[0]."', diafalt='".$fecha."', cestado = 1,cusuari = '".$data['cusuari']."', fusuari = NOW() ";
+                    $db->setQuery($sql);
+                    if(!$db->executeQuery()){
+                        $db->rollbackTransaccion();
+                        return array('rst'=>'3','msj'=>'Error al Registrar faltas','sql'=>$sql);exit();
+                    }
+                }
             }
             if(!MySqlTransaccionDAO::insertarTransaccion($sql,$data['cfilial']) ){
                 $db->rollbackTransaccion();
-                return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sql);exit();
+                return array('rst'=>'3','msj'=>'Error al Registrar transacciones','sql2'=>$sql);exit();
             }
         }
         $db->commitTransaccion();
@@ -878,8 +900,9 @@ class MySqlPersonaDAO{
 	$sql="	select v.cfilial,v.cvended,v.dnombre,v.dapepat,v.dapemat,v.demail,v.dtelefo,v.ndocper,
 			v.tdocper,v.fingven,v.fretven,v.tsexo,v.coddpto,v.codprov,v.coddist,
 			v.ddirecc,v.codintv,v.tvended,v.cinstit,
-			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo
-			from vendedm v		
+			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo,
+			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas
+			from vendedm v
 			WHERE 1=1 $where
             ORDER BY $sidx $sord
             LIMIT $start , $limit ";

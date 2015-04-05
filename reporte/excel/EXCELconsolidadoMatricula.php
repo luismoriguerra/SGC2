@@ -6,6 +6,8 @@
 ini_set("display_errors", 1);
 
 conexion*/
+ini_set("memory_limit", "128M");
+ini_set("max_execution_time", 300);
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -322,7 +324,7 @@ $objPHPExcel->getActiveSheet()->getStyle('B4:C4')->applyFromArray($styleAlignmen
 $objPHPExcel->getActiveSheet()->setCellValue("D4",date("Y-m-d"));
 
 //$objPHPExcel->getActiveSheet()->mergeCells('L4');
-$objPHPExcel->getActiveSheet()->setCellValue("B5","FECHA MATRÍCULA ".$fechainicio ."/" .$fechafin);
+$objPHPExcel->getActiveSheet()->setCellValue("B5","FECHA MATRÍCULA \n".$fechainicio ."/" .$fechafin);
 $objPHPExcel->getActiveSheet()->getStyle("B5")->getAlignment()->setWrapText(true);
 //$objPHPExcel->getActiveSheet()->getStyle('L4')->applyFromArray($styleAlignmentRight);
 //$objPHPExcel->getActiveSheet()->setCellValue("M4",$fechafin);

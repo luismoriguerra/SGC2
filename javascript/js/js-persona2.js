@@ -45,9 +45,10 @@ cargarDistritot=function(){
 
 
 (function () {
-	angular.module('myApp', [])
+	angular.module('myApp', ['ui.bootstrap', 'gm.datepickerMultiSelect'])
 		.controller('angularController', ['$scope','$http',function($scope, $http) {
 
+			$scope.noResultados = false;
 			$scope.actualizarLista = function() {
 				var url ='../controlador/controladorSistema.php?' +
 					'comando=persona' +
@@ -57,19 +58,36 @@ cargarDistritot=function(){
 					'&accion=jqgrid_trabajador' +
 					'&cestado=1' +
 					'&tvended='+$scope.slctVendedor;
-
+				$scope.cargando = true;
+				$scope.noResultados = false;
 				$scope.vendedores = [];
 				$scope.sueldoComun = '';
 				$http.get(url).
 					success(function(data, status, headers, config) {
 						$scope.vendedores = data.rows.map(function (ven) {
+							var faltas = [];
+
+							if (ven.cell[20]) {
+								faltas = ven.cell[20].split("D");
+								// PASAMOS LOS DATOS A POSITIVOS
+								for (var i=0; faltas[i]; i++) {
+									faltas[i] = faltas[i]*1;
+								}
+							}
+
 							return {
 								id: ven.id,
 								nombre: ven.cell[3] + " " + ven.cell[1] + " " + ven.cell[2],
 								estado: ven.cell[17],
-								sueldo: parseInt(ven.cell[19], 10)
+								sueldo: parseFloat(ven.cell[19]),
+								identity: angular.identity,
+								activeDate: null,
+								selectedDates: faltas,
 							}
 						});
+						$scope.cargando = false;
+						$scope.noResultados = !$scope.vendedores.length;
+
 					}).
 					error(function(data, status, headers, config) {
 
@@ -87,16 +105,47 @@ cargarDistritot=function(){
 
 			$scope.guardarTodos = function () {
 				var datosAGuardar = [],
-					sueldo;
+					sueldo,
+					faltas;
 
 				$scope.vendedores.forEach(function (ven) {
 					sueldo = (ven.sueldo) ? ven.sueldo : 0;
-					datosAGuardar.push(ven.id + "*" + sueldo);
+					faltas = ven.selectedDates.join("D")
+					datosAGuardar.push(ven.id + "*" + sueldo + "*" + faltas);
 				});
 
 				datosAGuardar = datosAGuardar.join("|");
 				personaDAO.guardarSueldosVendedores(datosAGuardar);
 			};
+
+
+
+			$scope.open = function($event, vendedor) {
+				$event.preventDefault();
+				$event.stopPropagation();
+
+				//$scope.opened = true;
+				$('#ff-'+vendedor.id).dialog({
+					autoOpen : false,
+					show : 'fade',hide : 'fade',
+					modal:true,
+					width:'400',height:'auto',
+					dialogClass: "no-close",
+					buttons: [
+						{
+							text: "OK",
+							click: function() {
+								$( this ).dialog( "close" );
+
+							}
+						}
+					]
+				}).dialog("open");
+			};
+
+			$scope.removeFromSelected = function (ven , dt) {
+				ven.selectedDates.splice(ven.selectedDates.indexOf(dt), 1);
+			}
 
 
 

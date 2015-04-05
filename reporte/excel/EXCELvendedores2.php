@@ -3,6 +3,9 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 /*conexion*/
+ini_set("memory_limit", "128M");
+ini_set("max_execution_time", 300);
+
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -73,9 +76,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
 			INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
-                        AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C')  OR (r.testfin='S' AND r.tdocpag!='') ))
+                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
             INNER JOIN concepp co   ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
@@ -110,9 +111,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
 			INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca
-                        AND r.ccuota='1' AND r.testfin!='F'
-                        AND (r.testfin IN ('P','C') OR (r.testfin='S' AND r.tdocpag!='')) )
+                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca )
             INNER JOIN concepp co  ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
@@ -390,7 +389,8 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("F".$valorinicial, $fecharet);
 
 		// ESTE PAGO COMO SE CUALCULA ?
-		$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, "=".$r["pago"]."/".$diastotales);
+		$pago = ($r["pago"]) ? $r["pago"] : 0;
+		$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, "=".$pago."/".$diastotales);
 
 
 		$objPHPExcel->getActiveSheet()->setCellValue("H".$valorinicial, "=G".$valorinicial."*J".$valorinicial);
