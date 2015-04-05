@@ -32,9 +32,15 @@ $copeven=$_GET['copeven'];
 $dopeven=$_GET['dopeven'];
 
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
-
-
 $fechainicio = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
+
+
+if (date("m") == date("m", strtotime($fechainicio))){
+	$diaFinalDeCalculo = date("Y-m-d");
+} else {
+	$diaFinalDeCalculo = date("Y-m-t", strtotime($fechainicio));
+}
+
 
 $diastotales = date("Y-m-d" , strtotime("+1 month",strtotime($fechainicio)));
 $diastotales = date("d" , strtotime("-1 day",strtotime($diastotales)));
@@ -66,6 +72,13 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
+			,IF(v.fingven > '$fechainicio',
+(select count(*) faltas from venfala
+				where cvended = v.cvended and cestado = 1 and diafalt between v.fingven and '$diaFinalDeCalculo'
+				)
+,(select count(*) faltas from venfala
+				where cvended = v.cvended and cestado = 1 and diafalt between '$fechainicio' and '$diaFinalDeCalculo'
+				)) faltas
         FROM instita i
 		INNER JOIN vendedm v
 		INNER JOIN opevena o ON o.copeven=v.copeven
@@ -381,11 +394,15 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("D".$valorinicial, $r['codintv']);
 
 		$fechaing = $fechainicio;
-		if($r['fingven']>=$fechaing){			$fechaing=$r['fingven'];		}
+		if($r['fingven']>=$fechaing){
+			$fechaing=$r['fingven'];
+		}
 		$objPHPExcel->getActiveSheet()->setCellValue("E".$valorinicial, $fechaing);
 
 		$fecharet=$r['fretven'];
-		if($r['cestado']==1 or $r['fretven']==''){			$fecharet=date('Y-m-d');		}
+		if($r['cestado']==1 or $r['fretven']==''){
+			$fecharet = $diaFinalDeCalculo;
+		}
 		$objPHPExcel->getActiveSheet()->setCellValue("F".$valorinicial, $fecharet);
 
 		// ESTE PAGO COMO SE CUALCULA ?
@@ -395,7 +412,7 @@ foreach ($rpt as $r) {
 
 		$objPHPExcel->getActiveSheet()->setCellValue("H".$valorinicial, "=G".$valorinicial."*J".$valorinicial);
 		$objPHPExcel->getActiveSheet()->setCellValue("I".$valorinicial, "=IFERROR(H".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");
-		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial, "=F".$valorinicial."-E".$valorinicial);
+		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial, "=F".$valorinicial."-E".$valorinicial . " + 1 - ".$r["faltas"] );
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=".$az[$iniciadinamica].$valorinicial."/J".$valorinicial);
 
 		// INICIO DE COLUMNAS DINAMICAS
