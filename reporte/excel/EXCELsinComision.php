@@ -65,8 +65,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
-        WHERE t.dclacap=1
-        AND i.cinstit IN ('$cinstit')
+        WHERE  i.cinstit IN ('$cinstit')
         GROUP BY t.ctipcap,i.cinstit
         ORDER BY t.dtipcap,i.dinstit
     ";
@@ -99,8 +98,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
-        WHERE t.dclacap=1
-        AND i.cinstit IN ('$cinstit')
+        WHERE i.cinstit IN ('$cinstit')
         GROUP BY t.ctipcap,i.cinstit
         ORDER BY t.dtipcap,i.dinstit
         ";

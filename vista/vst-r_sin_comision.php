@@ -46,7 +46,7 @@
                 <div class="secc-der" id="secc-der">
                     
                     <div id="panel_matricula" style="display:block">
-                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>MEDIO SIN COMISION MATRICULA <?   /*aqui va el titulo q presentara  */ ?></b></div>         
+                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>REPORTE DE MEDIOS GENERALES <?   /*aqui va el titulo q presentara  */ ?></b></div>
                         <div class="cont-der" ng-controller="ConsolidadoMatricula">
                             <div class="t-center">
                                 <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
