@@ -24,7 +24,8 @@
         
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
-        
+        <script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
+
         <script type="text/javascript" src="../javascript/js/js-r_consolidado_masivo.js"></script>
             
     </head>
@@ -52,6 +53,16 @@
                        
                                 <!--Inicio tabla-->
                                 <table style="width:90%">
+                                    <tr>
+                                        <td class="t-left label">Institución:</td>
+                                        <td class="t-left">
+                                            <select id="slct_instituto" class="input-xlarge" style="width: 370px; display: none;" multiple>
+                                                <optgroup label="Instituto">
+                                                    <option value="">--Selecione--</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="t-left label input-large">Mes Matrícula:</td>
                                         <td class="t-left">

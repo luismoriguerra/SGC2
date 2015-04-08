@@ -129,6 +129,7 @@ $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 $sql = " select * from ($query1) q1 ";
 if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.cfilial=q1.cfilial AND q2.cinstit=q1.cinstit ";}
 $sql .= " order BY q1.cfilial,q1.dinstit ";
+
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 $sql2="SELECT concat(dnomper,' ',dappape,' ',dapmape) as nombre
@@ -136,12 +137,16 @@ $sql2="SELECT concat(dnomper,' ',dappape,' ',dapmape) as nombre
 		WHERE dlogper='".$_GET['usuario']."'";
 $cn->setQuery($sql2);
 $rpt2=$cn->loadObjectList();
+
+
 $sql3="SELECT dinstit
 		FROM instita
 		WHERE cinstit IN ('$cinstit')
 		ORDER BY dinstit";
 $cn->setQuery($sql3);
 $rpt3=$cn->loadObjectList();
+
+
 /*
 echo count($control)."-";
 echo $sql;
@@ -316,6 +321,7 @@ foreach ($rpt as $r) {
 	$countrpt3++;
 	if ($countrpt3 ==1) {
 		$cont++;
+		// inicializa la fila donde estara
 		$valorinicial++;
 		$objPHPExcel->getActiveSheet()->setCellValue("A".$valorinicial, $cont);
 		$objPHPExcel->getActiveSheet()->setCellValue("B".$valorinicial, $r['dfilial']);
@@ -352,19 +358,7 @@ foreach ($rpt as $r) {
 			$posicionaz+=count($rpt3);
 		}
 	}
-//	$posicionaz++;
-//	if($r['c1']*1>0){
-//		$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
-//	}
-//	$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c1']);
-//	$posicionaz+=count($rpt3);
-//
-//	$posicionaz++;
-//		if($r['c1']*1>0){
-//			$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
-//		}
-//	$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c2']);
-//	$posicionaz++;
+	// cuando ya dio tantas vueltas como instituciones hay pasa a la siguiente fila
 	if( $countrpt3==count($rpt3) ){
 		$countrpt3=0;
 	}
