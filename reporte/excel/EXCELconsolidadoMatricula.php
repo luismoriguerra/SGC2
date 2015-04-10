@@ -187,7 +187,14 @@ $styleThickBlackBorderAllborders = array(
 		),
 	),
 );
-
+$styleThickBlackBorderRight = array(
+	'borders' => array(
+		'right' => array(
+			'style' => PHPExcel_Style_Border::BORDER_THICK,
+			'color' => array('argb' => 'FF000000'),
+		),
+	),
+);
 $styleThinBlackBorderAllborders = array(
 	'borders' => array(
 		'allborders' => array(
@@ -441,6 +448,7 @@ for ($i = 0; $i < $cantidadDias + 2;$i++){
 	$grupoColumnInicial = count($rpt3) + $grupoColumnInicial + 1;
 }
 
+$objPHPExcel->getActiveSheet()->getStyle("$lastColumn".(7).":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderRight);
 $objPHPExcel->getActiveSheet()->getStyle("C".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
 
 
