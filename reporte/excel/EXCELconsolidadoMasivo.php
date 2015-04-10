@@ -2,14 +2,18 @@
 /*conexion*/
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
+try {
 
-ini_set("memory_limit", "128M");
+
+ini_set('xdebug.max_nesting_level', 1000000);
+ini_set("memory_limit", "258M");
 ini_set("max_execution_time", 300);
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
 /*crea obj conexion*/
 $cn=MySqlConexion::getInstance();
+$meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre");
 
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 $azcount=array(5,24.5,9,9,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,
@@ -39,43 +43,14 @@ $diastotales = date("d" , strtotime("-1 day",strtotime($diastotales)));
 $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
 $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
 
+// First day of the month.
+$mesPrimerDia = date('Y-m-01', strtotime($fechainicio));
+// Last day of the month.
+$mesUltimoDia = date('Y-m-t', strtotime($fechainicio));
+
 $diaspromedio=explode("-",$fechafin);
 
-/*
-$sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
-            count(g.ft) c0
-            ,count(g.f1) c1
-            ,count(g.f2) c2
-        FROM tipcapa t
-        INNER JOIN medprea m ON (t.didetip=m.tmedpre)
-        LEFT JOIN
-        (
-            SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,           
-            c.fmatric
-            ,g2.cfilial f1,g2.cinstit i1
-            ,g3.cfilial f2,g3.cinstit i2
-            FROM conmatp c
-            INNER JOIN ingalum i ON c.cingalu=i.cingalu
-            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
-            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-            INNER JOIN filialm f ON f.cfilial=g.cfilial
 
-            LEFT JOIN conmatp c2 ON (c2.cconmat=c.cconmat AND c2.fmatric='$ayer')
-            LEFT JOIN gracprp g2 ON g2.cgracpr=c2.cgruaca
-            LEFT JOIN conmatp c3 ON (c3.cconmat=c.cconmat AND c3.fmatric='$anteayer')
-            LEFT JOIN gracprp g3 ON g3.cgracpr=c3.cgruaca
-
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
-            GROUP BY c.cconmat
-        ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
-        WHERE t.dclacap=3
-        GROUP BY t.dtipcap,m.dmedpre
-        ORDER BY t.dtipcap,m.dmedpre
-";
-*/
-
-    //***************/
         // query dinamico
 $sql_dias = "";
 $sql_dias_column = "";
@@ -112,7 +87,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
         ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre AND i.cinstit=g.it)
         WHERE t.dclacap=3
@@ -146,7 +121,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
         ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre AND i.cinstit=g.it)
         WHERE t.dclacap=3
@@ -155,46 +130,11 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         ORDER BY t.dtipcap,m.dmedpre,i.dinstit
         ";
     }
-
-
-
 }
 
 $sql = " select * from ($query1) q1 ";
 if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.dtipcap=q1.dtipcap AND q2.dmedpre=q1.dmedpre AND q2.dinstit=q1.dinstit ";}
-$sql .= " order BY q1.dtipcap,q1.dmedpre,q1.dinstit  ";
-
-
-/********/
-
-
-//$sql="   SELECT t.dtipcap,t.ctipcap,m.dmedpre,
-//            count(g.ft) c0
-//            $sql_column_count
-//        FROM tipcapa t
-//        INNER JOIN medprea m ON (t.didetip=m.tmedpre)
-//        LEFT JOIN
-//        (
-//            SELECT c.cconmat,i.ctipcap,i.cmedpre,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,
-//            c.fmatric
-//           $sql_dias_column
-//            FROM conmatp c
-//            INNER JOIN ingalum i ON c.cingalu=i.cingalu
-//            INNER JOIN recacap r  ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-//            INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
-//            INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
-//            INNER JOIN filialm f ON f.cfilial=g.cfilial
-//            $sql_dias
-//            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
-//            GROUP BY c.cconmat
-//        ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre)
-//        WHERE t.dclacap=3
-//        GROUP BY t.dtipcap,m.dmedpre
-//        ORDER BY t.dtipcap,m.dmedpre
-//";
-
-
-
+$sql .= " where q1.c0 > 0 order BY q1.dtipcap,q1.dmedpre,q1.dinstit  ";
 
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
@@ -219,6 +159,7 @@ date_default_timezone_set('America/Lima');
 
 
 require_once 'includes/Classes/PHPExcel.php';
+require_once 'includes/Classes/PHPExcel/Calculation.php';
 
 $styleThinBlackBorderOutline = array(
     'borders' => array(
@@ -236,6 +177,33 @@ $styleThinBlackBorderAllborders = array(
         ),
     ),
 );
+
+$styleThickBlackBorderOutline = array(
+    'borders' => array(
+        'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
+$styleThickBlackBorderRight = array(
+    'borders' => array(
+        'right' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
+$styleThickBlackBorderAllborders = array(
+    'borders' => array(
+        'allborders' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
+
+
 $styleBold= array(
     'font'    => array(
         'bold'      => true
@@ -267,7 +235,7 @@ $styleAlignmentRight= array(
 );
 $styleColor = array(
     'fill' => array(
-        'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,        
+        'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
         'startcolor' => array(
             'argb' => 'FFA0A0A0',
             ),
@@ -284,10 +252,10 @@ function color(){
     $dcolor.=$color[rand(0,15)];
     }
     $num='FA'.$dcolor;
-    
+
     $styleColorFunction = array(
     'fill' => array(
-        'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,        
+        'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
         'startcolor' => array(
             'argb' => $num,
             ),
@@ -299,6 +267,7 @@ function color(){
 return $styleColorFunction;
 }
 $color = 'FFEBF1DE';
+$colorVerde = "FFEBF1DE";
 
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
@@ -326,9 +295,10 @@ $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 
 //$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
-$objPHPExcel->getActiveSheet()->setCellValue("A2","CONSOLIDADO MASIVO");
-$objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
-
+$objPHPExcel->getActiveSheet()->setCellValue("A1","CONSOLIDADO MEDIO MASIVO");
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
+$objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
+$objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
 // LLENANDO LAS CABECERAS
 $cabecera=array('N°','TIPO','CAPTACION');
 
@@ -357,8 +327,10 @@ for ($i=0; $i <= $cantidadDias * 1; $i++) {
             if ($countGrupos == 2) { // si va a empezar el segundo grupo , agrego la cabecera principal al primero
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$colInicioGrupoAnterior].($filaActual - 1) , 'CONSOLIDADO');
                 $objPHPExcel->getActiveSheet()->mergeCells($az[$colInicioGrupoAnterior].($filaActual - 1).":".$az[($i - 1)].($filaActual - 1));
+                $objPHPExcel->getActiveSheet()->getStyle($az[$colInicioGrupoAnterior].($filaActual - 1))->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+
             } else if ($countGrupos > 2 && $i + 1 != count($cabecera) ) { // si va a empezar el segundo grupo , agrego la cabecera principal al primero
-                $fechaGrupo = date("Y-m-d" , strtotime("-".($countGrupos - 1)." day",strtotime($fechafin)));
+                $fechaGrupo = date("Y-m-d" , strtotime("-".($countGrupos - 3)." day",strtotime($fechafin)));
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$colInicioGrupoAnterior].($filaActual - 1) , $fechaGrupo);
                 $objPHPExcel->getActiveSheet()->mergeCells($az[$colInicioGrupoAnterior].($filaActual - 1).":".$az[($i - 1)].($filaActual - 1));
 
@@ -367,7 +339,7 @@ for ($i=0; $i <= $cantidadDias * 1; $i++) {
                 $objPHPExcel->getActiveSheet()->getStyle($az[$colInicioGrupoAnterior].($filaActual - 1).":".$az[($i - 1)].($filaActual - 1))->applyFromArray($styleThinBlackBorderAllborders);
 
             } else if ( $i + 1 == count($cabecera) ) { // para el grupo final
-                $fechaGrupo = date("Y-m-d" , strtotime("-".($countGrupos - 1)." day",strtotime($fechafin)));
+                $fechaGrupo = date("Y-m-d" , strtotime("-".($countGrupos - 3)." day",strtotime($fechafin)));
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$colInicioGrupoAnterior].($filaActual - 1) , $fechaGrupo);
                 $objPHPExcel->getActiveSheet()->mergeCells($az[$colInicioGrupoAnterior].($filaActual - 1).":".$az[($i)].($filaActual - 1));
 
@@ -385,8 +357,8 @@ for ($i=0; $i <= $cantidadDias * 1; $i++) {
 
 
 
-$objPHPExcel->getActiveSheet()->mergeCells('A2:'.$az[($i-1)].'2');
-$objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[($i-1)].'2')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->mergeCells('A1:'.$az[($i-1)].'1');
+$objPHPExcel->getActiveSheet()->getStyle('A1:'.$az[($i-1)].'1')->applyFromArray($styleAlignmentBold);
 
 $objPHPExcel->getActiveSheet()->getRowDimension("5")->setRowHeight(23); // altura
 $objPHPExcel->getActiveSheet()->getRowDimension("6")->setRowHeight(66.5); // altura
@@ -403,8 +375,8 @@ $objPHPExcel->getActiveSheet()->getStyle('B4:C4')->applyFromArray($styleAlignmen
 $objPHPExcel->getActiveSheet()->setCellValue("D4",date("Y-m-d"));
 
 //$objPHPExcel->getActiveSheet()->mergeCells('L4');
-$objPHPExcel->getActiveSheet()->setCellValue("B5","FECHA MATRÍCULA \n".$fechafin);
-$objPHPExcel->getActiveSheet()->getStyle("B5")->getAlignment()->setWrapText(true);
+//$objPHPExcel->getActiveSheet()->setCellValue("B5","FECHA MATRÍCULA \n".$fechafin);
+//$objPHPExcel->getActiveSheet()->getStyle("B5")->getAlignment()->setWrapText(true);
 
 // reinicio de fila contadores
 $fila=6; // filas
@@ -415,7 +387,9 @@ $actualCaptacion = "";
 $colAcuInicio = 3;
 $actualMedio = "";
 $contadorCaptacion = 0;
-$filasTotales = [];
+$filasTotales = array();
+$coordenadasFilasTotales = array();
+
 foreach($rpt as $r){
     if ($actualMedio != $r['dtipcap']) {
         $actualMedio = $r['dtipcap'];
@@ -428,10 +402,14 @@ foreach($rpt as $r){
                     $ubicacionFinalGrupo = $az[$posicionaz].($fila*1 - 1);
                     $ubicacionInicialGrupo = $az[$posicionaz].($fila*1 - $contadorCaptacion);
                     $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$fila, "=SUM($ubicacionInicialGrupo:$ubicacionFinalGrupo)");
+                    $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$fila)->applyFromArray($styleBold);
+
                     $posicionaz++;
                 }
             }
             $objPHPExcel->getActiveSheet()->getStyle("A$fila:".$az[$posicionaz - 1].$fila)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+            array_push($coordenadasFilasTotales,"A$fila:".$az[$posicionaz - 1].$fila);
+
             // reiniciamos el contador de captacion
             $contadorCaptacion = 0;
 
@@ -455,14 +433,20 @@ foreach($rpt as $r){
     for ($i = 0; $i <= $cantidadDias; $i++) {
         for ($j = -1; $j < count($rpt3); $j++) {
             $ubicacionActual = $az[$posicionaz].$fila;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$fila, 0);
+
             if ($j == -1) { // columna sumatoria
                 $ubicacionInicialGrupo = $az[$posicionaz + 1].$fila;
                 $ubicacionFinalGrupo = $az[$posicionaz + count($rpt3)].$fila;
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$fila, "=SUM($ubicacionInicialGrupo:$ubicacionFinalGrupo)");
+                $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$fila)->applyFromArray($styleBold);
+
             }
 
-            if ($rpt3[$j]["dinstit"] == $r["dinstit"]) {
+            if ($rpt3[$j]["dinstit"] == $r["dinstit"] && $r['c'.$i] > 0) {
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$fila, $r['c'.$i]);
+                $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$fila)->applyFromArray($styleBold);
+
             }
             $posicionaz++;
         }
@@ -481,6 +465,7 @@ for ($i = 0; $i <= $cantidadDias; $i++) {
     }
 }
 $objPHPExcel->getActiveSheet()->getStyle("A$fila:".$az[$posicionaz - 1].$fila)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+array_push($coordenadasFilasTotales,"A$fila:".$az[$posicionaz - 1].$fila);
 
 
 // TOTAL GENERAL
@@ -503,10 +488,42 @@ $objPHPExcel->getActiveSheet()->getStyle("C$fila:".$az[$posicionaz - 1].$fila)->
 $objPHPExcel->getActiveSheet()->getStyle($az['0']."6:".$az[($posicionaz-1)].($fila))->applyFromArray($styleThinBlackBorderAllborders);
 //$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
 
+
+// PINTANDO MARGENES
+$lastColumn = $az[count($cabecera)-1];
+$lastrow = $fila;
+$cantInst = count($rpt3);
+
+$objPHPExcel->getActiveSheet()->getStyle("D5:".$lastColumn.(5))->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:c6")->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A7:A".($lastrow*1 - 3) )->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle("B7:B".($lastrow - 3) )->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle("C7:C".($lastrow - 3) )->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle("A6:".$lastColumn."6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+
+// pintar grupos
+$grupoColumnInicial = 3;
+for ($i = 0; $i < $cantidadDias + 1;$i++){
+    $objPHPExcel->getActiveSheet()->getStyle($az[$grupoColumnInicial]."6:".$az[$grupoColumnInicial + count($rpt3)]."6")->applyFromArray($styleThickBlackBorderOutline);
+    $objPHPExcel->getActiveSheet()->getStyle($az[$grupoColumnInicial]."7:".$az[$grupoColumnInicial].($lastrow - 1))->applyFromArray($styleThickBlackBorderOutline);
+    $grupoColumnInicial = count($rpt3) + $grupoColumnInicial + 1;
+}
+
+$objPHPExcel->getActiveSheet()->getStyle("$lastColumn".(7).":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderRight);
+$objPHPExcel->getActiveSheet()->getStyle("C".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
+
+foreach ($coordenadasFilasTotales as $coor) {
+    $objPHPExcel->getActiveSheet()->getStyle($coor)->applyFromArray($styleThickBlackBorderOutline);
+
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Reporte_Consolidado_Masivo');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
+PHPExcel_Calculation::getInstance()->cyclicFormulaCount = 1;
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -516,4 +533,8 @@ header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 exit;
+
+} catch (Exception $e) {
+print_r($e);
+}
 ?>
