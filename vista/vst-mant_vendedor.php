@@ -70,12 +70,12 @@
                         <br>                        	
                         <table class="t-left">                        
                         <tr>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Paterno:
+                            <td class="ui-state-default">Paterno:
                             <input type="hidden" id="cvended">
                             <input type="hidden" id="tvended">
                             </td>
                             <td colspan="2"><input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" id="txt_paterno_t" class="input-large"></td>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Estado:</td>
+                            <td class="ui-state-default">Estado:</td>
                             <td>
                                 <select id="slct_estado_t" class="input-medium">
                                 <option value="">--Selecione--</option>
@@ -84,7 +84,7 @@
                                 </select>
                             </td>
                             
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Centro Ope Ven:</td>
+                            <td class="ui-state-default">Centro Ope Ven:</td>
                             <td>
                                 <select id="slct_opeven" class="input-medium">
                                 <option value="">--Selecione--</option>
@@ -93,35 +93,35 @@
                             
                         </tr>
                         <tr>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Materno:</td>
+                            <td class="ui-state-default">Materno:</td>
                             <td colspan="2"><input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" id="txt_materno_t" class="input-large"></td>
                             <td class="ui-state-default">Fecha Retiro:</td>
                             <td><input type="text" id="txt_fecha_retiro_t" class="input-medium" value="" ></td>
                         </tr>
                         <tr>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Nombre(s):</td>
+                            <td class="ui-state-default">Nombre(s):</td>
                             <td><input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" id="txt_nombre_t" class="input-large"></td>
                         </tr>                        
                         </table>                        
                         <table class="t-left">
                         <tr>
-                        	<td class="ui-state-default"><span class="t-rojo">*</span>Tipo Trabajador:</td>
+                        	<td class="ui-state-default">Tipo Trabajador:</td>
                             <td>
                                 <select id="slct_tipo_trabajador_t" class="input-medium" disabled>
                                 <option value="">--Selecione--</option>                                
                                 </select>
                             </td>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Email:</td>
+                            <td class="ui-state-default">Email:</td>
                             <td><input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" id="txt_email_t" class="input-large" ></td>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Tel/Cel:</td>
+                            <td class="ui-state-default">Tel/Cel:</td>
                             <td><input type="text" onKeyPress="return sistema.validaNumeros(event)" id="txt_celular_t" class="input-medium" ></td>
                         </tr>
                         <tr>                            
-                            <td class="ui-state-default"><span class="t-rojo">*</span>DNI</td>
+                            <td class="ui-state-default">DNI</td>
                             <td>
                                 <input type="text" onKeyPress="return sistema.validaDni(event,'txt_dni_t')" id="txt_dni_t" class="input-medium">
                             </td>
-                            <td class="ui-state-default"><span class="t-rojo">*</span>Genero:</td>
+                            <td class="ui-state-default">Genero:</td>
                             <td>
                                 <select id="slct_sexo_t" class="input-medium">
                                 <option value="">--Selecione--</option>
@@ -155,7 +155,7 @@
                         </table>                        
                         <table class="t-left">
                         <tr>
-                        	<td class="ui-state-default">Código Interno:</td>
+                        	<td class="ui-state-default"><span class="t-rojo">*</span>Código Interno:</td>
                             <td colspan="5">
                             <input type="text" id="txt_codigo_interno_t" maxlength="20" onKeyPress="return sistema.validaAlfanumerico(event)" class="input-medium" >
                             <td class="ui-state-default">Dirección:</td>

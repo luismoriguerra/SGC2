@@ -328,7 +328,7 @@ foreach ($alumnos as $alu){
 $f++;
 $c++;
 $excel->setCellValue("A$f",$c)
-	  ->setCellValue("B$f",$alu["dcodlib"])
+	  ->setCellValue("B$f",str_replace("-","",$alu["dcodlib"]) )
 	  ->setCellValue("C$f", $alu["nombres"]);
 $excel->setCellValue("D$f",$alu["telefono"]);
 $excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);

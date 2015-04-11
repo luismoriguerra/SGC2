@@ -407,14 +407,10 @@ add_vended_jqgrid=function(){
 
 nuevoTrabajador=function(trab){
 	var a=new Array();
-	a[0] = sistema.requeridoTxt('txt_paterno_t');
-	a[1] = sistema.requeridoTxt('txt_materno_t');
-	a[2] = sistema.requeridoTxt('txt_nombre_t');
-	a[3] = sistema.requeridoTxt('txt_email_t');
-	a[4] = sistema.requeridoTxt('txt_celular_t');
-	a[5] = sistema.requeridoTxt('txt_dni_t');
-	a[6]= sistema.requeridoSlct('slct_sexo_t');
-	for(var i=0;i<7;i++){
+	a[0] = sistema.requeridoTxt('txt_nombre_t');
+	a[1] = sistema.requeridoTxt('txt_codigo_interno_t');
+
+	for(var i=0;i<2;i++){
 		if(!a[i]){
 		return false;		
 		break;		
@@ -689,15 +685,10 @@ edit_vended_jqgrid=function(){
 
 modificarTrabajador=function(trab){
 	var a=new Array();
-	a[0] = sistema.requeridoTxt('txt_paterno_t');
-	a[1] = sistema.requeridoTxt('txt_materno_t');
-	a[2] = sistema.requeridoTxt('txt_nombre_t');
-	a[3] = sistema.requeridoTxt('txt_email_t');
-	a[4] = sistema.requeridoTxt('txt_celular_t');
-	a[5] = sistema.requeridoTxt('txt_dni_t');
-	a[6]= sistema.requeridoSlct('slct_sexo_t');
-	a[7]= sistema.requeridoSlct('slct_estado_t');
-	for(var i=0;i<8;i++){
+	a[0] = sistema.requeridoTxt('txt_nombre_t');
+	a[1] = sistema.requeridoTxt('txt_codigo_interno_t');
+
+	for(var i=0;i<2;i++){
 		if(!a[i]){
 		return false;		
 		break;		

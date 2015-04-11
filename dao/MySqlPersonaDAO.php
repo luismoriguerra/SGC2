@@ -728,17 +728,14 @@ class MySqlPersonaDAO{
 	
 	public function InsertarTrabajador($data){
 	$db=creadorConexion::crear('MySql');
-	$sql="Select * from vendedm
-		 where ((upper(dnombre)='".strtoupper($data['dnombre'])."'
-		 and upper(dapepat)='".strtoupper($data['dapepat'])."'
-		 and upper(dapemat)='".strtoupper($data['dapemat'])."')
-		 		or (ndocper='".$data['ndocper']."'))
-		 	and upper(tvended)='".strtoupper($data['tvended'])."'";
-	$db->setQuery($sql);
+    $sql="Select * from vendedm
+         where codintv='".$data['codintv']."'
+         and upper(tvended)='".strtoupper($data['tvended'])."'";
+    $db->setQuery($sql);
     $valsql=$db->loadObjectList();
-		if(count($valsql)>0){
-		return array('rst'=>'2','msj'=>$data['dapepat']." ".$data['dapemat'].", ".$data['dnombre']." ó Dni:".$data['ndocper']." existe");exit();
-		}
+        if(count($valsql)>0){
+        return array('rst'=>'2','msj'=>" Cod Int:".$data['codintv']." existe");exit();
+        }
 		else{
 		$cperson=$db->generarCodigo('vendedm','cvended',11,$data['cusuari']);
 		$sql="Insert Into vendedm (cfilial,cvended,dnombre,dapepat,dapemat,ndocper,demail,tdocper,fingven,fretven,tsexo,coddpto,codprov,coddist,ddirecc,tvended,cinstit,codintv,dtelefo,fusuari,cusuari,ttiptra,cestado,copeven)
@@ -783,16 +780,13 @@ class MySqlPersonaDAO{
 	public function ActualizarTrabajador($data){
 	$db=creadorConexion::crear('MySql');
 	$sql="Select * from vendedm
-		 where ((upper(dnombre)='".strtoupper($data['dnombre'])."'
-		 and upper(dapepat)='".strtoupper($data['dapepat'])."'
-		 and upper(dapemat)='".strtoupper($data['dapemat'])."')
-		 		or (ndocper='".$data['ndocper']."'))
+		 where codintv='".$data['codintv']."'
 		 and cvended!='".$data['cvended']."'
 		 and upper(tvended)='".strtoupper($data['tvended'])."'";
 	$db->setQuery($sql);
     $valsql=$db->loadObjectList();
 		if(count($valsql)>0){
-		return array('rst'=>'2','msj'=>$data['dapepat']." ".$data['dapemat'].", ".$data['dnombre']." ó Dni:".$data['ndocper']." existe");exit();
+		return array('rst'=>'2','msj'=>" Cod Int:".$data['codintv']." existe");exit();
 		}
 		else{
 		$sql="	UPDATE vendedm SET
