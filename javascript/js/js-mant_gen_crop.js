@@ -22,29 +22,65 @@ $(document).ready(function(){
 	institucionDAO.cargarInstitucionValida(sistema.llenaSelect,'slct_instituto','');
 	//carreraDAO.cargarModalidad(sistema.llenaSelect,'slct_modalidad','');
 	//carreraDAO.cargarCiclo(sistema.llenaSelect,'slct_ciclo','');
-	$("#slct_filial").change(function(){cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();});
-	$("#slct_filial").on("multiselectclick", function(event, ui) { 
+	/*$("#slct_filial").on("multiselectclick", function(event, ui) { 
 	cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();
-	});
+	});*/
 	$("#slct_instituto").change(function(){cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();});
 	//$("#slct_modalidad").change(function(){cargarCarrera("");cargarCurricula("");validaFechasPago();});
 	$("#slct_semestre").change(function(){cargarInicio("");validaFechasPago();});
 	$("#slct_ciclo").change(function(){validaFechasPago();});
 	$("#slct_inicio").change(function(){validaFechasPago();});
-	$("#slct_carrera").change(function(){validaFechasPago();cargarPension();});
-	$("#slct_carrera").on("multiselectclick", function(event, ui) { 
+
+	/*$("#slct_carrera").on("multiselectclick", function(event, ui) { 
 	validaFechasPago();cargarPension();
-	});
+	});*/
+
 	$("#slct_curricula").change(function(){validaFechasPago();});
-	$("#slct_filial,#slct_concepto,#slct_carrera").multiselect({
+	$("#slct_carrera").multiselect({
+	   	click: function(){
+	      slctCarrera();
+	   	},
+	   	checkAll: function(){
+	      slctCarrera();
+	   	},
+	   	optgrouptoggle: function(){
+      		slctCarrera();
+   		}// 0-based index
+	});
+
+	$("#slct_filial").multiselect({
+	   	selectedList: 4,
+	   	click: function(event, ui){
+	      cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();
+	   	},
+	   	checkAll: function(){
+	      cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();
+	   	},
+	   	uncheckAll: function(){
+	      cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();
+	   	}, // 0-based index
+	   	optgrouptoggle: function(){
+      		cargarCarrera("");cargarSemestre("");cargarInicio("");cargarCurricula("");validaFechasPago();cargarPension();
+   		}
+	}).multiselectfilter();
+	
+	$("#slct_concepto").multiselect({
    	selectedList: 4 // 0-based index
 	}).multiselectfilter();
-        
-        $("#slct_carrera").change(function(){ListarCiclos();});
+
 });
 
+slctCarrera=function(){
+	validaFechasPago();
+  	cargarPension();
+  	ListarCiclos();
+}
+
 ListarCiclos = function(){
-     carreraDAO.cargarCiclosdeModuloaG(sistema.llenaSelect,'slct_ciclo','');
+	if(	$.trim($("#slct_carrera").val() )!=""){
+	carreraDAO.cargarCiclosdeModuloaG(sistema.llenaSelect,'slct_ciclo','');
+	}
+     
 }
 
 cargarPension=function(){

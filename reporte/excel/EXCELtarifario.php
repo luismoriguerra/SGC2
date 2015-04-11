@@ -1,5 +1,11 @@
 <?php
+/*
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+*/
 /*conexion*/
+ini_set("memory_limit", "128M");
+ini_set("max_execution_time", 300);
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -20,7 +26,7 @@ $sql="  SELECT f.dfilial, i.dinstit, c.dcarrer,
             FROM diasm d 
             WHERE FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0
         ) fre, CONCAT(h.hinici,' - ',h.hfin) as horario, g.csemaca,
-        g.cinicio, g.finicio, g.nmetmat,
+        g.cinicio, g.finicio, g.nmetmat,g.nmetmin,
         (
         SELECT co.nprecio -- ,co.cfilial,co.cinstit,co.dconcep,co.fusuari
         FROM concepp co
@@ -50,16 +56,17 @@ $sql="  SELECT f.dfilial, i.dinstit, c.dcarrer,
         AND co.tinscri='O'
         AND co.cestado=1
         AND co.ncuotas=1
-        AND (co.ccarrer in ('',g.ccarrer))
+        AND (co.ccarrer in (g.ccarrer))
         AND co.cfilial=g.cfilial
         AND co.cinstit=g.cinstit
         ORDER BY co.fusuari DESC,co.cfilial,co.cinstit
         LIMIT 1
         ) pen1
         ,MAX(CONCAT(cc.ccarrer,cc.fusuari,'|',cc.nprecio)) pen
+        ,MAX(cr.ccuota) as duracion
         FROM gracprp g
-        INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota='5' AND cr.cestado='1')
-        INNER JOIN concepp cc ON (cc.cconcep=cr.cconcep AND cc.cestado='1' AND (cc.ccarrer in ('',g.ccarrer)) )
+        INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota>='5' AND cr.cestado='1')
+        INNER JOIN concepp cc ON (cc.cconcep=cr.cconcep AND cc.cestado='1' AND (cc.ccarrer in (g.ccarrer)) )
         INNER JOIN filialm f ON f.cfilial=g.cfilial
         INNER JOIN instita i ON i.cinstit=g.cinstit
         INNER JOIN carrerm c ON c.ccarrer=g.ccarrer
@@ -195,18 +202,18 @@ $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A2:N2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:N2')->applyFromArray($styleAlignmentBold);
 
-$cabecera=array('N°','ODE','INSTITUCION','CARRERA','FREC','HORARIO','PERIODO ACADEMICO','INICIO','FECHA INICIO','META','INSCRIPCION','MATRICULA','CUOTA','CICLO O CURSO COMPLETO');
+$cabecera=array('N°','LOCAL DE ESTUDIOS','INSTITUCION','CARRERA','FREC','HORARIO','PERIODO ACADEMICO','INICIO','FECHA INICIO','DURACIÓN','MAXIMA','MINIMO','NORMAL','PROMOCIÓN','NORMAL','PROMOCIÓN','NORMAL','CURSO O CICLO COMPLETO','DESCUENTO 20%','PRONTO PAGO DSCTO 20%');
 
 
     for($i=0;$i<count($cabecera);$i++){
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);    
-        if($i>=7 or $i==2){
-            $objPHPExcel->getActiveSheet()->getStyle($az[$i]."5")->getAlignment()->setTextRotation(90);
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."6",$cabecera[$i]);    
+        if($i>=6 or $i==2){
+            $objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setTextRotation(90);
         }   
-    $objPHPExcel->getActiveSheet()->getStyle($az[$i]."5")->getAlignment()->setWrapText(true);
+    $objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setWrapText(true);
     $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);    
     }
-    $objPHPExcel->getActiveSheet()->getRowDimension("5")->setRowHeight(74.75); // altura
+    $objPHPExcel->getActiveSheet()->getRowDimension("6")->setRowHeight(74.75); // altura
     //$objPHPExcel->getActiveSheet()->mergeCells('K5:L5');    
 
 $objPHPExcel->getActiveSheet()->mergeCells('B3:C3');
@@ -226,11 +233,24 @@ $objPHPExcel->getActiveSheet()->setCellValue("L4","AL");
 $objPHPExcel->getActiveSheet()->getStyle('L4')->applyFromArray($styleAlignmentRight);
 $objPHPExcel->getActiveSheet()->setCellValue("M4",$_GET['fechfin']);
 
-$objPHPExcel->getActiveSheet()->getStyle('A5:N5')->applyFromArray($styleAlignmentBold);
-$objPHPExcel->getActiveSheet()->getStyle("A5:N5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+$objPHPExcel->getActiveSheet()->setCellValue("K5","META");
+$objPHPExcel->getActiveSheet()->mergeCells('K5:L5');
+$objPHPExcel->getActiveSheet()->setCellValue("M5","INSCRIP");
+$objPHPExcel->getActiveSheet()->mergeCells('M5:N5');
+$objPHPExcel->getActiveSheet()->setCellValue("O5","MATRICULA");
+$objPHPExcel->getActiveSheet()->mergeCells('O5:P5');
+$objPHPExcel->getActiveSheet()->setCellValue("Q5","PENSION");
+$objPHPExcel->getActiveSheet()->mergeCells('Q5:T5');
+
+
+$objPHPExcel->getActiveSheet()->getStyle('K5:T5')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->getStyle('K5:T5')->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A6:T6')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->getStyle("k5:T6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+$objPHPExcel->getActiveSheet()->getStyle("A6:T6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 //$objPHPExcel->getActiveSheet()->getStyle("Q5:V5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFF0F000'); 
 
-$valorinicial=5;
+$valorinicial=6;
 $cont=0;
 $total=0;
 $pago="";
@@ -257,14 +277,20 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['horari
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['csemaca']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['cinicio']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['finicio']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['duracion']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['nmetmat']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['nmetmin']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['ins']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, '0');$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['mat']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, '0');$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]);$paz++;
-$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['pen1']);
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]*$r['duracion']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]*$r['duracion']*0.2);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, "=".$az[($paz-2)].$valorinicial."-".$az[($paz-1)].$valorinicial);
 }
 
-$objPHPExcel->getActiveSheet()->getStyle('A5:'.$az[$paz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:".$az[$paz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 //$objPHPExcel->getActiveSheet()->getStyle('AA4:AA'.$valorinicial)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Tarifario');
