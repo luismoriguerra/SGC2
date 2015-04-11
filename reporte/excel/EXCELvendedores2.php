@@ -1,7 +1,8 @@
 <?php
-//
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
+/*
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+*/
 /*conexion*/
 ini_set("memory_limit", "128M");
 ini_set("max_execution_time", 300);
@@ -9,6 +10,7 @@ require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 /*crea obj conexion*/
 $cn=MySqlConexion::getInstance();
+$meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre");
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 $azcount=array(5,24.5,9,9,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 $letras=array(
@@ -37,12 +39,19 @@ $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
 $anteayer = date("Y-m-d" , strtotime("-2 day",strtotime($fechafin)));
 $cinstit=str_replace(",","','",$_GET['cinstit']);
 $diaspromedio=explode("-",$fechafin);
+// First day of the month.
+$mesPrimerDia = date('Y-m-01', strtotime($fechainicio));
+// Last day of the month.
+$mesUltimoDia = date('Y-m-t', strtotime($fechainicio));
+$cantulimodia = date('t', strtotime($fechainicio));
+
 $sql_dias = "";
 $sql_dias_column = "";
 $sql_column_count = "";
 $query1 = "";
 $query2 = "";
 $cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
+
 for ($i = 0; $i < $cantidadDias ; $i++) {
 	$cam = $i + 1;
 	$dia = date("Y-m-d" , strtotime("-$i day",strtotime($fechafin)));
@@ -51,17 +60,13 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
 	if ($i <= 20) {
 	$query1 = "
-		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado,
+		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado,o.ntelefo,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
-			,IF(v.fingven > '$fechainicio',
-(select count(*) faltas from venfala
-				where cvended = v.cvended and cestado = 1 and diafalt between v.fingven and '$diaFinalDeCalculo'
-				)
-,(select count(*) faltas from venfala
-				where cvended = v.cvended and cestado = 1 and diafalt between '$fechainicio' and '$diaFinalDeCalculo'
-				)) faltas
+			,(select count(*) faltas from venfala
+				where cvended = v.cvended and cestado = 1 and diafalt between '$mesPrimerDia' and '$mesUltimoDia'
+			) faltas
         FROM instita i
 		INNER JOIN vendedm v
 		INNER JOIN opevena o ON o.copeven=v.copeven
@@ -77,7 +82,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
@@ -112,7 +117,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
 			$sql_dias
-            WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+            WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
             HAVING MIN(r.tdocpag)!=''
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
@@ -161,6 +166,30 @@ $styleThinBlackBorderAllborders = array(
 			'color' => array('argb' => 'FF000000'),
 		),
 	),
+);
+$styleThickBlackBorderOutline = array(
+    'borders' => array(
+        'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
+$styleThickBlackBorderRight = array(
+    'borders' => array(
+        'right' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
+$styleThickBlackBorderAllborders = array(
+    'borders' => array(
+        'allborders' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
 );
 $styleBold= array(
 	'font'    => array(
@@ -246,12 +275,12 @@ $objDrawing->setOffsetX(10);
 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 //$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
-$objPHPExcel->getActiveSheet()->setCellValue("A2","MATRÍCULAS DE ".$dvendedor." - ".$dopeven);
-$objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
+$objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor." - ".$dopeven);
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 // primermas columnas simples
-$cabecera=array('N°','VENDEDOR','ESTADO','CÓDIGO','INICIO CAMPAÑA','RETIRO O FECHA ACTUAL','MONTO A PAGAR XDIA','TOTAL A PAGAR PLANILLA','COSTO X ALUMNO','DIAS TRABAJADO','PROMEDIO DIARIO');
+$cabecera=array('N°','VENDEDOR','CÓDIGO','ESTADO','INICIO','TERMINO','BÁSICO','DESCUENTO','DIAS LABORADOS','DIAS NO LABORADOS','TELÉFONO','PLANILLA','COSTO POR ALUMNO','PROMEDIO DIARIO');
 // total de columnas simples 11 , de aqui empeizan las dinamicas
-$iniciadinamica = 11;
+$iniciadinamica = 14;
 // index
 $cantidadaz = $iniciadinamica - 1;
 // agregando fechas de consolidado y fechas
@@ -270,7 +299,7 @@ try {
 	for ($i = 0; $i < count($cabecera); $i++) {
 		// COLOCA LOS VALORES DE LA CABECERA
 		$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."6", $cabecera[$i]);
-		if ($i >= ($iniciadinamica - 5)) {
+		if ($i >= ($iniciadinamica - 8)) {
 			// DE G6 A K6
 			$objPHPExcel->getActiveSheet()->getStyle($az[$i]."6")->getAlignment()->setTextRotation(90);
 		}
@@ -280,11 +309,13 @@ try {
 }catch (Exception $e) {
 	die ("Error en conteo de cabeceras");
 }
-$objPHPExcel->getActiveSheet()->mergeCells('A2:'.$az[($i-1)].'2');
-$objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[($i-1)].'2')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->mergeCells('A1:'.$az[($i-1)].'1');
+$objPHPExcel->getActiveSheet()->getStyle('A1:'.$az[($i-1)].'1')->applyFromArray($styleAlignmentBold);
 $objPHPExcel->getActiveSheet()->getRowDimension("5")->setRowHeight(23); // altura
 $objPHPExcel->getActiveSheet()->getRowDimension("6")->setRowHeight(50.5); // altura
 $objPHPExcel->getActiveSheet()->getStyle('A5:'.$az[($i-1)].'6')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
+$objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
 $objPHPExcel->getActiveSheet()->mergeCells('B3:C3');
 $objPHPExcel->getActiveSheet()->setCellValue("B3","USUARIO:");
 $objPHPExcel->getActiveSheet()->getStyle('B3:C3')->applyFromArray($styleAlignmentRight);
@@ -300,6 +331,25 @@ $objPHPExcel->getActiveSheet()->getStyle("B5")->getAlignment()->setWrapText(true
 //$objPHPExcel->getActiveSheet()->setCellValue("M4",$fechafin);
 $objPHPExcel->getActiveSheet()->setCellValue($az[$iniciadinamica]."5", 'CONSOLIDADO');
 $objPHPExcel->getActiveSheet()->mergeCells($az[$iniciadinamica].'5:' . $az[($iniciadinamica + count($rpt3) * 1 + 1 - 1)] . "5");
+
+
+$iniciocabeceraprincipal=4;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$iniciocabeceraprincipal]."5", 'CAMPAÑA');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$iniciocabeceraprincipal].'5:'.$az[($iniciocabeceraprincipal+1)].'5');
+$iniciocabeceraprincipal++;$iniciocabeceraprincipal++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$iniciocabeceraprincipal]."5", 'RENUMERACIÓN');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$iniciocabeceraprincipal].'5:'.$az[($iniciocabeceraprincipal+1)].'5');
+$iniciocabeceraprincipal++;$iniciocabeceraprincipal++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$iniciocabeceraprincipal]."5", 'ASISTENCIA');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$iniciocabeceraprincipal].'5:'.$az[($iniciocabeceraprincipal+1)].'5');
+$iniciocabeceraprincipal++;$iniciocabeceraprincipal++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$iniciocabeceraprincipal]."5", 'INVERSIÓN');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$iniciocabeceraprincipal].'5:'.$az[($iniciocabeceraprincipal+1)].'5');
+$iniciocabeceraprincipal++;$iniciocabeceraprincipal++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$iniciocabeceraprincipal]."5", 'INDICE');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$iniciocabeceraprincipal].'5:'.$az[($iniciocabeceraprincipal+1)].'5');
+
+
 // GENERA LAS CABECERAS DE LAS FECHAS
 for ($i = 0; $i < $cantidadDias ; $i++) {
 	$dia = date("Y-m-d" , strtotime("-$i day",strtotime($fechafin)));
@@ -318,7 +368,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 $objPHPExcel->getActiveSheet()->mergeCells($az[(2+count($rpt3)*3+3)]."5:".$az[(2+count($rpt3)*4+4-1)]."5");*/
 	
 $objPHPExcel->getActiveSheet()->getStyle("B5:B5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
-$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."5:".$az[($iniciadinamica+count($rpt3)*$y+$y-1)]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+$objPHPExcel->getActiveSheet()->getStyle("E5:".$az[($iniciadinamica+count($rpt3)*$y+$y-1)]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 $objPHPExcel->getActiveSheet()->getStyle("A6:".$az[($iniciadinamica+count($rpt3)*$y+$y-1)]."6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 // VALOR INICIAL FILA
 $valorinicial=6;
@@ -336,8 +386,8 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("B".$valorinicial, $r['vendedor']);
 		$estado = "RETIRADO";
 		if ($r['cestado'] == 1) {	$estado="LABORA";		}
-		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, $estado);
-		$objPHPExcel->getActiveSheet()->setCellValue("D".$valorinicial, $r['codintv']);
+		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, $r['codintv']);
+		$objPHPExcel->getActiveSheet()->setCellValue("D".$valorinicial, $estado);
 		$fechaing = $fechainicio;
 		if($r['fingven']>=$fechaing){
 			$fechaing=$r['fingven'];
@@ -350,12 +400,24 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("F".$valorinicial, $fecharet);
 		// ESTE PAGO COMO SE CUALCULA ?
 		$pago = ($r["pago"]) ? $r["pago"] : 0;
-		$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, "=".$pago."/".$diastotales);
+		$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, "=".$pago);
+		$objPHPExcel->getActiveSheet()->setCellValue("H".$valorinicial, "= 0");
+
+		$objPHPExcel->getActiveSheet()->setCellValue("I".$valorinicial, "=F".$valorinicial."-E".$valorinicial . " + 1 - ".$r["faltas"]);
+		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial, "=".$r['faltas']);
+
+		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=".$r['ntelefo']."/".count($rpt));
+		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=(".$pago."/".$cantulimodia.")*I".$valorinicial);
+
+		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=IFERROR(L".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");
+		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=".$az[$iniciadinamica].$valorinicial."/I".$valorinicial);
+
+		/*$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, "=".$pago."/".$diastotales);
 		$objPHPExcel->getActiveSheet()->setCellValue("H".$valorinicial, "=G".$valorinicial."*J".$valorinicial);
 		$objPHPExcel->getActiveSheet()->setCellValue("I".$valorinicial, "=IFERROR(H".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");
-		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial, "=F".$valorinicial."-E".$valorinicial . " + 1 - ".$r["faltas"] );
+		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,  );
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=".$az[$iniciadinamica].$valorinicial."/J".$valorinicial);
-		// INICIO DE COLUMNAS DINAMICAS
+		*/// INICIO DE COLUMNAS DINAMICAS
 		$objPHPExcel->getActiveSheet()->setCellValue(
 			$az[$iniciadinamica].$valorinicial,
 			'=SUM('.$az[($iniciadinamica+1)].$valorinicial.':'.$az[($iniciadinamica+count($rpt3)*1+1-1)].$valorinicial.")");
@@ -373,6 +435,7 @@ foreach ($rpt as $r) {
 //		$objPHPExcel->getActiveSheet()->setCellValue(
 //			$az[($iniciadinamica+count($rpt3)*2+2)].$valorinicial,
 //			'=SUM('.$az[($iniciadinamica+count($rpt3)*2+2+1)].$valorinicial.":".$az[($iniciadinamica+count($rpt3)*3+3-1)].$valorinicial.")");
+
 	}
 	//$posicionaz=2+count($rpt3)+$countrpt3;
 	$posicionaz = $iniciadinamica + $countrpt3;
@@ -406,17 +469,33 @@ foreach ($rpt as $r) {
 		$countrpt3=0;
 	}
 }
+$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A7:D'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('E7:F'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('G7:H'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('I7:J'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('K7:L'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('M7:N'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+
+$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz]."6")->applyFromArray($styleThickBlackBorderOutline);
 $objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[$iniciadinamica].$valorinicial)->applyFromArray($styleBold);
+$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[$iniciadinamica].($valorinicial+1))->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[($iniciadinamica+count($rpt3))].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle(
+		$az[($iniciadinamica+count($rpt3)*$i+$i+1)]."6:".$az[($iniciadinamica+count($rpt3)*$i+$i+count($rpt3))].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 for ($i = 1; $i <= $cantidadDias; $i++) {
 	$objPHPExcel->getActiveSheet()->getStyle(
-		$az[($iniciadinamica+count($rpt3)*$i+$i)]."6:".$az[($iniciadinamica+count($rpt3)*$i+$i)].$valorinicial)
-		->applyFromArray($styleBold);
+		$az[($iniciadinamica+count($rpt3)*$i+$i)]."6:".$az[($iniciadinamica+count($rpt3)*$i+$i)].$valorinicial)->applyFromArray($styleBold);
+	$objPHPExcel->getActiveSheet()->getStyle(
+		$az[($iniciadinamica+count($rpt3)*$i+$i)]."6:".$az[($iniciadinamica+count($rpt3)*$i+$i)].($valorinicial+1))->applyFromArray($styleThickBlackBorderOutline);
+	$objPHPExcel->getActiveSheet()->getStyle(
+		$az[($iniciadinamica+count($rpt3)*$i+$i+1)]."6:".$az[($iniciadinamica+count($rpt3)*$i+$i+count($rpt3))].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 }
 $objPHPExcel->getActiveSheet()->getStyle('B5:B5')->applyFromArray($styleThinBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica].'5:'.$az[$cantidadaz]."5")->applyFromArray($styleThinBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('E5:'.$az[$cantidadaz]."5")->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A6:N6')->applyFromArray($styleThickBlackBorderAllborders);
 $valorinicial++;
-$cantidadaz = $iniciadinamica - 1;
+$cantidadaz = $iniciadinamica - 1-4;
 for ($i = 1; $i <= $cantidadDias + 1; $i++) {
 	$cantidadaz++;
 	$objPHPExcel->getActiveSheet()->setCellValue(
@@ -429,9 +508,11 @@ for ($i = 1; $i <= $cantidadDias + 1; $i++) {
 			"=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");
 	}
 }
-$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica-4)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica-4)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica-4)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
 $objPHPExcel->getActiveSheet()->setTitle('Reporte_Vendedores');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
