@@ -12,7 +12,9 @@ $az=array(  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 		  ,'AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH'
 		  ,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
 		  ,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
-		  ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EE','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU');
+		  ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EE','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU'
+			,"EV","EW","EX","EY","EZ","FA",
+		);
 $azcount=array(5,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 			   ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 			   ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
@@ -53,6 +55,42 @@ $where=" WHERE g.cfilial in ('".$cfilial."')
 $where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 	}
 }
+
+
+//DATA DE LAS CLASES DEL GRUPO
+$sql="select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr = '$cgracpr';";
+
+$cn->setQuery($sql);
+$data=$cn->loadObject();
+
+//OBTENIENDO LA FECHA DE LOS PRIMEROS  DIAS
+$fechas = $data->fgrupos;
+list($finicio,$ffin) = explode("|", $fechas);
+$data->finicio= $finicio;
+$fre = explode("-", $data->cfrecue);
+$dias = 0;
+$dfechas = array();
+while($dias < 15){
+
+	$dd = date("w" , strtotime($finicio) );
+	$dd++;
+	if(in_array($dd, $fre)){
+		$dias++;
+		$dfechas[] = $finicio;
+	}
+	$fecha = date_create($finicio);
+	date_add($fecha, date_interval_create_from_date_string('1 days'));
+	$finicio = date_format($fecha, 'Y-m-d');
+
+
+}
+
+$asis_sql= "";
+for($i = 0 ; $i<15;$i++){
+	$asis_sql .="
+	, ( select estasist from aluasist where idseing = s.id and fecha = '".$dfechas[$i]."' ) as dia$i ";
+}
+
 
 $sql="SELECT 
 		 f.dfilial
@@ -204,6 +242,7 @@ $sql="SELECT
 		,ci.dciclo
 		,concat(i.certest,'\n',i.partnac,'\n',i.otrodni) As documentos
 		,i.ddocval,i.fusuari
+		$asis_sql
 	FROM personm p
 		INNER JOIN ingalum i 	On (i.cperson  	= p.cperson)
 		LEFT  JOIN paism pa 	On (i.cpais  	= pa.cpais)
@@ -220,10 +259,12 @@ $sql="SELECT
 		INNER JOIN instita ins 	On (ins.cinstit	= g.cinstit)
 		INNER JOIN modinga m 	On (m.cmoding  	= i.cmoding)
 		INNER JOIN recacap r 	On (r.cingalu  	= c.cingalu and r.cgruaca=c.cgruaca)
+		left JOIN seinggr s 	On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
 	".$where."
 	AND r.`testfin`!='F' 
 	GROUP BY c.cingalu,c.cgruaca
 	ORDER BY p.dappape ASC, p.dapmape ASC, p.dnomper ASC, p.cperson DESC";
+
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
 /*
@@ -336,6 +377,10 @@ $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
 $cabecera=array('N°','CAJA - ODE-CENT. DE CAPTACIÓN','CAJERO QUE INSCRIBE','FICHA DE  MATRICULA ','LIBRO DE CODIGO','AP_PATERNO','AP_MATERNO','NOMBRES','FECHA DE NACIMIENTO','DEPARTAMENTO','PROVINCIA','DISTRITO','GENERO','TIPO DOCUMENTO','NRO DOCUMENTO','ESTADO CIVIL','DIRECCIÓN',	'URBANIZACION','DISTRITO','PROVINCIA','DEPARTAMENTO','REFERENCIA','TELEFONO','CELULAR','CORREO ELECTRONICO','COLEGIO DE PROCEDENCIA','REGIMEN','DIRECCION COLEGIO','INSTITUCION','SOLO POR BECA','MOD INGRE','CARRERA PROFESIONAL','SEMESTRE','INICIO','FECHA INICIO','MODAL','CICLO/MODULO','DURACION','LOCAL DE ESTUDIO','FRECUENCIA','HORARIO','INSCRIPCION','MATRICULA O RATIF','PENSION','MEDIO DE CAPTACION','RESPONSABLE DE CAPTACION'/*,'TELEFONO','E-MAIL'*/,'RECEPCIONISTA'/*,'DOCUMENTOS ENTREGADOS -ORDINARIO','DOCUME ENTRE CONVALIDA'*/,'NRO DE CERT. DE EST.','NRO DE PART. NACIM.','FOTOCOPIA DE DNI (N/S)','NRO DE FOTOS (1-6)','PAIS DE PROCED.','TIPO DE INSTIT','INST. DE PROCED','CARR. DE PROCEDENCIA','ULT. AÑO QUE ESTUDIÓ','ULT. CICLO REALIZADO','DOCUM. DEJADOS PARA LA CONVALIDACIO','FECHA_ADM','NRO B/V_ADM','MONTO_ADM','FECHA_MAT1','NRO B/V_MAT1','MONTO_MAT1','FECHA_MAT2','NRO B/V_MAT2','MONTO_MAT2','FECHA_1CUOTA','NRO B/V_1CUOTA','MONTO_1CUOTA','FECHA_1CUOTA','NRO B/V_1CUOTA','MONTO_1CUOTA','NOTA 1','NOTA 2','PROM','FECHA_2CUOTA','NRO B/V_2CUOTA','MONTO_2CUOTA','FECHA_2CUOTA','NRO B/V_2CUOTA','MONTO_2CUOTA','NOTA 1','NOTA 2','PROM','FECHA_3CUOTA','NRO B/V_3CUOTA','MONTO_3CUOTA','FECHA_3CUOTA','NRO B/V_3CUOTA','MONTO_3CUOTA','NOTA 1','NOTA 2','PROM','FECHA_4CUOTA','NRO B/V_4CUOTA','MONTO_4CUOTA','FECHA_4CUOTA','NRO B/V_4CUOTA','MONTO_4CUOTA','NOTA 1','NOTA 2','PROM','FECHA_5CUOTA','NRO B/V_5CUOTA','MONTO_5CUOTA','FECHA_5CUOTA','NRO B/V_5CUOTA','MONTO_5CUOTA','NOTA 1','NOTA 2','PROM','FECHA','NRO B/V','MONTO','FECHA','NRO B/V','MONTO','FECHA','NRO B/V','MONTO',"TOTAL INSCRIPCION","TOTAL MATRÍCULA","TOTAL PENSIÓN","TOTAL A PAGAR","MONTO PAGADO","DEUDA INSCRIPCION","DEUDA MATRÍCULA","COMPROMISOS PENDIENTES DE PENSIÓN","TOTAL COMPROMISOS PENDIENTES","DEUDA SEGÚN FECHA DE VENC. AL ".date("Y-m-d"),'CONDICION ECONOMICA','ESTADO ACADEMICO DEL ALUMNO','OBSERVACION','FECHA DIGITACION','TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION');
 
+// agregamos las fechas a la cabecera
+foreach ($dfechas as $f) {
+	array_push($cabecera,$f);
+}
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."2",$cabecera[$i]);
 	$objPHPExcel->getActiveSheet()->getStyle($az[$i]."2")->getAlignment()->setWrapText(true);
@@ -377,6 +422,8 @@ $objPHPExcel->getActiveSheet()->mergeCells('DO1:DQ1');
 $objPHPExcel->getActiveSheet()->setCellValue("DR1","DATOS ESTADISTICOS");
 $objPHPExcel->getActiveSheet()->mergeCells('DR1:EG1');
 
+$objPHPExcel->getActiveSheet()->setCellValue("EH1","DATOS DE ASISTENCIA");
+$objPHPExcel->getActiveSheet()->mergeCells('EH1:EV1');
 
 $objPHPExcel->getActiveSheet()->getStyle("A1:E2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFDDD9C4');
 $objPHPExcel->getActiveSheet()->getStyle("F1:P2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFC65911');
@@ -414,6 +461,12 @@ $objPHPExcel->getActiveSheet()->getStyle("DF1:DH2")->getFont()->getColor()->setA
 $objPHPExcel->getActiveSheet()->getStyle("DR1:EE2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
 
 $objPHPExcel->getActiveSheet()->getStyle("EF2:EG2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FF92D050');
+
+$objPHPExcel->getActiveSheet()->getStyle("EH1:EV2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
+
+//ASISTENCIA
+
+
 // SOLO PARA LOS ULTIMOS CAMPOS ADICIONADOS
 
 //$objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[($i-1)].'2')->applyFromArray($styleColor);
@@ -905,9 +958,18 @@ $objPHPExcel->getActiveSheet()->setCellValue("EF".$valorinicial,$dclacap);
 	if(count($detcap)>0){
 		$objPHPExcel->getActiveSheet()->setCellValue("EG".$valorinicial,$detcap[1]);
 	}
+
+	// ASISTENCIA DE ALUMNOS
+	$actualCol = array_search("EG", $az);
+	for( $i = 0 ; $i < 15; $i++) {
+		$actualCol++;
+		$estado = ($r["dia".$i]) ? $r["dia".$i] : 0;
+		$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$estado);
+	}
+
 }
 
-$objPHPExcel->getActiveSheet()->getStyle('A1:EG'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A1:EV'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet

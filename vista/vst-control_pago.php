@@ -3,7 +3,7 @@
 <html>
 	<head>
 
-		<title>Telesup</title>
+		<title>Telesup | Control de Pagos y Notas</title>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<link rel="shortcut icon" href="../images/favicon.ico">
 
