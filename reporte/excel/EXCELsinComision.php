@@ -25,6 +25,8 @@ for ($i = 0; $letras[$i]; $i++) {
     }
 }
 $cfilial=str_replace(",","','",$_GET['cfilial']);
+$nombreReporte= $_GET['nombreReporte'];
+
 $fechainicio =$_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
 $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));
@@ -62,8 +64,10 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+            and f.cfilial IN ('$cfilial')
             GROUP BY c.cconmat
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
         WHERE  i.cinstit IN ('$cinstit')
@@ -90,8 +94,10 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
+             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+            and f.cfilial IN ('$cfilial')
             GROUP BY c.cconmat
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
         WHERE i.cinstit IN ('$cinstit')
@@ -252,6 +258,8 @@ $objPHPExcel->getActiveSheet()->setCellValue("A1","REPORTE DE MEDIOS GENERALES -
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
 $objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
+$objPHPExcel->getActiveSheet()->getStyle('B2')->applyFromArray($styleAlignmentBold);
+
 $cabecera=array('N°','MEDIO');
 $cantidadaz=1;
 for($i=1;$i<= $cantidadDias * 1 + 2;$i++){
@@ -427,7 +435,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Medio_Generales_Matricula');
 $objPHPExcel->setActiveSheetIndex(0);
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Medio_Generales_Matricula_'.date("Y-m-d_H-i-s").'.xlsx"');
+header('Content-Disposition: attachment;filename="Medio_Generales_Matricula_'.date("Y-m-d_H-i-s"). " - ".$nombreReporte .'.xlsx"');
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');

@@ -3,7 +3,7 @@
 <html ng-app="myApp">
     <head>
 
-        <title>SGC2</title>
+        <title>SGC2 | Reporte Medios Generales</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -63,6 +63,16 @@
                                                 </select>
                                             </td>                                           
                                         </tr-->
+                                    <tr>
+                                        <td class="t-left label">Filial:</td>
+                                        <td class="t-left">
+                                            <select id="slct_filial" class="input-xlarge" style="width: 370px; display: none;" multiple>
+                                                <optgroup label="Filial">
+                                                    <option value="">--Selecione--</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
                                         <tr>
                                             <td class="t-left label">Institución:</td>
                                             <td class="t-left">
@@ -103,6 +113,12 @@
                                                     ng-model="DiaFin"
                                                     ng-options="option as option for option in dias">
                                             </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t-left label input-large">Nombre Reporte:</td>
+                                        <td class="t-left">
+                                            <input type="text" id="nombreReporte"/>
                                         </td>
                                     </tr>
 <!--                                        <tr>-->
