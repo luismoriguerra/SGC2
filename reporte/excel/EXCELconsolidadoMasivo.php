@@ -31,8 +31,10 @@ for ($i = 0; $letras[$i]; $i++) {
         $azcount[] = 15;
     }
 }
+    $cfilial = str_replace(",","','",$_GET['cfilial']);
+    $nombreReporte= $_GET['nombreReporte'];
 
-$cinstit=str_replace(",","','",$_GET['cinstit']);
+    $cinstit=str_replace(",","','",$_GET['cinstit']);
 
 $fechainicio =$_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
@@ -88,6 +90,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+             and f.cfilial IN ('$cfilial')
             GROUP BY c.cconmat
         ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre AND i.cinstit=g.it)
         WHERE t.dclacap=3
@@ -122,6 +125,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+                        and f.cfilial IN ('$cfilial')
             GROUP BY c.cconmat
         ) g ON (g.ctipcap=t.ctipcap AND m.cmedpre=g.cmedpre AND i.cinstit=g.it)
         WHERE t.dclacap=3
@@ -299,6 +303,7 @@ $objPHPExcel->getActiveSheet()->setCellValue("A1","CONSOLIDADO MEDIO MASIVO");
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
 $objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
+$objPHPExcel->getActiveSheet()->getStyle('B2')->applyFromArray($styleAlignmentBold);
 // LLENANDO LAS CABECERAS
 $cabecera=array('N°','TIPO','CAPTACION');
 
@@ -527,7 +532,7 @@ PHPExcel_Calculation::getInstance()->cyclicFormulaCount = 1;
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Reporte_Consolidado_Masivo_'.date("Y-m-d_H-i-s").'.xlsx"');
+header('Content-Disposition: attachment;filename="Reporte_Consolidado_Masivo_'.date("Y-m-d_H-i-s"). " - ".$nombreReporte .'.xlsx"');
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

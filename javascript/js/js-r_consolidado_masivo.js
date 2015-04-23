@@ -10,6 +10,10 @@ $(document).ready(function(){
         nextText:'Siguiente',
         prevText:'Anterior'
     });
+    institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
+    $("#slct_filial").multiselect({
+        selectedList: 4 // 0-based index
+    }).multiselectfilter();
     institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
     $("#slct_instituto").multiselect({
         selectedList: 4 // 0-based index
@@ -63,20 +67,24 @@ $(document).ready(function(){
 
 
 Exportar=function(){
-    if( $("#txt_fecha_matric").val() == "" ){
+    if( $.trim($("#slct_filial").val())=="" ){
+        sistema.msjAdvertencia("Debe seleccionar una filial",2000);
+        $("#slct_filial").focus();
+    }else if( $("#txt_fecha_matric").val() == "" ){
         sistema.msjAdvertencia("Ingrese Fecha Matricula",2000);
         $("#txt_fecha_matric").focus();
     }else if( $.trim($("#slct_instituto").val()) == "" ){
         sistema.msjAdvertencia("Debe seleccionar una Institucion",2000);
         $("#slct_instituto").focus();
     }else{
-    window.location='../reporte/excel/EXCELconsolidadoMasivo.php?'
+    window.location='../reporte/excel/EXCELconsolidadoMasivo.php?cfilial='+$("#slct_filial").val().join(",")
                     +'&cinstit='+$("#slct_instituto").val().join(",")
                     +'&anio='+$("#anio option:selected").attr("label")
                     +'&mes='+$("#matriculaMes").val()
                     +'&ini='+$("#DiaIni option:selected").attr("label")
                     +'&fin='+$("#DiaFin option:selected").attr("label")
-                    +'&usuario='+$("#hd_idUsuario").val();
+                    +'&usuario='+$("#hd_idUsuario").val()
+                    +'&nombreReporte='+$("#nombreReporte").val();
     }
 }
 

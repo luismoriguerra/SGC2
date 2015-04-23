@@ -4,7 +4,7 @@
 
     <head>
 
-        <title>SGC2</title>
+        <title>SGC2 | Medios Consolidados</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -46,13 +46,23 @@
                 <div class="secc-der" id="secc-der">
                     
                     <div id="panel_matricula" style="display:block">
-                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte Consolidado Masivos <?   /*aqui va el titulo q presentara  */ ?></b></div>         
+                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte Medios consolidados (Consolidado Masivos) <?   /*aqui va el titulo q presentara  */ ?></b></div>
                         <div class="cont-der" ng-controller="rangoFechas">
                             <div class="t-center">
                                 <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
                        
                                 <!--Inicio tabla-->
                                 <table style="width:90%">
+                                    <tr>
+                                        <td class="t-left label">Filial:</td>
+                                        <td class="t-left">
+                                            <select id="slct_filial" class="input-xlarge" style="width: 370px; display: none;" multiple>
+                                                <optgroup label="Filial">
+                                                    <option value="">--Selecione--</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="t-left label">Institución:</td>
                                         <td class="t-left">
@@ -93,6 +103,12 @@
                                                     ng-model="DiaFin"
                                                     ng-options="option as option for option in dias">
                                             </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t-left label input-large">Nombre Reporte:</td>
+                                        <td class="t-left">
+                                            <input type="text" id="nombreReporte"/>
                                         </td>
                                     </tr>
                                     </table>
