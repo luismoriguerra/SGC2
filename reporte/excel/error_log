@@ -1,0 +1,824 @@
+[11-Mar-2015 11:45:16 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 11:45:42 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 21:04:35 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 21:05:08 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:11:54 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[11-Mar-2015 22:15:37 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:16:03 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:16:33 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:18:02 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:18:20 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:18:42 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:19:21 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:19:51 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:20:05 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Mar-2015 22:55:54 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[11-Mar-2015 22:56:37 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[12-Mar-2015 09:02:04 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELmatriculacantidad.php on line 273
+[12-Mar-2015 09:02:04 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELmatriculacantidad.php(286): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[12-Mar-2015 09:05:51 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[12-Mar-2015 15:51:27 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[12-Mar-2015 15:52:04 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[12-Mar-2015 15:52:57 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[13-Mar-2015 16:08:44 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[13-Mar-2015 16:09:33 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[13-Mar-2015 16:11:56 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[17-Mar-2015 08:52:06 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[17-Mar-2015 08:52:26 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[17-Mar-2015 08:52:58 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[19-Mar-2015 11:55:27 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[19-Mar-2015 11:55:27 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[19-Mar-2015 14:47:03 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[19-Mar-2015 14:48:52 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 13:26:16 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 13:26:54 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 16:38:27 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 16:38:56 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 16:39:21 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[20-Mar-2015 16:39:43 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[24-Mar-2015 12:04:12 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[24-Mar-2015 12:04:14 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[25-Mar-2015 16:10:44 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[25-Mar-2015 16:11:10 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[26-Mar-2015 08:30:30 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[26-Mar-2015 08:30:58 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[26-Mar-2015 08:31:26 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[26-Mar-2015 08:31:40 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[27-Mar-2015 01:56:49 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style/Fill.php(275): PHPExcel_Style->applyFromArray(Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m2.php(431): PHPExcel_Style_Fill->setFillType('solid')
+#3 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[28-Mar-2015 14:37:13 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[31-Mar-2015 04:54:16 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[31-Mar-2015 04:54:16 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[31-Mar-2015 05:02:53 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[31-Mar-2015 05:02:53 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[31-Mar-2015 05:03:35 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[31-Mar-2015 05:03:35 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[31-Mar-2015 09:22:39 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[31-Mar-2015 11:56:16 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[31-Mar-2015 11:56:41 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[31-Mar-2015 11:57:07 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[01-Apr-2015 18:55:11 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[01-Apr-2015 19:38:47 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 10:45:34 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 13:27:48 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 13:29:49 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 13:30:24 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 13:30:48 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 13:32:52 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[02-Apr-2015 20:52:58 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:43:34 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:43:48 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:44:00 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:44:56 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:45:08 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:45:21 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:45:42 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 06:48:59 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[03-Apr-2015 08:15:32 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 5' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('5')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELtarifario.php(267): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[03-Apr-2015 08:49:47 America/Lima] PHP Fatal error:  Maximum execution time of 3000 seconds exceeded in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 749
+[03-Apr-2015 09:01:26 America/Lima] PHP Fatal error:  Maximum execution time of 3000 seconds exceeded in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 748
+[04-Apr-2015 12:18:11 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[04-Apr-2015 12:18:11 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[04-Apr-2015 12:18:31 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[04-Apr-2015 12:18:31 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[04-Apr-2015 12:18:36 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[04-Apr-2015 12:18:36 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[04-Apr-2015 14:16:39 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[04-Apr-2015 14:16:46 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[04-Apr-2015 14:16:52 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[04-Apr-2015 14:20:53 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[04-Apr-2015 14:21:01 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:32:11 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:32:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:32:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:32:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:32:11 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:34:03 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:34:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:34:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:34:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:34:03 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:35:09 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:35:09 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:35:09 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:35:09 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:35:09 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:35:19 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:35:19 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:35:19 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:35:19 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:35:19 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:35:20 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:35:20 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:35:20 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:35:20 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:35:20 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:37:11 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:37:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:37:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:37:11 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:37:11 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:38:07 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:38:07 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:38:07 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:38:07 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:38:07 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:46:28 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:46:29 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:46:29 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:46:29 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:46:29 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:48:23 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:48:23 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:48:23 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:48:23 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:48:23 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:49:00 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:49:00 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:49:00 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:49:00 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:49:00 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:49:03 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:49:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:49:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:49:03 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:49:03 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:49:04 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:49:04 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:49:04 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:49:04 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:49:04 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:49:05 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:49:05 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:49:05 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:49:05 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:49:05 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Reporte_Vendedores!L7 -> Reporte_Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Work in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:50:14 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:50:14 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:50:14 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:50:14 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:50:14 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Vendedores!L7 -> Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Worksheet), Array)
+# in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:50:58 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:50:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:50:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:50:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:50:58 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Vendedores!L7 -> Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Worksheet), Array)
+# in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 12:51:01 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 328
+[05-Apr-2015 12:51:01 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 439
+[05-Apr-2015 12:51:01 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 440
+[05-Apr-2015 12:51:01 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php:328) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELvendedores2.php on line 441
+[05-Apr-2015 12:51:01 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Vendedores!L7 -> Vendedores!L7 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'L7', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Worksheet), Array)
+# in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[05-Apr-2015 14:21:10 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[05-Apr-2015 14:21:10 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[05-Apr-2015 14:28:55 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 244
+[05-Apr-2015 14:28:55 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(260): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[05-Apr-2015 14:39:49 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php on line 237
+[05-Apr-2015 14:39:49 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoVendedor.php(253): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[05-Apr-2015 20:50:39 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELmatriculacantidad.php(286): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[05-Apr-2015 20:51:25 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Invalid cell coordinate 6' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:508
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Style.php(280): PHPExcel_Cell::coordinateFromString('6')
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/EXCELmatriculacantidad.php(286): PHPExcel_Style->applyFromArray(Array)
+#2 {main}
+  thrown in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 508
+[06-Apr-2015 10:10:53 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[06-Apr-2015 10:22:00 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[06-Apr-2015 11:30:29 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[06-Apr-2015 11:31:59 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[06-Apr-2015 11:34:23 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[06-Apr-2015 11:36:37 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[07-Apr-2015 14:54:06 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[08-Apr-2015 19:27:05 America/Lima] PHP Parse error:  syntax error, unexpected '[' in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoMasivo.php on line 418
+[08-Apr-2015 19:27:17 America/Lima] PHP Parse error:  syntax error, unexpected '[' in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoMasivo.php on line 418
+[08-Apr-2015 19:28:23 America/Lima] PHP Parse error:  syntax error, unexpected '[' in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoMasivo.php on line 418
+[08-Apr-2015 19:28:36 America/Lima] PHP Parse error:  syntax error, unexpected '[' in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoMasivo.php on line 418
+[08-Apr-2015 19:33:46 America/Lima] PHP Parse error:  syntax error, unexpected '[' in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELconsolidadoMasivo.php on line 418
+[09-Apr-2015 07:10:32 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 348
+[09-Apr-2015 07:10:32 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 446
+[09-Apr-2015 07:10:32 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 447
+[09-Apr-2015 07:10:32 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 448
+[10-Apr-2015 08:13:51 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[10-Apr-2015 08:14:31 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[10-Apr-2015 08:14:54 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[10-Apr-2015 19:46:25 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[11-Apr-2015 21:09:11 America/Lima] PHP Fatal error:  Maximum execution time of 3000 seconds exceeded in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 748
+[14-Apr-2015 21:00:02 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[16-Apr-2015 11:44:28 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 348
+[16-Apr-2015 11:44:28 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 446
+[16-Apr-2015 11:44:28 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 447
+[16-Apr-2015 11:44:28 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 448
+[16-Apr-2015 13:01:31 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 348
+[16-Apr-2015 13:01:31 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 446
+[16-Apr-2015 13:01:31 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 447
+[16-Apr-2015 13:01:31 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 448
+[18-Apr-2015 16:08:57 America/Lima] PHP Warning:  Invalid argument supplied for foreach() in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 348
+[18-Apr-2015 16:08:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 446
+[18-Apr-2015 16:08:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 447
+[18-Apr-2015 16:08:58 America/Lima] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php:348) in /home/cpdteles/public_html/SGC2/reporte/excel/EXCELcontrolpago_m.php on line 448
+[21-Apr-2015 14:25:40 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[21-Apr-2015 14:25:46 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[21-Apr-2015 14:33:05 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[21-Apr-2015 14:33:34 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[22-Apr-2015 09:30:49 America/Lima] PHP Fatal error:  Uncaught exception 'Exception' with message 'Indice_Matricula!K6 -> Indice_Matricula!K6 -> Cyclic Reference in Formula' in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php:288
+Stack trace:
+#0 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(984): PHPExcel_Cell->getCalculatedValue()
+#1 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(930): PHPExcel_Writer_Excel2007_Worksheet->_writeCell(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), 'K6', Array, Array)
+#2 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007/Worksheet.php(82): PHPExcel_Writer_Excel2007_Worksheet->_writeSheetData(Object(PHPExcel_Shared_XMLWriter), Object(PHPExcel_Worksheet), Array)
+#3 /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Writer/Excel2007.php(266): PHPExcel_Writer_Excel2007_Worksheet->writeWorksheet(Object(PHPExcel_Workshee in /home/cpdteles/public_html/SGC2/reporte/excel/includes/Classes/PHPExcel/Cell.php on line 288
+[22-Apr-2015 13:41:31 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 85 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 14:00:22 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 85 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 14:10:26 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 14:12:17 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 16:19:48 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 16:31:54 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 17:19:12 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 17:39:58 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 17:51:38 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 18:03:14 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 18:14:42 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 83 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 18:26:48 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 83 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77
+[22-Apr-2015 19:57:50 America/Lima] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 39 bytes) in /home/cpdteles/public_html/SGC2/conexion/MySqlConexion.php on line 77

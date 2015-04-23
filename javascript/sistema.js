@@ -32,12 +32,20 @@ var sistema={
     },
 	llenaSelectGrupo:function(obj,slct_dest,id_slct,titulo){//si manda mas de un select, enviar el 2do con michi adelante ej:'slct_agencia_region, #slct_nombre_agencia_region'
         var html='';  
-		
+		if(titulo!=''){
   html+='<optgroup label="'+titulo+'">';  
+        }
+        else{
+            html+='<option value="">--Seleccione--</option>';
+        }
+        
         $.each(obj,function(key,data){
             html+='<option value="'+data.id+'">'+data.nombre+'</option>';
         });
+        
+        if(titulo!=''){
   html+='</optgroup>';
+        }
   //alert(titulo);
         $('#'+slct_dest).html(html);
         $('#'+slct_dest).val(id_slct);

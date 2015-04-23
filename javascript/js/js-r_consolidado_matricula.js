@@ -48,6 +48,7 @@ $(document).ready(function(){
 					$scope.dias.push(i);
 				}
 			};
+
 			$scope.actualizarRango = function () {
 				// actualiza el ulitmo dia
 				$scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
@@ -60,10 +61,17 @@ $(document).ready(function(){
 					$scope.DiaIni = $scope.DiaFin = $scope.lastDay = new Date($scope.anio, $scope.meses.indexOf($scope.matriculaMes) + 1, 0).getDate();
 				}
 			};
+
+
 			$scope.ActualizarDiasMes();
 			$scope.DiaIni = $scope.DiaFin = $scope.date.getDate();
+
+
+
+
+
 		});
-})();
+})()
 
 
 

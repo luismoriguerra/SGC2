@@ -12,7 +12,7 @@ var jQGridInstituto={
                
                 {name:'dinstit',index:'dinstit',align:'left',width:320,editable:true,editrules:{required:true},sorttype:"text"}, 
 				{name:'dnmeins',index:'dnmeins',align:'center',width:50,editable:true,editrules:{required:true},sorttype:"text"}, 
-				{name:'cmodali',index:'cmodali',align:'center',width:100,editable:true,editrules:{required:true},stype:"select",edittype:"select",editoptions:{value:" : ;1:Presencial;2:Virtual"}},
+				{name:'cmodali',index:'cmodali',align:'center',width:100,editable:true,editrules:{required:true},stype:"select",edittype:"select",editoptions:{value:" : ;1:Presencial;2:Virtual;3:A Distancia"}},
 				{name:'cestado',index:'cestado',align:'center',width:100,editable:true,editrules:{required:true},stype:"select",edittype:"select",editoptions:{value:" : ;1:Activo;0:Inactivo"}}//" : , para coger todos los valores 1 y 0, campo required lo interpreta en blanco"
             ],
             rowNum:15,

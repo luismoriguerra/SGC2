@@ -17,7 +17,7 @@ require_once '../../php/includes/phpexcel/Classes/PHPExcel/IOFactory.php';
 //$objPHPExcel = PHPExcel_IOFactory::load("../../archivos/plantillas/PLANTILLACONFIGURACION.xls");//abro xls pq tuve problemas al abrir xlsx y esporto xlsx
 
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
-$azcount=array(5,15,25,39,15,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+$azcount=array(5,15,25,39,15,10,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 
 
 $styleThinBlackBorderOutline = array(
@@ -104,6 +104,8 @@ function color(){
 	);
 return $styleColorFunction;
 }
+
+
 
 /* QUERYS*/
 $cgrupo = $_GET["cgrupo"];
@@ -220,6 +222,17 @@ $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Test result file");
 
+/* FORMATO DE IMPRESION*/
+$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+$objPHPExcel->getActiveSheet()->getPageSetup()->setFitToPage(false);
+$objPHPExcel->getActiveSheet()->getPageSetup()->setScale(89);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setTop(0.7);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setRight(0.2);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setLeft(0.75);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setBottom(0.1);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setHeader(0.20);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setFooter(0);
 
 $pestana=0;
 foreach($grupos as $grupo){ // Inicio de Recorrido
@@ -245,15 +258,15 @@ $objPHPExcel->setActiveSheetIndex($pestana)
 			->setCellValue('A2','INSTITUCION '.$grupo["institucion"])
 			->setCellValue('A3','LOCAL DE ESTUDIO:'.$grupo["filial"])
                         ->setCellValue("A4","CARRERA: ".$grupo["carrera"])
-			->setCellValue('C2','SEMESTRE/INICIO '.$grupo["csemaca"]." ".$grupo["cinicio"])
-			->setCellValue('C3','FECHA INICIO:'.$grupo["finicio"])
-                        ->setCellValue("G2","HORARIO: ".$grupo["dias"]." ".$grupo["hora"])
+			->setCellValue('D2','SEMESTRE/INICIO '.$grupo["csemaca"]." ".$grupo["cinicio"])
+			->setCellValue('D3','FECHA INICIO:'.$grupo["finicio"])
+                        ->setCellValue("P2","HORARIO: ".$grupo["dias"]." ".$grupo["hora"])
                         ->setCellValue("C1","REGISTRO DE ASISTENCIA")
                         ->setCellValue("G4","SECCION: $seccion")
 			;
 $objPHPExcel->getActiveSheet()->mergeCells('A1:B1');
 $objPHPExcel->getActiveSheet()->mergeCells('A2:B2');
-$objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
+$objPHPExcel->getActiveSheet()->mergeCells('A3:C3');
 $objPHPExcel->getActiveSheet()->mergeCells('A4:C4');
 $objPHPExcel->getActiveSheet()->getRowDimension(1)->setRowHeight(45);
 $objPHPExcel->getActiveSheet()->getColumnDimension("A")->setWidth(5);
@@ -262,17 +275,18 @@ $objPHPExcel->getActiveSheet()->getStyle('C1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->getStyle("C1")->applyFromArray($styleAlignmentBold);
 $objPHPExcel->getActiveSheet()->mergeCells('C1:N1');
 //DATOS DEL GRUPO
-$objPHPExcel->getActiveSheet()->mergeCells('C2:F2');
-$objPHPExcel->getActiveSheet()->mergeCells('C3:F3');
+$objPHPExcel->getActiveSheet()->mergeCells('D2:N2');
+$objPHPExcel->getActiveSheet()->mergeCells('D3:N3');
 $objPHPExcel->getActiveSheet()->mergeCells('G4:N4');
 
 //$objPHPExcel->getActiveSheet()->mergeCells('G2:N2');
 //$objPHPExcel->getActiveSheet()->mergeCells('G3:N3');
-$objPHPExcel->getActiveSheet()->mergeCells('G2:N3')
-           ->getStyle("G2:N3")
+$objPHPExcel->getActiveSheet()->mergeCells('P2:T3')
+           ->getStyle("O2:T3")
             ->getAlignment()->setWrapText(true)
             ->applyFromArray($styleAlignmentBold) ;
 
+$objPHPExcel->getActiveSheet()->getStyle("A2:T5")->applyFromArray($styleBold);
 
 $excel =$objPHPExcel->getActiveSheet();
 //CABECERA DE LA TABLA DE REGISTRO
@@ -302,23 +316,25 @@ $excel->setCellValue("A$f","Nro")
         ;
 
 $excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);
-$excel->getColumnDimension("C")->setWidth(15);
-$excel->getColumnDimension("D")->setWidth(4);
-$excel->getColumnDimension("E")->setWidth(4);
-$excel->getColumnDimension("F")->setWidth(4);
-$excel->getColumnDimension("G")->setWidth(4);
-$excel->getColumnDimension("H")->setWidth(4);
-$excel->getColumnDimension("I")->setWidth(4);
-$excel->getColumnDimension("J")->setWidth(4);
-$excel->getColumnDimension("K")->setWidth(4);
-$excel->getColumnDimension("L")->setWidth(4);
-$excel->getColumnDimension("M")->setWidth(4);
-$excel->getColumnDimension("N")->setWidth(4);
-$excel->getColumnDimension("O")->setWidth(4);
-$excel->getColumnDimension("P")->setWidth(4);
-$excel->getColumnDimension("Q")->setWidth(4);
-$excel->getColumnDimension("R")->setWidth(4);
-$excel->getColumnDimension("S")->setWidth(4);
+$excel->getColumnDimension("A")->setWidth(4);
+$excel->getColumnDimension("B")->setWidth(17);
+$excel->getColumnDimension("C")->setWidth(23);
+$excel->getColumnDimension("D")->setWidth(15);
+$excel->getColumnDimension("E")->setWidth(2);
+$excel->getColumnDimension("F")->setWidth(2);
+$excel->getColumnDimension("G")->setWidth(2);
+$excel->getColumnDimension("H")->setWidth(2);
+$excel->getColumnDimension("I")->setWidth(2);
+$excel->getColumnDimension("J")->setWidth(2);
+$excel->getColumnDimension("K")->setWidth(2);
+$excel->getColumnDimension("L")->setWidth(2);
+$excel->getColumnDimension("M")->setWidth(2);
+$excel->getColumnDimension("N")->setWidth(3);
+$excel->getColumnDimension("O")->setWidth(3);
+$excel->getColumnDimension("P")->setWidth(3);
+$excel->getColumnDimension("Q")->setWidth(3);
+$excel->getColumnDimension("R")->setWidth(3);
+$excel->getColumnDimension("S")->setWidth(3);
 $excel->getColumnDimension("T")->setWidth(4);
 
 //FILAS DE LOS ALUMNOS
@@ -328,7 +344,7 @@ foreach ($alumnos as $alu){
 $f++;
 $c++;
 $excel->setCellValue("A$f",$c)
-	  ->setCellValue("B$f",str_replace("-","",$alu["dcodlib"]) )
+	  ->setCellValue("B$f",$alu["dcodlib"])
 	  ->setCellValue("C$f", $alu["nombres"]);
 $excel->setCellValue("D$f",$alu["telefono"]);
 $excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);

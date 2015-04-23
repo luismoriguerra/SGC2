@@ -263,14 +263,6 @@ class servletPersona extends controladorComandos{
                 $data['copeven']=trim($_POST['copeven']);
 				echo json_encode($daoPersona->ActualizarTrabajador($data));
 			break;
-			case "guardarSueldosVendedores":
-				$data = array();
-				$data["data"]=trim($_POST['data']);
-				$data['cusuari']=trim($_POST['cusuari']);
-				$data['cfilial']=trim($_POST['cfilial']);
-
-				echo json_encode($daoPersona->guardarSueldosVendedores($data));
-				break;
 			default:
                 echo json_encode(array('rst'=>3,'msj'=>'Accion POST no encontrada'));
 				break;
@@ -901,8 +893,6 @@ class servletPersona extends controladorComandos{
 							$data[$i]['tvended'],
 							$data[$i]['cestado'],
                             $data[$i]['copeven'],
-                            $data[$i]['sueldo'],
-                            $data[$i]['faltas'],
                             )
                         )
                     );

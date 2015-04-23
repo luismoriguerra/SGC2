@@ -56,6 +56,13 @@ class MySqlConexion {
         }
         return true;
     }
+    public function executeQuery_returnid(){
+        if(!($this->resource = $this->conexion->query($this->sql))){
+            return false;
+        }
+        return $this->conexion->insert_id;
+    }
+
     public function alter(){
             if(!($this->resource = mysqli_query($this->sql, $this->conexion))){
                     return false;
@@ -116,6 +123,7 @@ class MySqlConexion {
 	$cad="Select ".$campoLlave." from ".$tabla." where cfilial='".$cfilial."'  order by ".$campoLlave." desc limit 0,1";
 	}
 	else{*/
+    $cusuari=str_pad($cusuari, 8,'0');
 	$cad="	select  substr(".$campoLlave.",9) as ".$campoLlave."
 			from ".$tabla."
 			where substr(".$campoLlave.",1,8)='".$cusuari."'
