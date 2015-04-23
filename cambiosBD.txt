@@ -1,3 +1,9 @@
+vendem
+ALTER TABLE vendedm add descto DECIMAL(5,2)
+ALTER TABLE vendedm add horari varchar(50)
+
+
+
 2015/04/05
 CREATE TABLE `cpdteles_caja1`.`venfala` (
 	`cvended` varchar(19) NOT NULL,

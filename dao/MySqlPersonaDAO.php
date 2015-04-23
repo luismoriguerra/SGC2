@@ -841,7 +841,10 @@ class MySqlPersonaDAO{
         foreach($rows as $vendedor) {
             // array de datos por vendeor 0 id , 1 sueld , 2 faltas unidos por D
             $dataVen = explode("*", $vendedor);
-            $sql = "UPDATE vendedm set sueldo = " . $dataVen[1] . " where cvended = '".$dataVen[0]."'";
+            $sql = "UPDATE vendedm set sueldo = " . $dataVen[1]
+                . " , descto = ". $dataVen[3]
+                . " , horari = '". $dataVen[4] . "'"
+                . " where cvended = '".$dataVen[0]."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
                 $db->rollbackTransaccion();
@@ -895,7 +898,7 @@ class MySqlPersonaDAO{
 			v.tdocper,v.fingven,v.fretven,v.tsexo,v.coddpto,v.codprov,v.coddist,
 			v.ddirecc,v.codintv,v.tvended,v.cinstit,
 			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo,
-			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas
+			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas, descto, horari
 			from vendedm v
 			WHERE 1=1 $where
             ORDER BY $sidx $sord

@@ -3,7 +3,7 @@
 <html ng-app="myApp">
 	<head>
 
-		<title>SGC2 | Reporte de Vendedores</title>
+		<title>SGC2 | Reporte de Vendedores por Matricula</title>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -46,7 +46,7 @@
 				<div class="secc-der" id="secc-der">
                     
                     <div id="panel_matricula" style="display:block">
-                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte Vendedores <?   /*aqui va el titulo q presentara  */ ?></b></div>         
+                        <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte Vendedores por Matrícula<?   /*aqui va el titulo q presentara  */ ?></b></div>
                         <div class="cont-der" ng-controller="rangoFechas">
 							<div class="t-center">
                                 <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>

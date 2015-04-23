@@ -49,6 +49,11 @@ cargarDistritot=function(){
 		.controller('angularController', ['$scope','$http',function($scope, $http) {
 
 			$scope.noResultados = false;
+
+			$scope.actualizarOpeven = function () {
+				personaDAO.listarOpeven(sistema.llenaSelect,"slct_opeven","");
+			};
+
 			$scope.actualizarLista = function() {
 				var url ='../controlador/controladorSistema.php?' +
 					'comando=persona' +
@@ -57,7 +62,8 @@ cargarDistritot=function(){
 					'&rows=9000' +
 					'&accion=jqgrid_trabajador' +
 					'&cestado=1' +
-					'&tvended='+$scope.slctVendedor;
+					'&tvended='+$scope.slctVendedor +
+					'&copeven='+$scope.slct_openve;
 				$scope.cargando = true;
 				$scope.noResultados = false;
 				$scope.vendedores = [];
@@ -80,9 +86,11 @@ cargarDistritot=function(){
 								nombre: ven.cell[3] + " " + ven.cell[1] + " " + ven.cell[2],
 								estado: ven.cell[17],
 								sueldo: parseFloat(ven.cell[19]),
+								descuento: parseFloat(ven.cell[21]),
+								horario: ven.cell[22],
 								identity: angular.identity,
 								activeDate: null,
-								selectedDates: faltas,
+								selectedDates: faltas  // index 20
 							}
 						});
 						$scope.cargando = false;
@@ -110,8 +118,9 @@ cargarDistritot=function(){
 
 				$scope.vendedores.forEach(function (ven) {
 					sueldo = (ven.sueldo) ? ven.sueldo : 0;
-					faltas = ven.selectedDates.join("D")
-					datosAGuardar.push(ven.id + "*" + sueldo + "*" + faltas);
+					descuento = (ven.descuento) ? ven.descuento : 0;
+					faltas = ven.selectedDates.join("D");
+					datosAGuardar.push(ven.id + "*" + sueldo + "*" + faltas+ "*" + descuento+ "*" + ven.horario);
 				});
 
 				datosAGuardar = datosAGuardar.join("|");

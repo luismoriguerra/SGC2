@@ -3,7 +3,7 @@
 <html ng-app="myApp">
 <head>
 
-    <title>SGC2 | Mantenimiento Vendedor Sueldos</title>
+    <title>SGC2 | Mantenimiento Vendedor Masivo</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -50,7 +50,7 @@
         <div class="secc-der" id="secc-der" ng-controller="angularController">
 
             <div id="panel_matricula" style="display:block">
-                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Mantenimiento Vendedor(es) Sueldo <? /*aqui va el titulo q presentara  */ ?></b></div>
+                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Mantenimiento Vendedor(es) Masivo <? /*aqui va el titulo q presentara  */ ?></b></div>
                 <div class="cont-der" style="text-align: center">
                     <? /*
                             	aqui va todo tu diseño ... dentro de cont-der 
@@ -64,7 +64,18 @@
                                 <select id="slct_vendedor"
                                         name="slct_vendedor"
                                         ng-model="slctVendedor"
+                                        ng-change="actualizarOpeven()">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ui-state-default">Centro Operación:</td>
+                            <td class="">
+                                <select id="slct_opeven"
+                                        class="input-large"
+                                        ng-model="slct_openve"
                                         ng-change="actualizarLista()">
+                                    <option value="">--Selecione--</option>
                                 </select>
                             </td>
                         </tr>
@@ -84,7 +95,7 @@
                          ng-show="vendedores.length">
                         <div>
                             <div style="text-align: left; display: inline-block; float: left;">
-                                Agregar a todos :
+                                Agregar sueldo a todos :
                                 <input type="number"
                                        ng-model="sueldoComun"
                                        placeholder="Monto"/>
@@ -106,6 +117,8 @@
                                 <th>Nro</th>
                                 <th>Vendedor</th>
                                 <th>Sueldo</th>
+                                <th>Descuento</th>
+                                <th>Horario</th>
                                 <th>Faltas</th>
                             </tr>
                             <tr ng-repeat="vendedor in vendedores | filter : searchText">
@@ -115,6 +128,16 @@
                                     <input type="number"
                                            ng-model="vendedor.sueldo"
                                            placeholder="0"/>
+                                </td>
+                                <td>
+                                    <input type="number"
+                                           ng-model="vendedor.descuento"
+                                           placeholder="0.00"/>
+                                </td>
+                                <td>
+                                    <input type="text"
+                                           ng-model="vendedor.horario"
+                                           placeholder=""/>
                                 </td>
                                 <td>
                                     <a href="#"

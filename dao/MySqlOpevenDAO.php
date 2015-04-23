@@ -5,9 +5,9 @@ class MySqlOpevenDAO{
 	
     public function cargarOpevenbyTipcap($didetip){
 		$sql="select o.copeven id ,  o.dopeven nombre 
-from opevena o
-inner join tipcapa t on o.ctipcap = t.ctipcap
-where t.didetip = '$didetip'";
+                from opevena o
+                inner join tipcapa t on o.ctipcap = t.ctipcap
+                where t.didetip = '$didetip'";
         $db=creadorConexion::crear('MySql');
 
         $db->setQuery($sql);
