@@ -15,10 +15,10 @@ class configMySql{
     public function __construct(){
 
         $this->host='localhost';
-        $this->user='cpdteles';
-		//$this->user='root';
-		//$this->pass='';
-        $this->pass='btexqbw8hchk';
+        //$this->user='cpdteles';
+		$this->user='root';
+		$this->pass='';
+        //$this->pass='btexqbw8hchk';
 
         $this->database='cpdteles_caja1';
 
