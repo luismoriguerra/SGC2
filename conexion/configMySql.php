@@ -19,7 +19,6 @@ class configMySql{
 		$this->user='root';
 		$this->pass='';
         //$this->pass='btexqbw8hchk';
-
         $this->database='cpdteles_caja1';
 
     }

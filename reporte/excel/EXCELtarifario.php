@@ -100,6 +100,14 @@ $styleThinBlackBorderOutline = array(
         ),
     ),
 );
+$styleThickBlackBorderOutline = array(
+    'borders' => array(
+        'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
+);
 $styleThinBlackBorderAllborders = array(
     'borders' => array(
         'allborders' => array(
@@ -262,6 +270,12 @@ $concarrera=0;
 $dcarrer='';
 $sumatotal=array();
 
+//Datos para validar cambio de Local/Intitucion/Carrera
+$local_ini = "";
+$inst_ini = "";
+$car_ini = "";
+$bloque_ini = $valorinicial;
+
 foreach($rpt as $r){    
 
 $precio=explode("|",$r['pen']);
@@ -288,9 +302,28 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]*$r['duracion']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]*$r['duracion']*0.2);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, "=".$az[($paz-2)].$valorinicial."-".$az[($paz-1)].$valorinicial);
-}
 
-$objPHPExcel->getActiveSheet()->getStyle("A6:".$az[$paz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+    if ($local_ini != $r['dfilial'] or $inst_ini != $r['dinstit'] or $car_ini != $r['dcarrer']){
+        $local_ini = $r['dfilial'];
+        $inst_ini = $r['dinstit'];
+        $car_ini = $r['dcarrer'];
+        $objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".($valorinicial-1))->applyFromArray($styleThinBlackBorderAllborders);
+        $objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".($valorinicial-1))->applyFromArray($styleThickBlackBorderOutline);
+        $bloque_ini = $valorinicial;
+    }
+
+}
+$objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+
+//$objPHPExcel->getActiveSheet()->getStyle("A6:".$az[$paz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+
+$objPHPExcel->getActiveSheet()->getStyle('K5:T5')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->getStyle('K5:T5')->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A6:T6')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->getStyle("k5:T6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+$objPHPExcel->getActiveSheet()->getStyle("A6:T6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+//$objPHPExcel->getActiveSheet()->getStyle("Q5:V5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFF0F000'); 
 //$objPHPExcel->getActiveSheet()->getStyle('AA4:AA'.$valorinicial)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Tarifario');
