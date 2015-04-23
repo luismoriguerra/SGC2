@@ -9,10 +9,12 @@ require_once '../../conexion/configMySql.php';
 $cn=MySqlConexion::getInstance();
 
 $az=array(  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','AA','AB','AC','AD'
-		  ,'AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH'
-		  ,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
-		  ,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
-		  ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU');
+,'AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH'
+,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
+,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
+,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EE','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU'
+,"EV","EW","EX","EY","EZ","FA",
+);
 $azcount=array( 8,15,15,15,25,15,28,30,15,15,15,15,15,20,15,15,15,15,15,15,15,15,15,19,40,20,20,20,15,15,15,15,15,15
 			   ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 			   ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
@@ -65,6 +67,44 @@ $where.=" AND g.cinstit='".$cinstit."'
 		 
 }
 
+
+//DATA DE LAS CLASES DEL GRUPO
+$sql="select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr = '$cgracpr';";
+
+$cn->setQuery($sql);
+$data=$cn->loadObject();
+
+//OBTENIENDO LA FECHA DE LOS PRIMEROS  DIAS
+$fechas = $data->fgrupos;
+list($finicio,$ffin) = explode("|", $fechas);
+$data->finicio= $finicio;
+$fre = explode("-", $data->cfrecue);
+$dias = 0;
+$dfechas = array();
+while($dias < 15){
+
+	$dd = date("w" , strtotime($finicio) );
+	$dd++;
+	if(in_array($dd, $fre)){
+		$dias++;
+		$dfechas[] = $finicio;
+	}
+	$fecha = date_create($finicio);
+	date_add($fecha, date_interval_create_from_date_string('1 days'));
+	$finicio = date_format($fecha, 'Y-m-d');
+
+
+}
+
+$asis_sql= "";
+for($i = 0 ; $i<15;$i++){
+	$asis_sql .="
+	, ( select estasist from aluasist where idseing = s.id and fecha = '".$dfechas[$i]."' ) as dia$i ";
+}
+
+
+
+
 $sql="SELECT DISTINCT
 		 p.dappape
 		,p.dapmape
@@ -92,6 +132,7 @@ $sql="SELECT DISTINCT
 		,If(i.cpromot!='',(Select concat(v.dapepat,' ',v.dapemat,', ',v.dnombre,' | ',v.codintv) From vendedm v Where v.cvended=i.cpromot),
 			If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
 				If(i.destica!='',i.destica,''))) As detalle_captacion,i.fusuari
+				$asis_sql
 	FROM personm p
 		INNER JOIN ingalum i 	On (i.cperson  	= p.cperson)
 		INNER JOIN modinga m 	On (m.cmoding  	= i.cmoding)
@@ -102,6 +143,7 @@ $sql="SELECT DISTINCT
 		INNER JOIN horam h 		On (h.chora	   	= g.chora)
 		INNER JOIN carrerm ca 	On (ca.ccarrer 	= g.ccarrer)
 		INNER JOIN instita ins 	On (ins.cinstit	= g.cinstit)
+		left JOIN seinggr s 	On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
 		LEFT JOIN (	Select 
 						 cingalu
 						,cgruaca
@@ -302,6 +344,10 @@ $objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
 $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray($styleAlignmentRight);
 
 $cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO','NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO','LOCAL DE ESTUDIOS','MOD. INGRESO','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION','TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','FECHA DIGITACION');
+	// agregamos las fechas a la cabecera
+	foreach ($dfechas as $f) {
+		array_push($cabecera,$f);
+	}
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
@@ -332,6 +378,11 @@ $objPHPExcel->getActiveSheet()->mergeCells('AA4:AA5');
 $objPHPExcel->getActiveSheet()->getStyle('AA4:AA5')->getAlignment()->setWrapText(true);
 $objPHPExcel->getActiveSheet()->setCellValue("AB4","FECHA DIGITACION");
 $objPHPExcel->getActiveSheet()->mergeCells('AB4:AB5');
+
+$objPHPExcel->getActiveSheet()->setCellValue("AC4","DATOS DE ASISTENCIA");
+$objPHPExcel->getActiveSheet()->mergeCells('AC4:AQ4');
+$objPHPExcel->getActiveSheet()->getStyle("AC4:AQ5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
+
 
 
 $objPHPExcel->getActiveSheet()->getStyle("A4:H5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
@@ -434,9 +485,18 @@ $contadoringresos=0;
 		}
 	}*/
 
+	// ASISTENCIA DE ALUMNOS
+	$actualCol = array_search("AB", $az);
+	for( $i = 0 ; $i < 15; $i++) {
+		$actualCol++;
+		$estado = ($r["dia".$i]) ? $r["dia".$i] : 0;
+		$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$estado);
+	}
+
+
 }
-$objPHPExcel->getActiveSheet()->getStyle("A6:AB".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
-$objPHPExcel->getActiveSheet()->getStyle('A4:AB'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:AQ".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
+$objPHPExcel->getActiveSheet()->getStyle('A4:AQ'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago_M');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
