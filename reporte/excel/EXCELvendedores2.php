@@ -60,7 +60,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
 	if ($i <= 20) {
 	$query1 = "
-		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, v.horari, v.descto, o.ntelefo,
+		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, o.ntelefo,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
@@ -392,7 +392,7 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=".$r['faltas']);
 
 		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['ntelefo']."/".count($rpt));
-		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=(".$pago."/".$cantulimodia.")*J".$valorinicial);
+		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=(".$pago."/".$cantulimodia.")*J".$valorinicial."-I".$valorinicial);
 
 		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=IFERROR(M".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");
 		$objPHPExcel->getActiveSheet()->setCellValue("O".$valorinicial, "=".$az[$iniciadinamica].$valorinicial."/J".$valorinicial);

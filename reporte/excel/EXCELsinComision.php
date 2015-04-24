@@ -254,7 +254,7 @@ $objDrawing->setOffsetX(10);
 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 //$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
-$objPHPExcel->getActiveSheet()->setCellValue("A1","REPORTE DE MEDIOS GENERALES - MATRÍCULA");
+$objPHPExcel->getActiveSheet()->setCellValue("A1","REPORTE DE MATRÍCULA MEDIOS GENERALES - ".$nombreReporte);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
 $objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
@@ -393,14 +393,14 @@ for($i=1;$i<=$cantidadDias + 2;$i++){
     }
 }
 // PINTADODE LAS FILA TOTALES
-$objPHPExcel->getActiveSheet()->getStyle("C$valorinicial:".$az[$cantidadaz].$valorinicial)
+$objPHPExcel->getActiveSheet()->getStyle("B$valorinicial:".$az[$cantidadaz].$valorinicial)
     ->getFill()
     ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
     ->getStartColor()
     ->setARGB('FFEBF1DE')
 ;
-$objPHPExcel->getActiveSheet()->getStyle('C'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle('C'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
+$objPHPExcel->getActiveSheet()->getStyle('B'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('B'.$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
 //
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -424,7 +424,7 @@ for ($i = 0; $i < $cantidadDias + 2;$i++){
 }
 
 $objPHPExcel->getActiveSheet()->getStyle("$lastColumn".(7).":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderRight);
-$objPHPExcel->getActiveSheet()->getStyle("C".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("B".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
 
 
 

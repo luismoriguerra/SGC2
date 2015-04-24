@@ -299,7 +299,7 @@ $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 
 //$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
-$objPHPExcel->getActiveSheet()->setCellValue("A1","CONSOLIDADO MEDIO MASIVO");
+$objPHPExcel->getActiveSheet()->setCellValue("A1","CONSOLIDADO MEDIO MASIVO - ".$nombreReporte);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->setCellValue("B2","MES: " . strtoupper($meses[$_GET["mes"] + 1]));
 $objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->setSize(12);
