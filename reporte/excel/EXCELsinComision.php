@@ -264,11 +264,23 @@ $cabecera=array('N°','MEDIO');
 $cantidadaz=1;
 for($i=1;$i<= $cantidadDias * 1 + 2;$i++){
     $cantidadaz++;
-    $azcount[$cantidadaz]=5.5;
+    //$azcount[$cantidadaz]=5.5;
     array_push($cabecera, 'TOTALES');
+    IF($i == 1)
+    {   $azcount[$cantidadaz]=4.1;  }
+    IF($i == 2)
+    {   $azcount[$cantidadaz]=3.9;  }
+    IF($i > 2)
+    {   $azcount[$cantidadaz]=3.4;  }
     foreach($rpt3 as $r){
         $cantidadaz++;
-        $azcount[$cantidadaz]=5.5;
+        //$azcount[$cantidadaz]=5.5;
+        IF($i == 1)
+        {   $azcount[$cantidadaz]=4.1;  }
+        IF($i == 2)
+        {   $azcount[$cantidadaz]=3.9;  }
+        IF($i > 2)
+        {   $azcount[$cantidadaz]=3.4;  }
         array_push($cabecera, $r['dinstit']);
     }
 }
