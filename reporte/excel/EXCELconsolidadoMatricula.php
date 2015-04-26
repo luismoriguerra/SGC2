@@ -348,53 +348,125 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 
 $objPHPExcel->getActiveSheet()->getStyle("B5:".$az[(2+count($rpt3)*$y+$y-1)]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 $objPHPExcel->getActiveSheet()->getStyle("A6:".$az[(2+count($rpt3)*$y+$y-1)]."6")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
-$valorinicial=6;
+//$valorinicial=6;
+//$cont=0;
+//$countrpt3=0;
+//$posicionaz=2;
+//foreach ($rpt as $r) {
+//	$countrpt3++;
+//	if ($countrpt3 ==1) {
+//		$cont++;
+//		// inicializa la fila donde estara
+//		$valorinicial++;
+//		$objPHPExcel->getActiveSheet()->setCellValue("A".$valorinicial, $cont);
+//		$objPHPExcel->getActiveSheet()->setCellValue("B".$valorinicial, $r['dfilial']);
+//		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, '=SUM(D'.$valorinicial.':'.$az[(2+count($rpt3)*1+1-1)].$valorinicial.")");
+//		for ($i = 1; $i <= $cantidadDias + 1 ; $i++) {
+//			$x = $i + 1;
+//			$objPHPExcel->getActiveSheet()->setCellValue(
+//				$az[(2+count($rpt3)*$i+$i)].$valorinicial,
+//				"=SUM(".$az[(2+count($rpt3)*$i+$i+1)].$valorinicial.":".$az[(2+count($rpt3)*$x+$x-1)].$valorinicial.")");
+//		}
+//		for($i=1;$i<=count($rpt3);$i++){
+//			$objPHPExcel->getActiveSheet()->setCellValue( $az[(2+$i)].$valorinicial, '='.$az[(2+$i+count($rpt3)+1)].$valorinicial.'/'.($diaspromedio[2]-1) );
+//		}
+//	}
+//	$posicionaz = 2 + count($rpt3) + $countrpt3;
+//	$posicionaz++;
+//	if ($r['c0']*1>0){
+//		$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
+//	}
+//	$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c0']);
+//	$posicionaz+=count($rpt3);
+//	for ($i = 1; $i <= $cantidadDias; $i++) {
+//		$posicionaz++;
+//		if ($r['c'.$i]*1>0) {
+//			$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
+//		}
+//		$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c'.$i]);
+//		if ($i == $cantidadDias) {
+//			$posicionaz++;
+//		} else {
+//			$posicionaz+=count($rpt3);
+//		}
+//	}
+//	// cuando ya dio tantas vueltas como instituciones hay pasa a la siguiente fila
+//	if( $countrpt3==count($rpt3) ){
+//		$countrpt3=0;
+//	}
+//}
+
+
+
+
+/**/
+
+$valorinicial=6; // filas
 $cont=0;
 $countrpt3=0;
-$posicionaz=2;
-foreach ($rpt as $r) {
+$arrayFilas = array();
+foreach($rpt as $r){
+	$posicionaz=0;
 	$countrpt3++;
-	if ($countrpt3 ==1) {
+	if ($countrpt3 == 1) {
 		$cont++;
-		// inicializa la fila donde estara
-		$valorinicial++;
-		$objPHPExcel->getActiveSheet()->setCellValue("A".$valorinicial, $cont);
-		$objPHPExcel->getActiveSheet()->setCellValue("B".$valorinicial, $r['dfilial']);
-		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, '=SUM(D'.$valorinicial.':'.$az[(2+count($rpt3)*1+1-1)].$valorinicial.")");
-		for ($i = 1; $i <= $cantidadDias + 1 ; $i++) {
+		$valorinicial="{fila}"; // usamos un comodin para luego poner la fila correspondie debido al reordenamiento que se va a dar
+		$arrayFilas[$r['dfilial']][$az[$posicionaz]] = $valorinicial;
+		$arrayFilas[$r['dfilial']][$az[++$posicionaz]] = $r['dfilial'];
+		$arrayFilas[$r['dfilial']][$az[++$posicionaz]] = '=SUM(D'.$valorinicial.':'.$az[(2+count($rpt3)*1+1-1)].$valorinicial.")";
+
+		for ($i = 1; $i <= $cantidadDias + 1 ; $i++) {  // totales por grupo  desde consolidado
 			$x = $i + 1;
-			$objPHPExcel->getActiveSheet()->setCellValue(
-				$az[(2+count($rpt3)*$i+$i)].$valorinicial,
-				"=SUM(".$az[(2+count($rpt3)*$i+$i+1)].$valorinicial.":".$az[(2+count($rpt3)*$x+$x-1)].$valorinicial.")");
+			$arrayFilas[$r['dfilial']][$az[(2+count($rpt3)*$i+$i)]] =  "=SUM(".$az[(2+count($rpt3)*$i+$i+1)].$valorinicial.":".$az[(2+count($rpt3)*$x+$x-1)].$valorinicial.")";
 		}
 		for($i=1;$i<=count($rpt3);$i++){
-			$objPHPExcel->getActiveSheet()->setCellValue( $az[(2+$i)].$valorinicial, '='.$az[(2+$i+count($rpt3)+1)].$valorinicial.'/'.($diaspromedio[2]-1) );
+			//promedios por institucion , solo para el primer grupo (promedios)
+			$arrayFilas[$r['dfilial']][$az[(2+$i)]] = '='.$az[(2+$i+count($rpt3)+1)].$valorinicial.'/'.($diaspromedio[2]-1);
 		}
 	}
-	$posicionaz = 2 + count($rpt3) + $countrpt3;
+	$posicionaz=2+count($rpt3)+$countrpt3;
 	$posicionaz++;
-	if ($r['c0']*1>0){
-		$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
-	}
-	$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c0']);
-	$posicionaz+=count($rpt3);
-	for ($i = 1; $i <= $cantidadDias; $i++) {
+	$arrayFilas[$r['dfilial']][$az[$posicionaz]] = $r['c0'];
+	$arrayFilas[$r['dfilial']]["consolidadototal"] += $r['c0'];
+
+	$posicionaz += count($rpt3);
+	for ($i = 1; $i <= $cantidadDias; $i++) { // llena la misma institucion por cadad grupo
 		$posicionaz++;
-		if ($r['c'.$i]*1>0) {
-			$objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
-		}
-		$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, $r['c'.$i]);
-		if ($i == $cantidadDias) {
-			$posicionaz++;
-		} else {
-			$posicionaz+=count($rpt3);
-		}
+		$arrayFilas[$r['dfilial']][$az[$posicionaz]] = $r['c'.$i];
+		$posicionaz = ($i == $cantidadDias) ? $posicionaz++ : $posicionaz+=count($rpt3);
 	}
-	// cuando ya dio tantas vueltas como instituciones hay pasa a la siguiente fila
 	if( $countrpt3==count($rpt3) ){
 		$countrpt3=0;
 	}
 }
+
+// ordernarlos por consolidado total
+foreach ($arrayFilas as $key => $row) {
+	$rows[$key]  = $row["consolidadototal"];
+}
+array_multisort($rows, SORT_DESC, $arrayFilas);
+
+// agregar filas la excel
+$valorinicial=6; // filas
+foreach ($arrayFilas as $k1 => $v1) {
+	if ((int)$v1["consolidadototal"] || true) {
+		$valorinicial++;
+		foreach ($v1 as $columna => $valor) {
+			if ($columna != "consolidadototal"){
+				$objPHPExcel->getActiveSheet()->setCellValue($columna.$valorinicial, str_replace("{fila}", $valorinicial, $valor));
+				if ($valor > 0 || strpos($valor, "=SUM(") === true) {
+					$objPHPExcel->getActiveSheet()->getStyle($columna.$valorinicial)->applyFromArray($styleBold);
+				}
+			}
+		}
+	}
+}
+/**/
+
+
+
+
+
 ///negrita a los numeros
 $objPHPExcel->getActiveSheet()->getStyle("C6:".$az[(2+count($rpt3)*2+2-1)].$valorinicial)->applyFromArray($styleBold);
 $objPHPExcel->getActiveSheet()->getStyle($az[(2+count($rpt3)*2+2)]."6:".$az[(2+count($rpt3)*2+2)].$valorinicial)->applyFromArray($styleBold);
