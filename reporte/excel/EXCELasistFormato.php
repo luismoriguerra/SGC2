@@ -200,7 +200,7 @@ for($i = 0 ; $i<$clase;$i++){
 //DATOS DE LOS ALUMNOS DEL GRUPO
 $sql = "select s.*,
                 CONCAT_WS(' ',p.dappape,p.dapmape,p.dnomper) nombres,
-                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono, i.dcodlib
+                CONCAT(p.ntelpe2,' | ',p.ntelper) telefono, replace(i.dcodlib,'-','') as dcodlib
                 $asis_sql
                 from seinggr s
                 inner join personm p on p.cperson = s.cperson
@@ -223,7 +223,7 @@ $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
 							 ->setCategory("Test result file");
 
 /* FORMATO DE IMPRESION*/
-$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToPage(false);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setScale(89);
@@ -317,25 +317,25 @@ $excel->setCellValue("A$f","Nro")
 
 $excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);
 $excel->getColumnDimension("A")->setWidth(4);
-$excel->getColumnDimension("B")->setWidth(17);
-$excel->getColumnDimension("C")->setWidth(23);
-$excel->getColumnDimension("D")->setWidth(15);
-$excel->getColumnDimension("E")->setWidth(2);
-$excel->getColumnDimension("F")->setWidth(2);
-$excel->getColumnDimension("G")->setWidth(2);
-$excel->getColumnDimension("H")->setWidth(2);
-$excel->getColumnDimension("I")->setWidth(2);
-$excel->getColumnDimension("J")->setWidth(2);
-$excel->getColumnDimension("K")->setWidth(2);
-$excel->getColumnDimension("L")->setWidth(2);
-$excel->getColumnDimension("M")->setWidth(2);
-$excel->getColumnDimension("N")->setWidth(3);
-$excel->getColumnDimension("O")->setWidth(3);
-$excel->getColumnDimension("P")->setWidth(3);
-$excel->getColumnDimension("Q")->setWidth(3);
-$excel->getColumnDimension("R")->setWidth(3);
-$excel->getColumnDimension("S")->setWidth(3);
-$excel->getColumnDimension("T")->setWidth(4);
+$excel->getColumnDimension("B")->setWidth(12);
+$excel->getColumnDimension("C")->setWidth(41);
+$excel->getColumnDimension("D")->setWidth(21);
+$excel->getColumnDimension("E")->setWidth(1.5);
+$excel->getColumnDimension("F")->setWidth(1.5);
+$excel->getColumnDimension("G")->setWidth(1.5);
+$excel->getColumnDimension("H")->setWidth(1.5);
+$excel->getColumnDimension("I")->setWidth(1.5);
+$excel->getColumnDimension("J")->setWidth(1.5);
+$excel->getColumnDimension("K")->setWidth(1.5);
+$excel->getColumnDimension("L")->setWidth(1.5);
+$excel->getColumnDimension("M")->setWidth(1.5);
+$excel->getColumnDimension("N")->setWidth(2.5);
+$excel->getColumnDimension("O")->setWidth(2.5);
+$excel->getColumnDimension("P")->setWidth(2.5);
+$excel->getColumnDimension("Q")->setWidth(2.5);
+$excel->getColumnDimension("R")->setWidth(2.5);
+$excel->getColumnDimension("S")->setWidth(2.5);
+$excel->getColumnDimension("T")->setWidth(3);
 
 //FILAS DE LOS ALUMNOS
 $c=0;
