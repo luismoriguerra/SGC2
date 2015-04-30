@@ -21,13 +21,12 @@
 
         <script type="text/javascript" src="../javascript/sistema.js"></script>
         <script type="text/javascript" src="../javascript/templates.js"></script>
-        
+
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
         <script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
 
         <script type="text/javascript" src="../javascript/js/js-r_consolidado_masivo.js"></script>
-            
     </head>
 
     <body>

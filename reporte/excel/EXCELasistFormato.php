@@ -226,12 +226,12 @@ $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
 $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToPage(false);
-$objPHPExcel->getActiveSheet()->getPageSetup()->setScale(89);
-$objPHPExcel->getActiveSheet()->getPageMargins()->setTop(0.7);
-$objPHPExcel->getActiveSheet()->getPageMargins()->setRight(0.2);
-$objPHPExcel->getActiveSheet()->getPageMargins()->setLeft(0.75);
-$objPHPExcel->getActiveSheet()->getPageMargins()->setBottom(0.1);
-$objPHPExcel->getActiveSheet()->getPageMargins()->setHeader(0.20);
+$objPHPExcel->getActiveSheet()->getPageSetup()->setScale(88);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setTop(0.2);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setRight(0);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setLeft(0);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setBottom(0);
+$objPHPExcel->getActiveSheet()->getPageMargins()->setHeader(0);
 $objPHPExcel->getActiveSheet()->getPageMargins()->setFooter(0);
 
 $pestana=0;
