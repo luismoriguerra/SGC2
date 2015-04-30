@@ -34,8 +34,8 @@ add_cencap_jqgrid=function(){
 //	$("#frmPersonal .form i").remove();
 //	$('#cperson').val('');
 	$('#frmCencap input[type="text"],#frmCencap select').val('');
-               $('#id_cencap').val("");
-		$('#slct_filial').removeAttr("disabled");
+    $('#id_cencap').val("");
+	$('#slct_filial').removeAttr("disabled");
 	$('#btnFormCencap').attr('onclick', 'nuevoCencap()');
 	$('#spanBtnFormCencap').html('Guardar');
 	$('#frmCencap').dialog('open');	
@@ -46,13 +46,17 @@ nuevoCencap=function(){
  
 	var a=new Array();
                 var i = 0;
-	a[i] = sistema.requeridoTxt('txt_dopeven');
+		a[i] = sistema.requeridoTxt('txt_dopeven');
         a[i++] = sistema.requeridoTxt('txt_direc');
-	a[i++] = sistema.requeridoSlct('slct_depa');
+        a[i++] = sistema.requeridoTxt('txt_direc');
+		a[i++] = sistema.requeridoSlct('slct_depa');
         a[i++] = sistema.requeridoSlct('slct_prov');
         a[i++] = sistema.requeridoSlct('slct_dist');
+        a[i++] = sistema.requeridoTxt('txt_telefo');
         a[i++] = sistema.requeridoSlct('slct_tipo');
-	a[i++] = sistema.requeridoSlct('slct_estado');
+        a[i++] = sistema.requeridoTxt('txt_ctelefono');
+        a[i++] = sistema.requeridoTxt('txt_ccelular');
+		a[i++] = sistema.requeridoSlct('slct_estado');
 	for(var i=0;i<3;i++){
 		if(!a[i]){
 		return false;
@@ -76,7 +80,10 @@ edit_cencap_jqgrid=function(){
           $('#slct_depa').val(data.coddpto).trigger("change");
           $('#slct_prov').val(data.codprov).trigger("change");
           $('#slct_dist').val(data.coddistr);
+          $('#txt_telefo').val(data.ntelefo);
           $('#slct_tipo').val(data.ctipcap);
+          $('#txt_ctelefono').val(data.ctelefono);
+          $('#txt_ccelular').val(data.ccelular);
         
         $('#slct_estado').val(data.cestado);
 	
@@ -91,13 +98,16 @@ modificarPersonal=function(){
     
 	var a=new Array();
 	 var i = 0;
-	a[i] = sistema.requeridoTxt('txt_dopeven');
+		a[i] = sistema.requeridoTxt('txt_dopeven');
         a[i++] = sistema.requeridoTxt('txt_direc');
-	a[i++] = sistema.requeridoSlct('slct_depa');
+		a[i++] = sistema.requeridoSlct('slct_depa');
         a[i++] = sistema.requeridoSlct('slct_prov');
         a[i++] = sistema.requeridoSlct('slct_dist');
+        a[i++] = sistema.requeridoTxt('txt_telefo');
         a[i++] = sistema.requeridoSlct('slct_tipo');
-	a[i++] = sistema.requeridoSlct('slct_estado');
+        a[i++] = sistema.requeridoTxt('txt_ctelefono');
+        a[i++] = sistema.requeridoTxt('txt_ccelular');
+		a[i++] = sistema.requeridoSlct('slct_estado');
 	for(var i=0;i<3;i++){
 		if(!a[i]){
 		return false;

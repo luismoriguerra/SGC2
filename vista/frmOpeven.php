@@ -52,6 +52,15 @@
             </td>
           </tr>
           
+          <tr class="FormData">
+            <td class="t-left label" >
+              <b>Teléfono</b>
+            </td>
+            <td class="t-left">&nbsp;
+              <input type="text" id="txt_telefo" value=""  style="width:200px" onKeyPress="return sistema.validaNumeros(event)"/>
+            </td>
+          </tr>
+
            <tr class="FormData">
             <td class="t-left label" >
               <b>Tipo</b>
@@ -63,6 +72,24 @@
             </td>
           </tr>
           
+          
+          <tr class="FormData">
+            <td class="t-left label" >
+              <b>Cant. Teléfonos</b>
+            </td>
+            <td class="t-left">&nbsp;
+              <input type="text" id="txt_ctelefono" value=""  style="width:200px" onKeyPress="return sistema.validaNumeros(event)"/>
+            </td>
+          </tr>
+          
+          <tr class="FormData">
+            <td class="t-left label" >
+              <b>Cant. Celulares</b>
+            </td>
+            <td class="t-left">&nbsp;
+              <input type="text" id="txt_ccelular" value=""  style="width:200px" onKeyPress="return sistema.validaNumeros(event)"/>
+            </td>
+          </tr>
           
           <tr class="FormData">
             <td class="t-left label" >

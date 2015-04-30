@@ -24,6 +24,9 @@ class servletOpeven extends controladorComandos{
                     $data['dist']=trim($_POST['dist']);
                     $data['tipo']=trim($_POST['tipo']);
                     $data['direc']=trim($_POST['direc']);
+                    $data['ntelefo']=trim($_POST['ntelefo']);
+                    $data['ctelefono']=trim($_POST['ctelefono']);
+                    $data['ccelular']=trim($_POST['ccelular']);
                     $data['cestado']=trim($_POST['cestado']);
 					$data['cusuari']=trim($_POST['cusuari']);
 					$data['cfilialx']=trim($_POST['cfilialx']);
@@ -31,15 +34,18 @@ class servletOpeven extends controladorComandos{
                     break;				
                 case 'editOpeven':
                 $data=array();
-                     $data['id']=trim($_POST['id']);
-                   $data['descrip']=trim($_POST['descrip']);
+                    $data['id']=trim($_POST['id']);
+                   	$data['descrip']=trim($_POST['descrip']);
                     $data['depa']=trim($_POST['depa']);
                     $data['prov']=trim($_POST['prov']);
                     $data['dist']=trim($_POST['dist']);
                     $data['tipo']=trim($_POST['tipo']);
                     $data['direc']=trim($_POST['direc']);
+                    $data['ntelefo']=trim($_POST['ntelefo']);
+                    $data['ctelefono']=trim($_POST['ctelefono']);
+                    $data['ccelular']=trim($_POST['ccelular']);
                     $data['cestado']=trim($_POST['cestado']);
-                                                                      $data['cusuari']=trim($_POST['cusuari']);
+                    $data['cusuari']=trim($_POST['cusuari']);
 					$data['cfilialx']=trim($_POST['cfilialx']);
                     echo json_encode($daoCencap->editCencap($data));
                     break;
@@ -64,7 +70,7 @@ class servletOpeven extends controladorComandos{
 					$where="";
 					$param=array();
                                         
-                                        if( isset($_GET['dopeven']) ) {
+                    if( isset($_GET['dopeven']) ) {
 						if( trim($_GET['dopeven'])!='' ) {
 							$where.=" AND o.dopeven like '%".trim($_GET['dopeven'])."%' ";
 						}
@@ -75,32 +81,50 @@ class servletOpeven extends controladorComandos{
 							$where.=" AND ( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = 0 and u.coddist = 0)  like '%".trim($_GET['depa'])."%' ";
 						}
 					}
-			if( isset($_GET['tipo']) ) {
+					if( isset($_GET['tipo']) ) {
 						if( trim($_GET['tipo'])!='' ) {
 							$where.=" AND  t.dtipcap like '%".trim($_GET['tipo'])."%'  ";
 						}
 					}
                                         
-                                        if( isset($_GET['prov']) ) {
+                    if( isset($_GET['prov']) ) {
 						if( trim($_GET['prov'])!='' ) {
 							$where.=" AND ( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = o.codprov and u.coddist = 0)   like '%".trim($_GET['prov'])."%' ";
 						}
 					}
-                                        if( isset($_GET['dist']) ) {
+                    if( isset($_GET['dist']) ) {
 						if( trim($_GET['dist'])!='' ) {
 							$where.=" AND ( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov =o.codprov  and u.coddist = o.coddistr)   like '%".trim($_GET['dist'])."%' ";
 						}
 					}
                                         
-                                        if( isset($_GET['estado']) ) {
+                    if( isset($_GET['estado']) ) {
 						if( trim($_GET['estado'])!='' ) {
 							$where.=" AND o.cestado =  '".trim($_GET['estado'])."' ";
 						}
 					}
                                         
-                                        if( isset($_GET['ddiopve']) ) {
+                    if( isset($_GET['ddiopve']) ) {
 						if( trim($_GET['ddiopve'])!='' ) {
 							$where.=" AND o.ddiopve like '%".trim($_GET['ddiopve'])."%' ";
+						}
+					}
+                                        
+                    if( isset($_GET['ntelefo']) ) {
+						if( trim($_GET['ntelefo'])!='' ) {
+							$where.=" AND o.ntelefo like '%".trim($_GET['ntelefo'])."%' ";
+						}
+					}
+                                        
+                    if( isset($_GET['ctelefono']) ) {
+						if( trim($_GET['ctelefono'])!='' ) {
+							$where.=" AND o.ctelefono like '%".trim($_GET['ctelefono'])."%' ";
+						}
+					}
+                                        
+                    if( isset($_GET['ccelular']) ) {
+						if( trim($_GET['ccelular'])!='' ) {
+							$where.=" AND o.ccelular like '%".trim($_GET['ccelular'])."%' ";
 						}
 					}
 					
@@ -124,23 +148,25 @@ class servletOpeven extends controladorComandos{
 					$dataRow=array();
 					for($i=0;$i<count($data);$i++){
 						array_push($dataRow, array(
-                                                                                                                        "id"=>$data[$i]['copeven'],
-                                                                                                                        "cell"=>array(								
-                                                                                                                                        $data[$i]['copeven'],
-                                                                                                                                        $data[$i]['dopeven'],
-                                                                                                                                        $data[$i]['coddpto'],								
-                                                                                                                                        $data[$i]['depa'],
-                                                                                                                                        $data[$i]['codprov'],								
-                                                                                                                                        $data[$i]['prov'],
-                                                                                                                                        $data[$i]['coddistr'],	
-                                                                                                                                        $data[$i]['dist'],
-                                                                                                                                        $data[$i]['ddiopve'],	
-                                                                                                                                        $data[$i]['ctipcap'],
-                                                                                                                                        $data[$i]['tipo'],
-                                                                                                                                        (($data[$i]['cestado'])? "Activo" : "Inactivo"),
-                                                                                                                                        $data[$i]['cestado']
-								) ) ); }
-                                                                
+                          	"id"=>$data[$i]['copeven'],
+                            "cell"=>array(								
+                          					$data[$i]['copeven'],
+                                          	$data[$i]['dopeven'],
+                                           	$data[$i]['coddpto'],								
+                                   			$data[$i]['depa'],
+                                          	$data[$i]['codprov'],								
+                                           	$data[$i]['prov'],
+                                           	$data[$i]['coddistr'],	
+                                			$data[$i]['dist'],
+                                			$data[$i]['ddiopve'],
+                                			$data[$i]['ntelefo'],	
+                                        	$data[$i]['ctipcap'],
+                                           	$data[$i]['tipo'],
+                                			$data[$i]['ctelefono'],	
+                                			$data[$i]['ccelular'],	
+              								(($data[$i]['cestado'])? "Activo" : "Inactivo"),
+                          					$data[$i]['cestado']
+											) ) ); }         
 					$response["rows"]=$dataRow;
 					echo json_encode($response);
 				break;

@@ -31,17 +31,20 @@ class MySqlOpevenDAO{
 		if(count($data)==0){
 			//$ccencap=$db->generarCodigo('cencapm','ccencap',7,$r['cusuari']);
 			$sql="insert into opevena set  
-                            dopeven= '".$r["descrip"]."' , 
-                                coddpto =".$r["depa"]." , 
-                                    codprov=".$r["prov"]." , 
-                                        coddistr=".$r["dist"]." ,  
-                                            ddiopve = '".$r["direc"]."' , 
-                                                ctipcap = '".$r["tipo"]."' ,
-                                                    fecreac = NOW(), 
-                                                    cestado =".$r["cestado"]." , 
-                                                        festado= NOW(), 
-                                                        cusuari = '".$r["cusuari"]."', 
-                                                            fusuari = NOW()  ";			
+                    dopeven= '".$r["descrip"]."' , 
+                    coddpto =".$r["depa"]." , 
+                    codprov=".$r["prov"]." , 
+                    coddistr=".$r["dist"]." ,  
+                    ddiopve = '".$r["direc"]."' , 
+                    ntelefo = '".$r["ntelefo"]."' , 
+                    ctipcap = '".$r["tipo"]."' ,
+                    ctelefono = '".$r["ctelefono"]."' , 
+                    ccelular = '".$r["ccelular"]."' , 
+                    fecreac = NOW(), 
+                    cestado =".$r["cestado"]." , 
+                    festado= NOW(), 
+                    cusuari = '".$r["cusuari"]."', 
+                    fusuari = NOW()  ";			
 			$db->iniciaTransaccion();
 			$db->setQuery($sql);
 			if(!$db->executeQuery()){
@@ -72,13 +75,16 @@ class MySqlOpevenDAO{
         if(count($data)>0){echo json_encode(array('rst'=>'2','msj'=>'<b>Centro de captacion</b> ya existe','sql'=>$sqlVal));exit();}
         /*******/
         $sql="update opevena set  
-            dopeven= '".$post["descrip"]."' , 
+                dopeven= '".$post["descrip"]."' , 
                 coddpto =".$post["depa"]." , 
-                    codprov=".$post["prov"]." , 
-                        coddistr=".$post["dist"]." ,  
-                            ddiopve = '".$post["direc"]."' , 
-                                ctipcap = '".$post["tipo"]."' , 
-                                    cestado =".$post["cestado"]." , festado= NOW(), cusuari = '".$post["cusuari"]."', fusuari = NOW() where copeven = ".$post["id"]." ";			
+                codprov=".$post["prov"]." , 
+                coddistr=".$post["dist"]." ,  
+                ddiopve = '".$post["direc"]."' , 
+                ntelefo = '".$post["ntelefo"]."' , 
+                ctipcap = '".$post["tipo"]."' , 
+                ctelefono = '".$post["ctelefono"]."' , 
+                ccelular = '".$post["ccelular"]."' , 
+                cestado =".$post["cestado"]." , festado= NOW(), cusuari = '".$post["cusuari"]."', fusuari = NOW() where copeven = ".$post["id"]." ";			
         $db->iniciaTransaccion();
         $db->setQuery($sql);
 		if(!$db->executeQuery()){
@@ -112,10 +118,10 @@ class MySqlOpevenDAO{
     public function JQGRIDRowsCencap ( $sidx, $sord, $start, $limit, $where) {
         $sql = "
             select o.* 
-,t.dtipcap tipo
-,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = 0 and u.coddist = 0) depa
-,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = o.codprov and u.coddist = 0) prov
-,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov =o.codprov  and u.coddist = o.coddistr) dist
+            ,t.dtipcap tipo
+            ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = 0 and u.coddist = 0) depa
+            ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = o.codprov and u.coddist = 0) prov
+            ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov =o.codprov  and u.coddist = o.coddistr) dist
             from opevena o
             inner join tipcapa t on t.ctipcap = o.ctipcap
               WHERE 1 = 1 ".$where."
