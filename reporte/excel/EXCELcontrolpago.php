@@ -243,6 +243,7 @@ $sql="SELECT
 		,concat(i.certest,'\n',i.partnac,'\n',i.otrodni) As documentos
 		,i.ddocval,i.fusuari
 		$asis_sql
+		,s.seccion
 	FROM personm p
 		INNER JOIN ingalum i 	On (i.cperson  	= p.cperson)
 		LEFT  JOIN paism pa 	On (i.cpais  	= pa.cpais)
@@ -381,6 +382,9 @@ $cabecera=array('N°','CAJA - ODE-CENT. DE CAPTACIÓN','CAJERO QUE INSCRIBE','FI
 foreach ($dfechas as $f) {
 	array_push($cabecera,$f);
 }
+array_push($cabecera, "ASISTIO");
+array_push($cabecera, "SECCION");
+
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."2",$cabecera[$i]);
 	$objPHPExcel->getActiveSheet()->getStyle($az[$i]."2")->getAlignment()->setWrapText(true);
@@ -423,7 +427,7 @@ $objPHPExcel->getActiveSheet()->setCellValue("DR1","DATOS ESTADISTICOS");
 $objPHPExcel->getActiveSheet()->mergeCells('DR1:EG1');
 
 $objPHPExcel->getActiveSheet()->setCellValue("EH1","DATOS DE ASISTENCIA");
-$objPHPExcel->getActiveSheet()->mergeCells('EH1:EV1');
+$objPHPExcel->getActiveSheet()->mergeCells('EH1:EX1');
 
 $objPHPExcel->getActiveSheet()->getStyle("A1:E2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFDDD9C4');
 $objPHPExcel->getActiveSheet()->getStyle("F1:P2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFC65911');
@@ -462,7 +466,7 @@ $objPHPExcel->getActiveSheet()->getStyle("DR1:EE2")->getFill()->setFillType(PHPE
 
 $objPHPExcel->getActiveSheet()->getStyle("EF2:EG2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FF92D050');
 
-$objPHPExcel->getActiveSheet()->getStyle("EH1:EV2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
+$objPHPExcel->getActiveSheet()->getStyle("EH1:EX2")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
 
 //ASISTENCIA
 
@@ -967,9 +971,17 @@ $objPHPExcel->getActiveSheet()->setCellValue("EF".$valorinicial,$dclacap);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$estado);
 	}
 
+	//asistio
+	$actualCol++;
+	$asistio = ($sumatoria) ? "Asistio" : "No asisitio";
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial, $asistio);
+	//seccion
+	$actualCol++;
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r["seccion"]);
+
 }
 
-$objPHPExcel->getActiveSheet()->getStyle('A1:EV'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A1:EX'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet

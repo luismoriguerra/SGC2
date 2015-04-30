@@ -133,6 +133,7 @@ $sql="SELECT DISTINCT
 			If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
 				If(i.destica!='',i.destica,''))) As detalle_captacion,i.fusuari
 				$asis_sql
+				,s.seccion
 	FROM personm p
 		INNER JOIN ingalum i 	On (i.cperson  	= p.cperson)
 		INNER JOIN modinga m 	On (m.cmoding  	= i.cmoding)
@@ -343,11 +344,19 @@ $objPHPExcel->getActiveSheet()->getStyle('A3')->getFont()->setSize(15);
 $objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
 $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray($styleAlignmentRight);
 
-$cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO','NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO','LOCAL DE ESTUDIOS','MOD. INGRESO','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION','TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','FECHA DIGITACION');
+$cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO',
+	'NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO',
+	'LOCAL DE ESTUDIOS','MOD. INGRESO','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION',
+	'TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','FECHA DIGITACION');
 	// agregamos las fechas a la cabecera
 	foreach ($dfechas as $f) {
 		array_push($cabecera,$f);
 	}
+
+	array_push($cabecera, "ASISTIO");
+	array_push($cabecera, "SECCION");
+
+
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
@@ -380,8 +389,8 @@ $objPHPExcel->getActiveSheet()->setCellValue("AB4","FECHA DIGITACION");
 $objPHPExcel->getActiveSheet()->mergeCells('AB4:AB5');
 
 $objPHPExcel->getActiveSheet()->setCellValue("AC4","DATOS DE ASISTENCIA");
-$objPHPExcel->getActiveSheet()->mergeCells('AC4:AQ4');
-$objPHPExcel->getActiveSheet()->getStyle("AC4:AQ5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
+$objPHPExcel->getActiveSheet()->mergeCells('AC4:AS4');
+$objPHPExcel->getActiveSheet()->getStyle("AC4:AS5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
 
 
 
@@ -487,16 +496,26 @@ $contadoringresos=0;
 
 	// ASISTENCIA DE ALUMNOS
 	$actualCol = array_search("AB", $az);
+	$sumatoria = 0;
 	for( $i = 0 ; $i < 15; $i++) {
 		$actualCol++;
 		$estado = ($r["dia".$i]) ? $r["dia".$i] : 0;
+		$sumatoria += $estado;
 		$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$estado);
 	}
 
+	//asistio
+	$actualCol++;
+	$asistio = ($sumatoria) ? "Asistio" : "No asisitio";
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial, $asistio);
+	//seccion
+	$actualCol++;
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r["seccion"]);
+
 
 }
-$objPHPExcel->getActiveSheet()->getStyle("A6:AQ".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
-$objPHPExcel->getActiveSheet()->getStyle('A4:AQ'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:AS".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
+$objPHPExcel->getActiveSheet()->getStyle('A4:AS'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago_M');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
