@@ -311,31 +311,33 @@ $excel->setCellValue("A$f","Nro")
         ->setCellValue("Q$f","13")
         ->setCellValue("R$f","14")
         ->setCellValue("S$f","15")
-        ->setCellValue("T$f","TOT")
+        ->setCellValue("T$f","T")
         //->setCellValue("O$f",$sql)
         ;
+
+$objPHPExcel->getActiveSheet()->getStyle("A$f:T$f")->applyFromArray($styleAlignmentBold);
 
 $excel->getStyle("A$f:T$f")->applyFromArray($styleThinBlackBorderAllborders);
 $excel->getColumnDimension("A")->setWidth(4);
 $excel->getColumnDimension("B")->setWidth(12);
 $excel->getColumnDimension("C")->setWidth(41);
 $excel->getColumnDimension("D")->setWidth(21);
-$excel->getColumnDimension("E")->setWidth(1.5);
-$excel->getColumnDimension("F")->setWidth(1.5);
-$excel->getColumnDimension("G")->setWidth(1.5);
-$excel->getColumnDimension("H")->setWidth(1.5);
-$excel->getColumnDimension("I")->setWidth(1.5);
-$excel->getColumnDimension("J")->setWidth(1.5);
-$excel->getColumnDimension("K")->setWidth(1.5);
-$excel->getColumnDimension("L")->setWidth(1.5);
-$excel->getColumnDimension("M")->setWidth(1.5);
-$excel->getColumnDimension("N")->setWidth(2.5);
-$excel->getColumnDimension("O")->setWidth(2.5);
-$excel->getColumnDimension("P")->setWidth(2.5);
-$excel->getColumnDimension("Q")->setWidth(2.5);
-$excel->getColumnDimension("R")->setWidth(2.5);
-$excel->getColumnDimension("S")->setWidth(2.5);
-$excel->getColumnDimension("T")->setWidth(3);
+$excel->getColumnDimension("E")->setWidth(1.8);
+$excel->getColumnDimension("F")->setWidth(1.8);
+$excel->getColumnDimension("G")->setWidth(1.8);
+$excel->getColumnDimension("H")->setWidth(1.8);
+$excel->getColumnDimension("I")->setWidth(1.8);
+$excel->getColumnDimension("J")->setWidth(1.8);
+$excel->getColumnDimension("K")->setWidth(1.8);
+$excel->getColumnDimension("L")->setWidth(1.8);
+$excel->getColumnDimension("M")->setWidth(1.8);
+$excel->getColumnDimension("N")->setWidth(2.9);
+$excel->getColumnDimension("O")->setWidth(2.9);
+$excel->getColumnDimension("P")->setWidth(2.9);
+$excel->getColumnDimension("Q")->setWidth(2.9);
+$excel->getColumnDimension("R")->setWidth(2.9);
+$excel->getColumnDimension("S")->setWidth(2.9);
+$excel->getColumnDimension("T")->setWidth(2.9);
 
 //FILAS DE LOS ALUMNOS
 $c=0;
