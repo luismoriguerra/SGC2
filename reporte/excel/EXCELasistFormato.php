@@ -260,7 +260,7 @@ $objPHPExcel->setActiveSheetIndex($pestana)
                         ->setCellValue("A4","CARRERA: ".$grupo["carrera"])
 			->setCellValue('D2','SEMESTRE/INICIO '.$grupo["csemaca"]." ".$grupo["cinicio"])
 			->setCellValue('D3','FECHA INICIO:'.$grupo["finicio"])
-                        ->setCellValue("P2","HORARIO: ".$grupo["dias"]." ".$grupo["hora"])
+                        ->setCellValue("O2","HORARIO: ".$grupo["dias"]." ".$grupo["hora"])
                         ->setCellValue("C1","REGISTRO DE ASISTENCIA")
                         ->setCellValue("G4","SECCION: $seccion")
 			;
@@ -281,7 +281,7 @@ $objPHPExcel->getActiveSheet()->mergeCells('G4:N4');
 
 //$objPHPExcel->getActiveSheet()->mergeCells('G2:N2');
 //$objPHPExcel->getActiveSheet()->mergeCells('G3:N3');
-$objPHPExcel->getActiveSheet()->mergeCells('P2:T3')
+$objPHPExcel->getActiveSheet()->mergeCells('O2:T3')
            ->getStyle("O2:T3")
             ->getAlignment()->setWrapText(true)
             ->applyFromArray($styleAlignmentBold) ;
