@@ -76,15 +76,11 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 			 $sql_dias_column
             FROM conmatp c
 			INNER JOIN ingalum i ON c.cingalu=i.cingalu
-            INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-            INNER JOIN concepp co   ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
-            HAVING MIN(r.tdocpag)!=''
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
 		AND o.copeven='$copeven'
@@ -111,15 +107,11 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 			$sql_dias_column
             FROM conmatp c
 			INNER JOIN ingalum i ON c.cingalu=i.cingalu
-            INNER JOIN recacap r
-                ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca )
-            INNER JOIN concepp co  ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			INNER JOIN filialm f ON f.cfilial=g.cfilial
 			$sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
-            HAVING MIN(r.tdocpag)!=''
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
 		AND o.copeven='$copeven'

@@ -273,7 +273,7 @@ $sumatotal=array();
 //Datos para validar cambio de Local/Intitucion/Carrera
 $local_ini = "";
 $inst_ini = "";
-$car_ini = "";
+//$car_ini = "";
 $bloque_ini = $valorinicial;
 
 foreach($rpt as $r){    
@@ -303,10 +303,10 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $precio[1]*$r['duracion']*0.2);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, "=".$az[($paz-2)].$valorinicial."-".$az[($paz-1)].$valorinicial);
 
-    if ($local_ini != $r['dfilial'] or $inst_ini != $r['dinstit'] or $car_ini != $r['dcarrer']){
+    if ($local_ini != $r['dfilial'] or $inst_ini != $r['dinstit'] /*or $car_ini != $r['dcarrer']*/){
         $local_ini = $r['dfilial'];
         $inst_ini = $r['dinstit'];
-        $car_ini = $r['dcarrer'];
+        //$car_ini = $r['dcarrer'];
         $objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".($valorinicial-1))->applyFromArray($styleThinBlackBorderAllborders);
         $objPHPExcel->getActiveSheet()->getStyle("A".$bloque_ini.":T".($valorinicial-1))->applyFromArray($styleThickBlackBorderOutline);
         $bloque_ini = $valorinicial;
