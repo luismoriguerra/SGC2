@@ -44,9 +44,10 @@ ListarCarreras=function(obj){
 		total = total + 1 ;
 		htm+="<tr class='ListaCarreras ui-widget-content jqgrow ui-row-ltr'>";
 		htm+="<td class='t-left'>"+total+"</td>";
-		htm+="<td class='t-left'><select id='slct_filial_"+value.ccarrer+"' class='input-xlarge' style='width: 370px; display: none;' multiple><optgroup label='Filial'><option value=''>--Selecione--</option></optgroup></select><input type='hidden' id='ids_slct_filial_"+value.ccarrer+"' value='"+value.filiales+"'></td>";
+		htm+="<td class='t-left'><select id='slct_filial_"+value.ccarrer+"' class='input-medium' style='width: 370px; display: none;' multiple><optgroup label='Filial'><option value=''>--Selecione--</option></optgroup></select><input type='hidden' id='ids_slct_filial_"+value.ccarrer+"' value='"+value.filiales+"'></td>";
 		htm+="<td class='t-left'><input type='text' id='txt_des_"+value.ccarrer+"' value='"+value.dcarrer+"' class='input-xxlarge' onKeyPress='return sistema.validaAlfanumerico(event)'/></td>";
-		htm+="<td class='t-center'><input type='text' id='txt_abr_"+value.ccarrer+"' value='"+value.dabrcar+"' class='input-large' onKeyPress='return sistema.validaAlfanumerico(event)' /></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_abr_"+value.ccarrer+"' value='"+value.dabrcar+"' class='input-medium' onKeyPress='return sistema.validaAlfanumerico(event)' /></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_nota_min_"+value.ccarrer+"' value='"+value.nota_min+"' class='input-mini' onKeyPress='return sistema.validaNumeros(event)' /></td>";
 		htm+="<td class='t-center'>";
 		htm+="	<select id='slct_est_"+value.ccarrer+"' class='input-medium'>";
 		if(value.cestado == "1"){
@@ -73,7 +74,8 @@ AgregarCarrera=function(){
 	htm+="<td class='t-left'>&nbsp;</td>";
 	htm+="<td class='t-left'><select id='slct_filial_nuevo' class='input-xlarge' style='width: 370px; display: none;' multiple><optgroup label='Filial'><option value=''>--Selecione--</option></optgroup></select><input type='hidden' id='ids_slct_filial_nuevo' value=''></td>";
 	htm+="<td class='t-left'><input type='text' id='txt_des_nuevo' value='' class='input-xxlarge' onKeyPress='return sistema.validaAlfanumerico(event)'/></td>";
-	htm+="<td class='t-center'><input type='text' id='txt_abr_nuevo' value='' class='input-mini' onKeyPress='return sistema.validaAlfanumerico(event)' /></td>";
+	htm+="<td class='t-center'><input type='text' id='txt_abr_nuevo' value='' class='input-medium' onKeyPress='return sistema.validaAlfanumerico(event)' /></td>";
+	htm+="<td class='t-center'><input type='text' id='txt_nota_min_nuevo' value='' class='input-mini' onKeyPress='return sistema.validaAlfanumerico(event)' /></td>";
 	htm+="<td class='t-center'> Activado </td>";
 	htm+="<td class='t-center'><input type = 'Checkbox' id='chk_mod_nuevo' checked readonly disabled></td>";
 	htm+="</tr>";
@@ -115,6 +117,7 @@ GuardarCambiosCarrera=function(){
 							$.trim($("#slct_filial_"+codigo).val().join("~")) + "|" +
 							$.trim($("#txt_des_"+codigo).val()) + "|" +
 							$.trim($("#txt_abr_"+codigo).val()) + "|" +
+							$.trim($("#txt_nota_min_"+codigo).val()) + "|" +
 							$.trim($("#slct_est_"+codigo).val());
 				}
 			}

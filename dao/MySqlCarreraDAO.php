@@ -799,6 +799,7 @@ class MySqlCarreraDAO{
 				c.ccarrer,
 				c.dcarrer,
 				c.dabrcar,
+                c.nota_min,
 				c.cestado
 			  FROM carrerm c
 			  INNER JOIN filcarp fc on (fc.ccarrer=c.ccarrer)  
@@ -839,7 +840,7 @@ class MySqlCarreraDAO{
 			$datalimpia = explode('|',$datalinea);
 			
 			if($datalimpia[0]!="nuevo"){
-				$valestado = " AND cestado='".$datalimpia[4]."'";
+				$valestado = " AND cestado='".$datalimpia[5]."'";
 			}
 			
 			$imprime="";
@@ -878,7 +879,8 @@ class MySqlCarreraDAO{
 					$sql="UPDATE carrerm
 						  SET dcarrer = '".$datalimpia[2]."',
 							  dabrcar = '".$datalimpia[3]."',
-							  cestado = '".$datalimpia[4]."',
+                              nota_min= '".$datalimpia[4]."',
+							  cestado = '".$datalimpia[5]."',
 							  cusuari = '".$r['cusuari']."',
 							  ttiptra = 'M',
 							  fusuari = now()
@@ -901,7 +903,7 @@ class MySqlCarreraDAO{
 					$db->setQuery($sqlver1);
 					$ccarrer=$db->loadObjectList();
 					
-					$sql="INSERT INTO carrerm (ccarrer, dcarrer, cinstit, cmodali, ctipcar, dabrcar, fcreaci, cestado, cusuari, fusuari, ttiptra)
+					$sql="INSERT INTO carrerm (ccarrer, dcarrer, cinstit, cmodali, ctipcar, dabrcar, fcreaci, cestado, cusuari, fusuari, ttiptra, nota_min)
 						  VALUES ('".$ccarrer[0]['ccarrer']."',
 								  '".$datalimpia[2]."',
 								  '".$r['cinstit']."',
@@ -912,7 +914,8 @@ class MySqlCarreraDAO{
 								  '1',
 								  '".$r['cusuari']."',
 								  now(),
-								  'I')";
+								  'I',
+                                  '".$datalimpia[4]."')";
 					$db->setQuery($sql);
 					if(!$db->executeQuery()){
 						$db->rollbackTransaccion();

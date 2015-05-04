@@ -8,20 +8,20 @@
 
 		<link rel="stylesheet" type="text/css" href="../css/temas/default/css-sistema.php">
 		<link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/jqgrid-4.3.2/css/ui.jqgrid.css" />
-        <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.css" />
-        <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.filter.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.filter.css" />
 
 		<script type="text/javascript" src="../javascript/includes/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="../javascript/includes/jquery-ui-1.8.18.custom.min.js"></script>
-        <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
-        <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
+    <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
+    <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
 
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
 		
-        <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
-        <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
-        
+    <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
+    <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
+       
 		<script type="text/javascript" src="../javascript/dao/DAOcarrera.js"></script>
 		<script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
 		<script type="text/javascript" src="../javascript/js/js-mant_carreras.js"></script>
@@ -71,6 +71,7 @@
                                               <th>Filial(es)</th>
                                               <th>Descripcion</th>
                                               <th>Abreviatura</th>
+                                              <th>Nota Mínima</th>
                                               <th>Estado</th>
                                               <th>&nbsp;</th>
                                             </tr>

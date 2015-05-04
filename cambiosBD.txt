@@ -19,3 +19,5 @@ CREATE TABLE `cpdteles_caja1`.`venfala` (
 2015/04/30 ALTER TABLE opevena add COLUMN ctelefono INTEGER DEFAULT 0
 
 2015/04/30 ALTER TABLE opevena add COLUMN ccelular INTEGER DEFAULT 0
+
+2015/05/03 ALTER TABLE carrerm add COLUMN nota_min BIGINT DEFAULT 0
