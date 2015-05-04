@@ -1,3 +1,9 @@
+postulm
+ALTER TABLE postulm add notaalu DECIMAL(3,2)
+ALTER TABLE postulm add notacar DECIMAL(3,2)
+ALTER TABLE postulm add postest char(1)
+
+
 vendem
 ALTER TABLE vendedm add descto DECIMAL(5,2)
 ALTER TABLE vendedm add horari varchar(50)

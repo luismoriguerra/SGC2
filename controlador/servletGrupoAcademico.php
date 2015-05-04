@@ -129,6 +129,14 @@ class servletGrupoAcademico extends controladorComandos{
 	public function doGet(){
 		$daoGrupoAcademico=creadorDAO::getGrupoAcademicoDAO();
 		switch ($_GET['action']){
+			case 'cargarPostulantes':
+				$data=array();
+				$data['cfilial']=trim($_GET['cfilial']);
+				$data['cinstit']=trim($_GET['cinstit']);
+				$data['fechini']=trim($_GET['fechini']);
+				$data['fechfin']=trim($_GET['fechfin']);
+				echo json_encode($daoGrupoAcademico->cargarPostulantes($data));
+				break;
 			case 'jqgrid_grupo_academico':
 					$page=$_GET["page"];
 					$limit=$_GET["rows"];

@@ -182,26 +182,26 @@ class MySqlGrupoAcademicoDAO{
 			$filtro.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 		}
 
-        $sql="	SELECT  f.dfilial,ins.dinstit,t.dturno,c.dcarrer,g.csemaca,g.cinicio,g.finicio,g.ffin,concat( 
-				(select GROUP_CONCAT(d.dnemdia SEPARATOR '-') 
-				from diasm d 
-				where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0), 
+        $sql="	SELECT  f.dfilial,ins.dinstit,t.dturno,c.dcarrer,g.csemaca,g.cinicio,g.finicio,g.ffin,concat(
+				(select GROUP_CONCAT(d.dnemdia SEPARATOR '-')
+				from diasm d
+				where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0),
 				' de ',h.hinici,' - ',h.hfin) as horario,GROUP_CONCAT(distinct(g.cgracpr)) as id,
 					(select count(*)
 					from gracprp g2
 					inner join conmatp co on (co.cgruaca=g2.cgracpr)
 					where FIND_IN_SET (g2.cgracpr,GROUP_CONCAT(DISTINCT(g.cgracpr)))  >  0
 					) as total,cu.dtitulo as dcurric
-				FROM gracprp g 
+				FROM gracprp g
 				INNER JOIN curricm cu on (cu.ccurric=g.ccurric)
 				INNER JOIN filialm f on (f.cfilial=g.cfilial)
 				INNER JOIN instita ins on (ins.cinstit=g.cinstit)
-				inner join turnoa t on (g.cturno=t.cturno) 
-				INNER JOIN horam h on (h.chora=g.chora) 
-				inner JOIN carrerm c on (c.ccarrer=g.ccarrer) 
-				WHERE g.cciclo='".$data['cciclo']."' 
-				AND g.cfilial in ('".$fil."') 
-				and g.cinstit in ('".$ins."') 
+				inner join turnoa t on (g.cturno=t.cturno)
+				INNER JOIN horam h on (h.chora=g.chora)
+				inner JOIN carrerm c on (c.ccarrer=g.ccarrer)
+				WHERE g.cciclo='".$data['cciclo']."'
+				AND g.cfilial in ('".$fil."')
+				and g.cinstit in ('".$ins."')
 				".$filtro."
 				AND g.cesgrpr in ('3','4')
 				GROUP by g.csemaca,g.cfilial,g.cinstit,g.ccarrer,g.cciclo,g.cinicio,g.cfrecue,g.cturno,g.chora,g.finicio,g.ffin
@@ -217,6 +217,41 @@ class MySqlGrupoAcademicoDAO{
             return array('rst'=>'2','msj'=>'No existen Grupos Academicos','data'=>$data,'sql'=>$sql);
         }
     }
+
+
+	public function cargarPostulantes ($data) {
+		$fil=str_replace(",","','",$data['cfilial']);
+		$ins=str_replace(",","','",$data['cinstit']);
+		$fechini=$data['fechini'];
+		$fechfin=$data['fechfin'];
+
+		$filtro='';
+
+		if($data['fechini']!='' and $data['fechfin']!=''){
+			$filtro.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
+		}
+
+		$sql="	select
+				p.cpostul , p.cingalu , p.cgruaca , notaalu,notacar, postest , g.finicio
+				,CONCAT(pe.dappape, ' ',pe.dapmape, ' ', pe.dnomper) nombre
+				from postulm p
+				inner join gracprp g on g.cgracpr = p.cgruaca
+				inner join personm pe on pe.cperson = p.cperson
+				where 1 = 1
+				AND g.cfilial in ('".$fil."')
+				and g.cinstit in ('".$ins."')
+				".$filtro." ";
+		$db=creadorConexion::crear('MySql');
+
+		$db->setQuery($sql);
+		$data=$db->loadObjectList();
+		if(count($data)>0){
+			return array('rst'=>'1','msj'=>'Postulantes cargados','data'=>$data,'sql'=>$sql);
+		}
+		else{
+			return array('rst'=>'2','msj'=>'No existen Postulantes','data'=>$data,'sql'=>$sql);
+		}
+	}
 	
 	public function cargarAlumnos($r){
 	$sql="	select c.cgruaca as id,i.cingalu,UPPER(p.dappape) as dappape,UPPER(p.dapmape) as dapmape,UPPER(p.dnomper) as dnomper,if(i.cestado='1','Activo','Retirado') as cestado

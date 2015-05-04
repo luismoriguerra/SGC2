@@ -495,7 +495,11 @@ var grupoAcademicoDAO={
             },
             error: this.msjErrorAjax
         });
-    },    
+    },
+    cargarPostulantes: function () {
+
+
+    },
 	msjErrorAjax:function(){
         sistema.msjErrorCerrar('Error General, pongase en contacto con Sistemas');
     }
