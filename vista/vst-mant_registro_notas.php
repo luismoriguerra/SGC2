@@ -95,16 +95,21 @@
                                     </span>
                         </div>
                         <br>
+                        <div ng-show="noResultados" style="text-align: center">
+                            No se encontraron postulantes
+                        </div>
                         <div id="v_lista_grupo" ng-hide="noResultados">
-                            <div class="corner_top ui-state-default" style="font-weight:bold">
+                            <div class="corner_top" style="text-align: center">
                                 <table>
                                     <tr class="" align="center">
-                                        <td class="t-center label" width="70">Nombre</td>
+                                        <td class="t-center label" width="10">N</td>
+                                        <td class="t-center label" width="200">Nombre</td>
                                         <td class="t-center label" width="70">Nota</td>
                                         <td class="t-center label" width="150">Nota minima permitida</td>
                                         <td class="t-center label" width="150">Estado</td>
                                     </tr>
                                     <tr ng-repeat="pos in postulantes">
+                                        <td>{{$index + 1}}</td>
                                         <td>{{pos.nombre}}</td>
                                     </tr>
                                 </table>
