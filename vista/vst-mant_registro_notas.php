@@ -47,7 +47,7 @@
         <div class="secc-der" id="secc-der"ng-app="myApp">
 
             <div id="panel_matricula" style="display:block" ng-controller="angularController">
-                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>REGISTRO DE NOTAS DE LOS POSTULANTES <?   /*aqui va el titulo q presentara  */ ?></b></div>
+                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>REGISTRO DEL PUNTAJE DE LOS POSTULANTES <?   /*aqui va el titulo q presentara  */ ?></b></div>
                 <div class="cont-der">
                     <div class="t-center">
                         <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
@@ -95,26 +95,39 @@
                                     </span>
                         </div>
                         <br>
-                        <div ng-show="noResultados" style="text-align: center">
+                        <div ng-show="noResultados &&  $scope.busquedaActivada" style="text-align: center">
                             No se encontraron postulantes
+                        </div>
+                        <div ng-show="!noResultados" style="text-align: left">
+                            <span> Nro de Postulantes: {{postulantes.length}}</span>
+                            <div style="text-align: left; clear: both;">
+                                Buscar Postulante :
+                                <input type="text" ng-model="searchText"/>
+                                <button ng-click="searchText = ''">Limpiar</button>
+
+                                <button style="text-align: right; margin-left: 100px;" ng-click="GuardarPuntajePostulantes()">:: Guardar Puntajes :: </button>
+
+                            </div>
                         </div>
                         <div id="v_lista_grupo" ng-hide="noResultados">
                             <div class="corner_top" style="text-align: center">
                                 <table>
                                     <tr class="" align="center">
                                         <td class="t-center label" width="10">N</td>
+                                        <td class="t-center label" width="200">Carrera</td>
                                         <td class="t-center label" width="200">Nombre</td>
-                                        <td class="t-center label" width="70">Nota</td>
-                                        <td class="t-center label" width="150">Nota minima permitida</td>
+                                        <td class="t-center label" width="70">Puntaje Obtenido</td>
+                                        <td class="t-center label" width="150">Puntaje Mínimo</td>
                                         <td class="t-center label" width="150">Estado</td>
                                     </tr>
-                                    <tr ng-repeat="pos in postulantes">
+                                    <tr ng-repeat="pos in postulantes | filter : searchText">
                                         <td>{{$index + 1}}</td>
-                                        <td>{{pos.nombre}}</td>
+                                        <td style="text-align: left">{{pos.carrera}}</td>
+                                        <td style="text-align: left">{{pos.nombre}}</td>
                                         <td>
                                             <input type="text"
                                                    ng-model="pos.nota"
-                                                   ng-change="actualizarPostulante($index, pos.nota)"/>
+                                                   ng-change="actualizarPostulante(pos)"/>
                                         </td>
                                         <td>
                                             {{pos.minima}}

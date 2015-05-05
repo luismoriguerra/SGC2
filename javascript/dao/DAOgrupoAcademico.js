@@ -496,8 +496,32 @@ var grupoAcademicoDAO={
             error: this.msjErrorAjax
         });
     },
-    cargarPostulantes: function () {
-
+    guardarPuntajePostulantes: function (data) {
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando: 'grupo_academico',
+                accion: 'guardarPuntajePostulantes',
+                cfilialx:$('#hd_idFilial').val(),
+                cusuari: $('#hd_idUsuario').val(),
+                data: data
+            },
+            beforeSend : function ( ) {
+                sistema.abreCargando();
+            },
+            success : function ( obj ) {
+                sistema.cierraCargando();
+                if(obj.rst=='1'){
+                    sistema.msjOk(obj.msj,3000);
+                } else {
+                    this.msjErrorAjax
+                }
+            },
+            error: this.msjErrorAjax
+        });
 
     },
 	msjErrorAjax:function(){

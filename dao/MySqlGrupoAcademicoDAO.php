@@ -220,6 +220,7 @@ class MySqlGrupoAcademicoDAO{
 
 
 	public function cargarPostulantes ($data) {
+
 		$fil=str_replace(",","','",$data['cfilial']);
 		$ins=str_replace(",","','",$data['cinstit']);
 		$fechini=$data['fechini'];
@@ -234,13 +235,17 @@ class MySqlGrupoAcademicoDAO{
 		$sql="	select
 				p.cpostul , p.cingalu , p.cgruaca , notaalu,notacar, postest , g.finicio
 				,CONCAT(pe.dappape, ' ',pe.dapmape, ' ', pe.dnomper) nombre
+				, ca.dcarrer carrera
 				from postulm p
 				inner join gracprp g on g.cgracpr = p.cgruaca
 				inner join personm pe on pe.cperson = p.cperson
+				inner join gracprp gr on gr.cgracpr = p.cgruaca
+				inner join carrerm ca on ca.ccarrer = gr.ccarrer
 				where 1 = 1
 				AND g.cfilial in ('".$fil."')
 				and g.cinstit in ('".$ins."')
-				".$filtro." ";
+				".$filtro."
+				order by ca.dcarrer asc, pe.dappape asc";
 		$db=creadorConexion::crear('MySql');
 
 		$db->setQuery($sql);
@@ -291,6 +296,28 @@ class MySqlGrupoAcademicoDAO{
             return array('rst'=>'2','msj'=>'No existen Grupos Academicos','data'=>$data,'sql'=>$sql);
         }
 	}
+
+
+	public function guardarPuntajePostulantes ($data) {
+		$db=creadorConexion::crear('MySql');
+		$db->iniciaTransaccion();
+
+		$rows = json_decode($data['data']);
+		foreach($rows as $pos) {
+			$sql = "UPDATE postulm set notaalu = " . $pos->nota
+				. " , notacar = ". $pos->minima
+				. " , postest = '". $pos->estado . "'"
+				. " where cpostul = '".$pos->id."'";
+			$db->setQuery($sql);
+			if(!$db->executeQuery()){
+				$db->rollbackTransaccion();
+				return array('rst'=>'3','msj'=>'Error al Registrar postulantes','sql'=>$sql);exit();
+			}
+		}
+		$db->commitTransaccion();
+		return array('rst'=>'1','msj'=>'Postulantes actualizados');exit();
+	}
+
 	
 	public function GuardarGruposAcademicos($data){
             $db=creadorConexion::crear('MySql');

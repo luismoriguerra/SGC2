@@ -40,7 +40,7 @@ class servletGrupoAcademico extends controladorComandos{
 				$data=array();				
 				$data['cgracpr']=trim($_POST['cgracpr']);
                 echo json_encode($daoGrupoAcademico->cargarCursosProgramados($data));
-            break;		
+            break;
 			case 'guardar_grupos_academicos':
 				$data=array();
 				$data['ctipcar']=trim($_POST['ctipcar']);
@@ -62,9 +62,18 @@ class servletGrupoAcademico extends controladorComandos{
 				$data['nmetmat']=trim($_POST['nmetmat']);
 				$data['nmetmin']=trim($_POST['nmetmin']);
 				$data['fechafinsemestre']=trim($_POST['fechafinsemestre']);
-				$data['fechainiciosemestre']=trim($_POST['fechainiciosemestre']);				
+				$data['fechainiciosemestre']=trim($_POST['fechainiciosemestre']);
 				echo json_encode($daoGrupoAcademico->GuardarGruposAcademicos($data));
-			break;
+				break;
+			case 'guardarPuntajePostulantes':
+				$data=array();
+
+				$data["data"]=trim($_POST['data']);
+				$data['cusuari']=trim($_POST['cusuari']);
+				$data['cfilial']=trim($_POST['cfilial']);
+
+				echo json_encode($daoGrupoAcademico->guardarPuntajePostulantes($data));
+				break;
 			case 'ActualizarGrupoAcademico':
 				$data=array();
 				$data["cgruaca"]=trim($_POST['cgruaca']);				

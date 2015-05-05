@@ -32,6 +32,7 @@ $(document).ready(function(){
         .controller('angularController', ['$scope','$http',function($scope, $http) {
 
             $scope.noResultados = true;
+            $scope.busquedaActivada = false;
 
             $scope.cargarPostulantes = function() {
                 var url ='../controlador/controladorSistema.php?' +
@@ -44,16 +45,19 @@ $(document).ready(function(){
 
                 $scope.cargando = true;
                 $scope.noResultados = false;
+                $scope.busquedaActivada = true;
                 $scope.postulantes = [];
                 $http.get(url).
                     success(function(data, status, headers, config) {
 
                         $scope.postulantes = data.data.map(function(item){
                             return {
+                                id : item.cpostul,
                                 nombre : item.nombre,
                                 nota : item.notaalu || 0,
                                 minima : item.notacar || 0,
-                                estado : item.postest || "Desaprobado"
+                                estado : item.postest || "No Ingreso",
+                                carrera : item.carrera
                             }
                         });
                         $scope.cargando = false;
@@ -65,17 +69,19 @@ $(document).ready(function(){
                     });
             }
 
-            $scope.actualizarPostulante = function (index , nota) {
-                var pos = $scope.postulantes[index];
-
+            $scope.actualizarPostulante = function (pos) {
                 var minima = pos.notacar || 0;
-                if (nota >= minima){
-                    $scope.postulantes[index].estado = "Aprobado";
+                if (pos.nota >= minima){
+                    pos.estado = "Ingreso";
                 } else {
-                    $scope.postulantes[index].estado = "Desaprobado";
+                    pos.estado = "No Ingreso";
                 }
             }
 
+            $scope.GuardarPuntajePostulantes = function () {
+                grupoAcademicoDAO.guardarPuntajePostulantes(JSON.stringify($scope.postulantes));
+                $scope.noResultados = true;
+            }
 
 
 
