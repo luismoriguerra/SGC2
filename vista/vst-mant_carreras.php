@@ -71,7 +71,7 @@
                                               <th>Filial(es)</th>
                                               <th>Descripcion</th>
                                               <th>Abreviatura</th>
-                                              <th>Nota Mínima</th>
+                                              <th>Puntaje Mínima</th>
                                               <th>Estado</th>
                                               <th>&nbsp;</th>
                                             </tr>
