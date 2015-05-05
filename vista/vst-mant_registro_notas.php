@@ -111,6 +111,17 @@
                                     <tr ng-repeat="pos in postulantes">
                                         <td>{{$index + 1}}</td>
                                         <td>{{pos.nombre}}</td>
+                                        <td>
+                                            <input type="text"
+                                                   ng-model="pos.nota"
+                                                   ng-change="actualizarPostulante($index, pos.nota)"/>
+                                        </td>
+                                        <td>
+                                            {{pos.minima}}
+                                        </td>
+                                        <td>
+                                            {{pos.estado}}
+                                        </td>
                                     </tr>
                                 </table>
                             </div>

@@ -48,7 +48,14 @@ $(document).ready(function(){
                 $http.get(url).
                     success(function(data, status, headers, config) {
 
-                        $scope.postulantes = data.data;
+                        $scope.postulantes = data.data.map(function(item){
+                            return {
+                                nombre : item.nombre,
+                                nota : item.notaalu || 0,
+                                minima : item.notacar || 0,
+                                estado : item.postest || "Desaprobado"
+                            }
+                        });
                         $scope.cargando = false;
                         $scope.noResultados = !$scope.postulantes.length;
 
@@ -56,7 +63,17 @@ $(document).ready(function(){
                     error(function(data, status, headers, config) {
 
                     });
+            }
 
+            $scope.actualizarPostulante = function (index , nota) {
+                var pos = $scope.postulantes[index];
+
+                var minima = pos.notacar || 0;
+                if (nota >= minima){
+                    $scope.postulantes[index].estado = "Aprobado";
+                } else {
+                    $scope.postulantes[index].estado = "Desaprobado";
+                }
             }
 
 
