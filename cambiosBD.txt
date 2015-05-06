@@ -31,3 +31,7 @@ ALTER TABLE opevena add COLUMN ccelular INTEGER DEFAULT 0;
 
 2015/05/03 
 ALTER TABLE carrerm add COLUMN nota_min BIGINT DEFAULT 0;
+
+2015/05/05 
+ALTER TABLE opevena add COLUMN cinstit CHAR(2);
+

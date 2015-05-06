@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$("#nav-mantenimientos").addClass("ui-corner-all active");
 	ubigeoDAO.cargarDepartamento(sistema.llenaSelect,'slct_depa','');
-              personaDAO.ListarFiltrobyID(sistema.llenaSelect,"slct_tipo","");
+    institucionDAO.cargarInstitucion(sistema.llenaSelect,'slct_instit','');
+    personaDAO.ListarFiltrobyID(sistema.llenaSelect,"slct_tipo","");
 	jQGridCencap.Cencap();  
         
         $('#frmCencap').dialog({
@@ -54,6 +55,7 @@ nuevoCencap=function(){
         a[i++] = sistema.requeridoSlct('slct_dist');
         a[i++] = sistema.requeridoTxt('txt_telefo');
         a[i++] = sistema.requeridoSlct('slct_tipo');
+        a[i++] = sistema.requeridoSlct('slct_instit');
         a[i++] = sistema.requeridoTxt('txt_ctelefono');
         a[i++] = sistema.requeridoTxt('txt_ccelular');
 		a[i++] = sistema.requeridoSlct('slct_estado');
@@ -82,6 +84,7 @@ edit_cencap_jqgrid=function(){
           $('#slct_dist').val(data.coddistr);
           $('#txt_telefo').val(data.ntelefo);
           $('#slct_tipo').val(data.ctipcap);
+          $('#slct_instit').val(data.cinstit);
           $('#txt_ctelefono').val(data.ctelefono);
           $('#txt_ccelular').val(data.ccelular);
         
@@ -105,6 +108,7 @@ modificarPersonal=function(){
         a[i++] = sistema.requeridoSlct('slct_dist');
         a[i++] = sistema.requeridoTxt('txt_telefo');
         a[i++] = sistema.requeridoSlct('slct_tipo');
+        a[i++] = sistema.requeridoSlct('slct_instit');
         a[i++] = sistema.requeridoTxt('txt_ctelefono');
         a[i++] = sistema.requeridoTxt('txt_ccelular');
 		a[i++] = sistema.requeridoSlct('slct_estado');
