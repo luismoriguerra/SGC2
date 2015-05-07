@@ -365,13 +365,13 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("C".$valorinicial, $r['codintv']);
 		$objPHPExcel->getActiveSheet()->setCellValue("D".$valorinicial, $estado);
 		$objPHPExcel->getActiveSheet()->setCellValue("E".$valorinicial, $r['horari']);
-		$fechaing = $fechainicio;
+		$fechaing = $mesPrimerDia;
 		if($r['fingven']>=$fechaing){
 			$fechaing=$r['fingven'];
 		}
 		$objPHPExcel->getActiveSheet()->setCellValue("F".$valorinicial, $fechaing);
 		$fecharet=$r['fretven'];
-		if($r['cestado']==1 or $r['fretven']==''){
+		if( ($fecharet=='' or $fecharet=='0000-00-00') or $r['fretven']>$diaFinalDeCalculo ){
 			$fecharet = $diaFinalDeCalculo;
 		}
 		$objPHPExcel->getActiveSheet()->setCellValue("G".$valorinicial, $fecharet);
@@ -383,7 +383,7 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial, "=G".$valorinicial."-F".$valorinicial . " + 1 - ".$r["faltas"]);
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=".$r['faltas']);
 
-		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['ntelefo']."/".count($rpt));
+		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['ntelefo']."/".(count($rpt)/count($rpt3)) );
 		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=(".$pago."/".$cantulimodia.")*J".$valorinicial."-I".$valorinicial);
 
 		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=IFERROR(M".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");

@@ -23,6 +23,7 @@ class servletOpeven extends controladorComandos{
                     $data['prov']=trim($_POST['prov']);
                     $data['dist']=trim($_POST['dist']);
                     $data['tipo']=trim($_POST['tipo']);
+                    $data['instit']=trim($_POST['instit']);
                     $data['direc']=trim($_POST['direc']);
                     $data['ntelefo']=trim($_POST['ntelefo']);
                     $data['ctelefono']=trim($_POST['ctelefono']);
@@ -40,6 +41,7 @@ class servletOpeven extends controladorComandos{
                     $data['prov']=trim($_POST['prov']);
                     $data['dist']=trim($_POST['dist']);
                     $data['tipo']=trim($_POST['tipo']);
+                    $data['instit']=trim($_POST['instit']);
                     $data['direc']=trim($_POST['direc']);
                     $data['ntelefo']=trim($_POST['ntelefo']);
                     $data['ctelefono']=trim($_POST['ctelefono']);
@@ -81,9 +83,16 @@ class servletOpeven extends controladorComandos{
 							$where.=" AND ( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = 0 and u.coddist = 0)  like '%".trim($_GET['depa'])."%' ";
 						}
 					}
+
 					if( isset($_GET['tipo']) ) {
 						if( trim($_GET['tipo'])!='' ) {
 							$where.=" AND  t.dtipcap like '%".trim($_GET['tipo'])."%'  ";
+						}
+					}
+
+					if( isset($_GET['dinstit']) ) {
+						if( trim($_GET['dinstit'])!='' ) {
+							$where.=" AND  i.dinstit like '%".trim($_GET['dinstit'])."%'  ";
 						}
 					}
                                         
@@ -162,6 +171,8 @@ class servletOpeven extends controladorComandos{
                                 			$data[$i]['ntelefo'],	
                                         	$data[$i]['ctipcap'],
                                            	$data[$i]['tipo'],
+                                        	$data[$i]['cinstit'],
+                                           	$data[$i]['dinstit'],
                                 			$data[$i]['ctelefono'],	
                                 			$data[$i]['ccelular'],	
               								(($data[$i]['cestado'])? "Activo" : "Inactivo"),

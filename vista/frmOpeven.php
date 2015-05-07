@@ -54,7 +54,7 @@
           
           <tr class="FormData">
             <td class="t-left label" >
-              <b>Teléfono</b>
+              <b>Monto Teléfono</b>
             </td>
             <td class="t-left">&nbsp;
               <input type="text" id="txt_telefo" value=""  style="width:200px" onKeyPress="return sistema.validaNumeros(event)"/>
@@ -67,6 +67,16 @@
             </td>
             <td class="t-left">&nbsp;
               <select id="slct_tipo">
+              <option value="">--Seleccione--</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="FormData">
+            <td class="t-left label" >
+              <b>Institución que Vende</b>
+            </td>
+            <td class="t-left">&nbsp;
+              <select id="slct_instit">
               <option value="">--Seleccione--</option>
               </select>
             </td>

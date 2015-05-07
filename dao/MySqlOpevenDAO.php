@@ -38,6 +38,7 @@ class MySqlOpevenDAO{
                     ddiopve = '".$r["direc"]."' , 
                     ntelefo = '".$r["ntelefo"]."' , 
                     ctipcap = '".$r["tipo"]."' ,
+                    cinstit = '".$r["instit"]."' , 
                     ctelefono = '".$r["ctelefono"]."' , 
                     ccelular = '".$r["ccelular"]."' , 
                     fecreac = NOW(), 
@@ -82,6 +83,7 @@ class MySqlOpevenDAO{
                 ddiopve = '".$post["direc"]."' , 
                 ntelefo = '".$post["ntelefo"]."' , 
                 ctipcap = '".$post["tipo"]."' , 
+                cinstit = '".$post["instit"]."' , 
                 ctelefono = '".$post["ctelefono"]."' , 
                 ccelular = '".$post["ccelular"]."' , 
                 cestado =".$post["cestado"]." , festado= NOW(), cusuari = '".$post["cusuari"]."', fusuari = NOW() where copeven = ".$post["id"]." ";			
@@ -104,6 +106,7 @@ class MySqlOpevenDAO{
         $sql="select count(*) count
             from opevena o
             inner join tipcapa t on t.ctipcap = o.ctipcap
+            Left join instita i on i.cinstit = o.cinstit
               WHERE 1 = 1 ".$where;
         
         $db->setQuery($sql);
@@ -119,11 +122,13 @@ class MySqlOpevenDAO{
         $sql = "
             select o.* 
             ,t.dtipcap tipo
+            ,i.dinstit dinstit
             ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = 0 and u.coddist = 0) depa
             ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov = o.codprov and u.coddist = 0) prov
             ,( select nombre from ubigeo u where u.coddpto= o.coddpto and u.codprov =o.codprov  and u.coddist = o.coddistr) dist
             from opevena o
             inner join tipcapa t on t.ctipcap = o.ctipcap
+            Left join instita i on i.cinstit = o.cinstit
               WHERE 1 = 1 ".$where."
             ORDER BY  ".$sidx." ".$sord."
             LIMIT ".$limit." OFFSET ".$start;
