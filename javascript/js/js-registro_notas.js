@@ -51,11 +51,12 @@ $(document).ready(function(){
                     success(function(data, status, headers, config) {
 
                         $scope.postulantes = data.data.map(function(item){
+                            var min =  ( item.notacar &&  item.notacar > 0) ?  item.notacar : item.nota_min;
                             return {
                                 id : item.cpostul,
                                 nombre : item.nombre,
                                 nota : item.notaalu || 0,
-                                minima : item.notacar || 0,
+                                minima : min,
                                 estado : item.postest || "No Ingreso",
                                 carrera : item.carrera
                             }

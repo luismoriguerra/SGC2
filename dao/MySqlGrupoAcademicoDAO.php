@@ -233,7 +233,7 @@ class MySqlGrupoAcademicoDAO{
 		}
 
 		$sql="	select
-				p.cpostul , p.cingalu , p.cgruaca , notaalu,notacar, postest , g.finicio
+				p.cpostul , p.cingalu , p.cgruaca , notaalu,notacar, ca.nota_min ,postest , g.finicio
 				,CONCAT(pe.dappape, ' ',pe.dapmape, ' ', pe.dnomper) nombre
 				, ca.dcarrer carrera
 				from postulm p
