@@ -464,9 +464,9 @@ class MySqlPagoDAO{
 						AND dnumbol='".$array['dnumbol']."'";
 			$db->setQuery($sqlvalida);
 			$datavalida=$db->loadObjectList();
-			if(count($datavalida)>0){
-			return array('rst'=>'2','msj'=>'La Boleta ingresada ya existe');exit();
-			}
+			//if(count($datavalida)>0){
+			//return array('rst'=>'2','msj'=>'La Boleta ingresada ya existe');exit();
+			//}
 			
 			
 		$newcod=$db->generarCodigo('boletap','cboleta',14,$array['cusuari']);					
@@ -493,9 +493,9 @@ class MySqlPagoDAO{
 						AND cbanco='".$array['cbanco']."'";
 			$db->setQuery($sqlvalida);
 			$datavalida=$db->loadObjectList();
-			if(count($datavalida)>0){
-			return array('rst'=>'2','msj'=>'El Voucher ingresado ya existe');exit();
-			}
+			//if(count($datavalida)>0){
+			//return array('rst'=>'2','msj'=>'El Voucher ingresado ya existe');exit();
+			//}
 		//$dserbol=add_ceros($serbol,3);
 		$newcod=$db->generarCodigo('vouchep','cvouche',14,$array['cusuari']);		
 		$insvoucher="Insert into vouchep (cvouche,numvou,cbanco,cfilial,cinstita,cusuari,fusuari,ttiptra,ntotvou) values('".$newcod."','".$nvouche."','".$cbanco."','".$array['cfilial']."','','".$array['cusuari']."',now(),'I','".$monto."')";
@@ -684,9 +684,9 @@ class MySqlPagoDAO{
 							AND dnumbol='".$array['dnumbol']."'";
 				$db->setQuery($sqlvalida);
 				$datavalida=$db->loadObjectList();
-				if(count($datavalida)>0){
-				return array('rst'=>'2','msj'=>'La Boleta ingresada ya existe');exit();
-				}
+				//if(count($datavalida)>0){
+				//return array('rst'=>'2','msj'=>'La Boleta ingresada ya existe');exit();
+				//}
 			}
 
 			if($array['dserbol']!=$array['dserbol2'] or $array['dnumbol']!=$array['dnumbol2'] or $array['fecha']!=$array['fecha2']){

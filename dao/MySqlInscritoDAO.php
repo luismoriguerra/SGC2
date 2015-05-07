@@ -89,7 +89,7 @@ $codigopago="C";
 	/*validando solo si es especial*/
 		
 	if($data['tipo_documento_ins']=="B"){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM boletap 
 			  where dserbol='".$data['serie_boleta_ins']."'
 			  AND dnumbol='".$data['numero_boleta_ins']."'";			  
@@ -97,22 +97,22 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"La Boleta de Inscripcion ingresada ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	elseif($data['tipo_documento_ins']=="V"){
-		$sqlver2="SELECT * 
+			/*$sqlver2="SELECT * 
 			  FROM vouchep 
 			  where numvou='".$data["numero_voucher_ins"]."'
 			  AND cbanco='".$data["banco_voucher_ins"]."'";			  
-		$db->setQuery($sqlver2);	
-		$valsql2=$db->loadObjectList();
+			$db->setQuery($sqlver2);	
+			$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"El Voucher de Inscripcion ingresado ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	
 	if($data['tipo_documento']=="B" and $data['monto_deuda_ins']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM boletap 
 			  where dserbol='".$data['serie_boleta']."'
 			  AND dnumbol='".$data['numero_boleta']."'";			  
@@ -120,10 +120,10 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"La Boleta de Matricula ingresada ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	elseif($data['tipo_documento']=="V" and $data['monto_deuda_ins']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM vouchep 
 			  where numvou='".$data["numero_voucher"]."'
 			  AND cbanco='".$data["banco_voucher"]."'";			  
@@ -131,11 +131,11 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"El Voucher de Matricula ingresado ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}	
 	
 	if($data['tipo_documento_pension']=="B" and $data['monto_deuda']==0 and $data['monto_deuda_ins']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM boletap 
 			  where dserbol='".$data['serie_boleta_pension']."'
 			  AND dnumbol='".$data['numero_boleta_pension']."'";			  
@@ -143,10 +143,10 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"La Boleta de Pension ingresada ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	elseif($data['tipo_documento_pension']=="V" and $data['monto_deuda']==0 and $data['monto_deuda_ins']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM vouchep 
 			  where numvou='".$data["numero_voucher_pension"]."'
 			  AND cbanco='".$data["banco_voucher_pension"]."'";			  
@@ -154,11 +154,11 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"El Voucher de Pension ingresado ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	
 	if($data['testalu']!="RE" and $data['tipo_documento_convalida']=="B" and $data['monto_deuda']==0 and $data['monto_deuda_ins']==0 and $data['monto_deuda_pension']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM boletap 
 			  where dserbol='".$data['serie_boleta_convalida']."'
 			  AND dnumbol='".$data['numero_boleta_convalida']."'";			  
@@ -166,10 +166,10 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"La Boleta de Convalidacion ingresada ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 	elseif($data['testalu']!="RE" and $data['tipo_documento_convalida']=="V" and $data['monto_deuda']==0 and $data['monto_deuda_ins']==0 and $data['monto_deuda_pension']==0){
-		$sqlver2="SELECT * 
+		/*$sqlver2="SELECT * 
 			  FROM vouchep 
 			  where numvou='".$data["numero_voucher_convalida"]."'
 			  AND cbanco='".$data["banco_voucher_convalida"]."'";			  
@@ -177,7 +177,7 @@ $codigopago="C";
 		$valsql2=$db->loadObjectList();
 			if(count($valsql2)>0){
 			return array('rst'=>'2','msj'=>"El Voucher de Convalidacion ingresado ya Existe en la BD",'sql'=>$sqlver2);exit();
-			}
+			}*/
 	}
 } // finaliza validacion...
 /* finalizo validacion..*/
