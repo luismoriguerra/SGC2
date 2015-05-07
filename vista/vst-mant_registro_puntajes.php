@@ -93,6 +93,14 @@
                                             <span>Listar</span>
                                         </a>
                                     </span>
+                             <span style="margin:15px 0px 10px 0px;">
+                                        <a ng-click="ExportarPostulantes()"
+                                           id="btn_listar"
+                                           class="btn btn-azul sombra-3d t-blanco">
+                                            <i class="icon-white icon-th"></i>
+                                            <span>Exportar</span>
+                                        </a>
+                                    </span>
                         </div>
                         <br>
                         <div ng-show="noResultados &&  $scope.busquedaActivada" style="text-align: center">

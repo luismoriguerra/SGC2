@@ -83,6 +83,30 @@ $(document).ready(function(){
                 $scope.noResultados = true;
             }
 
+            var validar_fechas=function(){
+                if($.trim($('#txt_fecha_inicio').val())=='' || $.trim($('#txt_fecha_fin').val())==''){//ninguno tenga campo en blanco
+                    sistema.msjAdvertencia('Indicar Fechas: Inicio - Fin</b>',200,2000);return false;
+                }
+                return true;
+            }
+
+            $scope.ExportarPostulantes = function () {
+
+                if( $.trim($("#slct_filial").val())=="" ){
+                    sistema.msjAdvertencia("Debe seleccionar una filial",2000);
+                    $("#slct_filial").focus();
+                }else if( $.trim($("#slct_instituto").val()) == "" ) {
+                    sistema.msjAdvertencia("Debe seleccionar una Institucion", 2000);
+                    $("#slct_instituto").focus();
+                }else if(validar_fechas()) {
+                    window.location='../reporte/excel/EXCELpuntajesPostulantes.php?cfilial='+$("#slct_filial").val().join(",") +
+                    '&cinstit='+$("#slct_instituto").val().join(",")+
+                    '&fechini='+$("#txt_fecha_inicio").val()+
+                    '&fechfin='+$("#txt_fecha_fin").val();
+
+                }
+            }
+
 
 
 
