@@ -71,8 +71,8 @@ $(document).ready(function(){
             }
 
             $scope.actualizarPostulante = function (pos) {
-                var minima = pos.notacar || 0;
-                if (pos.nota >= minima){
+
+                if (pos.nota*1 >= pos.minima*1){
                     pos.estado = "Ingreso";
                 } else {
                     pos.estado = "No Ingreso";
