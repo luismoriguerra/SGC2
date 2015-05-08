@@ -1,7 +1,8 @@
 <?require_once('ifrm-valida-sesion.php')?>  
 <!DOCTYPE html>
-<html>
-    <head>
+<html ng-app="myApp">
+
+<head>
 
         <title>SGC2</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -16,13 +17,15 @@
         <script type="text/javascript" src="../javascript/includes/jquery-ui-1.8.18.custom.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
+        <script type="text/javascript" src="../javascript/includes/angular.min.js" ></script>
 
         <script type="text/javascript" src="../javascript/sistema.js"></script>
         <script type="text/javascript" src="../javascript/templates.js"></script>
         
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
-        
+        <script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
+
         <script type="text/javascript" src="../javascript/js/js-r_consolidado_vendedor.js"></script>
             
     </head>
@@ -44,24 +47,49 @@
                     
                     <div id="panel_matricula" style="display:block">
                         <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte Consolidado Vendedores <?   /*aqui va el titulo q presentara  */ ?></b></div>         
-                        <div class="cont-der">
+                        <div class="cont-der" ng-controller="rangoFechas">
                             <div class="t-center">
                                 <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
                        
                                 <!--Inicio tabla-->
                                 <table style="width:90%">
-                                        <tr>
-                                            <td class="t-left label input-large">Fecha Matrícula:</td>
-                                            <td class="t-left">
-                                            <input type="text" id="txt_fecha_matric" class="input-medium" value="">
-                                            </td>
-                                       </tr>                                       
-                                       <!--tr>
-                                            <td class="t-left label input-large">Pago Mensual:</td>
-                                            <td class="t-left">
-                                            <input type="text" id="txt_pago_mensual" class="input-medium" value="">
-                                            </td>
-                                       </tr-->    
+                                    <tr>
+                                        <td class="t-left label">Filial:</td>
+                                        <td class="t-left">
+                                            <select id="slct_filial" class="input-xlarge" style="width: 370px; display: none;" multiple>
+                                                <optgroup label="Filial">
+                                                    <option value="">--Selecione--</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t-left label">Institución:</td>
+                                        <td class="t-left">
+                                            <select id="slct_instituto" class="input-xlarge" style="width: 370px; display: none;" multiple>
+                                                <optgroup label="Instituto">
+                                                    <option value="">--Selecione--</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="t-left label input-large">Mes Matrícula:</td>
+                                        <td class="t-left">
+                                            <select id="matriculaMes"
+                                                    name="matricula_mes"
+                                                    ng-change="actualizarRango()"
+                                                    ng-model="matriculaMes"
+                                                    ng-options="value for value in meses">
+                                            </select>
+                                            <select id="anio"
+                                                    name="anio"
+                                                    ng-change="actualizarRango()"
+                                                    ng-model="anio"
+                                                    ng-options="option for option in anios">
+                                            </select>
+                                        </td>
+                                    </tr>
                                     </table>
                                 <!--fin talba-->                                
                                 <br>
