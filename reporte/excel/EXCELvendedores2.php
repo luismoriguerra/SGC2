@@ -386,7 +386,7 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['ntelefo']."/".(count($rpt)/count($rpt3)) );
 		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=(".$pago."/".$cantulimodia.")*J".$valorinicial."-I".$valorinicial);
 
-		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=IFERROR(M".$valorinicial."/".$az[$iniciadinamica].$valorinicial.",0)");
+		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=IFERROR((L".$valorinicial." + M".$valorinicial.")/".$az[$iniciadinamica].$valorinicial.",0)");
 		$objPHPExcel->getActiveSheet()->setCellValue("O".$valorinicial, "=".$az[$iniciadinamica].$valorinicial."/J".$valorinicial);
 
 
@@ -460,6 +460,9 @@ for ($i = 1; $i <= $cantidadDias + 1; $i++) {
 			"=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");
 	}
 }
+//AGREGAMOS SUMATORIA de INVERSION
+	$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=SUM(L7:L".($valorinicial-1).")");
+	$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial,	"=SUM(M7:M".($valorinicial-1).")");
 //AGREGAMOS LA ULTIMA SUMATORIA
 //$cantidadaz++;
 //$objPHPExcel->getActiveSheet()->setCellValue(
