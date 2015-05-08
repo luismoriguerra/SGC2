@@ -65,8 +65,8 @@ $sql="  SELECT f.dfilial, i.dinstit, c.dcarrer,
         ,MAX(CONCAT(cc.ccarrer,cc.fusuari,'|',cc.nprecio)) pen
         ,MAX(cr.ccuota) as duracion
         FROM gracprp g
-        INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota>='5' AND cr.cestado='1')
-        INNER JOIN concepp cc ON (cc.cconcep=cr.cconcep AND cc.cestado='1' AND (cc.ccarrer in (g.ccarrer)) )
+        LEFT JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota>='5' AND cr.cestado='1')
+        LEFT JOIN concepp cc ON (cc.cconcep=cr.cconcep AND cc.cestado='1' AND (cc.ccarrer in (g.ccarrer)) )
         INNER JOIN filialm f ON f.cfilial=g.cfilial
         INNER JOIN instita i ON i.cinstit=g.cinstit
         INNER JOIN carrerm c ON c.ccarrer=g.ccarrer

@@ -308,11 +308,11 @@ foreach($rpt as $r){
     $azPlanilla = $az[($posicionaz + count($rpt3)*3 + 3 + 2)];
     $colTotales[] = $az[($posicionaz + 1)];
     for ($i = 0; $i <= count($rpt3); $i++) { // llenando costo por alumno
-        $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '='.$azPlanilla.$valorinicial.'/'.$az[($posicionaz + count($rpt3)*1 + 1)].$valorinicial."";
+        $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '=IFERROR('.$azPlanilla.$valorinicial.'/'.$az[($posicionaz + count($rpt3)*1 + 1)].$valorinicial.",0)";
     }
 
     //llenando produccion
-    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '=SUM('.$az[($posicionaz+2)].$valorinicial.':'.$az[($posicionaz + count($rpt3)*1 + 1)].$valorinicial.")";
+    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '=SUM('.$az[($posicionaz+1)].$valorinicial.':'.$az[($posicionaz + count($rpt3)*1 )].$valorinicial.")";
     $colTotales[] = $az[$posicionaz];
 
     foreach ($rpt3 as $inst) {
@@ -324,7 +324,7 @@ foreach($rpt as $r){
     }
 
     // promedio
-    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '='.$az[($posicionaz - count($rpt3) - 1)].$valorinicial.'/'.$diafinalff;
+    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '='.$az[($posicionaz - count($rpt3) - 1)].$valorinicial.'/'.($diafinalff*1);
     $colTotales[] = $az[$posicionaz];
 
     foreach ($rpt3 as $inst) {

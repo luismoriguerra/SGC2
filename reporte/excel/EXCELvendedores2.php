@@ -463,6 +463,7 @@ for ($i = 1; $i <= $cantidadDias + 1; $i++) {
 //AGREGAMOS SUMATORIA de INVERSION
 	$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=SUM(L7:L".($valorinicial-1).")");
 	$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial,	"=SUM(M7:M".($valorinicial-1).")");
+	$objPHPExcel->getActiveSheet()->getStyle("L".$valorinicial.":M".$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
 //AGREGAMOS LA ULTIMA SUMATORIA
 //$cantidadaz++;
 //$objPHPExcel->getActiveSheet()->setCellValue(
