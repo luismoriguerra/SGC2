@@ -324,7 +324,7 @@ foreach($rpt as $r){
     }
 
     // promedio
-    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = ''.$az[($posicionaz - count($rpt3) - 1)].$valorinicial.'/'.$diafinalff;
+    $arrayFilas[$r['copeven']][$az[++$posicionaz]] = '='.$az[($posicionaz - count($rpt3) - 1)].$valorinicial.'/'.$diafinalff;
     $colTotales[] = $az[$posicionaz];
 
     foreach ($rpt3 as $inst) {
