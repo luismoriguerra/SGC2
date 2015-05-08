@@ -181,7 +181,7 @@ $styleThinBlackBorderAllborders = array(
 $styleThickBlackBorderOutline = array(
     'borders' => array(
         'outline' => array(
-            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'style' => PHPExcel_Style_Border::BORDER_MEDIUM,
             'color' => array('argb' => 'FF000000'),
         ),
     ),
@@ -189,7 +189,7 @@ $styleThickBlackBorderOutline = array(
 $styleThickBlackBorderRight = array(
     'borders' => array(
         'right' => array(
-            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'style' => PHPExcel_Style_Border::BORDER_MEDIUM,
             'color' => array('argb' => 'FF000000'),
         ),
     ),
@@ -197,7 +197,7 @@ $styleThickBlackBorderRight = array(
 $styleThickBlackBorderAllborders = array(
     'borders' => array(
         'allborders' => array(
-            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'style' => PHPExcel_Style_Border::BORDER_MEDIUM,
             'color' => array('argb' => 'FF000000'),
         ),
     ),
@@ -317,11 +317,24 @@ for ($i=0; $i <= $cantidadDias * 1; $i++) {
     for ($i = $colActual; $i < count($cabecera); $i++) {
         $objPHPExcel->getActiveSheet()->setCellValue($az[$i].$filaActual,$cabecera[$i]);
         $objPHPExcel->getActiveSheet()->getStyle($az[$i].$filaActual)->getAlignment()->setWrapText(true);
+        /*Ancho de Columnas*/
+        if ($i == 0){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(4.8);   }
+        elseif ($i == 1){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(15.3);   }
+        elseif ($i == 2){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(17);   }
+        elseif ($cabecera[$i] == "TOTAL"){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(5);   }
+        else{
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(3.3);   }
+
         if ($i > 2) { // a partir de los totales
             $objPHPExcel->getActiveSheet()->getStyle($az[$i].$filaActual)->getAlignment()->setTextRotation(90);
         }
         // agregar cabecera principal
         if ($cabecera[$i] == "TOTAL" || $i + 1 == count($cabecera)) { // entraren cada columna cabecera y en la columna final tambien
+        
             $countGrupos++;
             $colInicioGrupoAnterior = $colInicioGrupo;
             $colInicioGrupo = $i;
@@ -411,6 +424,12 @@ foreach($rpt as $r){
             $objPHPExcel->getActiveSheet()->getStyle("A$fila:".$az[$posicionaz - 1].$fila)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
             array_push($coordenadasFilasTotales,"A$fila:".$az[$posicionaz - 1].$fila);
 
+            /*Agregado para altura de los datos*/
+            $objPHPExcel->getActiveSheet()->setCellValue("A".$fila, "TOTALES");
+            $objPHPExcel->getActiveSheet()->mergeCells("A".$fila.":C".$fila);
+            $objPHPExcel->getActiveSheet()->getStyle("A".$fila.":C".$fila)->applyFromArray($styleAlignment);
+            $objPHPExcel->getActiveSheet()->getRowDimension($fila)->setRowHeight(22.5); // altura
+
             // reiniciamos el contador de captacion
             $contadorCaptacion = 0;
 
@@ -425,6 +444,10 @@ foreach($rpt as $r){
         $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz++].$fila, ++$row);
         $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz++].$fila, $r['dtipcap']);
         $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz++].$fila, $r['dmedpre']);
+
+
+        /*Agregado para altura de los datos*/
+        $objPHPExcel->getActiveSheet()->getRowDimension($fila)->setRowHeight(22.5); // altura
     } else {
         //cuando sigue siendo el mismo tipo de captacion se debe acutalizar la misma fila y desde la inicio de la columna dinamico
         $posicionaz = $colAcuInicio;
@@ -468,11 +491,18 @@ for ($i = 0; $i <= $cantidadDias; $i++) {
 $objPHPExcel->getActiveSheet()->getStyle("A$fila:".$az[$posicionaz - 1].$fila)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
 array_push($coordenadasFilasTotales,"A$fila:".$az[$posicionaz - 1].$fila);
 
+$objPHPExcel->getActiveSheet()->setCellValue("A".$fila, "TOTALES");
+$objPHPExcel->getActiveSheet()->mergeCells("A".$fila.":C".$fila);
+$objPHPExcel->getActiveSheet()->getStyle("A".$fila.":C".$fila)->applyFromArray($styleAlignment);
+$objPHPExcel->getActiveSheet()->getRowDimension($fila)->setRowHeight(22.5); // altura
 
 // TOTAL GENERAL
 $fila+=2;
 $posicionaz = $colAcuInicio;
-$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz -1 ].$fila, "TOTALES");
+//$objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz -1 ].$fila, "TOTALES");
+$objPHPExcel->getActiveSheet()->setCellValue("A".$fila, "TOTALES");
+$objPHPExcel->getActiveSheet()->mergeCells("A".$fila.":C".$fila);
+$objPHPExcel->getActiveSheet()->getStyle("A".$fila.":C".$fila)->applyFromArray($styleAlignment);
 for ($i = 0; $i <= $cantidadDias; $i++) {
     for ($j = -1; $j < count($rpt3); $j++) {
         $CampoAcululado = array();
@@ -511,7 +541,7 @@ for ($i = 0; $i < $cantidadDias + 1;$i++){
 }
 
 $objPHPExcel->getActiveSheet()->getStyle("$lastColumn".(7).":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderRight);
-$objPHPExcel->getActiveSheet()->getStyle("C".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A".$lastrow.":$lastColumn$lastrow:C".$lastrow.":$lastColumn$lastrow")->applyFromArray($styleThickBlackBorderAllborders);
 
 foreach ($coordenadasFilasTotales as $coor) {
     $objPHPExcel->getActiveSheet()->getStyle($coor)->applyFromArray($styleThickBlackBorderOutline);
