@@ -35,3 +35,7 @@ ALTER TABLE carrerm add COLUMN nota_min BIGINT DEFAULT 0;
 2015/05/05 
 ALTER TABLE opevena add COLUMN cinstit CHAR(2);
 
+
+11/05
+ALTER TABLE vendedm add montele DECIMAL(5,2);
+ALTER TABLE vendedm add cinstit varchar(50);

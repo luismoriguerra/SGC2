@@ -23,6 +23,7 @@
     <script type="text/javascript" src="../javascript/sistema.js"></script>
     <script type="text/javascript" src="../javascript/templates.js"></script>
     <script type="text/javascript" src="../javascript/dao/DAOubigeo.js"></script>
+    <script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
     <script type="text/javascript" src="../javascript/jqGrid/JqGridMantVendedor.js"></script>
     <script type="text/javascript" src="../javascript/dao/DAOpersona.js"></script>
     <script type="text/javascript" src="../javascript/js/js-persona.js"></script>
@@ -53,7 +54,7 @@
                 <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Mantenimiento Vendedor(es) Masivo <? /*aqui va el titulo q presentara  */ ?></b></div>
                 <div class="cont-der" style="text-align: center">
                     <? /*
-                            	aqui va todo tu diseño ... dentro de cont-der 
+                            	aqui va todo tu diseño ... dentro de cont-der
                             */
                     ?>
                     <table align="center">
@@ -91,7 +92,6 @@
                         No se encontraron vendedores que mostrar en esta categoria.
                     </div>
                     <div class="Listado-vendedores"
-                         style="width: 50%; margin: 0 auto;"
                          ng-show="vendedores.length">
                         <div>
                             <div style="text-align: left; display: inline-block; float: left;">
@@ -99,8 +99,26 @@
                                 <input type="number"
                                        ng-model="sueldoComun"
                                        placeholder="Monto"/>
-                                <button ng-click="actualizarTodosLosSueldos()">Asignar a todos</button>
+                                <button ng-click="actualizarTodosLosSueldos()">Asignar a Monto</button>
                             </div>
+
+                            <div style="text-align: left; display: inline-block; float: left;">
+                                Agregar Horario a todos :
+                                <input type="text"
+                                       ng-model="horariogeneral"
+                                       placeholder="Horario"/>
+                                <button ng-click="actualizarTodosHorarios()">Asignar a Horarios</button>
+                            </div>
+
+                            <div style="text-align: left; display: inline-block; float: left;">
+                                Agregar Monto Telefono a todos :
+                                <input type="number"
+                                       ng-model="montotelefonogeneral"
+                                       placeholder="Monto"/>
+                                <button ng-click="actualizarTodosTelefono()">Asignar a Monto Telefono</button>
+                            </div>
+
+
                             <div style="text-align: right; display: inline-block;">
                                 <button ng-click="guardarTodos()"> Guardar Todos </button>
                             </div>
@@ -119,6 +137,8 @@
                                 <th>Sueldo</th>
                                 <th>Descuento</th>
                                 <th>Horario</th>
+                                <th>Monto Telefono</th>
+                                <th>Inst. vende</th>
                                 <th>Faltas</th>
                             </tr>
                             <tr ng-repeat="vendedor in vendedores | filter : searchText">
@@ -138,6 +158,18 @@
                                     <input type="text"
                                            ng-model="vendedor.horario"
                                            placeholder=""/>
+                                </td>
+                                <td>
+                                    <input type="text"
+                                           ng-model="vendedor.montele"
+                                           placeholder=""/>
+                                </td>
+                                <td class="t-left">
+                                    <select id="slct_instituto"
+                                            class="input-xlarge"
+                                            ng-model="vendedor.cinstit"
+                                            ng-options="item.id as item.nombre for item in instituciones">
+                                    </select>
                                 </td>
                                 <td>
                                     <a href="#"

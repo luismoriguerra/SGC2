@@ -837,14 +837,15 @@ class MySqlPersonaDAO{
         $db=creadorConexion::crear('MySql');
         $db->iniciaTransaccion();
 
-        $rows = explode("|", $data['data']);
+        $rows = json_decode($data["data"]);
+
         foreach($rows as $vendedor) {
-            // array de datos por vendeor 0 id , 1 sueld , 2 faltas unidos por D
-            $dataVen = explode("*", $vendedor);
-            $sql = "UPDATE vendedm set sueldo = " . $dataVen[1]
-                . " , descto = ". $dataVen[3]
-                . " , horari = '". $dataVen[4] . "'"
-                . " where cvended = '".$dataVen[0]."'";
+            $sql = "UPDATE vendedm set sueldo = " . $vendedor->sueldo
+                . " , descto = ". $vendedor->descuento
+                . " , horari = '". $vendedor->horario . "'"
+                . " , montele = ". $vendedor->montele . ""
+                . " , cinstit = '". $vendedor->cinstit . "'"
+                . " where cvended = '". $vendedor->id ."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
                 $db->rollbackTransaccion();
@@ -852,18 +853,18 @@ class MySqlPersonaDAO{
             }
             // REGISTRAR FALTAS
             // deshabilitamos las anteriores
-            $sql = "update venfala set cestado = 0, cusuari = '".$data['cusuari']."' where  cvended = '".$dataVen[0]."'";
+            $sql = "update venfala set cestado = 0, cusuari = '".$data['cusuari']."' where  cvended = '".$vendedor->id."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
                 $db->rollbackTransaccion();
-                return array('rst'=>'3','msj'=>'Error al actualizar las faltas de '.$dataVen[0] ,'sql'=>$sql);exit();
+                return array('rst'=>'3','msj'=>'Error al actualizar las faltas de '.$vendedor->id ,'sql'=>$sql);exit();
             }
-            $faltas = explode("D", $dataVen[2]);
+            $faltas = $vendedor->selectedDates;
             foreach ($faltas as $f) {
                 if ($f) {
                     $fecha = date("Y-m-d",$f/1000);
                     //agregamos el nuevo grupo
-                    $sql = "Insert into venfala set cvended = '".$dataVen[0]."', diafalt='".$fecha."', cestado = 1,cusuari = '".$data['cusuari']."', fusuari = NOW() ";
+                    $sql = "Insert into venfala set cvended = '". $vendedor->id ."', diafalt='".$fecha."', cestado = 1,cusuari = '".$data['cusuari']."', fusuari = NOW() ";
                     $db->setQuery($sql);
                     if(!$db->executeQuery()){
                         $db->rollbackTransaccion();
@@ -897,7 +898,7 @@ class MySqlPersonaDAO{
 	$sql="	select v.cfilial,v.cvended,v.dnombre,v.dapepat,v.dapemat,v.demail,v.dtelefo,v.ndocper,
 			v.tdocper,v.fingven,v.fretven,v.tsexo,v.coddpto,v.codprov,v.coddist,
 			v.ddirecc,v.codintv,v.tvended,v.cinstit,
-			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo,
+			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo, montele,
 			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas, descto, horari
 			from vendedm v
 			WHERE 1=1 $where

@@ -895,7 +895,7 @@ class servletPersona extends controladorComandos{
 							$data[$i]['tdocper'],							
 							$data[$i]['tsexo'],
 							$data[$i]['coddpto'],
-							$data[$i]['codprov'],							
+							$data[$i]['codprov'], // 10
 							$data[$i]['coddist'],
 							$data[$i]['ddirecc'],
 							$data[$i]['fingven'],
@@ -905,9 +905,11 @@ class servletPersona extends controladorComandos{
 							$data[$i]['cestado'],
                             $data[$i]['copeven'],
 							$data[$i]['sueldo'],
-							$data[$i]['faltas'],
+							$data[$i]['faltas'], // 20
 							$data[$i]['descto'],
 							$data[$i]['horari'],
+							$data[$i]['montele'],
+							$data[$i]['cinstit'], // 24
                             )
                         )
                     );

@@ -1,9 +1,22 @@
 $(document).ready(function(){	
 	
 	$('#nav-mantenimientos').addClass('active');//aplica estilo al menu activo
+	//institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
+
 	ubigeoDAO.cargarDepartamento(sistema.llenaSelect,'slct_departamento,#slct_departamento2,#slct_departamento_c,#slct_departamento_t','');
 	personaDAO.listarFiltro(sistema.llenaSelect,"slct_vendedor,#slct_tipo_trabajador_t","");
-})
+
+	institucionDAO.cargarInstitucionValidaG(guardarDatos,'slct_instituto','','Instituto');
+
+
+
+});
+
+window.instituciones = [];
+guardarDatos = function (data) {
+	window.instituciones = data;
+
+}
 
 ActVisualiza=function(){	
 	$("#mantenimiento_jqgrid_vended").html('<div style="margin-right:3px">'+
@@ -55,6 +68,9 @@ cargarDistritot=function(){
 			};
 
 			$scope.actualizarLista = function() {
+
+				$scope.instituciones = window.instituciones;
+
 				var url ='../controlador/controladorSistema.php?' +
 					'comando=persona' +
 					'&accion=jqgrid_trabajador' +
@@ -90,6 +106,8 @@ cargarDistritot=function(){
 								horario: ven.cell[22],
 								identity: angular.identity,
 								activeDate: null,
+								montele: parseFloat(ven.cell[23]),
+								cinstit: ven.cell[24],
 								selectedDates: faltas  // index 20
 							}
 						});
@@ -111,23 +129,25 @@ cargarDistritot=function(){
 				}
 			};
 
-			$scope.guardarTodos = function () {
-				var datosAGuardar = [],
-					sueldo,
-					faltas;
-
-				$scope.vendedores.forEach(function (ven) {
-					sueldo = (ven.sueldo) ? ven.sueldo : 0;
-					descuento = (ven.descuento) ? ven.descuento : 0;
-					faltas = ven.selectedDates.join("D");
-					datosAGuardar.push(ven.id + "*" + sueldo + "*" + faltas+ "*" + descuento+ "*" + ven.horario);
-				});
-
-				datosAGuardar = datosAGuardar.join("|");
-				personaDAO.guardarSueldosVendedores(datosAGuardar);
+			$scope.actualizarTodosHorarios = function () {
+				if ($scope.vendedores.length) {
+					$scope.vendedores.forEach(function (ven) {
+						ven.horario = $scope.horariogeneral;
+					});
+				}
 			};
 
+			$scope.actualizarTodosTelefono = function () {
+				if ($scope.vendedores.length) {
+					$scope.vendedores.forEach(function (ven) {
+						ven.montele = $scope.montotelefonogeneral;
+					});
+				}
+			};
 
+			$scope.guardarTodos = function () {
+				personaDAO.guardarSueldosVendedores(JSON.stringify($scope.vendedores));
+			};
 
 			$scope.open = function($event, vendedor) {
 				$event.preventDefault();
@@ -155,8 +175,6 @@ cargarDistritot=function(){
 			$scope.removeFromSelected = function (ven , dt) {
 				ven.selectedDates.splice(ven.selectedDates.indexOf(dt), 1);
 			}
-
-
 
 		}]);
 })();
