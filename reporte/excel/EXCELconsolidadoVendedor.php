@@ -134,6 +134,7 @@ $styleAlignmentBold= array(
         'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
         'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
     ),
+    ''
 );
 $styleAlignment= array(
     'alignment' => array(
@@ -226,28 +227,47 @@ $col = 0;
 for($i = 0 ; $cabeceraDoble[$i] ; $i++) {
     $objPHPExcel->getActiveSheet()->setCellValue($az[$col].$fila,$cabeceraDoble[$i]);
     $objPHPExcel->getActiveSheet()->mergeCells($az[$col].$fila.":".$az[$col].($fila+1));
+    $objPHPExcel->getActiveSheet()->getStyle($az[$col].$fila.":".$az[$col].($fila+1))->applyFromArray($styleAlignmentBold);
+    /*AQUI FALTA EL AJUSTAR TEXTO*/
     $col++;
 }
 
+$objPHPExcel->getActiveSheet()->getColumnDimension("A")->setWidth(9);
+$objPHPExcel->getActiveSheet()->getColumnDimension("B")->setWidth(9);
+$objPHPExcel->getActiveSheet()->getColumnDimension("C")->setWidth(12);
+$objPHPExcel->getActiveSheet()->getColumnDimension("D")->setWidth(21);
+
 $objPHPExcel->getActiveSheet()->setCellValue("E4", "PERSONAL");
 $objPHPExcel->getActiveSheet()->mergeCells("E4:G4");
+$objPHPExcel->getActiveSheet()->getStyle("E4:G4")->applyFromArray($styleAlignmentBold);
 $objPHPExcel->getActiveSheet()->setCellValue("E5", "ACTIVO");
+$objPHPExcel->getActiveSheet()->getColumnDimension("E")->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle("E5")->getAlignment()->setTextRotation(90);
+$objPHPExcel->getActiveSheet()->getStyle("E5")->applyFromArray($styleAlignmentBold);
 
 $objPHPExcel->getActiveSheet()->setCellValue("F5", "RETIRADO");
+$objPHPExcel->getActiveSheet()->getColumnDimension("F")->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle("F5")->getAlignment()->setTextRotation(90);
+$objPHPExcel->getActiveSheet()->getStyle("F5")->applyFromArray($styleAlignmentBold);
 
 $objPHPExcel->getActiveSheet()->setCellValue("G5", "TOTAL");
+$objPHPExcel->getActiveSheet()->getColumnDimension("G")->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle("G5")->getAlignment()->setTextRotation(90);
+$objPHPExcel->getActiveSheet()->getStyle("G5")->applyFromArray($styleAlignmentBold);
 
 
 $objPHPExcel->getActiveSheet()->setCellValue("H4", "EQUIPO");
 $objPHPExcel->getActiveSheet()->mergeCells("H4:I4");
+$objPHPExcel->getActiveSheet()->getStyle("H4:I4")->applyFromArray($styleAlignmentBold);
 $objPHPExcel->getActiveSheet()->setCellValue("H5", "FIJOS");
+$objPHPExcel->getActiveSheet()->getColumnDimension("H")->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle("H5")->getAlignment()->setTextRotation(90);
+$objPHPExcel->getActiveSheet()->getStyle("H5")->applyFromArray($styleAlignmentBold);
 
 $objPHPExcel->getActiveSheet()->setCellValue("I5", "CELULARES");
+$objPHPExcel->getActiveSheet()->getColumnDimension("I")->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle("I5")->getAlignment()->setTextRotation(90);
+$objPHPExcel->getActiveSheet()->getStyle("I5")->applyFromArray($styleAlignmentBold);
 
 
 $col = 8; // I
@@ -257,12 +277,16 @@ for ($i=0; $i < 3; $i++) {   // costo por alumno , produccion , promedio
     $colGrupoIni = ++$col;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$col].$fila, $grupos[$i]);
     $objPHPExcel->getActiveSheet()->setCellValue($az[$col].($fila + 1), "TOTAL");
+    $objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth(5.6);
     $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->getAlignment()->setTextRotation(90);
+    $objPHPExcel->getActiveSheet()->getStyle($az[$col].$fila)->applyFromArray($styleAlignmentBold);
 
     foreach($rpt3 as $r){
         $col++;
         $objPHPExcel->getActiveSheet()->setCellValue($az[$col].($fila + 1), $r['dinstit']);
+        $objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth(5.6);
         $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->getAlignment()->setTextRotation(90);
+        $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->applyFromArray($styleAlignmentBold);
 
     }
     $objPHPExcel->getActiveSheet()->mergeCells($az[$colGrupoIni].$fila.":".$az[$col].$fila);
@@ -272,13 +296,16 @@ $col++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$col]."4", "PERSONAL");
 $objPHPExcel->getActiveSheet()->mergeCells($az[$col]."4:".$az[($col+2)]."4");
 $objPHPExcel->getActiveSheet()->setCellValue($az[$col].($fila + 1), "TELEFONO");
+$objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->getAlignment()->setTextRotation(90);
 $col++;
 
 $objPHPExcel->getActiveSheet()->setCellValue($az[$col].($fila + 1), "PLANILLA");
+$objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth(5.6);
 $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->getAlignment()->setTextRotation(90);
 $col++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$col].($fila + 1), "TOTAL");
+$objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth(6.7);
 $objPHPExcel->getActiveSheet()->getStyle($az[$col].($fila + 1))->getAlignment()->setTextRotation(90);
 
 
@@ -357,15 +384,20 @@ for($i=0; $i <$conteint - 4 ; $i++) {
     $posicionaz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$posicionaz].$valorinicial, "=SUM(".$az[$posicionaz].($valorinicial -1).":".$az[$posicionaz]."6)");
     $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFEBF1DE");
+    $objPHPExcel->getActiveSheet()->getStyle($az[$posicionaz].$valorinicial)->applyFromArray($styleBold);
 
 }
 
-$objPHPExcel->getActiveSheet()->getStyle("A4:".$az[$posicionaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A4:".$az[$posicionaz].($valorinicial-1))->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("E".$valorinicial.":".$az[$posicionaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle("E5:".$az[$posicionaz]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFEBF1DE");
+$objPHPExcel->getActiveSheet()->getStyle("E5:".$az[$posicionaz]."5")->applyFromArray($styleBold);
 $objPHPExcel->getActiveSheet()->getStyle("G6:G".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFEBF1DE");
+$objPHPExcel->getActiveSheet()->getStyle("G6:G".$valorinicial)->applyFromArray($styleBold);
 
 foreach($colTotales as $col){
     $objPHPExcel->getActiveSheet()->getStyle("$col"."6:$col".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFEBF1DE");
+    $objPHPExcel->getActiveSheet()->getStyle("$col"."6:$col".$valorinicial)->applyFromArray($styleBold);
 
 }
 
