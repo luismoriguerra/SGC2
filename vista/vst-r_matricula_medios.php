@@ -80,7 +80,16 @@
                                             Al
                                             <input type="text" id="txt_fecha_fin" class="input-medium" value="">
                                             </td>
-                                       </tr>                                       
+                                       </tr>
+                                       <tr>
+                                            <td class="t-left label input-large">Fechas de Matrícula:</td>
+                                            <td class="t-left">
+                                            Del:
+                                            <input type="text" id="txt_fecha_inicio_m" class="input-medium" value="">
+                                            Al
+                                            <input type="text" id="txt_fecha_fin_m" class="input-medium" value="">
+                                            </td>
+                                       </tr>
                                     </table>
                                 <!--fin talba-->                                
                                 <br>

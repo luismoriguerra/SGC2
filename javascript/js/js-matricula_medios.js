@@ -36,15 +36,15 @@ Exportar=function(){
 	else if($("#slct_instituto").val()==null){
 	sistema.msjAdvertencia('Seleccione Instituto',2000);
 	}
-	else if($("#txt_fecha_inicio").val()==''){
+	else if($("#txt_fecha_inicio").val()=='' && $("#txt_fecha_inicio_m").val()==''){
 	sistema.msjAdvertencia('Ingrese Fecha Rango Inicio',2000);
 	}
-	else if($("#txt_fecha_fin").val()==''){
+	else if($("#txt_fecha_fin").val()=='' && $("#txt_fecha_fin_m").val()==''){
 	sistema.msjAdvertencia('Ingrese Fecha Rango Final',2000);
 	}
 	else{
 	window.location='../reporte/excel/EXCELmatriculamedios.php?cfilial='
-                	+$("#slct_filial").val().join(",")+'&fechini='+$("#txt_fecha_inicio").val()+'&fechfin='+$("#txt_fecha_fin").val()+'&cinstit='+$("#slct_instituto").val().join(",")+'&usuario='+$("#hd_idUsuario").val();
+                	+$("#slct_filial").val().join(",")+'&fechini='+$("#txt_fecha_inicio").val()+'&fechfin='+$("#txt_fecha_fin").val()+'&fechinim='+$("#txt_fecha_inicio_m").val()+'&fechfinm='+$("#txt_fecha_fin_m").val()+'&cinstit='+$("#slct_instituto").val().join(",")+'&usuario='+$("#hd_idUsuario").val();
 	}
 }
 

@@ -13,6 +13,12 @@ $cfilial=str_replace(",","','",$_GET['cfilial']);
 $fechas=" DATE(g.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'";
 $fechas2=" DATE(g2.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'";
 $fechas3=" DATE(g3.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'";
+if($_GET['fechinim']!=''){
+	$fechas=" DATE(c.fmatric) between '".$_GET['fechinim']."' and '".$_GET['fechfinm']."'";
+	$fechas2=" DATE(c2.fmatric) between '".$_GET['fechinim']."' and '".$_GET['fechfinm']."'";
+	$fechas3=" DATE(c3.fmatric) between '".$_GET['fechinim']."' and '".$_GET['fechfinm']."'";
+}
+
 $cinstit=str_replace(",","','",$_GET['cinstit']);
 
 $sql="	select f.dfilial,ia.dinstit,t.dtipcap,count(g.cfilial) cant,o2.cant2,o3.cant3
