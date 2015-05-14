@@ -16,6 +16,7 @@
 
 		public static function getComando(){
 			$classControlador=null;			
+			ini_set('display_errors', 0);
 			switch ($_REQUEST['comando']) {
 				case 'registro':
 					$classControlador=new servletRegistro;

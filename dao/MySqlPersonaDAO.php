@@ -836,15 +836,25 @@ class MySqlPersonaDAO{
     public function guardarSueldosVendedores ($data) {
         $db=creadorConexion::crear('MySql');
         $db->iniciaTransaccion();
-
-        $rows = json_decode($data["data"]);
-
+        $rows =json_decode(stripslashes($data["data"]));
+        //$rows = json_decode($data["data"]);
+        //var_dump($rows);
         foreach($rows as $vendedor) {
+            $cinstit="";
+            if(trim($vendedor->cinstit)!=''){
+                $cinstit=" , cinstit = '". $vendedor->cinstit . "'";
+            }
+            if(trim($vendedor->montele)==''){
+                $vendedor->montele=0;
+            }
+            if(trim($vendedor->descuento)==''){
+                $vendedor->descuento=0;
+            }
             $sql = "UPDATE vendedm set sueldo = " . $vendedor->sueldo
                 . " , descto = ". $vendedor->descuento
                 . " , horari = '". $vendedor->horario . "'"
-                . " , montele = ". $vendedor->montele . ""
-                . " , cinstit = '". $vendedor->cinstit . "'"
+                . " , montele = ". $vendedor->montele 
+                . $cinstit
                 . " where cvended = '". $vendedor->id ."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
