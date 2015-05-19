@@ -1,11 +1,11 @@
 <?php
 /*conexion*/
+exit("r");
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
-
 /*crea obj conexion*/
 $cn=MySqlConexion::getInstance();
-
+echo "r";
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
 $azcount=array(20,5,46,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 
@@ -197,8 +197,8 @@ return $styleColorFunction;
 }
 
 $objPHPExcel = new PHPExcel();
-$objPHPExcel->getProperties()->setCreator("Henry Morales")
-							 ->setLastModifiedBy("Henry Morales")
+$objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
+                             ->setLastModifiedBy("Jorge Salcedo")
 							 ->setTitle("Office 2007 XLSX Test Document")
 							 ->setSubject("Office 2007 XLSX Test Document")
 							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
@@ -266,7 +266,7 @@ $objPHPExcel->getActiveSheet()->getRowDimension("4")->setRowHeight(50); // altur
 
 
 $cabecera=array('N°','ODE','INSTITUCIÓN','CARRERA','FREC','HORA','CICLO ACADEMICO','INI','FECHA OFICIAL INICIO','INSCRITO','ASISTENCIA','NO ASISTENCIA','MAT.','CUOTA','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15');
-$tamanos=array(3, 22, 12, 25, 12, 12, 9, 2, 11, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5)
+$tamanos=array(3, 22, 12, 25, 12, 12, 9, 2, 11, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5);
 
 
 	for($i=0;$i<count($cabecera);$i++){
