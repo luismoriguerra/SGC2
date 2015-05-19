@@ -53,7 +53,7 @@ $sql="	Select
 						From conmatp
 						Group By cfilial, cgruaca
 					) as mat
-				On gr.cfilial = mat.cfilial And gr.cgruaca = mat.cgruaca
+				On gr.cfilial = mat.cfilial And gr.cgracpr = mat.cgruaca
 		Where gr.cfilial IN ('".$cfilial."')
 		  And gr.cinstit IN ('".$cinstit."')
 		  And ".$fechas."
@@ -241,21 +241,22 @@ $objPHPExcel->getActiveSheet()->getStyle('F3')->applyFromArray($styleBold);
 $objPHPExcel->getActiveSheet()->setCellValue("G3","AL:");	
 $objPHPExcel->getActiveSheet()->getStyle("G3")->getAlignment()->setWrapText(true);
 $objPHPExcel->getActiveSheet()->getStyle('G3')->applyFromArray($styleBold);
-$objPHPExcel->getActiveSheet()->setCellValue("H3",$_GET['fechfin']);	
+$objPHPExcel->getActiveSheet()->setCellValue("H3",$_GET['fechfin']);
+$objPHPExcel->getActiveSheet()->mergeCells('H3:I3');
 $objPHPExcel->getActiveSheet()->getStyle("H3")->getAlignment()->setWrapText(true);
 $objPHPExcel->getActiveSheet()->getStyle('H3')->applyFromArray($styleBold);
 
-$objPHPExcel->getActiveSheet()->setCellValue("J3","REPORTE:");	
+$objPHPExcel->getActiveSheet()->setCellValue("J3","REPORTE");	
 $objPHPExcel->getActiveSheet()->mergeCells('J3:L3');
 $objPHPExcel->getActiveSheet()->getStyle('J3:L3')->applyFromArray($styleThickBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('J3:L3')->applyFromArray($styleAlignmentBold);
 
-$objPHPExcel->getActiveSheet()->setCellValue("M3","PAGANTES:");	
+$objPHPExcel->getActiveSheet()->setCellValue("M3","PAGANTES");	
 $objPHPExcel->getActiveSheet()->mergeCells('M3:N3');
 $objPHPExcel->getActiveSheet()->getStyle('M3:N3')->applyFromArray($styleThickBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('M3:N3')->applyFromArray($styleAlignmentBold);
 
-$objPHPExcel->getActiveSheet()->setCellValue("O3","ASISTENCIA:");	
+$objPHPExcel->getActiveSheet()->setCellValue("O3","ASISTENCIA");	
 $objPHPExcel->getActiveSheet()->mergeCells('O3:AC3');
 $objPHPExcel->getActiveSheet()->getStyle('O3:AC3')->applyFromArray($styleThickBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('O3:AC3')->applyFromArray($styleAlignmentBold);
@@ -265,7 +266,7 @@ $objPHPExcel->getActiveSheet()->getRowDimension("4")->setRowHeight(50); // altur
 
 
 $cabecera=array('N°','ODE','INSTITUCIÓN','CARRERA','FREC','HORA','CICLO ACADEMICO','INI','FECHA OFICIAL INICIO','INSCRITO','ASISTENCIA','NO ASISTENCIA','MAT.','CUOTA','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15');
-$tamanos=array(3, 22, 12, 25, 12, 12, 9, 2, 11, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5);
+$tamanos=array(3, 22, 12, 25, 12, 12, 9, 2.3, 11, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5);
 
 
 	for($i=0;$i<count($cabecera);$i++){
