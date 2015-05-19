@@ -1,11 +1,10 @@
 <?php
 /*conexion*/
-exit("r");
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 /*crea obj conexion*/
+
 $cn=MySqlConexion::getInstance();
-echo "r";
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
 $azcount=array(20,5,46,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 
@@ -293,8 +292,8 @@ if(count($rpt)>0){
 	foreach($rpt as $r){
 
 		if(($fil != $r["filial"] And $fil != "") And ($instit != $r["instituto"] And $instit != "")){
-			$objPHPExcel->getActiveSheet()->setCellValue($az[ 8].$valorinicial,"TOTALES");	
-			$objPHPExcel->getActiveSheet()->setCellValue($az[ 9].$valorinicial,"=SUM(".$az[ 9].($valorinicial-$cont).":".$az 9].($valorinicial-1).")");
+			$objPHPExcel->getActiveSheet()->setCellValue($az[8].$valorinicial,"TOTALES");	
+			$objPHPExcel->getActiveSheet()->setCellValue($az[9].$valorinicial,"=SUM(".$az[9].($valorinicial-$cont).":".$az[9].($valorinicial-1).")");
 			$objPHPExcel->getActiveSheet()->setCellValue($az[10].$valorinicial,"=SUM(".$az[10].($valorinicial-$cont).":".$az[10].($valorinicial-1).")");
 			$objPHPExcel->getActiveSheet()->setCellValue($az[11].$valorinicial,"=SUM(".$az[11].($valorinicial-$cont).":".$az[11].($valorinicial-1).")");
 			$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,"=SUM(".$az[12].($valorinicial-$cont).":".$az[12].($valorinicial-1).")");
@@ -324,16 +323,16 @@ if(count($rpt)>0){
 
 		$cont++;
 
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 0].$valorinicial,$cont);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 1].$valorinicial,$r["filial"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 2].$valorinicial,$r["instituto"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 3].$valorinicial,$r["carrera"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 4].$valorinicial,$r["frecuencia"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 5].$valorinicial,$r["hora"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 6].$valorinicial,$r["semestre"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 7].$valorinicial,$r["inicio"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 8].$valorinicial,$r["fec_ini"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[ 9].$valorinicial,$r["cant_insc"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[0].$valorinicial,$cont);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[1].$valorinicial,$r["filial"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[2].$valorinicial,$r["instituto"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[3].$valorinicial,$r["carrera"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[4].$valorinicial,$r["frecuencia"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[5].$valorinicial,$r["hora"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[6].$valorinicial,$r["semestre"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[7].$valorinicial,$r["inicio"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[8].$valorinicial,$r["fec_ini"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[9].$valorinicial,$r["cant_insc"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[10].$valorinicial,$r["cant_asist"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[11].$valorinicial,"=(".$az[9].$valorinicial." - ".$az[10].$valorinicial.")");
 		$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,$r["pag_mat"]);
@@ -359,8 +358,8 @@ if(count($rpt)>0){
 	}/*FOREACH*/
 
 
-	$objPHPExcel->getActiveSheet()->setCellValue($az[ 8].$valorinicial,"TOTALES");	
-	$objPHPExcel->getActiveSheet()->setCellValue($az[ 9].$valorinicial,"=SUM(".$az[ 9].($valorinicial-$cont).":".$az 9].($valorinicial-1).")");
+	$objPHPExcel->getActiveSheet()->setCellValue($az[8].$valorinicial,"TOTALES");	
+	$objPHPExcel->getActiveSheet()->setCellValue($az[9].$valorinicial,"=SUM(".$az[9].($valorinicial-$cont).":".$az[9].($valorinicial-1).")");
 	$objPHPExcel->getActiveSheet()->setCellValue($az[10].$valorinicial,"=SUM(".$az[10].($valorinicial-$cont).":".$az[10].($valorinicial-1).")");
 	$objPHPExcel->getActiveSheet()->setCellValue($az[11].$valorinicial,"=SUM(".$az[11].($valorinicial-$cont).":".$az[11].($valorinicial-1).")");
 	$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,"=SUM(".$az[12].($valorinicial-$cont).":".$az[12].($valorinicial-1).")");

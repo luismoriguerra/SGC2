@@ -86,7 +86,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 		AND o.copeven='$copeven'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
-		HAVING (v.cestado='1' or count(g.ft)>0 )
+		HAVING (v.cestado='1' AND count(g.ft)>0 )
 	";
 		if ($i == 20) {
 			// reiniciamos variables
@@ -117,7 +117,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 		AND o.copeven='$copeven'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
-		HAVING (v.cestado='1' or count(g.ft)>0 )
+		HAVING (v.cestado='1' AND count(g.ft)>0 )
 		";
 	}
 }
