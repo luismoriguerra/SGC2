@@ -21,10 +21,10 @@ $sql="	Select
 			,gr.csemaca						as semestre
 			,gr.cinicio						as inicio
 			,gr.finicio						as fec_ini
-			,ifnull(mat.cant,0) 			as cant_insc
+			,ifnull(alu.cant,0) 			as cant_insc
 			,0								as cant_asist
-			,0								as pag_mat
-			,0								as pag_cuo
+			,ifnull(alu.pag_mat,0)			as pag_mat
+			,ifnull(alu.pag_cuo,0)			as pag_cuo
 			,0								as asis_01
 			,0								as asis_02
 			,0								as asis_03
@@ -49,11 +49,23 @@ $sql="	Select
 				On gr.ccarrer = car.ccarrer
 			Inner Join horam hor
 				On gr.chora = hor.chora
-			Left Join (	Select cfilial, cgruaca, count(cingalu) as cant
-						From conmatp
-						Group By cfilial, cgruaca
-					) as mat
-				On gr.cfilial = mat.cfilial And gr.cgracpr = mat.cgruaca
+			Left Join (	Select 	con.cfilial, con.cgruaca, count(con.cingalu) as cant,
+								sum(ifnull(pag_mat.cont,0)) as pag_mat, sum(ifnull(pag_cuo.cont,0)) as pag_cuo
+						From conmatp con
+							Left Join (	Select Distinct a.cingalu, a.cfilial, a.cgruaca, 1 as cont
+										From recacap a
+										Where a.cconcep IN (Select cconcep From concepp Where cctaing like '701.01%' And cfilial = a.cfilial)
+									  	  And a.cfilial IN ('".$cfilial."')) as pag_mat
+								On con.cingalu = pag_mat.cingalu And con.cfilial = pag_mat.cfilial And con.cgruaca = pag_mat.cgruaca
+							Left Join (	Select Distinct b.cingalu, b.cfilial, b.cgruaca, 1 as cont
+										From recacap b
+										Where b.cconcep IN (Select cconcep From concepp Where cctaing like '701.03%' And cfilial = b.cfilial)
+									  	  And b.cfilial IN ('".$cfilial."') And b.ccuota = 1) as pag_cuo
+								On con.cingalu = pag_cuo.cingalu And con.cfilial = pag_cuo.cfilial And con.cgruaca = pag_cuo.cgruaca
+						Where con.cfilial IN ('".$cfilial."')
+						Group By con.cfilial, con.cgruaca
+					) as alu
+				On gr.cfilial = alu.cfilial And gr.cgracpr = alu.cgruaca
 		Where gr.cfilial IN ('".$cfilial."')
 		  And gr.cinstit IN ('".$cinstit."')
 		  And ".$fechas."
