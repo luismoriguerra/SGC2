@@ -29,7 +29,7 @@ $sql="	SELECT f.dfilial,i.dinstit,c.dcarrer
 		,IF(DateDiff(curdate(),g.finicio) >=0,0,(DateDiff(g.finicio,curdate()) )) AS dias_falta
 		,MAX(CONCAT(cc.ccarrer,cc.fusuari,'|',cc.nprecio)) precio
 		FROM gracprp g
-		INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota='5' AND cr.cestado='1')
+		INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota='2' AND cr.cestado='1')
 		INNER JOIN concepp cc ON (cc.cconcep=cr.cconcep AND cc.cestado='1' AND (cc.ccarrer in ('',g.ccarrer)) )
 		INNER JOIN filialm f ON f.cfilial=g.cfilial
 		INNER JOIN instita i ON i.cinstit=g.cinstit
