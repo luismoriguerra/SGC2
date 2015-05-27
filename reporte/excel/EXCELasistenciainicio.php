@@ -22,24 +22,8 @@ $sql="	Select
 			,gr.cinicio						as inicio
 			,gr.finicio						as fec_ini
 			,ifnull(alu.cant,0) 			as cant_insc
-			,0								as cant_asist
 			,ifnull(alu.pag_mat,0)			as pag_mat
 			,ifnull(alu.pag_cuo,0)			as pag_cuo
-			,0								as asis_01
-			,0								as asis_02
-			,0								as asis_03
-			,0								as asis_04
-			,0								as asis_05
-			,0								as asis_06
-			,0								as asis_07
-			,0								as asis_08
-			,0								as asis_09
-			,0								as asis_10
-			,0								as asis_11
-			,0								as asis_12
-			,0								as asis_13
-			,0								as asis_14
-			,0								as asis_15
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
@@ -47,7 +31,7 @@ $sql="	Select
 			,(select count(DISTINCT(s.cingalu)) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
-				where s.cgrupo=gr.cgracpr) t
+				where s.cgrupo=gr.cgracpr) 	as cant_asist
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
@@ -58,57 +42,91 @@ $sql="	Select
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 0,1
-			) as t1
+				limit 0,1) 					as asis_01
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 1,1
-			) as t2
+				limit 1,1) 					as asis_02
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 2,1
-			) as t3
+				limit 2,1) 					as asis_03
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 3,1
-			) as t4
+				limit 3,1) 					as asis_04
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 4,1
-			) as t5
+				limit 4,1) 					as asis_05
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 5,1
-			) as t6
+				limit 5,1) 					as asis_06
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 6,1
-			) as t7
+				limit 6,1) 					as asis_07
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 7,1
-			) as t8
+				limit 7,1) 					as asis_08
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 8,1) 					as asis_09
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 9,1) 					as asis_10
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 10,1) 				as asis_11
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 11,1) 				as asis_12
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 12,1) 				as asis_13
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 13,1) 				as asis_14
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 14,1) 				as asis_15
 
 		From gracprp	gr
 			Inner Join filialm fil
