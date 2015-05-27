@@ -453,7 +453,7 @@ var jqGridPersona={
 	},
 	promotor:function(){
 		var gridTU=$('#table_promotor').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=p',
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=p&cestado=1',
 			datatype:this.type,
 			gridview:true,
 			height:232,
@@ -522,7 +522,7 @@ var jqGridPersona={
 	},
 	teleoperadora:function(){
 		var gridTU=$('#table_teleoperadora').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=t',
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=t&cestado=1',
 			datatype:this.type,
 			gridview:true,
 			height:232,
@@ -591,7 +591,7 @@ var jqGridPersona={
 	},
 	recepcionista:function(){
 		var gridTU=$('#table_recepcionista').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=r',
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=r&cestado=1',
 			datatype:this.type,
 			gridview:true,
 			height:232,
@@ -661,7 +661,7 @@ var jqGridPersona={
 	},
 	dataWEB:function(){
 		var gridTU=$('#table_web').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=w',
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&tvended=w&cestado=1',
 			datatype:this.type,
 			gridview:true,
 			height:232,
@@ -868,7 +868,7 @@ var jqGridPersona={
 	},
 	jqgridVended:function(){
 		var gridTU=$('#table_jqgrid_vended').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&cestado=1&tvended='+$("#slct_medio_captacion").val().split("-")[2],
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&cestado=10&tvended='+$("#slct_medio_captacion").val().split("-")[2],
 			datatype:this.type,
 			gridview:true,
 			height:232,
