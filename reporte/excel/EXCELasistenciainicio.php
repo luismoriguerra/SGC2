@@ -28,105 +28,105 @@ $sql="	Select
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr) tt
-			,(select count(DISTINCT(s.cingalu)) ta
+			,ifnull((select count(DISTINCT(s.cingalu)) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
-				where s.cgrupo=gr.cgracpr) 	as cant_asist
+				where s.cgrupo=gr.cgracpr),0) 	as cant_asist
 			,(select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				AND a.fecha=gr.finicio) t1_1
-			,(select count(s.cingalu) ta
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 0,1) 					as asis_01
-			,(select count(s.cingalu) ta
+				limit 0,1),0)				as asis_01
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 1,1) 					as asis_02
-			,(select count(s.cingalu) ta
+				limit 1,1),0)				as asis_02
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 2,1) 					as asis_03
-			,(select count(s.cingalu) ta
+				limit 2,1),0)				as asis_03
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 3,1) 					as asis_04
-			,(select count(s.cingalu) ta
+				limit 3,1),0)				as asis_04
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 4,1) 					as asis_05
-			,(select count(s.cingalu) ta
+				limit 4,1),0)				as asis_05
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 5,1) 					as asis_06
-			,(select count(s.cingalu) ta
+				limit 5,1),0)				as asis_06
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 6,1) 					as asis_07
-			,(select count(s.cingalu) ta
+				limit 6,1),0)				as asis_07
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 7,1) 					as asis_08
-			,(select count(s.cingalu) ta
+				limit 7,1),0)				as asis_08
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 8,1) 					as asis_09
-			,(select count(s.cingalu) ta
+				limit 8,1),0)				as asis_09
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 9,1) 					as asis_10
-			,(select count(s.cingalu) ta
+				limit 9,1),0)				as asis_10
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 10,1) 				as asis_11
-			,(select count(s.cingalu) ta
+				limit 10,1),0) 				as asis_11
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 11,1) 				as asis_12
-			,(select count(s.cingalu) ta
+				limit 11,1),0) 				as asis_12
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 12,1) 				as asis_13
-			,(select count(s.cingalu) ta
+				limit 12,1),0) 				as asis_13
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 13,1) 				as asis_14
-			,(select count(s.cingalu) ta
+				limit 13,1),0) 				as asis_14
+			,ifnull((select count(s.cingalu) ta
 				from aluasist a
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
-				limit 14,1) 				as asis_15
+				limit 14,1) ,0)				as asis_15
 
 		From gracprp	gr
 			Inner Join filialm fil
