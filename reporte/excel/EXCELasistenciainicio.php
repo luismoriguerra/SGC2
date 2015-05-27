@@ -40,6 +40,76 @@ $sql="	Select
 			,0								as asis_13
 			,0								as asis_14
 			,0								as asis_15
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr) tt
+			,(select count(DISTINCT(s.cingalu)) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr) t
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				AND a.fecha=gr.finicio) t1_1
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 0,1
+			) as t1
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 1,1
+			) as t2
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 2,1
+			) as t3
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 3,1
+			) as t4
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 4,1
+			) as t5
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 5,1
+			) as t6
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 6,1
+			) as t7
+			,(select count(s.cingalu) ta
+				from aluasist a
+				inner join seinggr s ON (s.id=a.idseing)
+				where s.cgrupo=gr.cgracpr
+				GROUP BY s.cgrupo,a.fecha
+				limit 7,1
+			) as t8
+
 		From gracprp	gr
 			Inner Join filialm fil
 				On gr.cfilial = fil.cfilial
@@ -229,7 +299,7 @@ $objDrawing->setOffsetX(10);
 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 
-//$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
+$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
 $objPHPExcel->getActiveSheet()->setCellValue("A1","ASISTENCIAS POR INICIO");
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A1:AC1');

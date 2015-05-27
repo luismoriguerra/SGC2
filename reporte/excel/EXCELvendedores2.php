@@ -61,7 +61,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	if ($i <= 20) {
 	$query1 = "
 		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(i2.dinstit,'') vinstit,
-			count(IF(g.it=i.cinstit,g.ft,NULL)) c0
+			count(IF(g.it=i.cinstit,g.ft,NULL)) c0,count(g.cconmat) ctf
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
 			,(select count(*) faltas from venfala
@@ -124,7 +124,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 }
 $sql = " select * from ($query1) q1 ";
 if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.cvended=q1.cvended AND q2.cinstit=q1.cinstit ";}
-$sql .= " order BY q1.vendedor,q1.dinstit ";
+$sql .= " order BY ctf DESC,q1.vendedor,q1.dinstit ";
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 $sql2="SELECT concat(dnomper,' ',dappape,' ',dapmape) as nombre
@@ -258,7 +258,7 @@ $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 
-//$objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
+$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
 $objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor." - ".$dopeven);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 // primermas columnas simples
