@@ -26,6 +26,7 @@ $sql="	Select
 			,ifnull(alu.pag_cuo,0)			as pag_cuo
 			,(select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr) tt
 			,ifnull((select count(DISTINCT(s.cingalu)) ta
@@ -39,90 +40,105 @@ $sql="	Select
 				AND a.fecha=gr.finicio) t1_1
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 0,1),0)				as asis_01
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 1,1),0)				as asis_02
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 2,1),0)				as asis_03
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 3,1),0)				as asis_04
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 4,1),0)				as asis_05
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 5,1),0)				as asis_06
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 6,1),0)				as asis_07
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 7,1),0)				as asis_08
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 8,1),0)				as asis_09
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 9,1),0)				as asis_10
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 10,1),0) 				as asis_11
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 11,1),0) 				as asis_12
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 12,1),0) 				as asis_13
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
 				limit 13,1),0) 				as asis_14
 			,ifnull((select count(s.cingalu) ta
 				from aluasist a
+				inner join ingalum i ON i.cingalu=a.cingalu AND i.cestado=1
 				inner join seinggr s ON (s.id=a.idseing)
 				where s.cgrupo=gr.cgracpr
 				GROUP BY s.cgrupo,a.fecha
@@ -317,7 +333,7 @@ $objDrawing->setOffsetX(10);
 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 */
 
-$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
+/*$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);*/
 $objPHPExcel->getActiveSheet()->setCellValue("A1","ASISTENCIAS POR INICIO");
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A1:AC1');
