@@ -868,7 +868,7 @@ var jqGridPersona={
 	},
 	jqgridVended:function(){
 		var gridTU=$('#table_jqgrid_vended').jqGrid({
-			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&cestado=10&tvended='+$("#slct_medio_captacion").val().split("-")[2],
+			url:'../controlador/controladorSistema.php?comando=persona&accion=jqgrid_trabajador&cestado=1&tvended='+$("#slct_medio_captacion").val().split("-")[2],
 			datatype:this.type,
 			gridview:true,
 			height:232,
