@@ -61,7 +61,12 @@
                                                 		<option value="">--Selecione--</option>
                                                     </optgroup>
                                                 </select>
-                                            </td>    
+                                            </td>
+                                            <!-- <td class="t-left">
+                                                <select id="slct_instituto" class="input-medium"><option value="">--Selecione--</option></select>
+                                            </td> -->
+                                        </tr>
+                                        <tr>
                                             <td class="t-left label">Institución:</td>
                                             <td class="t-left">
                                                 <select id="slct_instituto" class="input-xlarge" style="width: 370px; display: none;" multiple>
@@ -70,11 +75,8 @@
                                                     </optgroup>
                                                 </select>
                                             </td>
-                                            <!-- <td class="t-left">
-                                                <select id="slct_instituto" class="input-medium"><option value="">--Selecione--</option></select>
-                                            </td> -->
                                         </tr>
-                                        <tr>
+                                        <!--tr>
                                             <td class="t-left label">Semestre:</td>
                                             <td class="t-left">
                                                 <select id="slct_semestre" class="input-medium"><option value="">--Selecione--</option></select>
@@ -83,7 +85,7 @@
                                             <td class="t-left">
                                                 <select id="slct_ciclo" class="input-medium"><option value="">--Selecione--</option></select>
                                             </td>
-                                       </tr>
+                                       </tr-->
                                        <tr>
                                             <td class="t-left label input-large">Fechas de Inicio de Grupos:</td>
                                             <td class="t-left">
