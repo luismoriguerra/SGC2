@@ -30,8 +30,8 @@ $alumno="";
 
 $cfilial=str_replace(",","','",$_GET['cfilial']);
 $cinstit=str_replace(",","','",$_GET['cinstit']);
-$csemaca=explode(" | ",$_GET['csemaca']);
-$cciclo=$_GET['cciclo'];
+//$csemaca=explode(" | ",$_GET['csemaca']);
+//$cciclo=$_GET['cciclo'];
 
 $orden=$_GET['orden'];
 $fechini=$_GET['fechini'];
@@ -59,10 +59,7 @@ $where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 $order=" ORDER BY ".$orden;
 	}
 	else{
-$where.=" AND g.cinstit='".$cinstit."' 
-		  AND g.csemaca='".$csemaca[0]."'
-		  AND g.cinicio='".$csemaca[1]."'  
-		  AND g.cciclo='".$cciclo."' ";
+$where.=" AND g.cinstit='".$cinstit."' ";
 	}
 		 
 }
