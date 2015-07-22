@@ -44,6 +44,22 @@ class MySqlCencapDAO{
         }
     }
     
+    public function ListCencapAll($r){
+        $sql="  SELECT c.ccencap AS id , CONCAT(f.dfilial,':=> ',c.description) AS nombre 
+                FROM cencapm c
+                INNER JOIN filialm f ON c.cfilial=f.cfilial AND f.cestado = 1
+                WHERE c.cestado = 1
+                ORDER BY f.dfilial,c.description";
+        $db=creadorConexion::crear('MySql');
+
+        $db->setQuery($sql);
+        $data=$db->loadObjectList();
+        if(count($data)>0){
+            return array('rst'=>'1','msj'=>'Centro Captaciones cargados','data'=>$data);
+        }else{
+            return array('rst'=>'2','msj'=>'No existen Centro Captaciones','data'=>$data,'sql'=>$sql);
+        }
+    }
     
    	public function addCencap($r){
 		$db=creadorConexion::crear('MySql');

@@ -30,7 +30,8 @@ for ($i = 0; $letras[$i]; $i++) {
 		$azcount[] = 15;
 	}
 }
-$cfilial=str_replace(",","','",$_GET['cfilial']);
+//$cfilial=str_replace(",","','",$_GET['cfilial']);
+$ccencap=str_replace(",","','",$_GET['ccencap']);
 $fechainicio =$_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
 $ayer = date("Y-m-d" , strtotime("-1 day",strtotime($fechafin)));

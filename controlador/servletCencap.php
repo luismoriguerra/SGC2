@@ -35,6 +35,9 @@ class servletCencap extends controladorComandos{
                     $data['cfilial']=trim($_POST['cfilial']);
                     echo json_encode($daoCencap->ListCencap($data));
                     break;                			
+                case 'ListCencapAll':
+                    echo json_encode($daoCencap->ListCencapAll());
+                    break;
                 default:
                     echo json_encode(array('rst'=>3,'msg'=>'Action no encontrado'.$_POST['action']));
             endswitch;

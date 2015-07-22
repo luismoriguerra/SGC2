@@ -2,9 +2,10 @@ $(document).ready(function(){
 	
 	$('#nav-reportes').addClass('active');
 	$('#btn_exportar').click(function(){Exportar()});
-	institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
+	//institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
+    cencapDAO.ListCencapAll(sistema.llenaSelectGrupo,'slct_cencap','','CentroCap');
 	institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
-	$("#slct_filial").multiselect({
+	$("#slct_cencap").multiselect({
    	selectedList: 4 // 0-based index
 	}).multiselectfilter();
 	$("#slct_instituto").multiselect({
@@ -87,7 +88,7 @@ Exportar=function(){
         sistema.msjAdvertencia("Ingrese Fecha Matricula",2000);
         $("#txt_fecha_matric").focus();
     }else{
-	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?cfilial='+$("#slct_filial").val().join(",")                    
+	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?ccencap='+$("#slct_cencap").val().join(",")                    
                     +'&cinstit='+$("#slct_instituto").val().join(",")
                     +'&anio='+$("#anio option:selected").attr("label")
                     +'&mes='+$("#matriculaMes").val()

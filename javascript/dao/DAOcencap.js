@@ -36,16 +36,36 @@ var cencapDAO={
             error: this.msjErrorAjax
         });
     },
-	ListarCencap: function(fxllena,slct_dest,id_slct){
+	ListCencapAll: function(fxllena,slct_dest,id_slct,tit){
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+            	comando:'cencap',
+            	action:'ListCencapAll'
+            },
+            beforeSend : function ( ) {
+            },
+            success : function ( obj ) {
+                if( obj.length!=0 ){
+                    fxllena(obj.data,slct_dest,id_slct,tit);
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },
+    ListarCencap: function(fxllena,slct_dest,id_slct){
         $.ajax({
             url : this.url,
             type : 'POST',
             async:true,//no ejecuta otro ajax hasta q este termine
             dataType : 'json',
             data : {
-            	comando:'cencap',
-            	action:'ListCencap',
-				cfilial:$("#hd_idFilial").val()
+                comando:'cencap',
+                action:'ListCencap',
+                cfilial:$("#hd_idFilial").val()
             },
             beforeSend : function ( ) {
             },
