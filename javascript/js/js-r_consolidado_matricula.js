@@ -78,9 +78,9 @@ $(document).ready(function(){
 
 
 Exportar=function(){
-    if( $.trim($("#slct_filial").val())=="" ){
-        sistema.msjAdvertencia("Debe seleccionar una filial",2000);
-        $("#slct_filial").focus();
+    if( $.trim($("#slct_cencap").val())=="" ){
+        sistema.msjAdvertencia("Debe seleccionar Centro de Captacion",2000);
+        $("#slct_cencap").focus();
     }else if( $.trim($("#slct_instituto").val()) == "" ){
         sistema.msjAdvertencia("Debe seleccionar una Institucion",2000);
         $("#slct_instituto").focus();
@@ -88,7 +88,7 @@ Exportar=function(){
         sistema.msjAdvertencia("Ingrese Fecha Matricula",2000);
         $("#txt_fecha_matric").focus();
     }else{
-	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?ccencap='+$("#slct_cencap").val().join(",")                    
+	window.location='../reporte/excel/EXCELconsolidadoMatricula.php?ccencap='+$("#slct_cencap").val().join(",")
                     +'&cinstit='+$("#slct_instituto").val().join(",")
                     +'&anio='+$("#anio option:selected").attr("label")
                     +'&mes='+$("#matriculaMes").val()

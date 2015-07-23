@@ -59,27 +59,29 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(g.i$cam) c$cam ";
 	if ($i <= 20) {
 		$query1 = "
-		SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
+		SELECT f.description dfilial,i.dinstit,f.ccencap cfilial,i.cinstit,g.ft,g.it
 		,count(g.it) c0
 		$sql_column_count
-		FROM filialm f
+		FROM cencapm f
 		INNER JOIN instita i
 		LEFT JOIN
 		(
-			SELECT g.cfilial ft,g.cinstit it,c.fmatric
+			SELECT i.ccencap ft,g.cinstit it,c.fmatric
 			$sql_dias_column
-			FROM conmatp c
+			FROM ingalum i
+			INNER JOIN conmatp c ON c.cingalu=i.cingalu
 			INNER JOIN recacap r ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-			INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
 			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			$sql_dias
 			WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+			AND i.cestado=1
+			AND i.ccencap IN ('$ccencap') 
 			GROUP BY c.cconmat
-		) g ON (f.cfilial=g.ft AND i.cinstit=g.it)
-		WHERE f.cfilial IN ('$cfilial')
+		) g ON (f.ccencap=g.ft AND i.cinstit=g.it)
+		WHERE f.ccencap IN ('$ccencap')
 		AND i.cinstit IN ('$cinstit')
-		GROUP BY f.cfilial,i.cinstit
-		ORDER BY f.dfilial,i.dinstit
+		GROUP BY f.ccencap,i.cinstit
+		ORDER BY f.description,i.dinstit
 	";
 		if ($i == 20) {
 			// reiniciamos variables
@@ -89,27 +91,28 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 		}
 	} elseif ($i < 40) {
 		$query2 = "
-			SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
-		,count(g.it) c0
+		SELECT f.description dfilial,i.dinstit,f.ccencap cfilial,i.cinstit,g.ft,g.it
 		$sql_column_count
-		FROM filialm f
+		FROM cencapm f
 		INNER JOIN instita i
 		LEFT JOIN
 		(
-			SELECT g.cfilial ft,g.cinstit it,c.fmatric
+			SELECT i.ccencap ft,g.cinstit it,c.fmatric
 			$sql_dias_column
-			FROM conmatp c
+			FROM ingalum i
+			INNER JOIN conmatp c ON c.cingalu=i.cingalu
 			INNER JOIN recacap r ON (c.cingalu=r.cingalu AND c.cgruaca=r.cgruaca)
-			INNER JOIN concepp co ON (co.cconcep=r.cconcep AND co.cctaing LIKE '701.03%')
 			INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
 			$sql_dias
-			WHERE c.fmatric BETWEEN '$fechainicio' and '$fechafin'
+			WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
+			AND i.cestado=1
+			AND i.ccencap IN ('$ccencap') 
 			GROUP BY c.cconmat
-		) g ON (f.cfilial=g.ft AND i.cinstit=g.it)
-		WHERE f.cfilial IN ('$cfilial')
+		) g ON (f.ccencap=g.ft AND i.cinstit=g.it)
+		WHERE f.ccencap IN ('$ccencap')
 		AND i.cinstit IN ('$cinstit')
-		GROUP BY f.cfilial,i.cinstit
-		ORDER BY f.dfilial,i.dinstit
+		GROUP BY f.ccencap,i.cinstit
+		ORDER BY f.description,i.dinstit
 		";
 	}
 }
@@ -139,7 +142,7 @@ $sql="	SELECT f.dfilial,i.dinstit,f.cfilial,i.cinstit,g.ft,g.it
 $sql = " select * from ($query1) q1 ";
 if ($query2) {	$sql.= " inner join	($query2) q2 ON q2.cfilial=q1.cfilial AND q2.cinstit=q1.cinstit ";}
 $sql .= " order BY q1.cfilial,q1.dinstit ";
-
+ //exit($sql);
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 $sql2="SELECT concat(dnomper,' ',dappape,' ',dapmape) as nombre

@@ -10,8 +10,8 @@ $(document).ready(function(){
         nextText:'Siguiente',
         prevText:'Anterior'
     });
-    institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
-    $("#slct_filial").multiselect({
+    cencapDAO.ListCencapAll(sistema.llenaSelectGrupo,'slct_cencap','','CentroCap');
+    $("#slct_cencap").multiselect({
         selectedList: 4 // 0-based index
     }).multiselectfilter();
     institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
@@ -67,9 +67,9 @@ $(document).ready(function(){
 
 
 Exportar=function(){
-    if( $.trim($("#slct_filial").val())=="" ){
-        sistema.msjAdvertencia("Debe seleccionar una filial",2000);
-        $("#slct_filial").focus();
+    if( $.trim($("#slct_cencap").val())=="" ){
+        sistema.msjAdvertencia("Debe seleccionar Centro de Captacion",2000);
+        $("#slct_cencap").focus();
     }else if( $("#txt_fecha_matric").val() == "" ){
         sistema.msjAdvertencia("Ingrese Fecha Matricula",2000);
         $("#txt_fecha_matric").focus();
@@ -77,7 +77,7 @@ Exportar=function(){
         sistema.msjAdvertencia("Debe seleccionar una Institucion",2000);
         $("#slct_instituto").focus();
     }else{
-    window.location='../reporte/excel/EXCELconsolidadoMasivo.php?cfilial='+$("#slct_filial").val().join(",")
+    window.location='../reporte/excel/EXCELconsolidadoMasivo.php?ccencap='+$("#slct_cencap").val().join(",")
                     +'&cinstit='+$("#slct_instituto").val().join(",")
                     +'&anio='+$("#anio option:selected").attr("label")
                     +'&mes='+$("#matriculaMes").val()

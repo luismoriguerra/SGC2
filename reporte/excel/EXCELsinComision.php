@@ -25,7 +25,7 @@ for ($i = 0; $letras[$i]; $i++) {
         $azcount[] = 15;
     }
 }
-$cfilial=str_replace(",","','",$_GET['cfilial']);
+$ccencap=str_replace(",","','",$_GET['ccencap']);
 $nombreReporte= $_GET['nombreReporte'];
 $fechainicio =$_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
@@ -61,13 +61,14 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         (
             SELECT g.cfilial ft,i.ctipcap,g.cinstit it,c.fmatric
             $sql_dias_column
-            FROM conmatp c
-            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            FROM ingalum i
+            INNER JOIN conmatp c ON c.cingalu=i.cingalu
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
              INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
-            and f.cfilial IN ('$cfilial')
+            AND i.cestado=1
+            AND i.ccencap IN ('$ccencap')
             GROUP BY c.cconmat
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
         WHERE  i.cinstit IN ('$cinstit')
@@ -91,13 +92,14 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         (
             SELECT g.cfilial ft,i.ctipcap,g.cinstit it,c.fmatric
             $sql_dias_column
-            FROM conmatp c
-            INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            FROM ingalum i
+            INNER JOIN conmatp c ON c.cingalu=i.cingalu
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
              INNER JOIN filialm f ON f.cfilial=g.cfilial
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
-            and f.cfilial IN ('$cfilial')
+            AND i.cestado=1
+            AND i.ccencap IN ('$ccencap')
             GROUP BY c.cconmat
         ) g ON (t.ctipcap=g.ctipcap AND i.cinstit=g.it)
         WHERE i.cinstit IN ('$cinstit')

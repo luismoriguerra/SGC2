@@ -53,17 +53,7 @@
                        
                                 <!--Inicio tabla-->
                                 <table style="width:90%">
-                                       <!--tr> 
-                                            <td class="t-left label">Filial:</td>
-                                            <td class="t-left">
-                                                <select id="slct_filial" class="input-xlarge" style="width: 370px; display: none;" multiple>
-                                                	<optgroup label="Filial">
-                                                		<option value="">--Selecione--</option>
-                                                    </optgroup>
-                                                </select>
-                                            </td>                                           
-                                        </tr-->
-                                        <tr> 
+                                       <tr> 
                                             <td class="t-left label">Centro Captación:</td>
                                             <td class="t-left">
                                                 <select id="slct_cencap" class="input-xlarge" style="width: 370px; display: none;" multiple>
@@ -71,7 +61,7 @@
                                                         <option value="">--Selecione--</option>
                                                     </optgroup>
                                                 </select>
-                                            </td>                                           
+                                            </td>
                                         </tr>
                                         <tr>
                                         	<td class="t-left label">Institución:</td>
