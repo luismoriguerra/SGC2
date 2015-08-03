@@ -87,6 +87,15 @@ $sql="SELECT DISTINCT
 		,CONCAT(p.ntelper,' | ',p.ntelpe2) AS telefono
 		,IF(i.cestado='1','Activo','Retirado') AS cestado
 		,p.email1 AS email
+        ,If(p.coddpto>0,(Select dep.nombre From ubigeo dep Where dep.coddpto=p.coddpto And dep.codprov=0 And dep.coddist=0),'') As prov
+        ,If(p.codprov>0,(Select pro.nombre From ubigeo pro Where pro.coddpto=p.coddpto And pro.codprov=p.codprov And pro.coddist=0),'') As depa
+        ,If(p.coddist>0,(Select dis.nombre From ubigeo dis Where dis.coddpto=p.coddpto And dis.codprov=p.codprov And dis.coddist=p.coddist),'') As dist
+        ,If(p.tsexo='F','FEMENINO','MASCULINO') As sexo
+        ,p.tipdocper
+        ,p.ndniper
+        ,'SOLTERO' As estadoa
+        ,p.ddirper
+        ,p.ddirref
 		,(Select GROUP_CONCAT(d.dnemdia SEPARATOR '-') From diasm d Where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0) As frecuencia
 		,concat(h.hinici,'-',h.hfin) As hora
 		,f.dfilial
@@ -314,10 +323,26 @@ $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray($styleAlignmentRi
 
 $cabecera=array('N°','CAJA - ODE-CENT. DE CAPTACIÓN','CAJERO QUE INSCRIBE','FICHA DE  MATRICULA ','LIBRO DE CODIGO','ESTADO','APELL PATERNO','APELL MATERNO','NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO','LOCAL DE ESTUDIOS','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION','TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','RECEPCIONISTA','FECHA MATRIC','FECHA DIGITACION');
 
+    array_push($cabecera,'GENERO');
+    array_push($cabecera,'TIPO DOCUMENTO');
+    array_push($cabecera,'NRO DOCUMENTO');
+    array_push($cabecera,'ESTADO CIVIL');
+    array_push($cabecera,'DIRECCIÓN');
+    array_push($cabecera,'REFERENCIA');
+    array_push($cabecera,'DEPARTAMENTO');
+    array_push($cabecera,'PROVINCIA');
+    array_push($cabecera,'DISTRITO');
+
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
 	$objPHPExcel->getActiveSheet()->getStyle($az[$i]."5")->getAlignment()->setWrapText(true);
 	$objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
+        if($az[$i]=="AK" or $az[$i]=="AL" or $az[$i]=="AO"){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(27);
+        }
+        elseif($az[$i]=="AH"){
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(13);
+        }
 	}
 $objPHPExcel->getActiveSheet()->getStyle('A4:'.$az[($i)].'5')->applyFromArray($styleAlignmentBold);
 
@@ -367,6 +392,10 @@ $objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[$pos].'5');$pos+=1
 $objPHPExcel->getActiveSheet()->setCellValue($az[$pos]."4","FECHA DIGITACION");
 $objPHPExcel->getActiveSheet()->getStyle($az[$posini]."4:".$az[$pos]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF6699');
 $objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[$pos].'5');$pos+=1;
+
+$objPHPExcel->getActiveSheet()->setCellValue($az[$pos]."4","REFERENCIA DEL ALUMNO");
+$objPHPExcel->getActiveSheet()->getStyle($az[$pos]."4:".$az[($pos+8)]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[($pos+8)].'4');$pos+=8;
 
 $objPHPExcel->getActiveSheet()->getStyle("F5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFFFF00');
 
@@ -426,6 +455,16 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$dclacap);$
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['recepcionista']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['fmatric']);$paz++;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['fusuari']);$paz++;
+
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['sexo']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['tipdocper']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['ndniper']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['estadoa']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['ddirper']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['ddirref']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['depa']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['prov']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['dist']);$paz++;
 
 }
 $objPHPExcel->getActiveSheet()->getStyle("A6:".$az[($paz-1)].$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
