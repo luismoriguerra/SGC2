@@ -17,7 +17,7 @@ $sql="	Select
 			,ins.dinstit					as instituto
 			,car.dcarrer					as carrera
 			,(Select GROUP_CONCAT(d.dnemdia SEPARATOR '-') From diasm d Where FIND_IN_SET (d.cdia,replace(gr.cfrecue,'-',','))  >  0)	as frecuencia
-			,hor.hinici + ' - ' + hor.hfin 	as hora
+			,CONCAT(hor.hinici , ' - ' , hor.hfin) 	as hora
 			,gr.csemaca						as semestre
 			,gr.cinicio						as inicio
 			,gr.finicio						as fec_ini
@@ -173,6 +173,7 @@ $sql="	Select
 		Where gr.cfilial IN ('".$cfilial."')
 		  And gr.cinstit IN ('".$cinstit."')
 		  And ".$fechas."
+          AND gr.cesgrpr='3'
 		Order By filial, instituto";
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();

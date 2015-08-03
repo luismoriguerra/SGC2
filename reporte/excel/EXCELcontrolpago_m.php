@@ -114,6 +114,15 @@ $sql="SELECT DISTINCT
 		,replace(i.dcodlib,'-','') As dcodlib 
 		,CONCAT(p.ntelper,' | ',p.ntelpe2) AS telefono
 		,IF(i.cestado='1','Activo','Retirado') AS cestado
+        ,If(p.coddpto>0,(Select dep.nombre From ubigeo dep Where dep.coddpto=p.coddpto And dep.codprov=0 And dep.coddist=0),'') As prov
+        ,If(p.codprov>0,(Select pro.nombre From ubigeo pro Where pro.coddpto=p.coddpto And pro.codprov=p.codprov And pro.coddist=0),'') As depa
+        ,If(p.coddist>0,(Select dis.nombre From ubigeo dis Where dis.coddpto=p.coddpto And dis.codprov=p.codprov And dis.coddist=p.coddist),'') As dist
+        ,If(p.tsexo='F','FEMENINO','MASCULINO') As sexo
+        ,p.tipdocper
+        ,p.ndniper
+        ,'SOLTERO' As estadoa
+        ,p.ddirper
+        ,p.ddirref
 		,p.email1 AS email
 		,(Select GROUP_CONCAT(d.dnemdia SEPARATOR '-') From diasm d Where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0) As frecuencia
 		,concat(h.hinici,'-',h.hfin) As hora
@@ -213,7 +222,8 @@ $cn->setQuery($sql);
 $control=$cn->loadObjectList();
 
 /*echo count($control)."-";
-echo $sql;*/
+*/
+//echo $sql;
 
 
 $sqlusu = "SELECT Concat(dnomper, ' ', dappape, ' ', dapmape) As nombre	 FROM personm WHERE dlogper='".$cusuari."'";
@@ -342,9 +352,9 @@ $objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
 $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray($styleAlignmentRight);
 
 $cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO',
-	'NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO',
-	'LOCAL DE ESTUDIOS','MOD. INGRESO','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION',
-	'TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','FECHA DIGITACION');
+    'NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO',
+    'LOCAL DE ESTUDIOS','MOD. INGRESO','INSCRIPCION','MATRIC','PENSION','MATRIC','PENSION','DEUDA TOTAL','MEDIO CAPTACION','RESPONSABLE CAPTACION',
+    'TIPO CAPTACION','CODIGO RESPONSABLE CAPTACION','FECHA DIGITACION');
 	// agregamos las fechas a la cabecera
 	foreach ($dfechas as $f) {
 		array_push($cabecera,$f);
@@ -353,12 +363,25 @@ $cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO',
 	array_push($cabecera, "ASISTIO");
 	array_push($cabecera, "SECCION");
 
+    array_push($cabecera,'GENERO');
+    array_push($cabecera,'TIPO DOCUMENTO');
+    array_push($cabecera,'NRO DOCUMENTO');
+    array_push($cabecera,'ESTADO CIVIL');
+    array_push($cabecera,'DIRECCIÓN');
+    array_push($cabecera,'REFERENCIA');
+    array_push($cabecera,'DEPARTAMENTO');
+    array_push($cabecera,'PROVINCIA');
+    array_push($cabecera,'DISTRITO');
+
 
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
 	$objPHPExcel->getActiveSheet()->getStyle($az[$i]."5")->getAlignment()->setWrapText(true);
-	$objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
+    $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
+        if($az[$i]=="BB" or $az[$i]=="AX" or $az[$i]=="AY"){
+        $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth(27);
+        }
 	}
 $objPHPExcel->getActiveSheet()->getStyle('A4:'.$az[($i)].'5')->applyFromArray($styleAlignmentBold);
 
@@ -389,7 +412,9 @@ $objPHPExcel->getActiveSheet()->setCellValue("AC4","DATOS DE ASISTENCIA");
 $objPHPExcel->getActiveSheet()->mergeCells('AC4:AS4');
 $objPHPExcel->getActiveSheet()->getStyle("AC4:AS5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
 
-
+$objPHPExcel->getActiveSheet()->setCellValue("AT4","REFERENCIA DEL ALUMNO");
+$objPHPExcel->getActiveSheet()->mergeCells('AT4:BB4');
+$objPHPExcel->getActiveSheet()->getStyle("AT4:BB5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
 
 $objPHPExcel->getActiveSheet()->getStyle("A4:H5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
 $objPHPExcel->getActiveSheet()->getStyle("I4:Q5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFABF8F');
@@ -507,12 +532,22 @@ $contadoringresos=0;
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial, $asistio);
 	//seccion
 	$actualCol++;
-	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r["seccion"]);
+	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r["seccion"]);$actualCol++;
 
+
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['sexo']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['tipdocper']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['ndniper']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['estadoa']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['ddirper']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['ddirref']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['depa']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['prov']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['dist']);$actualCol++;
 
 }
-$objPHPExcel->getActiveSheet()->getStyle("A6:AS".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
-$objPHPExcel->getActiveSheet()->getStyle('A4:AS'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:BB".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
+$objPHPExcel->getActiveSheet()->getStyle('A4:BB'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago_M');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
