@@ -60,7 +60,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
 	if ($i <= 20) {
 	$query1 = "
-		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(i2.dinstit,'') vinstit,
+		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(v.dinstit,'') vinstit,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0,count(g.cconmat) ctf
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
@@ -70,7 +70,6 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         FROM instita i
 		INNER JOIN vendedm v
 		INNER JOIN opevena o ON o.copeven=v.copeven
-		LEFT JOIN instita i2 ON i2.cinstit=v.cinstit
         LEFT JOIN
         (
             SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric
