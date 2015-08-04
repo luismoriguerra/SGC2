@@ -257,7 +257,7 @@ $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 
-$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
+//$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
 $objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor." - ".$dopeven);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 // primermas columnas simples
