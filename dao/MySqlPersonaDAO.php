@@ -840,10 +840,7 @@ class MySqlPersonaDAO{
         //$rows = json_decode($data["data"]);
         //var_dump($rows);
         foreach($rows as $vendedor) {
-            $cinstit="";
-            if(trim($vendedor->cinstit)!=''){
-                $cinstit=" , cinstit = '". $vendedor->cinstit . "'";
-            }
+
             if(trim($vendedor->montele)==''){
                 $vendedor->montele=0;
             }
@@ -854,7 +851,7 @@ class MySqlPersonaDAO{
                 . " , descto = ". $vendedor->descuento
                 . " , horari = '". $vendedor->horario . "'"
                 . " , montele = ". $vendedor->montele 
-                . $cinstit
+                . " , dinstit = '". $vendedor->dinstit . "'"
                 . " where cvended = '". $vendedor->id ."'";
             $db->setQuery($sql);
             if(!$db->executeQuery()){
@@ -909,7 +906,8 @@ class MySqlPersonaDAO{
 			v.tdocper,v.fingven,v.fretven,v.tsexo,v.coddpto,v.codprov,v.coddist,
 			v.ddirecc,v.codintv,v.tvended,v.cinstit,
 			IF(v.cestado='1','Activo','Inactivo') as cestado , copeven, sueldo, montele,
-			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas, descto, horari
+			(select GROUP_CONCAT(UNIX_TIMESTAMP(diafalt) * 1000  SEPARATOR 'D') faltas from venfala where cvended = v.cvended and cestado = 1) faltas,
+			descto, horari, v.dinstit
 			from vendedm v
 			WHERE 1=1 $where
             ORDER BY $sidx $sord

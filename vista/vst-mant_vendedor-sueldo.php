@@ -94,32 +94,53 @@
                     <div class="Listado-vendedores"
                          ng-show="vendedores.length">
                         <div>
-                            <div style="text-align: left; display: inline-block; float: left;">
-                                Agregar sueldo a todos :
-                                <input type="number"
-                                       ng-model="sueldoComun"
-                                       placeholder="Monto"/>
-                                <button ng-click="actualizarTodosLosSueldos()">Asignar a Monto</button>
+
+                            <div style="float: left">
+
+                                <table style="text-align: left">
+                                    <tr>
+                                        <th>Agregar sueldo a todos</th>
+                                        <td><input type="number"
+                                                   style="width: 100%"
+                                                   ng-model="sueldoComun"
+                                                   placeholder="Monto"/></td>
+                                        <td> <button ng-click="actualizarTodosLosSueldos()" style="width: 100%" >Asignar a Monto</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>                                    Agregar Horario a todos :
+                                        </th>
+                                        <td> <input type="text"
+                                                    style="width: 100%"
+
+                                                    ng-model="horariogeneral"
+                                                    placeholder="Horario"/></td>
+                                        <td>                                    <button ng-click="actualizarTodosHorarios()" style="width: 100%">Asignar a Horarios</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>                                    Agregar Monto Telefono a todos :
+                                        </th>
+                                        <td><input type="number"
+                                                   ng-model="montotelefonogeneral"
+                                                   style="width: 100%"
+                                                   placeholder="Monto Telefono"/></td>
+                                        <td>                                    <button ng-click="actualizarTodosTelefono()" style="width: 100%">Asignar a Monto Telefono</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>                                    Agregar Institucion a todos :
+                                        </th>
+                                        <td><input type="text" style="width: 100%"
+                                                   ng-model="institutogeneral"
+                                                   placeholder="Institucion"/></td>
+                                        <td>                                    <button ng-click="actualizarTodosInstitucion()" style="width: 100%">Asignar a Institucion</button>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
 
-                            <div style="text-align: left; display: inline-block; float: left;">
-                                Agregar Horario a todos :
-                                <input type="text"
-                                       ng-model="horariogeneral"
-                                       placeholder="Horario"/>
-                                <button ng-click="actualizarTodosHorarios()">Asignar a Horarios</button>
-                            </div>
-
-                            <div style="text-align: left; display: inline-block; float: left;">
-                                Agregar Monto Telefono a todos :
-                                <input type="number"
-                                       ng-model="montotelefonogeneral"
-                                       placeholder="Monto"/>
-                                <button ng-click="actualizarTodosTelefono()">Asignar a Monto Telefono</button>
-                            </div>
-
-
-                            <div style="text-align: right; display: inline-block;">
+                            <div>
                                 <button ng-click="guardarTodos()"> Guardar Todos </button>
                             </div>
                         </div>
@@ -165,11 +186,9 @@
                                            placeholder=""/>
                                 </td>
                                 <td class="t-left">
-                                    <select id="slct_instituto"
-                                            class="input-xlarge"
-                                            ng-model="vendedor.cinstit"
-                                            ng-options="item.id as item.nombre for item in instituciones">
-                                    </select>
+                                    <input type="text"
+                                           ng-model="vendedor.dinstit"
+                                           placeholder=""/>
                                 </td>
                                 <td>
                                     <a href="#"

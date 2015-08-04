@@ -107,7 +107,7 @@ cargarDistritot=function(){
 								identity: angular.identity,
 								activeDate: null,
 								montele: parseFloat(ven.cell[23]),
-								cinstit: ven.cell[24],
+								dinstit: ven.cell[24],
 								selectedDates: faltas  // index 20
 							}
 						});
@@ -141,6 +141,14 @@ cargarDistritot=function(){
 				if ($scope.vendedores.length) {
 					$scope.vendedores.forEach(function (ven) {
 						ven.montele = $scope.montotelefonogeneral;
+					});
+				}
+			};
+
+			$scope.actualizarTodosInstitucion = function () {
+				if ($scope.vendedores.length) {
+					$scope.vendedores.forEach(function (ven) {
+						ven.dinstit = $scope.institutogeneral;
 					});
 				}
 			};

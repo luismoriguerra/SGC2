@@ -909,7 +909,7 @@ class servletPersona extends controladorComandos{
 							$data[$i]['descto'],
 							$data[$i]['horari'],
 							$data[$i]['montele'],
-							$data[$i]['cinstit'], // 24
+							$data[$i]['dinstit'], // 24
                             )
                         )
                     );
