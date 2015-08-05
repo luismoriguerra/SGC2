@@ -84,9 +84,9 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
 		AND o.copeven='$copeven'
+		AND v.cestado='1'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
-		HAVING (v.cestado='1' AND count(g.ft)>0 )
 	";
 		if ($i == 20) {
 			// reiniciamos variables
@@ -115,9 +115,9 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
 		AND o.copeven='$copeven'
+		AND v.cestado='1'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
-		HAVING (v.cestado='1' AND count(g.ft)>0 )
 		";
 	}
 }
@@ -140,7 +140,7 @@ $rpt3=$cn->loadObjectList();
 /*
 echo count($control)."-";
 echo $sql;
-*/
+*///exit($sql);
 date_default_timezone_set('America/Lima');
 require_once 'includes/Classes/PHPExcel.php';
 $styleThinBlackBorderOutline = array(
@@ -385,7 +385,7 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=H".$valorinicial."-G".$valorinicial . " + 1 - ".$r["faltas"]);
 		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['faltas']);
 
-		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=".$r['ntelefo']."/".(count($rpt)/count($rpt3)) );
+		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=".$r['ntelefo'] );
 		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=(".$pago."/".$cantulimodia.")*K".$valorinicial."-J".$valorinicial);
 
 		$objPHPExcel->getActiveSheet()->setCellValue("O".$valorinicial, "=IFERROR((M".$valorinicial." + N".$valorinicial.")/".$az[$iniciadinamica].$valorinicial.",0)");
