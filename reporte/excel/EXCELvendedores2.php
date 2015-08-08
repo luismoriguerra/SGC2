@@ -24,8 +24,8 @@ for ($i = 0; $letras[$i]; $i++) {
 }
 $tvended=$_GET['tvended'];
 $dvendedor=$_GET['dvendedor'];
-$copeven=$_GET['copeven'];
-$dopeven=$_GET['dopeven'];
+
+$copeven=str_replace(",","','",$_GET['copeven']);
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
 $fechainicio = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
 if (date("m") == date("m", strtotime($fechainicio))){
@@ -60,7 +60,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
 	if ($i <= 20) {
 	$query1 = "
-		SELECT v.cvended,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(v.dinstit,'') vinstit,
+		SELECT v.cvended,o.dopeven,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(v.dinstit,'') vinstit,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0,count(g.cconmat) ctf
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
@@ -83,7 +83,8 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             GROUP BY c.cconmat
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
-		AND o.copeven='$copeven'
+        AND o.fingven<='$mesUltimoDia'
+		AND o.copeven IN ('$copeven')
 		AND v.cestado='1'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
@@ -114,7 +115,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             GROUP BY c.cconmat
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
-		AND o.copeven='$copeven'
+		AND o.copeven IN ('$copeven')
 		AND v.cestado='1'
 		AND i.cinstit IN ('$cinstit')
 		GROUP BY v.cvended,i.cinstit
@@ -258,7 +259,7 @@ $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Workshee
 $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 
 //$objPHPExcel->getActiveSheet()->setCellValue("A2",$sql);
-$objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor." - ".$dopeven);
+$objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 // primermas columnas simples
 $cabecera=array('N°','VENDEDOR','CÓDIGO','ESTADO', "HORARIO","INST VENDE",'INICIO','TERMINO','BÁSICO','DESCUENTO','DIAS LABORADOS','DIAS NO LABORADOS','TELÉFONO','PLANILLA','COSTO POR ALUMNO','PROMEDIO DIARIO');

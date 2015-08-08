@@ -9,6 +9,10 @@ $(document).ready(function(){
     selectedList: 4 // 0-based index
     }).multiselectfilter();
 
+    $("#slct_opeven").multiselect({
+    selectedList: 4 // 0-based index
+    }).multiselectfilter();
+
 	$(':text[id^="txt_fecha"]').datepicker({
 		dateFormat:'yy-mm-dd',
 		dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
@@ -73,14 +77,14 @@ $(document).ready(function(){
 })();
 
 ActualizaCentroOpe=function(){
-    personaDAO.listarOpeven(sistema.llenaSelect,"slct_opeven","");
+    personaDAO.listarOpevenG(sistema.llenaSelectGrupo,'slct_opeven','','Centros');
 };
 
 Exportar=function(){
     if( $.trim($("#slct_vendedor").val())=="" ){
         sistema.msjAdvertencia("Debe seleccionar un tipo vendedor",2000);
         $("#slct_filial").focus();
-    }else if( $.trim($("#slct_opeven").val()) == "" ){
+    }else if( $("#slct_opeven").length==0 ){
         sistema.msjAdvertencia("Debe seleccionar un centro de operaciones",2000);
         $("#slct_instituto").focus();
     }else if( $("#txt_fecha_matric").val() == "" ){
@@ -91,8 +95,7 @@ Exportar=function(){
         $("#txt_pago_mensual").focus();
     }else{
 	window.location='../reporte/excel/EXCELvendedores2.php?cinstit='+$("#slct_instituto").val().join(",")
-                    +'&copeven='+$("#slct_opeven").val()
-                    +'&dopeven='+$("#slct_opeven option[value='"+$("#slct_opeven").val()+"']").html()
+                    +'&copeven='+$("#slct_opeven").val().join(",")
                     +'&tvended='+$("#slct_vendedor").val()
                     +'&dvendedor='+$("#slct_vendedor option[value='"+$("#slct_vendedor").val()+"']").html()
                     +'&anio='+$("#anio option:selected").attr("label")

@@ -306,6 +306,29 @@ var personaDAO={
             error: this.msjErrorAjax
         });
     },
+
+    listarOpevenG: function(fxllena,slct_dest,id_slct,titulo){
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando:'opeven',
+                action:'cargarOpevenbyTipcap',
+                didetip:$("#slct_vendedor").val()
+            },
+            beforeSend : function ( ) {
+            },
+            success : function ( obj ) {
+               
+                if( obj.length!=0 ){
+                    fxllena(obj.data,slct_dest,id_slct,titulo);
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },
     
     ListarFiltrobyID: function(fxllena,slct_dest,id_slct){
         $.ajax({
