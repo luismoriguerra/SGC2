@@ -386,7 +386,7 @@ foreach ($rpt as $r) {
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial, "=H".$valorinicial."-G".$valorinicial . " + 1 - ".$r["faltas"]);
 		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial, "=".$r['faltas']);
 
-		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=".$r['ntelefo'] );
+		$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=(".$r['ntelefo']."/".$cantulimodia.")*K".$valorinicial);
 		$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=(".$pago."/".$cantulimodia.")*K".$valorinicial."-J".$valorinicial);
 
 		$objPHPExcel->getActiveSheet()->setCellValue("O".$valorinicial, "=IFERROR((M".$valorinicial." + N".$valorinicial.")/".$az[$iniciadinamica].$valorinicial.",0)");
