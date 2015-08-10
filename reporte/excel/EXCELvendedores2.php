@@ -83,7 +83,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
             GROUP BY c.cconmat
         ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
         WHERE v.tvended='$tvended'
-        AND o.fingven<='$mesUltimoDia'
+        AND v.fingven<='$mesUltimoDia'
 		AND o.copeven IN ('$copeven')
 		AND v.cestado='1'
 		AND i.cinstit IN ('$cinstit')

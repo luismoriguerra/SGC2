@@ -8,11 +8,8 @@ $(document).ready(function(){
     $("#slct_instituto").multiselect({
     selectedList: 4 // 0-based index
     }).multiselectfilter();
-
-    $("#slct_opeven").multiselect({
-    selectedList: 4 // 0-based index
-    }).multiselectfilter();
-
+    $("#slct_opeven").multiselect();
+    
 	$(':text[id^="txt_fecha"]').datepicker({
 		dateFormat:'yy-mm-dd',
 		dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
@@ -77,14 +74,18 @@ $(document).ready(function(){
 })();
 
 ActualizaCentroOpe=function(){
+    $("#slct_opeven").multiselect("destroy")
     personaDAO.listarOpevenG(sistema.llenaSelectGrupo,'slct_opeven','','Centros');
+    $("#slct_opeven").multiselect({
+    selectedList: 4 // 0-based index
+    }).multiselectfilter();
 };
 
 Exportar=function(){
     if( $.trim($("#slct_vendedor").val())=="" ){
         sistema.msjAdvertencia("Debe seleccionar un tipo vendedor",2000);
         $("#slct_filial").focus();
-    }else if( $("#slct_opeven").length==0 ){
+    }else if( $("#slct_opeven").val()==null ){
         sistema.msjAdvertencia("Debe seleccionar un centro de operaciones",2000);
         $("#slct_instituto").focus();
     }else if( $("#txt_fecha_matric").val() == "" ){

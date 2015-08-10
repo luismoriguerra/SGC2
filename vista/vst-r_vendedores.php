@@ -74,7 +74,7 @@
                                        <tr> 
                                             <td class="t-left label">Centro Operación:</td>
                                             <td class="t-left">
-                                                <select id="slct_opeven" class="input-large">
+                                                <select id="slct_opeven" class="input-large" style="width: 370px; display: none;" multiple>
                                                 	<option value="">--Selecione--</option>
                                                 </select>
                                             </td>                                           
