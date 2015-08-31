@@ -46,10 +46,7 @@ $where=" WHERE c.cgruaca in ('".str_replace(",","','",$cgracpr)."') ".$alumno;
 }
 else{
 $where=" WHERE g.cfilial in ('".$cfilial."') 
-		 AND g.cinstit in ('".$cinstit."') 
-		 AND g.csemaca='".$csemaca[0]."'
-		 AND g.cinicio='".$csemaca[1]."'  
-		 AND g.cciclo='".$cciclo."'";
+		 AND g.cinstit in ('".$cinstit."')";
 	
 	if($fechini!='' and $fechfin!=''){
 $where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
@@ -58,7 +55,7 @@ $where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 
 
 //DATA DE LAS CLASES DEL GRUPO
-$sql="select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr = '$cgracpr';";
+$sql="select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr in ('".str_replace(",","','",$cgracpr)."')";
 
 $cn->setQuery($sql);
 $data=$cn->loadObject();
@@ -134,7 +131,13 @@ $sql="SELECT
 			If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
 				If(i.destica!='',i.destica,''))) As detalle_captacion
 		,tu.dturno
-		,(Select concat(con.ncuotas,'C-',floor(con.nprecio)) From concepp con Where FIND_IN_SET (con.cconcep,GROUP_CONCAT(DISTINCT(r.cconcep)))  >  0 and con.cctaing like '701.03%') As pago_pension
+		,(	Select concat(con.ncuotas,'C-',floor(con.nprecio)) From concepp con 
+			INNER JOIN recacap re2 ON re2.cconcep=con.cconcep
+			Where con.cctaing like '701.03%'
+			AND re2.ccuota=1
+			AND re2.cingalu=c.cingalu
+			AND re2.cgruaca=c.cgruaca
+			LIMIT 1) As pago_pension
 		,i.certest As certest
 		,i.partnac As partnac
 		,If(i.fotodni = '1', 'SI', If(i.fotodni = '0', 'NO', '')) As fotodni
@@ -153,7 +156,8 @@ $sql="SELECT
 				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
 			From recacap rr 
 				INNER JOIN concepp co On (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
+			Where rr.cingalu=c.cingalu
+				and rr.cgruaca=c.cgruaca
 			  And co.cctaing like '708%'
 			  And (rr.testfin in ('C','P')
 			  OR (rr.cdocpag!='' and rr.testfin='S'))
@@ -165,7 +169,8 @@ $sql="SELECT
 				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
 			From recacap rr 
 				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
+			Where rr.cingalu=c.cingalu
+				and rr.cgruaca=c.cgruaca
 			  And (co.cctaing like '701.01%' or co.cctaing like '701.02%')
 			  And (rr.testfin in ('C','P')
 			  OR (rr.cdocpag!='' and rr.testfin='S'))
@@ -177,64 +182,13 @@ $sql="SELECT
 				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
 			From recacap rr 
 				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
+			Where rr.cingalu=c.cingalu
+				and rr.cgruaca=c.cgruaca
 			  And co.cctaing like '701.03%'
 			  And rr.ccuota='1'
 			  And (rr.testfin in ('C','P')
 			  OR (rr.cdocpag!='' and rr.testfin='S'))
 			GROUP BY rr.cingalu,rr.cgruaca ),'') As p1
-		,IfNull((Select CONCAT(GROUP_CONCAT(
-				IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
-			  		IF(rr.tdocpag='B',(Select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) From boletap b Where b.cboleta=rr.cdocpag),
-						IF(rr.tdocpag='V',(Select concat(v.numvou,'-',b.dbanco,'|',rr.nmonrec,'|',date(rr.festfin)) From vouchep v Inner Join bancosm b on (v.cbanco=b.cbanco) Where v.cvouche=rr.cdocpag),''))
-				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
-			From recacap rr 
-				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
-			  And co.cctaing like '701.03%'
-			  And rr.ccuota='2'
-			  And (rr.testfin in ('C','P')
-			  OR (rr.cdocpag!='' and rr.testfin='S'))
-			GROUP BY rr.cingalu,rr.cgruaca),'') As p2
-		,IfNull((Select CONCAT(GROUP_CONCAT(
-				IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
-			  		IF(rr.tdocpag='B',(Select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) From boletap b Where b.cboleta=rr.cdocpag),
-						IF(rr.tdocpag='V',(Select concat(v.numvou,'-',b.dbanco,'|',rr.nmonrec,'|',date(rr.festfin)) From vouchep v Inner Join bancosm b on (v.cbanco=b.cbanco) Where v.cvouche=rr.cdocpag),''))
-				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
-			From recacap rr 
-				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
-			  And co.cctaing like '701.03%'
-			  And rr.ccuota='3'
-			  And (rr.testfin in ('C','P')
-			  OR (rr.cdocpag!='' and rr.testfin='S'))
-			GROUP BY rr.cingalu,rr.cgruaca),'') As p3
-		,IfNull((Select CONCAT(GROUP_CONCAT(
-				IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
-			  		IF(rr.tdocpag='B',(Select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) From boletap b Where b.cboleta=rr.cdocpag),
-						IF(rr.tdocpag='V',(Select concat(v.numvou,'-',b.dbanco,'|',rr.nmonrec,'|',date(rr.festfin)) From vouchep v Inner Join bancosm b on (v.cbanco=b.cbanco) Where v.cvouche=rr.cdocpag),''))
-				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
-			From recacap rr 
-				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
-			  And co.cctaing like '701.03%'
-			  And rr.ccuota='4'
-			  And (rr.testfin in ('C','P')
-			  OR (rr.cdocpag!='' and rr.testfin='S'))
-			GROUP BY rr.cingalu,rr.cgruaca),'') As p4
-		,IfNull((Select CONCAT(GROUP_CONCAT(
-				IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
-			  		IF(rr.tdocpag='B',(Select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) From boletap b Where b.cboleta=rr.cdocpag),
-						IF(rr.tdocpag='V',(Select concat(v.numvou,'-',b.dbanco,'|',rr.nmonrec,'|',date(rr.festfin)) From vouchep v Inner Join bancosm b on (v.cbanco=b.cbanco) Where v.cvouche=rr.cdocpag),''))
-				,CONCAT(rr.nmonrec,'_',rr.fvencim)) SEPARATOR '^^' ),'')
-			From recacap rr
-				INNER JOIN concepp co on (co.cconcep=rr.cconcep)
-			Where FIND_IN_SET (rr.crecaca,GROUP_CONCAT(r.crecaca))  >  0
-			  And co.cctaing like '701.03%'
-			  And rr.ccuota='5'
-			  And (rr.testfin in ('C','P')
-			  OR (rr.cdocpag!='' and rr.testfin='S'))
-			GROUP BY rr.cingalu,rr.cgruaca),'') As p5
 		,ins.dinstit
 		,i.posbeca
 		,m.dmoding
@@ -259,10 +213,8 @@ $sql="SELECT
 		INNER JOIN filialm f2 	On (f2.cfilial 	= g.cfilial)
 		INNER JOIN instita ins 	On (ins.cinstit	= g.cinstit)
 		INNER JOIN modinga m 	On (m.cmoding  	= i.cmoding)
-		INNER JOIN recacap r 	On (r.cingalu  	= c.cingalu and r.cgruaca=c.cgruaca)
 		left JOIN seinggr s 	On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
-	".$where."
-	AND r.`testfin`!='F' 
+	".$where." 
 	GROUP BY c.cingalu,c.cgruaca
 	ORDER BY p.dappape ASC, p.dapmape ASC, p.dnomper ASC, p.cperson DESC";
 
@@ -703,7 +655,7 @@ $objPHPExcel->getActiveSheet()->getStyle("BP".$valorinicial.":BU".$valorinicial)
 $objPHPExcel->getActiveSheet()->setCellValue("BV".$valorinicial,'');
 $objPHPExcel->getActiveSheet()->setCellValue("BW".$valorinicial,'');
 $objPHPExcel->getActiveSheet()->setCellValue("BX".$valorinicial,'');
-
+/*
 $p=explode("^^",$r['p2']);	
 $fecha="";
 $monto="";
@@ -910,7 +862,7 @@ $objPHPExcel->getActiveSheet()->setCellValue("DE".$valorinicial,$monto2);
 $objPHPExcel->getActiveSheet()->getStyle("CZ".$valorinicial.":DE".$valorinicial)->getAlignment()->setWrapText(true);
 $objPHPExcel->getActiveSheet()->setCellValue("DF".$valorinicial,'');
 $objPHPExcel->getActiveSheet()->setCellValue("DG".$valorinicial,'');
-$objPHPExcel->getActiveSheet()->setCellValue("DH".$valorinicial,'');
+$objPHPExcel->getActiveSheet()->setCellValue("DH".$valorinicial,'');*/
 $total=$deudaalumno+$pagoalumno;
 $totalins=$deudains+$pagoins;
 $totalmat=$deudamat+$pagomat;

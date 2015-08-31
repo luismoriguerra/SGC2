@@ -175,18 +175,18 @@ class MySqlGrupoAcademicoDAO{
 		$fechfin=$data['fechfin'];
 		
 		$filtro='';
-		if(strlen($sem)==6){$filtro=" AND g.csemaca='".$sem."' ";}
+		/*if(strlen($sem)==6){$filtro=" AND g.csemaca='".$sem."' ";}
 		elseif(trim($sem)!=''){$filtro=" AND CONCAT(g.csemaca,' | ',g.cinicio) in ('".$sem."') ";}
-
+		*/
 		if($data['fechini']!='' and $data['fechfin']!=''){
 			$filtro.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 		}
-
+		/*
 		$ciclo="";
 
 		if($data['cciclo']!=''){
 			$ciclo=" g.cciclo='".$data['cciclo']."' ";
-		}
+		}*/
 
         $sql="	SELECT  f.dfilial,ins.dinstit,t.dturno,c.dcarrer,g.csemaca,g.cinicio,g.finicio,g.ffin,concat(
 				(select GROUP_CONCAT(d.dnemdia SEPARATOR '-')
@@ -207,7 +207,6 @@ class MySqlGrupoAcademicoDAO{
 				inner JOIN carrerm c on (c.ccarrer=g.ccarrer)
 				WHERE g.cfilial in ('".$fil."')
 				and g.cinstit in ('".$ins."')
-				".$ciclo."
 				".$filtro."
 				AND g.cesgrpr in ('3','4')
 				GROUP by g.csemaca,g.cfilial,g.cinstit,g.ccarrer,g.cciclo,g.cinicio,g.cfrecue,g.cturno,g.chora,g.finicio,g.ffin

@@ -57,11 +57,13 @@
                                             <td class="t-left label">Filial:</td>
                                             <td class="t-left">
                                                 <select id="slct_filial" class="input-xlarge" style="width: 370px; display: none;" multiple>
-                                                	<optgroup label="Filial">
-                                                		<option value="">--Selecione--</option>
+                                                    <optgroup label="Filial">
+                                                        <option value="">--Selecione--</option>
                                                     </optgroup>
                                                 </select>
-                                            </td>    
+                                            </td>                                           
+                                        </tr>
+                                        <tr>
                                             <td class="t-left label">Institución:</td>
                                             <td class="t-left">
                                                 <select id="slct_instituto" class="input-xlarge" style="width: 370px; display: none;" multiple>
@@ -72,21 +74,6 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="t-left label">Semestre:</td>
-                                            <td class="t-left">
-                                                <!--<select id="slct_semestre" class="input-xlarge" style="width: 370px; display: none;" multiple>
-                                                    <optgroup label="Semestre">
-                                                        <option value="">-Selecione-</option>
-                                                    </optgroup>
-                                                </select>-->
-                                                <select id="slct_semestre" class="input-medium"><option value="">--Selecione--</option></select>
-                                            </td>
-                                            <td class="t-left label">Ciclo:</td>
-                                            <td class="t-left">
-                                                <select id="slct_ciclo" class="input-medium"><option value="">--Selecione--</option></select>
-                                            </td>
-                                       </tr>          
-                                       <tr>
                                             <td class="t-left label input-large">Fechas de Inicio de Grupos:</td>
                                             <td class="t-left">
                                             Del:
@@ -94,7 +81,7 @@
                                             Al
                                             <input type="text" id="txt_fecha_fin" class="input-medium" value="">
                                             </td>
-                                       </tr>                             
+                                       </tr>                            
                                     </table>
                                 <!--fin talba-->                                
                                 <br>
@@ -109,7 +96,7 @@
                                     <span style="margin:15px 0px 10px 0px;">
                                         <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarGrupoG();">
                                             <i class="icon-white icon-th"></i>
-                                            <span>Exportar Todo</span>
+                                            <span>Exportar Seleccionado</span>
                                         </a>
                                     </span>
                                 </div>
@@ -127,7 +114,7 @@
                                             <td class="t-center label" width="150">F.INICIO/F FINAL</td>
                                             <td class="t-center label" width="150">HORARIO</td>
                                             <td class="t-center label" >T.A</td>
-                                            <td class="t-center label" >[/]</td>
+                                            <td class="t-center label" ><input type="checkbox" onchange="tooglecheck(this);"></td>
                                         </tr>
                                     </table>
                                     </div>

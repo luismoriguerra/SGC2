@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	
 	$('#nav-reportes').addClass('active');//aplica estilo al menu activo		
-	carreraDAO.cargarCiclo(sistema.llenaSelect,'slct_ciclo','');
 	//institucionDAO.cargarInstitucionValida(sistema.llenaSelect,'slct_instituto','');
 	institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
     //institucionDAO.cargarFilial(sistema.llenaSelectGrupo,'slct_filial','','Filial');	
@@ -60,6 +59,7 @@ VisualizarGruposHTML=function(obj){
         '        	<i class="icon-white icon-folder-open"></i>'+
         '       </a>'+
         ' 	</div>'+
+        '	<input type="checkbox" name="" id="" value="'+obj[i].id+'">'
 		'</td>';
 	htm+="</tr>";
 	}
@@ -107,12 +107,40 @@ VisualizarDetalleHTML=function(obj){
 	$("#lista_alumnos").html(htm);	
 }
 
+tooglecheck=function(t){
+	if($(t).is(':checked')){
+		$("#v_lista_grupo input[type=checkbox]").attr("checked","true");
+	}
+	else{
+		$("#v_lista_grupo input[type=checkbox]").removeAttr("checked");
+	}
+}
+
 ExportarGrupo=function(grupo,alumno){
 	window.location='../reporte/excel/EXCELcontrolpago.php?cgracpr='
                 	+grupo+'&cingalu='+alumno;
 }
 
 ExportarGrupoG=function(){
+	valida=0;
+	grupo='';
+	alumno='';
+	$("#v_lista_grupo input[type=checkbox]:checked").each(function(){
+		valida++;
+		grupo+=this.value+',';
+	});
+
+	if(valida==0){
+		alert("Seleccione almenos 1 check");
+	}
+	else{
+		grupo=grupo.substr(0,grupo.length-1)
+
+		window.location='../reporte/excel/EXCELcontrolpago.php?cgracpr='
+                	+grupo+'&cingalu='+alumno;
+        
+	}
+	/*
 	var cfilial=$("#slct_filial").val().join(",");
 	var cinstit=$("#slct_instituto").val().join(",");
 	var fechini=$("#txt_fecha_inicio").val();
@@ -121,4 +149,5 @@ ExportarGrupoG=function(){
 	var cciclo=$("#slct_ciclo").val();
 	window.location='../reporte/excel/EXCELcontrolpago.php?cfilial='
                 	+cfilial+'&cinstit='+cinstit+'&csemaca='+csemaca+'&cciclo='+cciclo+'&fechini='+fechini+'&fechfin='+fechfin;
+                	*/
 }

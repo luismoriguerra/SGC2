@@ -159,17 +159,21 @@ $sql="	Select
 							Left Join (	Select Distinct a.cingalu, a.cfilial, a.cgruaca, 1 as cont
 										From recacap a
 										Where a.cconcep IN (Select cconcep From concepp Where cctaing like '701.01%' And cfilial = a.cfilial)
-									  	  And a.cfilial IN ('".$cfilial."')) as pag_mat
-								On con.cingalu = pag_mat.cingalu And con.cfilial = pag_mat.cfilial And con.cgruaca = pag_mat.cgruaca
+									  	  And a.cfilial IN ('".$cfilial."')
+									  	AND (a.testfin='C' OR (a.cdocpag!='' and a.testfin='S'))
+									  ) as pag_mat
+								On con.cingalu = pag_mat.cingalu And con.cgruaca = pag_mat.cgruaca
 							Left Join (	Select Distinct b.cingalu, b.cfilial, b.cgruaca, 1 as cont
 										From recacap b
 										Where b.cconcep IN (Select cconcep From concepp Where cctaing like '701.03%' And cfilial = b.cfilial)
-									  	  And b.cfilial IN ('".$cfilial."') And b.ccuota = 1) as pag_cuo
-								On con.cingalu = pag_cuo.cingalu And con.cfilial = pag_cuo.cfilial And con.cgruaca = pag_cuo.cgruaca
+									  	  And b.cfilial IN ('".$cfilial."') And b.ccuota = 1
+									  	AND (b.testfin='C' OR (b.cdocpag!='' and b.testfin='S'))
+									  	) as pag_cuo
+								On con.cingalu = pag_cuo.cingalu And con.cgruaca = pag_cuo.cgruaca
 						Where con.cfilial IN ('".$cfilial."')
-						Group By con.cfilial, con.cgruaca
+						Group By con.cgruaca
 					) as alu
-				On gr.cfilial = alu.cfilial And gr.cgracpr = alu.cgruaca
+				On gr.cgracpr = alu.cgruaca
 		Where gr.cfilial IN ('".$cfilial."')
 		  And gr.cinstit IN ('".$cinstit."')
 		  And ".$fechas."
@@ -453,7 +457,12 @@ if(count($rpt)>0){
 		$objPHPExcel->getActiveSheet()->setCellValue($az[9].$valorinicial,$r["cant_insc"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[10].$valorinicial,$r["cant_asist"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[11].$valorinicial,"=(".$az[9].$valorinicial." - ".$az[10].$valorinicial.")");
-		$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,$r["pag_mat"]);
+		$mat=$r["pag_mat"]-$r["pag_cuo"];
+		if($mat<0){
+			$mat=0;
+		}
+
+		$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,$mat);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[13].$valorinicial,$r["pag_cuo"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[14].$valorinicial,$r["asis_01"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[15].$valorinicial,$r["asis_02"]);
