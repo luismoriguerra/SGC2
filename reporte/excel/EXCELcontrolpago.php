@@ -916,16 +916,18 @@ $objPHPExcel->getActiveSheet()->setCellValue("EF".$valorinicial,$dclacap);
 	}
 
 	// ASISTENCIA DE ALUMNOS
+	$sumatoria=0;
 	$actualCol = array_search("EG", $az);
 	for( $i = 0 ; $i < 15; $i++) {
 		$actualCol++;
 		$estado = ($r["dia".$i]) ? $r["dia".$i] : 0;
+		$sumatoria+=$estado*1;
 		$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$estado);
 	}
 
 	//asistio
 	$actualCol++;
-	$asistio = ($sumatoria) ? "Asistio" : "No asisitio";
+	$asistio = ($sumatoria)>0 ? "Asistio" : "No asisitio";
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial, $asistio);
 	//seccion
 	$actualCol++;
