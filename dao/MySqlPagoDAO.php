@@ -30,11 +30,12 @@ class MySqlPagoDAO{
 						and rr.testfin='P' 
 						and rr.fvencim<'".$d['fvencim']."'
 						and rr.crecaca not in ($crecacas)  ";
-			$db->setQuery($sqlvalida);
+			/*$db->setQuery($sqlvalida);
 			$data2=$db->loadObjectList();
 				if(count($data2)>0){
 				return array('rst'=>'2','msj'=>'Ud tiene una deuda anterior debe seleccionarlo primero','data'=>$data,'sql'=>$sqlvalida);exit();
-				}				
+				}
+			*/
 			}
 			return array('rst'=>'1','msj'=>'','data'=>$data,'sql'=>$sqlvalida);exit();
         }else{
