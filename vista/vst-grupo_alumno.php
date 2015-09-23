@@ -49,80 +49,180 @@
                             <!-- fin buscar -->
                             <BR><BR>
                             <table align="center" width="80%">
-                            <tr><td>                                                        
-                            	<div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> GRUPO DEL CUAL SE ESTA RETIRANDO</div>
-                        		<br>
-                                <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
-                                   <tr class="FormData">
-                                    <td class="t-left label" >
-                                      <b>Operación</b>
+                            <tr>
+                                <td>
+                                    <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> GRUPO DEL CUAL SE ESTA RETIRANDO</div>
+                                    <br>
+                                    <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
+                                       <tr class="FormData">
+                                        <td class="t-left label" >
+                                          <b>Operación</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <select id="slct_operacion" style="width:220px" onChange="Visualizar(this.value);" disabled>
+                                          <option value="R" selected>RETIRO</option>
+                                          <!--<option value="C">CAMBIO PERSONA/GRUPO</option>-->
+                                          </select>
+                                        </td>
+                                      </tr>
+                                      <tr class="FormData">
+                                        <td class="t-left label" >
+                                          <b>Alumno</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_nombre" class="input-large" disabled>
+                                          <input type="text" class="esconde" id="txt_cingalu">
+                                          <input type="text" class="esconde" id="txt_cgracpr">
+                                        </td>
+                                      </tr><tr class="FormData">
+                                        <td class="t-left label" >
+                                          <b>Carrera</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_dcarrer" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
+                                        </td>
+                                        <td class="t-left label" >
+                                          <b>Ode</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_dfilial" class="input-mediun" disabled>
+                                        </td>
+                                        <td class="t-left label" >
+                                          <b>Instituto</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_dinstit" class="input-mediun" disabled>
+                                        </td>
+                                      </tr>
+                                      </tr><tr class="FormData">
+                                        <td class="t-left label" >
+                                          <b>Semestre</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_csemaca" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
+                                        </td>
+                                        <td class="t-left label" >
+                                          <b>Inicio</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_cinicio" class="input-mediun" disabled>
+                                        </td>
+                                        <td class="t-left label" >
+                                          <b>Fecha Inicio</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_finicio" class="input-mediun" disabled>
+                                        </td>
+                                      </tr>
+                                      </tr><tr class="FormData">
+                                        <td class="t-left label" >
+                                          <b>Horario</b>
+                                        </td>
+                                        <td class="t-left">
+                                          <input type="text" id="txt_dhorari" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td>
+                                        <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS DE DEVOLUCION</div>
+                                        <br>
+                                        <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
+                                            <tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Fecha de Retiro</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_fech_ret" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Fecha de Devolucion</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_fech_dev" class="input-mediun" >
+                                                </td>
+
+                                            </tr>
+                                            </tr><tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Tipo de Devolucion</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <select id="slct_tip_dev" style="width:220px">
+                                                        <option value="E" selected>Efectivo</option>
+                                                        <option value="T">Transferencia</option>
+                                                    </select>
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Descripción</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_des"  class="input-xlarge" >
+                                                </td>
+
+                                            </tr>
+                                            <tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Monto a retirar</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_mon_ret" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>% Descuento</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_por_des" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Monto de Descuento</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_mon_des" class="input-mediun" >
+                                                </td>
+                                            </tr>
+                                            <tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Boleta Serie</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_bol_ser" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Tipo de pago</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <select id="slct_tip_pag" style="width:220px">
+                                                        <option value="B" selected>Boleta</option>
+                                                        <option value="V">Voucher</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Fecha Boleta</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_mon_ret" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Monto Boleta</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_por_des" class="input-mediun" >
+                                                </td>
+                                                <td class="t-left label" >
+                                                    <b>Concepto</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <input type="text" id="txt_mon_des" class="input-mediun" >
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
-                                    <td class="t-left">
-                                      <select id="slct_operacion" style="width:220px" onChange="Visualizar(this.value);" disabled>                                      
-                                      <option value="R" selected>RETIRO</option>
-                                      <!--<option value="C">CAMBIO PERSONA/GRUPO</option>-->
-                                      </select>
-                                    </td>
-                                  </tr>                                  
-                                  <tr class="FormData">
-                                  	<td class="t-left label" >
-                                      <b>Alumno</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_nombre" class="input-large" disabled>
-                                      <input type="text" class="esconde" id="txt_cingalu">
-                                      <input type="text" class="esconde" id="txt_cgracpr">
-                                    </td>                                     
-                                  </tr><tr class="FormData">
-                                  	<td class="t-left label" >
-                                      <b>Carrera</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_dcarrer" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
-                                    </td>
-                                    <td class="t-left label" >
-                                      <b>Ode</b>
-                                    </td>                                    
-                                    <td class="t-left">
-                                      <input type="text" id="txt_dfilial" class="input-mediun" disabled>
-                                    </td>                                    
-                                    <td class="t-left label" >
-                                      <b>Instituto</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_dinstit" class="input-mediun" disabled>
-                                    </td>
-                                  </tr>
-                                  </tr><tr class="FormData">
-                                  	<td class="t-left label" >
-                                      <b>Semestre</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_csemaca" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
-                                    </td>
-                                    <td class="t-left label" >
-                                      <b>Inicio</b>
-                                    </td>                                    
-                                    <td class="t-left">
-                                      <input type="text" id="txt_cinicio" class="input-mediun" disabled>
-                                    </td>                                    
-                                    <td class="t-left label" >
-                                      <b>Fecha Inicio</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_finicio" class="input-mediun" disabled>
-                                    </td>
-                                  </tr>
-                                  </tr><tr class="FormData">
-                                  	<td class="t-left label" >
-                                      <b>Horario</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_dhorari" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
-                                    </td>
-                                  </tr>
-                                </table>
-                            </td></tr>
+                                </tr>
                             <tr class="esconde form" id="frmRetiro"><td>
                             	<div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS ECONOMICOS DEL RETIRO</div>
                         		<br>
@@ -166,6 +266,13 @@
                                 </div>
                             </td></tr>
                         	</table>
+
+
+                            <!--seccion datos de devolucion-->
+
+
+
+
     				</div>
 					
             	</div>
