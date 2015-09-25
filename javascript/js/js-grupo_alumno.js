@@ -16,6 +16,15 @@ $(document).ready(function(){
 	});
 	jqGridPersona.personaIngAlum2();
 	$(".esconde").css("display","none");
+	$("#btn_registrar_retiro").hide();
+
+	$("#txt_dscto").keyup(function(){
+		$("#txt_por_des").val($("#txt_dscto").val());
+		$("#txt_mon_ret").val($("#txt_monto_retension_retiro").val());
+		$("#txt_mon_des").val($("#txt_monto_comision_retiro").val());
+
+	});
+
 })
 
 
@@ -33,7 +42,7 @@ var id=$("#table_persona_ingalum").jqGrid("getGridParam",'selrow');
 		$('#txt_cinicio').val(data.cinicio);
 		$('#txt_finicio').val(data.finicio);
 		$('#txt_dhorari').val(data.dhorari);
-		pagoDAO.cargarMontoAcumulado();		
+		pagoDAO.cargarMontoAcumulado();
     }else {
 	    sistema.msjAdvertencia('Seleccione <b>Persona</b> a Editar')
 	}
@@ -47,11 +56,16 @@ CalcularComision=function(){
 	var dscto=$("#txt_monto_total").val()-($("#txt_monto_total").val()*1*por);
 	$("#txt_monto_dscto").val(dscto.toFixed(2));
 	Visualizar($("#slct_operacion").val());
+
+	$("#txt_por_des").val($("#txt_dscto").val());
+	$("#txt_mon_ret").val($("#txt_monto_retension_retiro").val());
+	$("#txt_mon_des").val($("#txt_monto_comision_retiro").val());
 }
 
 Visualizar=function(val){
 	$(".esconde").css("display","none");
 	$('.esconde .form input[type="text"],.esconde .form input[type="hidden"],.esconde .form select').val('');
+	$("#btn_registrar_retiro").show();
 	var cingalu=$("#txt_cingalu").val();
 	if(val=="R" && $.trim(cingalu)!=''){
 		$("#frmRetiro").css("display","");

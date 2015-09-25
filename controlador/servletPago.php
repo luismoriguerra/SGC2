@@ -49,6 +49,22 @@ class servletPago extends controladorComandos{
 				$data["comisio"]=$_POST['comisio'];
 				$data["reserva"]=$_POST['reserva'];
 				$data["fechaop"]=$_POST['fechaop'];
+
+
+				$data["dfretiro"]=$_POST['dfretiro'];
+				$data["dfdevolu"]=$_POST['dfdevolu'];
+				$data["dautoriz"]=$_POST['dautoriz'];
+				$data["dtipodev"]=$_POST['dtipodev'];
+				$data["ddescrip"]=$_POST['ddescrip'];
+				$data["dmontret"]=$_POST['dmontret'];
+				$data["dpordesc"]=$_POST['dpordesc'];
+				$data["dmontdes"]=$_POST['dmontdes'];
+				$data["dbolseri"]=$_POST['dbolseri'];
+				$data["dboltipo"]=$_POST['dboltipo'];
+				$data["dbolmont"]=$_POST['dbolmont'];
+				$data["dfboleta"]=$_POST['dfboleta'];
+				$data["dconcept"]=$_POST['dconcept'];
+
 				$data["cusuari"]=$_POST['cusuari'];
 				$data["cfilial"]=$_POST['cfilial'];
                 echo(json_encode($daoPago->registrarRetiro($data)));

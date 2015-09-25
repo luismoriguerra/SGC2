@@ -125,6 +125,46 @@
                                     </table>
                                 </td>
                             </tr>
+
+                                <tr class="esconde form" id="frmRetiro">
+                                    <td>
+                                        <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS ECONOMICOS DEL RETIRO</div>
+                                        <br>
+                                        <table>
+                                        <tr class="FormData">
+                                            <td class="t-left label" >
+                                              <b>% Comisión por Tramite</b>
+                                            </td>
+                                            <td class="t-left">
+                                              <input type="text" id="txt_dscto" onKeyPress="return sistema.validaNumeros(event)" onKeyUp="CalcularComision();" maxlength="4" class="input-mediun" value="0.00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-left label" >
+                                              <b>Monto Pagado por la Matrícula</b>
+                                            </td>
+                                            <td class="t-left">
+                                              <input type="text" id="txt_monto_total" class="input-mediun" disabled>
+                                            </td>
+                                            <td class="t-left label" style="display:none">
+                                              <b>Monto Acumulado con Dscto</b>
+                                            </td>
+                                            <td class="t-left" style="display:none">
+                                              <input type="text" id="txt_monto_dscto" class="input-mediun" disabled>
+                                            </td>
+                                          </tr>
+                                        <tr>
+                                            <td class="t-left label"><b>Monto Comisión por tramite</b></td>
+                                            <td class="t-left"><input type="text" class="input-mini" id="txt_monto_comision_retiro" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-left label"><b>Monto Retenido para Devolución</b></td>
+                                            <td class="t-left"><input type="text" class="input-mini" id="txt_monto_retension_retiro" disabled></td>
+                                        </tr>
+                                        </table>
+
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS DE DEVOLUCION</div>
@@ -135,17 +175,14 @@
                                                     <b>Fecha de Retiro</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_fech_ret" class="input-mediun" >
+                                                    <input type="text" id="txt_fecha_ret" class="input-mediun" >
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>Fecha de Devolucion</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_fech_dev" class="input-mediun" >
+                                                    <input type="text" id="txt_fecha_dev" class="input-mediun" >
                                                 </td>
-
-                                            </tr>
-                                            </tr><tr class="FormData">
                                                 <td class="t-left label" >
                                                     <b>Tipo de Devolucion</b>
                                                 </td>
@@ -155,11 +192,20 @@
                                                         <option value="T">Transferencia</option>
                                                     </select>
                                                 </td>
+
+                                            </tr>
+                                            </tr><tr class="FormData">
+                                                <td class="t-left label" >
+                                                    <b>Autoriza</b>
+                                                </td>
+                                                <td class="t-left" colspan="2">
+                                                    <input type="text" id="txt_autoriza" class="input-xlarge" >
+                                                </td>
                                                 <td class="t-left label" >
                                                     <b>Descripción</b>
                                                 </td>
-                                                <td class="t-left">
-                                                    <input type="text" id="txt_des"  class="input-xlarge" >
+                                                <td class="t-left" colspan="4">
+                                                    <textarea id="txt_des" style="width: 100%"></textarea>
                                                 </td>
 
                                             </tr>
@@ -205,76 +251,36 @@
                                                     <b>Fecha Boleta</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_mon_ret" class="input-mediun" >
+                                                    <input type="text" id="txt_fecha_bol" class="input-mediun" >
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>Monto Boleta</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_por_des" class="input-mediun" >
+                                                    <input type="text" id="txt_bol_mon" class="input-mediun" >
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>Concepto</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_mon_des" class="input-mediun" >
+                                                    <input type="text" id="txt_concepto" class="input-mediun" >
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
-                            <tr class="esconde form" id="frmRetiro"><td>
-                            	<div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS ECONOMICOS DEL RETIRO</div>
-                        		<br>
-                                <table>
-                                <tr class="FormData">
-                                  	<td class="t-left label" >
-                                      <b>% Comisión por Tramite</b>
-                                    </td>
-                                    <td class="t-left">
-                                      <input type="text" id="txt_dscto" onKeyPress="return sistema.validaNumeros(event)" onKeyUp="CalcularComision();" maxlength="4" class="input-mediun" value="0.00">
+                                <tr>
+                                    <td>
+                                        <div style="margin:15px 0px 10px 0px;">
+                                            <a id="btn_registrar_retiro" onClick="RegistrarRetiro();" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)">
+                                                <i class="icon-white icon-ok-sign"></i>
+                                                <span>Aceptar Retiro del Grupo</span>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                	<td class="t-left label" >
-                                      <b>Monto Pagado por la Matrícula</b>
-                                    </td>                                    
-                                    <td class="t-left">
-                                      <input type="text" id="txt_monto_total" class="input-mediun" disabled>
-                                    </td>
-                                    <td class="t-left label" style="display:none">
-                                      <b>Monto Acumulado con Dscto</b>
-                                    </td>
-                                    <td class="t-left" style="display:none">
-                                      <input type="text" id="txt_monto_dscto" class="input-mediun" disabled>
-                                    </td>
-                                  </tr>
-                                <tr>
-                                	<td class="t-left label"><b>Monto Comisión por tramite</b></td>
-                                    <td class="t-left"><input type="text" class="input-mini" id="txt_monto_comision_retiro" disabled></td>
-                                </tr>
-                                <tr>
-                                	<td class="t-left label"><b>Monto Retenido para Devolución</b></td>
-                                    <td class="t-left"><input type="text" class="input-mini" id="txt_monto_retension_retiro" disabled></td>
-                                </tr>                                
-                                </table>
-                                <div style="margin:15px 0px 10px 0px;">
-                                    <a id="btn_registrar_retiro" onClick="RegistrarRetiro();" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)">
-                                        <i class="icon-white icon-ok-sign"></i>
-                                        <span>Aceptar Retiro del Grupo</span>
-                                    </a>
-                                </div>
-                            </td></tr>
                         	</table>
-
-
-                            <!--seccion datos de devolucion-->
-
-
-
-
     				</div>
-					
             	</div>
 			</div>
 		</div>

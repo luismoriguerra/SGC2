@@ -182,6 +182,22 @@ var pagoDAO={
 				comisio:$('#txt_monto_comision_retiro').val(),
 				reserva:0,
 				fechaop:sistema.getFechaActual('yyyy-mm-dd'),
+
+                dfretiro:$("#txt_fecha_ret").val(),
+                dfdevolu:$("#txt_fecha_dev").val(),
+                dautoriz:$("#txt_autoriza").val(),
+                dtipodev: $("#slct_tip_dev").val(),
+                ddescrip: $("#txt_des").val(),
+                dmontret: $("#txt_mon_ret").val(),
+                dpordesc: $("#txt_por_des").val(),
+                dmontdes: $("#txt_mon_des").val(),
+                dbolseri: $("#txt_bol_ser").val(),
+                dboltipo: $("#slct_tip_pag").val(),
+                dbolmont: $("#txt_bol_mon").val(),
+                dfboleta: $("#txt_fecha_bol").val(),
+                dconcept: $("#txt_concepto").val(),
+
+
                 cusuari: $('#hd_idUsuario').val(),
 				cfilial: $('#hd_idFilial').val()
 			},
@@ -196,6 +212,8 @@ var pagoDAO={
 					$('#frmRetiro').css('display','none');
 					$("#txt_dscto").val('0.30');
 					$("#table_persona_ingalum").trigger('reloadGrid');
+                    $("#btn_registrar_retiro").hide();
+
                 }else if(obj.rst=='2'){
                     sistema.msjAdvertencia(obj.msj,3000);					
                 }else{

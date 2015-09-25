@@ -304,32 +304,21 @@ class MySqlPagoDAO{
 		$db->iniciaTransaccion();
 		
 		
-		$sql="	Select *
-				from ingalum
-				where cingalu='".$array['cingalu']."'";
+		$sql="	Select * from ingalum where cingalu='".$array['cingalu']."'";
 		$db->setQuery($sql);
 		$datosalumno=$db->loadObjectList();
 		/*Comisión Retiro*/
-		$sql="	Select *
-				from concepp
-				where cctaing like '707.08.01%'
-				and cfilial='".$array['cfilial']."'";
+		$sql="	Select * from concepp where cctaing like '707.08.01%' and cfilial='".$array['cfilial']."'";
 		$db->setQuery($sql);
 		$datoscomision=$db->loadObjectList();
 		
 		/*Comision por cambio*/
-		/*$sql="	Select *
-				from concepp
-				where cctaing like '707.08.02%'
-				and cfilial='".$array['cfilial']."'";
+		/*$sql="	Select * from concepp where cctaing like '707.08.02%' and cfilial='".$array['cfilial']."'";
 		$db->setQuery($sql);
 		$datoscambio=$db->loadObjectList();*/
 		
 		/*Retensión Retiro*/
-		$sql="	Select *
-				from concepp
-				where cctaing like '707.09.01%'
-				and cfilial='".$array['cfilial']."'";
+		$sql="	Select * from concepp where cctaing like '707.09.01%' and cfilial='".$array['cfilial']."'";
 		$db->setQuery($sql);
 		$datosretension=$db->loadObjectList();
 		
@@ -366,8 +355,7 @@ class MySqlPagoDAO{
 				if(!MySqlTransaccionDAO::insertarTransaccion($actpersona,$data['cfilial']) ){
 					$db->rollbackTransaccion();
 					return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$actpersona);exit();
-				}	
-
+				}
 		}
 
 		/*************************EN CASO EXISTA SE AUMENTA LA RETENSION***********************************************/
@@ -375,7 +363,8 @@ class MySqlPagoDAO{
 
 		$fechahoy=date("Y-m-d");
 
-		$insert="INSERT INTO bitacop (cingalu,cgracpr,descuen,retensi,comisio,reserva,fechaop,cusuari,fusuari) VALUES ('".$array['cingalu']."','".$array['cgracpr']."','".$array['descuen']."','".$array['retensi']."','".$array['comisio']."','".$array['reserva']."',now(),'".$array['cusuari']."',now())";
+		$insert="INSERT INTO bitacop (cingalu,cgracpr,descuen,retensi,comisio,reserva,fechaop,cusuari,fusuari)
+		VALUES ('".$array['cingalu']."','".$array['cgracpr']."','".$array['descuen']."','".$array['retensi']."','".$array['comisio']."','".$array['reserva']."',now(),'".$array['cusuari']."',now())";
 							
 		$db->setQuery($insert);
 		if(!$db->executeQuery()){
@@ -412,11 +401,8 @@ class MySqlPagoDAO{
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlinsrec2);exit();
 			}
 		
-		$update="UPDATE recacap
-				SET cestpag='S',testfin='S'
-				WHERE cingalu='".$array['cingalu']."'
-				and cgruaca='".$array['cgracpr']."'
-				and cestpag='P'";
+		$update="UPDATE recacap SET cestpag='S',testfin='S'
+				WHERE cingalu='".$array['cingalu']."' and cgruaca='".$array['cgracpr']."' and cestpag='P'";
 				
 		$db->setQuery($update);
 		if(!$db->executeQuery()){
@@ -428,9 +414,7 @@ class MySqlPagoDAO{
 			return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$update);exit();
 		}
 		
-		$update2="UPDATE ingalum
-				SET cestado='0'
-				WHERE cingalu='".$array['cingalu']."'";
+		$update2="UPDATE ingalum SET cestado='0' WHERE cingalu='".$array['cingalu']."'";
 				
 		$db->setQuery($update2);
 		if(!$db->executeQuery()){
@@ -440,9 +424,87 @@ class MySqlPagoDAO{
 		if(!MySqlTransaccionDAO::insertarTransaccion($update,$array['cfilial']) ){
 			$db->rollbackTransaccion();
 			return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$update2);exit();
-		}	
-		
-		
+		}
+
+		/*****   Datos de devolucion    ***/
+
+
+		$sqlDevolucion = "Insert into devolucim set
+				codalu='".$array['cingalu']."',
+				gruaca='".$array['cgracpr']."',
+				autoriza='".$array['dautoriz']."',
+				 fecretiro='".$array['dfretiro']."',
+				 fecdevol='".$array['dfdevolu']."',
+				 tipdevol='".$array['dtipodev']."',
+				 descripc='".$array['ddescrip']."',
+				 monretir=".$array['dmontret']." ,
+				 pordesc=".$array['dpordesc']." ,
+				 mondes=".$array['dmontdes']." ,
+				 cdocpag='".$array['dbolseri']."',
+				 ctippag='".$array['dboltipo']."',
+				 fdocpag='".$array['dfboleta']."',
+				 monpag=".$array['dbolmont'].",
+				 concept='".$array['dconcept']."',
+				 cusuari='".$array['cusuari']."',
+				 fusuari=now()";
+
+		$db->setQuery($sqlDevolucion);
+		if(!$db->executeQuery()){
+			$db->rollbackTransaccion();
+			return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql'=>$sqlDevolucion);exit();
+		}
+		if(!MySqlTransaccionDAO::insertarTransaccion($sqlDevolucion,$array['cfilial']) ){
+			$db->rollbackTransaccion();
+			return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql2'=>$sqlDevolucion);exit();
+		}
+
+
+		/*  Detalle de devolucion de los pagos del alumno */
+		$devolID = $db->last_insert_id();
+
+		$sqlPagos = "
+				select rr.tdocpag,
+		IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
+							IF(rr.tdocpag='B',(select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) from boletap b where b.cboleta=rr.cdocpag),
+								IF(rr.tdocpag='V',(select concat(v.numvou,'-',b.dbanco,'|',rr.nmonrec,'|',date(rr.festfin)) from vouchep v inner join bancosm b on (v.cbanco=b.cbanco) where v.cvouche=rr.cdocpag),''))
+						,CONCAT(rr.nmonrec,'_',rr.fvencim)) boleta, co.dconcep
+		 from recacap rr
+		INNER JOIN concepp co On (co.cconcep=rr.cconcep)
+		where rr.cingalu='".$array['cingalu']."' and rr.cgruaca = '".$array['cgracpr'] ."'
+		and (rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'))
+		";
+
+		$db->setQuery($sqlPagos);
+		$rowRecacap=$db->loadObjectList();
+
+		if(count($rowRecacap)){
+
+			foreach ($rowRecacap as $row) {
+				$dataPago = explode("|", $row["boleta"]);
+
+				$sqlInsertDetalle = "Insert into devoldet set
+				cingalu='".$array['cingalu']."',
+				cgruaca='".$array['cgracpr']."',
+				bolserie='".$dataPago[0]. "',
+				tipbolet='".$row['tdocpag']."',
+				fecbole='".$dataPago[2]."',
+				monbole='".$dataPago[1]."',
+				concepto='".$row['dconcep']."',
+				cusuari='".$array['cusuari']."',
+				 fusuari=now()";
+
+				$db->setQuery($sqlInsertDetalle);
+				if(!$db->executeQuery()){
+					$db->rollbackTransaccion();
+					return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql'=>$sqlInsertDetalle);exit();
+				}
+				if(!MySqlTransaccionDAO::insertarTransaccion($sqlInsertDetalle,$data['cfilial']) ){
+					$db->rollbackTransaccion();
+					return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql2'=>$sqlInsertDetalle);exit();
+				}
+			}
+		}
+
 		$db->commitTransaccion();
 		return array('rst'=>'1','msj'=>'Pago realizado','sql'=>$update2);exit();
 	}

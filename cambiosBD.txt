@@ -1,2 +1,2 @@
-2015/08/04
-alter table vendedm add COLUMN dinstit VARCHAR(100)
+20150925
+Tablas devoldet y devolucim ya en produccion
