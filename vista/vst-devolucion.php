@@ -72,16 +72,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="t-left label">Semestre:</td>
-                                <td class="t-left">
-                                    <select id="slct_semestre" class="input-medium"><option value="">--Selecione--</option></select>
-                                </td>
-                                <td class="t-left label">Ciclo:</td>
-                                <td class="t-left">
-                                    <select id="slct_ciclo" class="input-medium"><option value="">--Selecione--</option></select>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td class="t-left label input-large">Fechas de Inicio de Grupos:</td>
                                 <td class="t-left">
                                     Del:

@@ -28,8 +28,7 @@ $alumno="";
 
 $cfilial=str_replace(",","','",$_GET['cfilial']);
 $cinstit=str_replace(",","','",$_GET['cinstit']);
-$csemaca=explode(" | ",$_GET['csemaca']);
-$cciclo=$_GET['cciclo'];
+
 
 $fechini=$_GET['fechini'];
 $fechfin=$_GET['fechfin'];
@@ -44,21 +43,13 @@ if ($cinstit) {
     $where .= " and g.cinstit in ('".$cinstit."') ";
 }
 
-if (!empty($csemaca[0])) {
-    $where .= " AND g.csemaca='".$csemaca[0]."'
-		  AND g.cinicio='".$csemaca[1]."'  ";
-}
-
-if ($cciclo) {
-    $where .= " AND g.cciclo='".$cciclo."' ";
-}
 
 if($fechini!='' and $fechfin!=''){
     $where .=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 }
 
 $sql="select
-d.fdocpag a,
+DATE(d.fdocpag) a,
 d.cdocpag b ,
 d.ctippag c ,
 d.monpag d ,
@@ -66,7 +57,7 @@ p.dappape e,
 p.dapmape f ,
 p.dnomper g
 , dt.concepto h
-, dt.fecbole i
+, DATE(dt.fecbole) i
 , dt.bolserie j
 , dt.tipbolet k
 , dt.monbole l
