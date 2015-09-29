@@ -1,13 +1,9 @@
 $(document).ready(function(){
 	
 	$('#nav-reportes').addClass('active');//aplica estilo al menu activo		
-	carreraDAO.cargarCiclo(sistema.llenaSelect,'slct_ciclo','');
-	//institucionDAO.cargarInstitucionValida(sistema.llenaSelect,'slct_instituto','');
 	institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
-    //institucionDAO.cargarFilial(sistema.llenaSelectGrupo,'slct_filial','','Filial');	
-	institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');	    
+	institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
 	$('#btn_listar').click(function(){VisualizarGrupos()});
-	$("#slct_instituto,#slct_filial").change(function(){CargaSemestre()});
 	$("#slct_instituto,#slct_filial").multiselect({
    	selectedList: 4 // 0-based index
 	}).multiselectfilter();
@@ -27,12 +23,6 @@ VisualizarGrupos=function(){
 	grupoAcademicoDAO.cargarGrupoAcademicoR2(VisualizarGruposHTML);
 }
 
-CargaSemestre=function(){	
-	if($("#slct_instituto").val() && $("#slct_filial").val()){
-	institucionDAO.cargarSemestreG(sistema.llenaSelect,'slct_semestre','');
-	}	
-	//institucionDAO.cargarSemestreG(sistema.llenaSelectGrupo,'slct_semestre','','Semestre');	
-}
 
 VisualizarGruposHTML=function(obj){
 	var htm="";	
@@ -117,8 +107,6 @@ ExportarGrupoG=function(){
 	var cinstit=$("#slct_instituto").val().join(",");
 	var fechini=$("#txt_fecha_inicio").val();
     var fechfin=$("#txt_fecha_fin").val();
-	var csemaca=$("#slct_semestre").val();
-	var cciclo=$("#slct_ciclo").val();
 	window.location='../reporte/excel/EXCELdocumentos.php?cfilial='
-                	+cfilial+'&cinstit='+cinstit+'&csemaca='+csemaca+'&cciclo='+cciclo+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
+                	+cfilial+'&cinstit='+cinstit+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
 }

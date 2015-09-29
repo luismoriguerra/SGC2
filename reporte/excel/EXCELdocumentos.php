@@ -28,8 +28,6 @@ $alumno="";
 
 $cfilial=str_replace(",","','",$_GET['cfilial']);
 $cinstit=str_replace(",","','",$_GET['cinstit']);
-$csemaca=explode(" | ",$_GET['csemaca']);
-$cciclo=$_GET['cciclo'];
 
 $fechini=$_GET['fechini'];
 $fechfin=$_GET['fechfin'];
@@ -47,9 +45,7 @@ $where=" WHERE c.cgruaca in ('".str_replace(",","','",$cgracpr)."') ".$alumno;
 else{//AND CONCAT(g.csemaca,' | ',g.cinicio) in ('".$csemaca."')
 $where=" WHERE g.cfilial in ('".$cfilial."') ";		 
 $where.=" AND g.cinstit in ('".$cinstit."') 
-		  AND g.csemaca='".$csemaca[0]."'
-		  AND g.cinicio='".$csemaca[1]."'  
-		  AND g.cciclo='".$cciclo."' ";		
+		   ";
 
 	if($fechini!='' and $fechfin!=''){
 $where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";

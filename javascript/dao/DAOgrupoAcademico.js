@@ -123,7 +123,7 @@ var grupoAcademicoDAO={
                 cfilial:$("#slct_filial").val().join(","),
                 cinstit:$("#slct_instituto").val().join(","),
                 csemaca:$("#slct_semestre").val().join(","),
-                cciclo:$("#slct_ciclo").val()               
+                cciclo:$("#slct_ciclo").val()
             },
             beforeSend : function ( ) {
                 sistema.abreCargando();
@@ -147,9 +147,7 @@ var grupoAcademicoDAO={
                 cfilial:$("#slct_filial").val().join(","),
                 cinstit:$("#slct_instituto").val().join(","),
                 fechini:$("#txt_fecha_inicio").val(),
-                fechfin:$("#txt_fecha_fin").val(),
-                csemaca:$("#slct_semestre").val(),
-                cciclo:$("#slct_ciclo").val()               
+                fechfin:$("#txt_fecha_fin").val()
             },
             beforeSend : function ( ) {
                 sistema.abreCargando();
