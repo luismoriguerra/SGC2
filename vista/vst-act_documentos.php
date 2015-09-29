@@ -157,7 +157,6 @@
                             <td>
                                 <select id="slct_tipo_institucion" class="input-medium">
                                 <option value="">--Selecione--</option>
-                                <option value="">--Selecione--</option>
                                 <option value="0">Instituto</option>
                                 <option value="1">Universidad</option>
                                 </select>
