@@ -135,6 +135,8 @@ $sql="SELECT DISTINCT
 		,t.dtipcap
 		,m.dmoding
 		,t.dclacap
+		,IF( IFNULL(i.cdevolu,'0')='0','No','Si') AS cdevolu
+		,IFNULL(i.fdevolu,'') AS fdevolu
 		,If(i.cpromot!='',(Select concat(v.dapepat,' ',v.dapemat,', ',v.dnombre,' | ',v.codintv) From vendedm v Where v.cvended=i.cpromot),
 			If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
 				If(i.destica!='',i.destica,''))) As detalle_captacion,i.fusuari
@@ -372,6 +374,8 @@ $cabecera=array('N°','ESTADO','CODIGO LIBRO','APELL PATERNO','APELL MATERNO',
     array_push($cabecera,'DEPARTAMENTO');
     array_push($cabecera,'PROVINCIA');
     array_push($cabecera,'DISTRITO');
+    array_push($cabecera,'DOC. DEVUELTO');
+    array_push($cabecera,'FECHA DEVUELTO');
 
 
 
@@ -415,6 +419,10 @@ $objPHPExcel->getActiveSheet()->getStyle("AC4:AS5")->getFill()->setFillType(PHPE
 $objPHPExcel->getActiveSheet()->setCellValue("AT4","REFERENCIA DEL ALUMNO");
 $objPHPExcel->getActiveSheet()->mergeCells('AT4:BB4');
 $objPHPExcel->getActiveSheet()->getStyle("AT4:BB5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
+
+$objPHPExcel->getActiveSheet()->setCellValue("BC4","DEVUELTO");
+$objPHPExcel->getActiveSheet()->mergeCells('BC4:BD4');
+$objPHPExcel->getActiveSheet()->getStyle("BC4:BD5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF3399');
 
 $objPHPExcel->getActiveSheet()->getStyle("A4:H5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCFFFF');
 $objPHPExcel->getActiveSheet()->getStyle("I4:Q5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFABF8F');
@@ -544,10 +552,12 @@ $contadoringresos=0;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['depa']);$actualCol++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['prov']);$actualCol++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['dist']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['cdevolu']);$actualCol++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$actualCol].$valorinicial,$r['fdevolu']);$actualCol++;
 
 }
-$objPHPExcel->getActiveSheet()->getStyle("A6:BB".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
-$objPHPExcel->getActiveSheet()->getStyle('A4:BB'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:BD".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
+$objPHPExcel->getActiveSheet()->getStyle('A4:BD'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Control_Pago_M');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
