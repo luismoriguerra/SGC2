@@ -3,7 +3,7 @@
 <html>
 	<head>
 
-		<title>SGC2</title>
+		<title>SGC2 | Actualizacion de documentos entregados</title>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<link rel="shortcut icon" href="../images/favicon.ico">
 
@@ -124,6 +124,12 @@
                                         </select>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="t-left label input-large">Fechas de devolución:</td>
+                                    <td class="t-left">
+                                        <input type="text" id="txt_fecha_devol" class="input-medium" value="">
+                                    </td>
+                                </tr>
                                 <tr id="postula_beca" style="display:none">
                                     <td class="ui-state-default"><span class="t-rojo">*</span>¿Postula solo a la Beca?:</td>
                                     <td>
@@ -150,6 +156,7 @@
                             <td class="ui-state-default"><span class="t-rojo">*</span>Tipo Institución:</td>
                             <td>
                                 <select id="slct_tipo_institucion" class="input-medium">
+                                <option value="">--Selecione--</option>
                                 <option value="">--Selecione--</option>
                                 <option value="0">Instituto</option>
                                 <option value="1">Universidad</option>

@@ -125,6 +125,8 @@ class servletPersona extends controladorComandos{
 				$data['otrodni']=trim($_POST['otrodni']);
 				$data['nfotos']=trim($_POST['nfotos']);
 				$data['cdevolu']=trim($_POST['cdevolu']);
+				$data['fdevolu']=trim($_POST['fdevolu']);
+				$data['cdevolu']=trim($_POST['cdevolu']);
 				$data['cingalu']=trim($_POST['cingalu']);
 				$data['cfilial']=trim($_POST['cfilial']);
 				$data['cusuari']=trim($_POST['cusuari']);
@@ -483,7 +485,8 @@ class servletPersona extends controladorComandos{
                             $data[$i]['dciclop'],
                             $data[$i]['ddocval'],
                             $data[$i]['cmoding'],
-                            $data[$i]['cdevolu']                            														
+                            $data[$i]['cdevolu']     ,
+                            $data[$i]['fdevolu']
                             )
                         )
                     );

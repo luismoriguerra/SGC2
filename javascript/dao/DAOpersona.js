@@ -739,6 +739,8 @@ var personaDAO={
                 dcarrep:$("#txt_carrera_procedencia").val(),
                 ultanop:$("#slct_ultimo_año").val(),
                 dciclop:$("#slct_ciclo").val(),
+                cdevolu:$("#slct_devolucion").val(),
+                fdevolu:$("#txt_fecha_devol").val(),
                 ddocval:$("#txt_docum_vali").val(),
                 valconv:valm,
                 cfilial:$('#hd_idFilial').val(),

@@ -181,7 +181,7 @@ var jqGridPersona={
 			datatype:this.type,
 			gridview:true,
 			height:240,
-			colNames:['Estado','Filial','Institucion','Carrera','Inicio','Fecha Inicio','Horario','Semestre','cperson','Paterno','Materno','Nombres','DNI','cingalu','nfotos','certest','partnac','fotodni','otrodni','cpais','tinstip','dinstip','dcarrep','ultanop','dciclop','ddocval','cmoding','cdevolu'],
+			colNames:['Estado','Filial','Institucion','Carrera','Inicio','Fecha Inicio','Horario','Semestre','cperson','Paterno','Materno','Nombres','DNI','cingalu','nfotos','certest','partnac','fotodni','otrodni','cpais','tinstip','dinstip','dcarrep','ultanop','dciclop','ddocval','cmoding','cdevolu', 'fdevolu'],
 			colModel:[
 				{name:'cestado',index:'cestado',align:'center',width:80,editable:true,editrules:{required:true},stype:"select",edittype:"select",editoptions:{value:" : ;1:Activo;0:Retirado"}},
 				{name:'dfilial',index:'dfilial',align:'left',width:110},
@@ -210,8 +210,9 @@ var jqGridPersona={
 				{name:'dciclop',index:'dciclop',align:'center',width:100,hidden:true},
 				{name:'ddocval',index:'ddocval',align:'center',width:100,hidden:true},
 				{name:'cmoding',index:'cmoding',align:'center',width:100,hidden:true},
-				{name:'cdevolu',index:'cdevolu',align:'center',width:100,hidden:true}
-			],			
+				{name:'cdevolu',index:'cdevolu',align:'center',width:100,hidden:true},
+				{name:'fdevolu',index:'fdevolu',align:'center',width:100,hidden:true}
+			],
 			rowNum:10,
 			rowList:[5,10,20,30],
 			rownumbers:true,

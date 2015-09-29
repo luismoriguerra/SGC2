@@ -464,7 +464,7 @@ class MySqlPersonaDAO{
 	$sql="	SELECT i.cingalu,p.cperson,p.dnomper,p.dappape,p.dapmape,p.ndniper,ca.dcarrer,g.csemaca,f.dfilial,ins.dinstit,g.cgracpr,g.cinicio,DATE(g.finicio) finicio,
             CONCAT( (SELECT GROUP_CONCAT(d.dnemdia SEPARATOR '-') FROM diasm d WHERE FIND_IN_SET (d.cdia,REPLACE(g.cfrecue,'-',','))  >  0),' de ' ,h.hinici,'-',h.hfin) AS dhorari,
             IF(i.cestado='1','Activo','Retirado') AS cestado,
-            i.nfotos,i.certest,i.sermatr,i.partnac,i.dcodlib,i.fotodni,i.otrodni,i.cpais,i.tinstip,i.dinstip,i.dcarrep,i.ultanop,i.dciclop,i.ddocval,i.cmoding,i.cdevolu,mo.dmoding
+            i.nfotos,i.certest,i.sermatr,i.partnac,i.dcodlib,i.fotodni,i.otrodni,i.cpais,i.tinstip,i.dinstip,i.dcarrep,i.ultanop,i.dciclop,i.ddocval,i.cmoding,i.cdevolu,i.fdevolu,mo.dmoding
             ,t.dtipcap
             ,t.dclacap
             ,CONCAT(ve.dapepat,' ',ve.dapemat,', ',ve.dnombre)  AS recepcionista
@@ -927,7 +927,7 @@ class MySqlPersonaDAO{
 					 ,fotodni='".$data['fotodni']."',otrodni='".$data['otrodni']."',cpais='".$data['cpais']."'
 					 ,tinstip='".$data['tinstip']."',dinstip='".$data['dinstip']."',dcarrep='".$data['dcarrep']."'
 					 ,ultanop='".$data['ultanop']."',dciclop='".$data['dciclop']."',ddocval='".$data['ddocval']."'
-					 ,cdevolu='".$data['cdevolu']."',dcompro='".$data['dcompro']."'
+					 ,fdevolu='".$data['fdevolu']."',cdevolu='".$data['cdevolu']."',dcompro='".$data['dcompro']."'
 					 ,cusuari='".$data['cusuari']."',fusuari=now()  					 
 					 WHERE cingalu='".$data['cingalu']."'";
 		$db->setQuery($actpersona);
