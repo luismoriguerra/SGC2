@@ -196,6 +196,7 @@ var pagoDAO={
                 dbolmont: $("#txt_bol_mon").val(),
                 dfboleta: $("#txt_fecha_bol").val(),
                 dconcept: $("#txt_concepto").val(),
+                showdevo: $("#slct_devolucion_seccion").val(),
 
 
                 cusuari: $('#hd_idUsuario').val(),

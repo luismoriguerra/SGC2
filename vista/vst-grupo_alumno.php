@@ -114,13 +114,24 @@
                                           <input type="text" id="txt_finicio" class="input-mediun" disabled>
                                         </td>
                                       </tr>
-                                      </tr><tr class="FormData">
-                                        <td class="t-left label" >
-                                          <b>Horario</b>
-                                        </td>
-                                        <td class="t-left">
-                                          <input type="text" id="txt_dhorari" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
-                                        </td>
+                                      </tr>
+                                        <tr class="FormData">
+                                            <td class="t-left label" >
+                                              <b>Horario</b>
+                                            </td>
+                                            <td class="t-left">
+                                              <input type="text" id="txt_dhorari" onKeyPress="return sistema.validaNumeros(event)" class="input-xlarge" disabled>
+                                            </td>
+
+                                            <td class="t-left label" >
+                                                <b>Devolucion de Dinero</b>
+                                            </td>
+                                            <td class="t-left">
+                                                <select id="slct_devolucion_seccion" style="width:220px" onChange="MostrarDevolucionSeccion(this.value);">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Si" >Si</option>
+                                                </select>
+                                            </td>
                                       </tr>
                                     </table>
                                 </td>
@@ -131,12 +142,17 @@
                                         <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS ECONOMICOS DEL RETIRO</div>
                                         <br>
                                         <table>
+                                            <tr>
+                                                <td class="t-left label"><b>Monto Comisión por tramite</b></td>
+                                                <td class="t-left">
+                                                    <input type="text" class="input-mini" id="txt_monto_comision_retiro" onKeyUp="CalcularComisionMonto();"></td>
+                                            </tr>
                                         <tr class="FormData">
                                             <td class="t-left label" >
                                               <b>% Comisión por Tramite</b>
                                             </td>
                                             <td class="t-left">
-                                              <input type="text" id="txt_dscto" onKeyPress="return sistema.validaNumeros(event)" onKeyUp="CalcularComision();" maxlength="4" class="input-mediun" value="0.00">
+                                              <input type="text" id="txt_dscto" onKeyPress="return sistema.validaNumeros(event)" onKeyUp="CalcularComision();" maxlength="4" class="input-mediun" value="0.00" disabled>
                                             </td>
                                         </tr>
                                         <tr>
@@ -153,10 +169,7 @@
                                               <input type="text" id="txt_monto_dscto" class="input-mediun" disabled>
                                             </td>
                                           </tr>
-                                        <tr>
-                                            <td class="t-left label"><b>Monto Comisión por tramite</b></td>
-                                            <td class="t-left"><input type="text" class="input-mini" id="txt_monto_comision_retiro" disabled></td>
-                                        </tr>
+
                                         <tr>
                                             <td class="t-left label"><b>Monto Retenido para Devolución</b></td>
                                             <td class="t-left"><input type="text" class="input-mini" id="txt_monto_retension_retiro" disabled></td>
@@ -165,9 +178,9 @@
 
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="devolucion-seccion">
                                     <td>
-                                        <div class="barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS DE DEVOLUCION</div>
+                                        <div class=" barra4 contentBarra t-blanco"><i class="icon-white icon-th"></i> DATOS DE DEVOLUCION</div>
                                         <br>
                                         <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
                                             <tr class="FormData">
@@ -202,7 +215,7 @@
                                                     <input type="text" id="txt_autoriza" class="input-xlarge" >
                                                 </td>
                                                 <td class="t-left label" >
-                                                    <b>Descripción</b>
+                                                    <b>Motivo de devolución</b>
                                                 </td>
                                                 <td class="t-left" colspan="4">
                                                     <textarea id="txt_des" style="width: 100%"></textarea>
@@ -243,6 +256,9 @@
                                                     <select id="slct_tip_pag" style="width:220px">
                                                         <option value="B" selected>Boleta</option>
                                                         <option value="V">Voucher</option>
+                                                        <option value="F">Facturas</option>
+                                                        <option value="BV">Boleta de venta</option>
+                                                        <option value="E">Recibo de egreso</option>
                                                     </select>
                                                 </td>
                                             </tr>

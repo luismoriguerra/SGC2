@@ -17,6 +17,7 @@ $(document).ready(function(){
 	jqGridPersona.personaIngAlum2();
 	$(".esconde").css("display","none");
 	$("#btn_registrar_retiro").hide();
+	$(".devolucion-seccion").hide();
 
 	$("#txt_dscto").keyup(function(){
 		$("#txt_por_des").val($("#txt_dscto").val());
@@ -48,6 +49,16 @@ var id=$("#table_persona_ingalum").jqGrid("getGridParam",'selrow');
 	}
 }
 
+function MostrarDevolucionSeccion(value) {
+
+	if (value == "Si") {
+		$(".devolucion-seccion").show();
+	} else {
+		$(".devolucion-seccion").hide();
+	}
+
+}
+
 CalcularComision=function(){
 	var por=$("#txt_dscto").val();
 	if(por*1>1){
@@ -61,6 +72,26 @@ CalcularComision=function(){
 	$("#txt_mon_ret").val($("#txt_monto_retension_retiro").val());
 	$("#txt_mon_des").val($("#txt_monto_comision_retiro").val());
 }
+
+
+CalcularComisionMonto=function(){
+
+	var monto = $("#txt_monto_comision_retiro").val(),
+		pagado = $("#txt_monto_total").val(),
+		monto_final = pagado - monto,
+		porcentaje = (monto / pagado) * 100;
+
+
+	$("#txt_dscto").val(porcentaje.toFixed(2));
+	$("#txt_monto_retension_retiro").val(monto_final);
+
+	$("#txt_por_des").val(porcentaje.toFixed(2));
+	$("#txt_mon_ret").val(monto_final);
+	$("#txt_mon_des").val(monto);
+
+
+}
+
 
 Visualizar=function(val){
 	$(".esconde").css("display","none");
