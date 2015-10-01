@@ -428,8 +428,8 @@ class MySqlPagoDAO{
 
 		/*****   Datos de devolucion    ***/
 
-
-		$sqlDevolucion = "Insert into devolucim set
+		if ($array["showdevo"] == "Si") {
+			$sqlDevolucion = "Insert into devolucim set
 				codalu='".$array['cingalu']."',
 				gruaca='".$array['cgracpr']."',
 				autoriza='".$array['dautoriz']."',
@@ -448,21 +448,21 @@ class MySqlPagoDAO{
 				 cusuari='".$array['cusuari']."',
 				 fusuari=now()";
 
-		$db->setQuery($sqlDevolucion);
-		if(!$db->executeQuery()){
-			$db->rollbackTransaccion();
-			return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql'=>$sqlDevolucion);exit();
-		}
-		if(!MySqlTransaccionDAO::insertarTransaccion($sqlDevolucion,$array['cfilial']) ){
-			$db->rollbackTransaccion();
-			return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql2'=>$sqlDevolucion);exit();
-		}
+			$db->setQuery($sqlDevolucion);
+			if(!$db->executeQuery()){
+				$db->rollbackTransaccion();
+				return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql'=>$sqlDevolucion);exit();
+			}
+			if(!MySqlTransaccionDAO::insertarTransaccion($sqlDevolucion,$array['cfilial']) ){
+				$db->rollbackTransaccion();
+				return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql2'=>$sqlDevolucion);exit();
+			}
 
 
-		/*  Detalle de devolucion de los pagos del alumno */
-		$devolID = $db->last_insert_id();
+			/*  Detalle de devolucion de los pagos del alumno */
+			$devolID = $db->last_insert_id();
 
-		$sqlPagos = "
+			$sqlPagos = "
 				select rr.tdocpag,
 		IF(rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'),
 							IF(rr.tdocpag='B',(select concat(b.dserbol,'-',b.dnumbol,'|',rr.nmonrec,'|',date(rr.festfin)) from boletap b where b.cboleta=rr.cdocpag),
@@ -474,15 +474,15 @@ class MySqlPagoDAO{
 		and (rr.testfin='C' OR (rr.cdocpag!='' and rr.testfin='S'))
 		";
 
-		$db->setQuery($sqlPagos);
-		$rowRecacap=$db->loadObjectList();
+			$db->setQuery($sqlPagos);
+			$rowRecacap=$db->loadObjectList();
 
-		if(count($rowRecacap)){
+			if(count($rowRecacap)){
 
-			foreach ($rowRecacap as $row) {
-				$dataPago = explode("|", $row["boleta"]);
+				foreach ($rowRecacap as $row) {
+					$dataPago = explode("|", $row["boleta"]);
 
-				$sqlInsertDetalle = "Insert into devoldet set
+					$sqlInsertDetalle = "Insert into devoldet set
 				cingalu='".$array['cingalu']."',
 				cgruaca='".$array['cgracpr']."',
 				bolserie='".$dataPago[0]. "',
@@ -493,17 +493,20 @@ class MySqlPagoDAO{
 				cusuari='".$array['cusuari']."',
 				 fusuari=now()";
 
-				$db->setQuery($sqlInsertDetalle);
-				if(!$db->executeQuery()){
-					$db->rollbackTransaccion();
-					return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql'=>$sqlInsertDetalle);exit();
-				}
-				if(!MySqlTransaccionDAO::insertarTransaccion($sqlInsertDetalle,$data['cfilial']) ){
-					$db->rollbackTransaccion();
-					return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql2'=>$sqlInsertDetalle);exit();
+					$db->setQuery($sqlInsertDetalle);
+					if(!$db->executeQuery()){
+						$db->rollbackTransaccion();
+						return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql'=>$sqlInsertDetalle);exit();
+					}
+					if(!MySqlTransaccionDAO::insertarTransaccion($sqlInsertDetalle,$data['cfilial']) ){
+						$db->rollbackTransaccion();
+						return array('rst'=>'3','msj'=>'Error al Registrar Datos en detalle devolucion','sql2'=>$sqlInsertDetalle);exit();
+					}
 				}
 			}
 		}
+
+
 
 		$db->commitTransaccion();
 		return array('rst'=>'1','msj'=>'Pago realizado','sql'=>$update2);exit();

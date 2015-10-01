@@ -49,25 +49,36 @@ if($fechini!='' and $fechfin!=''){
 }
 
 $sql="select
-DATE(d.fdocpag) a,
-d.cdocpag b ,
-d.ctippag c ,
-d.monpag d ,
-p.dappape e,
-p.dapmape f ,
-p.dnomper g
-, dt.concepto h
-, DATE(dt.fecbole) i
-, dt.bolserie j
-, dt.tipbolet k
-, dt.monbole l
-, d.pordesc m
-, d.descripc n
+
+p.dappape a
+,p.dapmape b
+,p.dnomper c
+, it.dinstit d
+, c.dcarrer e
+, g.finicio f
+
+, d.concept g
+, DATE(d.fdocpag)  h
+,d.cdocpag  i
+,d.ctippag  j
+,d.monpag  k
+
+
+, dt.concepto l
+, DATE(dt.fecbole) m
+, dt.bolserie n
+, dt.tipbolet o
+, dt.monbole p
+
+, d.pordesc  q
+, d.descripc r
 from devoldet dt
 left join devolucim d on d.gruaca = dt.cgruaca and dt.cingalu = d.codalu
 left join gracprp g on g.cgracpr = dt.cgruaca
 left join ingalum i on i.cingalu = dt.cingalu
 left join personm p on p.cperson = i.cperson
+left join instita it on it.cinstit = g.cinstit
+left join carrerm c on c.ccarrer = g.ccarrer
   where 1 = 1 ". $where;
 
 $cn->setQuery($sql);
@@ -172,21 +183,24 @@ $objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmen
 
 // FORMATO DE CABEZAR
 $objPHPExcel->getActiveSheet()->mergeCells('A4:A5');
-$objPHPExcel->getActiveSheet()->mergeCells('B4:E4');
-$objPHPExcel->getActiveSheet()->setCellValue("B4", "COMPROBANTE DE PAGO EMITIDO");
-$objPHPExcel->getActiveSheet()->setCellValue("F4", "ALUMNO");
-
-$objPHPExcel->getActiveSheet()->mergeCells('G4:K4');
-$objPHPExcel->getActiveSheet()->setCellValue("G4", "DEVOLUCION");
-
-$objPHPExcel->getActiveSheet()->mergeCells('L4:L5');
-$objPHPExcel->getActiveSheet()->mergeCells('M4:M5');
+$objPHPExcel->getActiveSheet()->mergeCells('C4:E4');
+$objPHPExcel->getActiveSheet()->mergeCells('F4:J4');
+$objPHPExcel->getActiveSheet()->mergeCells('K4:O4');
+$objPHPExcel->getActiveSheet()->setCellValue("B4", "ALUMNO");
+$objPHPExcel->getActiveSheet()->setCellValue("C4", "DATOS ACADEMICOS");
+$objPHPExcel->getActiveSheet()->setCellValue("F4", "COMPROBANTE DE PAGOS EMITIDOS");
+$objPHPExcel->getActiveSheet()->setCellValue("K4", "DEVOLUCION");
 
 
-$cabecera=array('N°',"FECHA", "SERIE","TIPO", "MONTO",
-    "APELLIDOS Y NOMBRES",
-    "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO"
-    , "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION");
+$objPHPExcel->getActiveSheet()->mergeCells('P4:P5');
+$objPHPExcel->getActiveSheet()->mergeCells('Q4:Q5');
+
+
+$cabecera=array('N°',"APELLIDOS Y NOMBRES",
+    "INST.", "CARRERA","FECHA DE INICIO",
+    "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
+    "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
+    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION");
 
 for($i=0;$i<count($cabecera);$i++){
     $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
@@ -195,11 +209,11 @@ for($i=0;$i<count($cabecera);$i++){
 }
 
 $objPHPExcel->getActiveSheet()->setCellValue("A4", "NRO");
-$objPHPExcel->getActiveSheet()->setCellValue("L4", "DSCTO GASTOS MOTIVO");
-$objPHPExcel->getActiveSheet()->getStyle("L4")->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->setCellValue("M4", "MOTIVO DE DEVOLUCION");
-$objPHPExcel->getActiveSheet()->getStyle("M4")->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->getStyle('A4:M5')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->setCellValue("P4", "DSCTO GASTOS ADMINI");
+$objPHPExcel->getActiveSheet()->getStyle("P4")->getAlignment()->setWrapText(true);
+$objPHPExcel->getActiveSheet()->setCellValue("Q4", "MOTIVO DE DEVOLUCION");
+$objPHPExcel->getActiveSheet()->getStyle("Q4")->getAlignment()->setWrapText(true);
+$objPHPExcel->getActiveSheet()->getStyle('A4:Q5')->applyFromArray($styleAlignmentBold);
 $pos=1;
 $valorinicial=5;
 $cont=0;
@@ -208,27 +222,27 @@ foreach($control As $r){
     $valorinicial++; // INICIA EN 6
     $paz=0;
 
-    $r['c'] = $r['c'] == "B" ? "Boleta" : "Voucher";
-    $r['k'] = $r['k'] == "B" ? "Boleta" : "Voucher";
-
-
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$cont);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['a']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['b']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['c']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['a'] ." ".$r['b']. " ".$r['c']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['d']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['e'] ." ".$r['f']. " ".$r['g']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial," ".$r['h']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['e']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['f']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['g']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['h']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['i']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['j']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['k']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['l']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['m']);$paz++;
     $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['n']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['o']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['p']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['q']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['r']);$paz++;
 
 
 }
-$objPHPExcel->getActiveSheet()->getStyle('A4:M'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A4:Q'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Documentos');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
