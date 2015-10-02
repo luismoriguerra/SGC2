@@ -61,6 +61,8 @@ $sql="SELECT DISTINCT
 		,g.cinicio
 		,g.finicio
 		,ins.dinstit
+		,IF( IFNULL(i.cdevolu,'0')='0','No','Si') AS cdevolu
+		,IFNULL(i.fdevolu,'') AS fdevolu
 		,replace(i.dcodlib,'-','') As dcodlib
 		,i.certest As certest
 		,i.partnac As partnac
@@ -224,6 +226,8 @@ $objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
 $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray($styleAlignmentRight);
 
 $cabecera=array('N°','ESTADO','COD LIBRO','APELL PATERNO','APELL MATERNO','NOMBRES','TEL FIJO / CELULAR','CORREO ELECTRÓNICO','CARRERA','CICLO ACADEMICO','INICIO','FECHA DE INICIO','INSTITUCION','FREC','HORARIO','LOCAL DE ESTUDIOS','MOD. INGRESO','NRO DE CERT. DE EST.','NRO DE PART. NACIM.','FOTOCOPIA DE DNI (N/S)','NRO DE FOTOS (1-6)','PAIS DE PROCED.','TIPO DE INSTIT','INST. DE PROCED','CARR. DE PROCEDENCIA','ULT. AÑO QUE ESTUDIÓ','ULT. CICLO REALIZADO','DOCUM. DEJADOS PARA LA CONVALIDACIO','FECHA DIGITACION');
+	array_push($cabecera,'DOC. DEVUELTO');
+    array_push($cabecera,'FECHA DEVUELTO');
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
@@ -251,7 +255,11 @@ $objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[($pos+6)].'4');$po
 
 $objPHPExcel->getActiveSheet()->setCellValue($az[$pos].'4',"FECHA DIGITACION");
 $objPHPExcel->getActiveSheet()->getStyle($az[$pos]."4:".$az[$pos]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF6699');
-$objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[$pos].'5');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[$pos].'5');$pos+=1;
+
+$objPHPExcel->getActiveSheet()->setCellValue($az[$pos].'4',"DEVUELTO");
+$objPHPExcel->getActiveSheet()->getStyle($az[$pos]."4:".$az[$pos+1]."5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF6699');
+$objPHPExcel->getActiveSheet()->mergeCells($az[$pos].'4:'.$az[$pos+1].'4');
 
 $objPHPExcel->getActiveSheet()->getStyle("B5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFFFF00');
 
@@ -295,9 +303,12 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['ddocval
 
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['fusuari']);$paz++;
 
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['cdevolu']);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['fdevolu']);$paz++;
+
 }
-$objPHPExcel->getActiveSheet()->getStyle("A6:AC".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
-$objPHPExcel->getActiveSheet()->getStyle('A4:AC'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle("A6:AE".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCECFF');
+$objPHPExcel->getActiveSheet()->getStyle('A4:AE'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Documentos');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
