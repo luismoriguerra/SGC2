@@ -311,24 +311,13 @@ class MySqlPagoDAO{
 		$sql="	Select * from concepp where cctaing like '707.08.01%' and cfilial='".$array['cfilial']."'";
 		$db->setQuery($sql);
 		$datoscomision=$db->loadObjectList();
-		
-		/*Comision por cambio*/
-		/*$sql="	Select * from concepp where cctaing like '707.08.02%' and cfilial='".$array['cfilial']."'";
-		$db->setQuery($sql);
-		$datoscambio=$db->loadObjectList();*/
-		
+
 		/*Retensión Retiro*/
 		$sql="	Select * from concepp where cctaing like '707.09.01%' and cfilial='".$array['cfilial']."'";
 		$db->setQuery($sql);
 		$datosretension=$db->loadObjectList();
 		
-		/*Retensión por cambio*/
-		/*$sql="	Select *
-				from concepp
-				where cctaing like '707.09.02%'
-				and cfilial='".$array['cfilial']."'";
-		$db->setQuery($sql);
-		$datoscambio=$db->loadObjectList();*/
+
 		/***********************************VERIFICA SI EXISTE UN PENDIENTE DE DEUDA EN RETIRO*************************************/
 		$sql="	select r.nmonrec,r.crecaca,b.crecaca,r.cingalu,r.cgruaca,r.cperson
 				from recacap r
@@ -427,6 +416,31 @@ class MySqlPagoDAO{
 		}
 
 		/*****   Datos de devolucion    ***/
+		// si es no solo se registra el alumno y fecha de retiro y motivo
+		if ($array["showdevo"] == "No") {
+			$sqlDevolucion = "Insert into devolucim set
+				codalu='".$array['cingalu']."',
+				gruaca='".$array['cgracpr']."',
+				 fecretiro='".$array['dfretiro']."',
+				 descripc='".$array['ddescrip']."',
+				 monretir=".$array['dmontret']." ,
+				 pordesc=".$array['dpordesc']." ,
+				 mondes=".$array['dmontdes']." ,
+				 devoluc=".strtolower($array['showdevo'])." ,
+				 cusuari='".$array['cusuari']."',
+				 fusuari=now()";
+
+			$db->setQuery($sqlDevolucion);
+			if(!$db->executeQuery()){
+				$db->rollbackTransaccion();
+				return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql'=>$sqlDevolucion);exit();
+			}
+			if(!MySqlTransaccionDAO::insertarTransaccion($sqlDevolucion,$array['cfilial']) ){
+				$db->rollbackTransaccion();
+				return array('rst'=>'3','msj'=>'Error al Registrar Datos en Devolucion','sql2'=>$sqlDevolucion);exit();
+			}
+		}
+
 
 		if ($array["showdevo"] == "Si") {
 			$sqlDevolucion = "Insert into devolucim set
@@ -445,6 +459,7 @@ class MySqlPagoDAO{
 				 fdocpag='".$array['dfboleta']."',
 				 monpag=".$array['dbolmont'].",
 				 concept='".$array['dconcept']."',
+				 devoluc=".strtolower($array['showdevo'])." ,
 				 cusuari='".$array['cusuari']."',
 				 fusuari=now()";
 
@@ -505,8 +520,6 @@ class MySqlPagoDAO{
 				}
 			}
 		}
-
-
 
 		$db->commitTransaccion();
 		return array('rst'=>'1','msj'=>'Pago realizado','sql'=>$update2);exit();

@@ -1,7 +1,13 @@
 <?php
 /*conexion*/
 set_time_limit(3000);
-ini_set('memory_limit','512M');
+ini_set('memory_limit','3072M');
+
+//
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
@@ -48,41 +54,59 @@ if($fechini!='' and $fechfin!=''){
     $where .=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 }
 
-$sql="select
-
-p.dappape a
-,p.dapmape b
-,p.dnomper c
-, it.dinstit d
-, c.dcarrer e
-, g.finicio f
-
-, d.concept g
-, DATE(d.fdocpag)  h
-,d.cdocpag  i
-,d.ctippag  j
-,d.monpag  k
-
-
-, dt.concepto l
-, DATE(dt.fecbole) m
-, dt.bolserie n
-, dt.tipbolet o
-, dt.monbole p
-
-, d.pordesc  q
-, d.descripc r
-, f.dfilial s
-
-from devoldet dt
-left join devolucim d on d.gruaca = dt.cgruaca and dt.cingalu = d.codalu
-left join gracprp g on g.cgracpr = dt.cgruaca
-left join ingalum i on i.cingalu = dt.cingalu
+$sql="
+  select
+-- datos de identificacion
+ f.dfilial ode
+ -- ,'' estado
+-- datos personales
+,p.dappape ape
+,p.dapmape mat
+,p.dnomper nom
+-- datos domiciliarios
+,p.ntelper tel
+,p.ntelpe2 tel2
+,p.email1 mail
+-- datos academicos
+,it.dinstit ins
+, IF(i.posbeca, 'SI','NO') posbeca
+, mo.dmoding modin
+, c.dcarrer car
+, g.csemaca sem
+, g.cinicio ini
+, g.finicio fin
+, m.dmodali modali
+, ci.dciclo
+,'' duracion
+,f.dfilial local_estudio
+,(select GROUP_CONCAT(d.dnemdia SEPARATOR '-')
+				from diasm d
+				where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',',')) ) frecuencia
+,CONCAT_WS(' ',h.hinici,h.hfin) horario
+-- datos asistencia
+, IF((select max(estasist) asistio from aluasist where idseing=s.id), 'SI', 'NO') asistio
+, s.seccion
+-- dinero devuelto
+, d.devoluc
+, d.monpag
+, DATE(d.fecretiro) fretiro
+, d.descripc
+from devolucim d
+left join gracprp g on g.cgracpr=d.gruaca
+left join filialm f on f.cfilial=g.cfilial
+left join ingalum i on i.cingalu = d.codalu
 left join personm p on p.cperson = i.cperson
 left join instita it on it.cinstit = g.cinstit
 left join carrerm c on c.ccarrer = g.ccarrer
-left join filialm f on f.cfilial = g.cfilial
-  where d.devoluc = 'si' ". $where;
+left join modalim m on m.cmodali=g.cmodali
+left join cicloa ci on ci.cciclo=g.cciclo
+left join horam h on h.chora=g.chora
+left JOIN seinggr s On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
+inner join modinga mo on mo.cmoding = i.cmoding
+
+where 1 = 1
+
+ ". $where;
 
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
@@ -165,6 +189,10 @@ function color(){
     return $styleColorFunction;
 }
 
+function colrow($az, $col, $row) {
+    return $az[$col].$row;
+}
+
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
     ->setLastModifiedBy("Jorge Salcedo")
@@ -177,84 +205,127 @@ $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
 $objPHPExcel->getDefaultStyle()->getFont()->setName('Bookman Old Style');
 $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 
+// titulo principal
+$az;
+$row=1;
+$col=0;
+$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row) ,"REPORTE DE DEVOLUCIONES");
+$objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getFont()->setSize(12);
 
-$objPHPExcel->getActiveSheet()->setCellValue("A2","ANULACION DE COMPROBANTES  DE  PAGO  Y  DEVOLUCION DE DINERO");
-$objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(12);
-$objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
-$objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmentBold);
+//$objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
+//$objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmentBold);
 
+// fila titulo cabecera
 
-// FORMATO DE CABEZAR
-$objPHPExcel->getActiveSheet()->mergeCells('A4:A5');
-$objPHPExcel->getActiveSheet()->mergeCells('C4:F4');
-$objPHPExcel->getActiveSheet()->mergeCells('G4:K4');
-$objPHPExcel->getActiveSheet()->mergeCells('L4:P4');
-$objPHPExcel->getActiveSheet()->setCellValue("B4", "ALUMNO");
-$objPHPExcel->getActiveSheet()->setCellValue("C4", "DATOS ACADEMICOS");
-$objPHPExcel->getActiveSheet()->setCellValue("G4", "COMPROBANTE DE PAGOS EMITIDOS");
-$objPHPExcel->getActiveSheet()->setCellValue("L4", "DEVOLUCION");
+$cabecera = array(
+    "DATOS DE INDENTIFICACION"=>array(
+        "NRO",
+        "CAJA - ODE - CENT. DE CAPTACION",
+        //"ESTADO"
+    ),
+    "DATOS PERSONALES"=>array(
+        "AP PATERNO",
+        "AP MATERNO",
+        "NOMBRES"
+    ),
+    "DATOS DOMICILIARIO"=>array(
+        "TELEFONO",
+        "CELULAR",
+        "CORREO ELECTRONICO"
+    ),
+    "DATOS ACADEMICOS"=>array(
+        "INSTITUCION",
+        "SOLO POR BECA",
+        "MOD INGRE",
+        "CARRERA PROFESIONAL",
+        "SEMESTRE",
+        "INICIO",
+        "FECHA INICIO",
+        "MODAL",
+        "CICLO / MODULO",
+        "DURACION",
+        "LOCAL DE ESTUDIO",
+        "FRECUENCIA",
+        "HORARIO",
+    ),
+    "DATOS DE ASISTENCIA"=>array(
+        "ASISTIO",
+        "SECCION",
+    ),
+    "DINERO DEVUELTO"=>array(
+        "DINERO DEVUELTO",
+        "MONTO DEVUELTO",
+        "FECHA",
+        "MOTIVO",
+    ),
+);
+$row=2;
+$col=0;
 
+$colors = array(
+    "FFDDD9C4",
+    "FFC65911",
+    "FFEBF1DE",
+    "FF92D050",
+    "FF8EA9DB",
+    "FF3399FF",
+);
+$countColor = 0;
+foreach($cabecera as $titulo => $subtitulos ) {
+    foreach ($subtitulos as $tit) {
+        $row = 3; // subtitulos siempre en el 3
+        $objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row), $tit);
+        $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getAlignment()->setWrapText(true);
+        $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->applyFromArray($styleAlignmentBold);
 
-$objPHPExcel->getActiveSheet()->mergeCells('Q4:Q5');
-$objPHPExcel->getActiveSheet()->mergeCells('R4:R5');
+        $col++;
+    }
+    $row--; // titulos principales simpre en el
+    $countgroup = count($subtitulos);
+    $gruColIni = $col - $countgroup;
+    $objPHPExcel->getActiveSheet()->mergeCells(colrow($az, $gruColIni, $row) . ":" .  colrow($az, ($col - 1), $row));
+    $objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $gruColIni, $row), $titulo);
+    $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $gruColIni, $row), $titulo)->applyFromArray($styleAlignmentBold);
+    $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $gruColIni, $row) . ":" .  colrow($az, ($col - 1), ($row + 1)))
+        ->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($colors[$countColor]);
+    $countColor++;
 
-
-$cabecera=array('N°',"APELLIDOS Y NOMBRES", "ODE",
-    "INST.", "CARRERA","FECHA DE INICIO",
-    "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
-    "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
-    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION");
-
-for($i=0;$i<count($cabecera);$i++){
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
-    $objPHPExcel->getActiveSheet()->getStyle($az[$i]."5")->getAlignment()->setWrapText(true);
-    $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
 }
 
-$objPHPExcel->getActiveSheet()->setCellValue("A4", "NRO");
-$objPHPExcel->getActiveSheet()->setCellValue("Q4", "DSCTO GASTOS ADMINI");
-$objPHPExcel->getActiveSheet()->getStyle("Q4")->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->setCellValue("R4", "MOTIVO DE DEVOLUCION");
-$objPHPExcel->getActiveSheet()->getStyle("R4")->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->getStyle('A4:R5')->applyFromArray($styleAlignmentBold);
-$pos=1;
-$valorinicial=5;
-$cont=0;
+//final columna de todo el excel
+$finalCol = $col - 1;
+
+
+// estilos para el titulo principal
+$objPHPExcel->getActiveSheet()->mergeCells(colrow($az, 0, 1) . ":" .  colrow($az, $finalCol, 1));
+$objPHPExcel->getActiveSheet()->getStyle(colrow($az, 0, 1) . ":" .  colrow($az, $finalCol, 1))->applyFromArray($styleAlignmentBold);
+
+// rows body del excel
+
+$row = 3;
+$col = 0;
+$cont = 0;
 foreach($control As $r){
+    $row++; // INICIA EN 4
+    $paz=0; // columna
     $cont++;
-    $valorinicial++; // INICIA EN 6
-    $paz=0;
 
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$cont);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['a'] ." ".$r['b']. " ".$r['c']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['s']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['d']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['e']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['f']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['g']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['h']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['i']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['j']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['k']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['l']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['m']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['n']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['o']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['p']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['q']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['r']);$paz++;
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row,$cont); $paz++;
+    foreach ($r as $value)  {
+        $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row, $value); $paz++;
 
-
+    }
 }
-$objPHPExcel->getActiveSheet()->getStyle('A4:R'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+
+$objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
-$objPHPExcel->getActiveSheet()->setTitle('Documentos');
+$objPHPExcel->getActiveSheet()->setTitle('Retiros');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="DEVOLUCIONES'.date("Y-m-d_His").'.xlsx"');
+header('Content-Disposition: attachment;filename="RETIROS'.date("Y-m-d_His").'.xlsx"');
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

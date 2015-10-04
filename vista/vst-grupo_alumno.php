@@ -124,7 +124,7 @@
                                             </td>
 
                                             <td class="t-left label" >
-                                                <b>Devolucion de Dinero</b>
+                                                <b>Devolucion</b>
                                             </td>
                                             <td class="t-left">
                                                 <select id="slct_devolucion_seccion" style="width:220px" onChange="MostrarDevolucionSeccion(this.value);">
@@ -133,6 +133,20 @@
                                                 </select>
                                             </td>
                                       </tr>
+                                        <tr>
+                                            <td class="t-left label" >
+                                                <b>Motivo</b>
+                                            </td>
+                                            <td class="t-left">
+                                                <textarea id="txt_des" style="width: 270px;"></textarea>
+                                            </td>
+                                            <td class="t-left label" >
+                                                <b>Fecha Retiro</b>
+                                            </td>
+                                            <td class="t-left">
+                                                <input type="text" id="txt_fecha_ret" class="input-mediun">
+                                            </td>
+                                        </tr>
                                     </table>
                                 </td>
                             </tr>
@@ -184,12 +198,7 @@
                                         <br>
                                         <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
                                             <tr class="FormData">
-                                                <td class="t-left label" >
-                                                    <b>Fecha de Retiro</b>
-                                                </td>
-                                                <td class="t-left">
-                                                    <input type="text" id="txt_fecha_ret" class="input-mediun" >
-                                                </td>
+
                                                 <td class="t-left label" >
                                                     <b>Fecha de Devolucion</b>
                                                 </td>
@@ -205,41 +214,31 @@
                                                         <option value="T">Transferencia</option>
                                                     </select>
                                                 </td>
-
-                                            </tr>
-                                            </tr><tr class="FormData">
                                                 <td class="t-left label" >
                                                     <b>Autoriza</b>
                                                 </td>
                                                 <td class="t-left" colspan="2">
                                                     <input type="text" id="txt_autoriza" class="input-xlarge" >
                                                 </td>
-                                                <td class="t-left label" >
-                                                    <b>Motivo de devolución</b>
-                                                </td>
-                                                <td class="t-left" colspan="4">
-                                                    <textarea id="txt_des" style="width: 100%"></textarea>
-                                                </td>
-
                                             </tr>
                                             <tr class="FormData">
                                                 <td class="t-left label" >
                                                     <b>Monto a retirar</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_mon_ret" class="input-mediun" >
+                                                    <input type="text" id="txt_mon_ret" class="input-mediun" disabled>
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>% Descuento</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_por_des" class="input-mediun" >
+                                                    <input type="text" id="txt_por_des" class="input-xlarge" disabled>
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>Monto de Descuento</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_mon_des" class="input-mediun" >
+                                                    <input type="text" id="txt_mon_des" class="input-xlarge" disabled>
                                                 </td>
                                             </tr>
                                             <tr class="FormData">
@@ -273,13 +272,13 @@
                                                     <b>Monto Boleta</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_bol_mon" class="input-mediun" >
+                                                    <input type="text" id="txt_bol_mon" class="input-xlarge" >
                                                 </td>
                                                 <td class="t-left label" >
                                                     <b>Concepto</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_concepto" class="input-mediun" >
+                                                    <input type="text" id="txt_concepto" class="input-xlarge" >
                                                 </td>
                                             </tr>
                                         </table>

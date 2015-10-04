@@ -84,10 +84,19 @@
                         <!--fin talba-->
                         <br>
                         <div>
+
+                            <span style="margin:15px 0px 10px 0px;">
+                                <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarRetiros();">
+                                    <i class="icon-white icon-th"></i>
+                                    <span>Exportar Retiros</span>
+                                </a>
+                            </span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+
                             <span style="margin:15px 0px 10px 0px;">
                                 <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarGrupoG();">
                                     <i class="icon-white icon-th"></i>
-                                    <span>Exportar</span>
+                                    <span>Exportar Detalle Devolucion</span>
                                 </a>
                             </span>
                         </div>
