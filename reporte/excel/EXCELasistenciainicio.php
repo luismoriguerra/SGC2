@@ -10,180 +10,147 @@ $azcount=array(20,5,46,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8.5,8
 
 $cfilial=str_replace(",","','",$_GET['cfilial']);
 $fechas =" DATE(gr.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'"; 
+$fechas2 =" DATE(g2.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'"; 
 $cinstit=str_replace(",","','",$_GET['cinstit']);
 
-$sql="	Select 
+$sql="	SELECT 
 			 fil.dfilial 					as filial
 			,ins.dinstit					as instituto
 			,car.dcarrer					as carrera
-			,(Select GROUP_CONCAT(d.dnemdia SEPARATOR '-') From diasm d Where FIND_IN_SET (d.cdia,replace(gr.cfrecue,'-',','))  >  0)	as frecuencia
+			,(SELECT GROUP_CONCAT(d.dnemdia SEPARATOR '-') From diasm d Where FIND_IN_SET (d.cdia,replace(gr.cfrecue,'-',','))  >  0)	as frecuencia
 			,CONCAT(hor.hinici , ' - ' , hor.hfin) 	as hora
 			,gr.csemaca						as semestre
 			,gr.cinicio						as inicio
 			,gr.finicio						as fec_ini
-			,ifnull(alu.cant,0) 			as cant_insc
-			,ifnull(alu.pag_mat,0)			as pag_mat
-			,ifnull(alu.pag_cuo,0)			as pag_cuo
-			,(select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr) tt
-			,ifnull((select count(DISTINCT(s.cingalu)) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				where s.cgrupo=gr.cgracpr),0) 	as cant_asist
-			,(select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				where s.cgrupo=gr.cgracpr
+			,count(distinct(con.cingalu)) cant_insc
+			,count(distinct(con.cingalu)) - sum(if(r.ccuota='',1,0)) tmat
+			,sum(if(r.ccuota='1' and r.testfin='P',0,1)) - sum(if(r.ccuota='',1,0)) pag_cuo
+			,( count(distinct(con.cingalu)) - sum(if(r.ccuota='',1,0)) ) - ( sum(if(r.ccuota='1' and r.testfin='P',0,1)) - sum(if(r.ccuota='',1,0)) )  pag_mat
+			,sum(if(r.ccuota='1' and r.testfin='P',0,1)) penaux,sum(if(r.ccuota='',1,0)) mataux
+			,(SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu) tt
+			,ifnull((SELECT count(DISTINCT(s.cingalu)) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=gr.cgracpr),0) 	as cant_asist
+			,(SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=gr.cgracpr
 				AND a.fecha=gr.finicio) t1_1
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 0,1),0)				as asis_01
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 1,1),0)				as asis_02
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 2,1),0)				as asis_03
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 3,1),0)				as asis_04
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 4,1),0)				as asis_05
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 5,1),0)				as asis_06
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 6,1),0)				as asis_07
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 7,1),0)				as asis_08
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 8,1),0)				as asis_09
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 9,1),0)				as asis_10
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 10,1),0) 				as asis_11
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 11,1),0) 				as asis_12
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 12,1),0) 				as asis_13
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 13,1),0) 				as asis_14
-			,ifnull((select count(s.cingalu) ta
-				from aluasist a
-				inner join seinggr s ON (s.id=a.idseing)
-				inner join ingalum i ON i.cingalu=s.cingalu AND i.cestado=1
-				where s.cgrupo=gr.cgracpr
+			,ifnull((SELECT count(s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
 				GROUP BY s.cgrupo,a.fecha
 				limit 14,1) ,0)				as asis_15
-
 		From gracprp	gr
-			Inner Join filialm fil
-				On gr.cfilial = fil.cfilial
-			Inner Join instita ins
-				On gr.cinstit = ins.cinstit
-			Inner Join carrerm car
-				On gr.ccarrer = car.ccarrer
-			Inner Join horam hor
-				On gr.chora = hor.chora
-			Left Join (	Select 	con.cfilial, con.cgruaca, count(con.cingalu) as cant,
-								sum(ifnull(pag_mat.cont,0)) as pag_mat, sum(ifnull(pag_cuo.cont,0)) as pag_cuo
-						From conmatp con
-							Left Join (	Select Distinct a.cingalu, a.cfilial, a.cgruaca, 1 as cont
-										From recacap a
-										Where a.cconcep IN (Select cconcep From concepp Where cctaing like '701.01%' And cfilial = a.cfilial)
-									  	  And a.cfilial IN ('".$cfilial."')
-									  	AND (a.testfin='C' OR (a.cdocpag!='' and a.testfin='S'))
-									  ) as pag_mat
-								On con.cingalu = pag_mat.cingalu And con.cgruaca = pag_mat.cgruaca
-							Left Join (	Select Distinct b.cingalu, b.cfilial, b.cgruaca, 1 as cont
-										From recacap b
-										Where b.cconcep IN (Select cconcep From concepp Where cctaing like '701.03%' And cfilial = b.cfilial)
-									  	  And b.cfilial IN ('".$cfilial."') And b.ccuota = 1
-									  	AND (b.testfin='C' OR (b.cdocpag!='' and b.testfin='S'))
-									  	) as pag_cuo
-								On con.cingalu = pag_cuo.cingalu And con.cgruaca = pag_cuo.cgruaca
-						Where con.cfilial IN ('".$cfilial."')
-						Group By con.cgruaca
-					) as alu
-				On gr.cgracpr = alu.cgruaca
-		Where gr.cfilial IN ('".$cfilial."')
-		  And gr.cinstit IN ('".$cinstit."')
-		  And ".$fechas."
-          AND gr.cesgrpr='3'
-		Order By filial, instituto";
+		INNER JOIN  filialm fil On gr.cfilial = fil.cfilial
+		INNER JOIN  instita ins On gr.cinstit = ins.cinstit
+		INNER JOIN  carrerm car On gr.ccarrer = car.ccarrer
+		INNER JOIN  horam hor On gr.chora = hor.chora
+		INNER JOIN conmatp con ON con.cgruaca=gr.cgracpr
+		INNER JOIN ingalum i ON i.cingalu=con.cingalu AND i.cestado=1
+		LEFT JOIN recacap r ON r.cingalu=con.cingalu AND r.cgruaca=con.cgruaca AND ccuota IN ('1','')
+							AND r.cconcep IN (SELECT cconcep From concepp Where cctaing like '701.01%' or cctaing like '701.03%')
+							AND r.testfin='P'
+		WHERE gr.cfilial IN ('".$cfilial."')
+		AND gr.cinstit IN ('".$cinstit."')
+		AND ".$fechas."
+		AND gr.cesgrpr='3'
+		GROUP BY gr.cgracpr
+		ORDER BY filial, instituto";
 $cn->setQuery($sql);
 $rpt=$cn->loadObjectList();
 
 
-$sql2="Select concat(dnomper,' ',dappape,' ',dapmape) as nombre
+$sql2="SELECT concat(dnomper,' ',dappape,' ',dapmape) as nombre
 		FROM personm
 		WHERE dlogper='".$_GET['usuario']."'";
 $cn->setQuery($sql2);
@@ -457,10 +424,10 @@ if(count($rpt)>0){
 		$objPHPExcel->getActiveSheet()->setCellValue($az[9].$valorinicial,$r["cant_insc"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[10].$valorinicial,$r["cant_asist"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[11].$valorinicial,"=(".$az[9].$valorinicial." - ".$az[10].$valorinicial.")");
-		$mat=$r["pag_mat"]-$r["pag_cuo"];
-		if($mat<0){
+		$mat=$r["pag_mat"];
+		/*if($mat<0){
 			$mat=0;
-		}
+		}*/
 
 		$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,$mat);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[13].$valorinicial,$r["pag_cuo"]);
