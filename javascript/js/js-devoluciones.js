@@ -35,3 +35,13 @@ ExportarGrupoG=function(){
     window.location='../reporte/excel/EXCELdevoluciones.php?cfilial='
     +cfilial+'&cinstit='+cinstit+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
 }
+
+ExportarRetiros = function () {
+    var cfilial=$("#slct_filial").val().join(",");
+    var cinstit=$("#slct_instituto").val().join(",");
+    var fechini=$("#txt_fecha_inicio").val();
+    var fechfin=$("#txt_fecha_fin").val();
+
+    window.location='../reporte/excel/EXCELretiros.php?cfilial='
+    +cfilial+'&cinstit='+cinstit+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
+}

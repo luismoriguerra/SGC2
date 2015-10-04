@@ -93,6 +93,11 @@ CalcularComisionMonto=function(){
 }
 
 
+LimpiarFormulario = function () {
+	$(".devolucion-seccion").hide();
+	$("#txt_des").val('');
+}
+
 Visualizar=function(val){
 	$(".esconde").css("display","none");
 	$('.esconde .form input[type="text"],.esconde .form input[type="hidden"],.esconde .form select').val('');
