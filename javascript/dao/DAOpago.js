@@ -214,6 +214,7 @@ var pagoDAO={
 					$("#txt_dscto").val('0.30');
 					$("#table_persona_ingalum").trigger('reloadGrid');
                     $("#btn_registrar_retiro").hide();
+                    LimpiarFormulario();
 
                 }else if(obj.rst=='2'){
                     sistema.msjAdvertencia(obj.msj,3000);					

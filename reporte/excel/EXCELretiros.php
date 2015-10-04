@@ -88,7 +88,7 @@ $sql="
 , s.seccion
 -- dinero devuelto
 , d.devoluc
-, d.monpag
+, d.monretir
 , DATE(d.fecretiro) fretiro
 , d.descripc
 from devolucim d

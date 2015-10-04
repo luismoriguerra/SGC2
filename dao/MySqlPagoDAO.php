@@ -426,7 +426,7 @@ class MySqlPagoDAO{
 				 monretir=".$array['dmontret']." ,
 				 pordesc=".$array['dpordesc']." ,
 				 mondes=".$array['dmontdes']." ,
-				 devoluc=".strtolower($array['showdevo'])." ,
+				 devoluc='".strtolower($array['showdevo'])."' ,
 				 cusuari='".$array['cusuari']."',
 				 fusuari=now()";
 
@@ -459,7 +459,7 @@ class MySqlPagoDAO{
 				 fdocpag='".$array['dfboleta']."',
 				 monpag=".$array['dbolmont'].",
 				 concept='".$array['dconcept']."',
-				 devoluc=".strtolower($array['showdevo'])." ,
+				 devoluc='".strtolower($array['showdevo'])."' ,
 				 cusuari='".$array['cusuari']."',
 				 fusuari=now()";
 
