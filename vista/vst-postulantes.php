@@ -46,7 +46,7 @@
         <div class="secc-der" id="secc-der">
 
             <div id="panel_matricula" style="display:block">
-                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte de Postulantes <?   /*aqui va el titulo q presentara  */ ?></b></div>
+                <div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>Reporte de Postulantes e Ingresantes <?   /*aqui va el titulo q presentara  */ ?></b></div>
                 <div class="cont-der">
                     <div class="t-center">
                         <div class="barra4 contentBarra t-blanco t-left"><i class="icon-white icon-th"></i>FILTROS</div>
@@ -91,7 +91,14 @@
                             <span style="margin:15px 0px 10px 0px;">
                                 <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarDatos();">
                                     <i class="icon-white icon-th"></i>
-                                    <span>Exportar</span>
+                                    <span>Relacion de Postulantes</span>
+                                </a>
+                            </span>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <span style="margin:15px 0px 10px 0px;">
+                                <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarDatosIngresantes();">
+                                    <i class="icon-white icon-th"></i>
+                                    <span>Relacion de Ingresantes</span>
                                 </a>
                             </span>
 

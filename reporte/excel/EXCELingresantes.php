@@ -72,6 +72,7 @@ select
 , p.ndniper dni
 , mo.dmoding modalidad
 , g.finicio
+,(select max(estasist) asistio from aluasist where idseing=s.id) asistio
 from gracprp g
 JOIN (SELECT @curRow := 0) r
 inner join conmatp co on co.cgruaca = g.cgracpr
@@ -80,6 +81,7 @@ inner join personm p on p.cperson = i.cperson
 inner join carrerm c on c.ccarrer = g.ccarrer
 inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
+left JOIN seinggr s On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
 where 1 = 1
 
  ". $where;
@@ -191,7 +193,7 @@ $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 $az;
 $row=3;
 $col=0;
-$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row) ,"RELACION DE POSTULANTES DE LA CARRERA ".$carrera[0]["dcarrer"]);
+$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row) ,"RELACION DE INGRESANTES DE LA CARRERA ".$carrera[0]["dcarrer"]);
 $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getFont()->setSize(12);
 
 //$objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
@@ -244,25 +246,30 @@ $row = 7;
 $col = 0;
 $cont = 0;
 foreach($control As $r){
-    $row++; // INICIA EN 4
-    $paz=0; // columna
-    $cont++;
-
-    foreach ($r as $value)  {
-        $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row, $value); $paz++;
-
+    // valida que solo muestre los que tienen almenos 1 asistencia
+    if ($r['asistio'] == 1) {
+        $row++; // INICIA EN 4
+        $paz=0; // columna
+        $cont++;
+        foreach ($r as $key => $value)  {
+            // que muestre todas las columnas excepto la columna asistio del query
+            if ($key != 'asistio'){
+                $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row, $value); $paz++;
+            }
+        }
     }
+
 }
 
 $objPHPExcel->getActiveSheet()->getStyle('A7:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
-$objPHPExcel->getActiveSheet()->setTitle('Postulantes');
+$objPHPExcel->getActiveSheet()->setTitle('Ingresantes');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="SGC.ReportePostulantes.'.date("Y-m-d_His").'.xlsx"');
+header('Content-Disposition: attachment;filename="SGC.RelacionIngresantes.'.date("Y-m-d_His").'.xlsx"');
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

@@ -38,3 +38,14 @@ ExportarDatos = function () {
     window.location='../reporte/excel/EXCELpostulantes.php?cfilial='
     +cfilial+'&cinstit='+cinstit+'&ccarrer='+ccarrer+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
 }
+
+ExportarDatosIngresantes = function () {
+    var cfilial=$("#slct_filial").val().join(",");
+    var cinstit=$("#slct_instituto").val();
+    var ccarrer=$("#slct_carrera").val();
+    var fechini=$("#txt_fecha_inicio").val();
+    var fechfin=$("#txt_fecha_fin").val();
+
+    window.location='../reporte/excel/EXCELingresantes.php?cfilial='
+    +cfilial+'&cinstit='+cinstit+'&ccarrer='+ccarrer+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
+}
