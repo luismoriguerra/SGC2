@@ -34,8 +34,8 @@ $cusuari=$_GET['usuario'];
 $alumno="";
 
 $cfilial = str_replace(",","','",$_GET['cfilial']);
-$cinstit = $_GET['cinstit'];
-$ccarrer = $_GET['ccarrer'];
+$cinstit =  str_replace(",","','",$_GET['cinstit']);
+$ccarrer =  str_replace(",","','",$_GET['ccarrer']);
 
 
 $fechini = $_GET['fechini'];
@@ -48,11 +48,11 @@ if ($cfilial) {
     $where .= " and g.cfilial in ('".$cfilial."') ";
 }
 if ($cinstit) {
-    $where .= " and g.cinstit = '$cinstit' ";
+    $where .= " and g.cinstit in ('".$cinstit."') ";
 }
 
 if ($ccarrer) {
-    $where .= " and g.ccarrer = '$ccarrer' ";
+    $where .= " and g.ccarrer in ('".$ccarrer."') ";
 }
 
 

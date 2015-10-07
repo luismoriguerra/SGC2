@@ -490,6 +490,31 @@ var carreraDAO={
             error: this.msjErrorAjax
         });
     },
+    cargarCarreraInstitucionMultiple: function(fxllena,slct_dest,id_slct,titulo){
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando:'carrera',
+                accion:'cargarCarreraInstitucionMultiple',
+                ctipcar:'2',
+                //cmodali:$("#slct_modalidad").val(),
+                cinstit:$('#slct_instituto').multiselect("getChecked").map(function(){return this.value;}).get().join("','"),
+                cfilial:$("#slct_filial").multiselect("getChecked").map(function(){return this.value;}).get().join("','")
+            },
+            beforeSend : function ( ) {
+            },
+            success : function ( obj ) {
+                if( obj.length!=0 ){
+                    fxllena(obj.data,slct_dest,id_slct,titulo);
+                    $("#slct_carrera").multiselect("refresh");
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },
 	
 	cargarInicioG: function(fxllena,slct_dest,id_slct){
         $.ajax({

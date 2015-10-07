@@ -318,6 +318,38 @@ class MySqlCarreraDAO{
             return array('rst'=>'2','msj'=>'No existen Carreras','data'=>$data,'sql'=>$sql);
         }
     }
+
+
+    public function cargarCarreraInstitucionMultiple($r){
+        $db=creadorConexion::crear('MySql');
+
+        $sqlmodal = "SELECT cmodali
+					 FROM instita
+					 WHERE cinstit='".$r['cinstit']."'";
+        $db->setQuery($sqlmodal);
+        $cmodali=$db->loadObjectList();
+
+
+        $sql="SELECT DISTINCT c.ccarrer as id,c.dcarrer as nombre
+			  FROM carrerm c
+			  INNER JOIN filcarp f
+			  	ON c.ccarrer = f.ccarrer
+				AND c.ctipcar = f.ctipcar
+				AND f.cestado = '1'
+			  WHERE f.cfilial IN ('".str_replace("\\","",$r['cfilial'])."')
+			  AND c.ctipcar='".$r['ctipcar']."'
+			  AND c.cinstit IN ('".str_replace("\\","",$r['cinstit'])."')
+			  AND c.cestado='1'
+			  ORDER BY c.dcarrer";
+
+        $db->setQuery($sql);
+        $data=$db->loadObjectList();
+        if(count($data)>0){
+            return array('rst'=>'1','msj'=>'Carreras cargados','data'=>$data,'sql'=>$sql);
+        }else{
+            return array('rst'=>'2','msj'=>'No existen Carreras','data'=>$data,'sql'=>$sql);
+        }
+    }
 	
 	public function cargarInicioG($r){
         $sql="SELECT DISTINCT(cinicio) as id,cinicio as nombre

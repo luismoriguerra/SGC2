@@ -84,6 +84,14 @@ class servletCarrera extends controladorComandos{
 				$data['cfilial']=trim($_POST['cfilial']);
                 echo json_encode($daoCarrera->cargarCarreraG($data));
             break;
+			case 'cargarCarreraInstitucionMultiple':
+				$data=array();
+				$data['ctipcar']=trim($_POST['ctipcar']);
+				//$data['cmodali']=trim($_POST['cmodali']);
+				$data['cinstit']=trim($_POST['cinstit']);
+				$data['cfilial']=trim($_POST['cfilial']);
+				echo json_encode($daoCarrera->cargarCarreraInstitucionMultiple($data));
+				break;
             case 'cargar_semestre_g':
 			$data=array();
 				$data['cinstit']=trim($_POST['cinstit']);

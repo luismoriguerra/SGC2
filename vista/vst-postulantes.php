@@ -64,7 +64,7 @@
                                 </td>
                                 <td class="t-left label">Institución:</td>
                                 <td class="t-left">
-                                    <select id="slct_instituto" class="input-large"><option value="">--Selecione--</option></select>
+                                    <select id="slct_instituto" class="input-large" multiple><option value="">--Selecione--</option></select>
                                 </td>
                             </tr>
                             <tr>
@@ -77,7 +77,7 @@
                                 </td>
                                 <td class="t-left label">Carrera:</td>
                                 <td class="t-left">
-                                    <select id="slct_carrera" class="input-large"><option value="">--Selecione--</option></select>
+                                    <select id="slct_carrera" class="input-large" multiple></select>
                                 </td>
                             </tr>
                             <tr>
@@ -99,6 +99,13 @@
                                 <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarDatosIngresantes();">
                                     <i class="icon-white icon-th"></i>
                                     <span>Relacion de Ingresantes</span>
+                                </a>
+                            </span>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <span style="margin:15px 0px 10px 0px;">
+                                <a id="btn_listar" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)" onClick="ExportarDatosResultados();">
+                                    <i class="icon-white icon-th"></i>
+                                    <span>Relacion de Resultados</span>
                                 </a>
                             </span>
 

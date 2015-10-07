@@ -19,7 +19,7 @@ $az=array(  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 ,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
 ,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
 ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU');
-$azcount=array( 5,15,40,15,35,15,10,20,15,15,15,
+$azcount=array( 20,20,20,40,20,20,20,20,15,15,15,
     15,15,20,15,15,15,15,15,15,15,15,15,19,40,20,20,20,20,20,20,20,20,20,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
@@ -37,6 +37,9 @@ $cfilial = str_replace(",","','",$_GET['cfilial']);
 $cinstit =  str_replace(",","','",$_GET['cinstit']);
 $ccarrer =  str_replace(",","','",$_GET['ccarrer']);
 
+// si hay mas de 1 deberia mostrar todos los campos
+$carreras = explode(",", $_GET['ccarrer']);
+$limite = 7 * count($carreras);
 
 $fechini = $_GET['fechini'];
 $fechfin = $_GET['fechfin'];
@@ -62,26 +65,27 @@ if($fechini!='' and $fechfin!=''){
 
 $sql="
 select
-@curRow := @curRow + 1 AS indice
-, i.dcodlib inscripcion
-,CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
-, f.dfilial
-, c.dcarrer
-, g.csemaca
-, 'DNI' tipo_documento
-, p.ndniper dni
-, mo.dmoding modalidad
+i.dcodlib inscripcion
+,p.dappape
+,p.dapmape
+,p.dnomper
+,'' asistencia
+,'' nota_final
+,'' condicion
+, f.dfilial filial
+, ins.dinstit
+, c.dcarrer carrer
+, g.csemaca semestre
 , g.finicio
 from gracprp g
-JOIN (SELECT @curRow := 0) r
 inner join conmatp co on co.cgruaca = g.cgracpr
 inner join ingalum i on i.cingalu = co.cingalu
 inner join personm p on p.cperson = i.cperson
 inner join carrerm c on c.ccarrer = g.ccarrer
 inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
+inner join instita ins on ins.cinstit = i.cinstit
 where 1 = 1
-
  ". $where;
 
 $cn->setQuery($sql);
@@ -191,8 +195,11 @@ $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 $az;
 $row=3;
 $col=0;
-$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row) ,"RELACION DE POSTULANTES DE LA CARRERA ".$carrera[0]["dcarrer"]);
-$objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getFont()->setSize(12);
+// EL TITULO SERA AGREGADO MANUALMENTE
+$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, 1) , "RESULTADOS DEL EXAMEN DE ADMISION");
+$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, 2) , "FACULTAD");
+$objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, 3) , "ESCUELA PROFESIONAL: ");
+//$objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getFont()->setSize(12);
 
 //$objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
 //$objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmentBold);
@@ -200,18 +207,20 @@ $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getFont()->se
 // fila titulo cabecera
 
 $cabecera = array(
-   "NRO",
-   "NRO DE INSCRIPCION",
-    "APELLIDOS Y NOMBRES",
-    "ODE",
-    "CARRERA A LA POSTULA",
-    "SEMESTRE",
-    "TIPO DE DOC",
-    "NRO DE DOCUMENTO",
-    "MODALIDAD",
+    "LIBRO DE CODIGO",
+    "APELL PATERNO",
+    "APELL MATERNO",
+    "NOMBRES",
+    "ASISTENCIA",
+    "NOTA FINAL",
+    "CONDICION",
+    "FILIAL",
+    "INSTITUCION",
+    "CARRERA",
+    "SEMETRE",
     "FECHA DE INICIO",
 );
-$row=7;
+$row=4;
 $col=0;
 
 $colors = array(
@@ -224,45 +233,49 @@ $colors = array(
 );
 $countColor = 0;
 foreach($cabecera as $tit ) {
-    $objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row), $tit);
-    $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getAlignment()->setWrapText(true);
-    $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->applyFromArray($styleAlignmentBold);
-    $objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth($azcount[$col]);
-    $col++;
+    if($col < $limite) {  // valida que no aparezcan otras columnas
+        $objPHPExcel->getActiveSheet()->setCellValue(colrow($az, $col, $row), $tit);
+        $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->getAlignment()->setWrapText(true);
+        $objPHPExcel->getActiveSheet()->getStyle(colrow($az, $col, $row))->applyFromArray($styleAlignmentBold);
+        $objPHPExcel->getActiveSheet()->getColumnDimension($az[$col])->setWidth($azcount[$col]);
+        $col++;
+    }
 }
 
 //final columna de todo el excel
 $finalCol = $col - 1;
 
 // estilos para el titulo principal
-$objPHPExcel->getActiveSheet()->mergeCells(colrow($az, 0, 3) . ":" .  colrow($az, 8, 5));
-$objPHPExcel->getActiveSheet()->getStyle(colrow($az, 0, 3) . ":" .  colrow($az, 8, 5))->applyFromArray($styleAlignmentBold);
+//$objPHPExcel->getActiveSheet()->mergeCells(colrow($az, 0, 3) . ":" .  colrow($az, 8, 5));
+//$objPHPExcel->getActiveSheet()->getStyle(colrow($az, 0, 3) . ":" .  colrow($az, 8, 5))->applyFromArray($styleAlignmentBold);
 
 // rows body del excel
 
-$row = 7;
+$row = 4;
 $col = 0;
 $cont = 0;
 foreach($control As $r){
-    $row++; // INICIA EN 4
+    $row++; // INICIA EN 5
     $paz=0; // columna
     $cont++;
 
     foreach ($r as $value)  {
-        $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row, $value); $paz++;
+        if ($paz < $limite){
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$row, $value); $paz++;
+        }
 
     }
 }
 
-$objPHPExcel->getActiveSheet()->getStyle('A7:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A4:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
-$objPHPExcel->getActiveSheet()->setTitle('Postulantes');
+$objPHPExcel->getActiveSheet()->setTitle('Resultados');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="SGC.ReportePostulantes.'.date("Y-m-d_His").'.xlsx"');
+header('Content-Disposition: attachment;filename="SGC.ReporteResultadoPostulantes.'.date("Y-m-d_His").'.xlsx"');
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

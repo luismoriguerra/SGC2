@@ -3,7 +3,26 @@ $(document).ready(function(){
     $('#nav-reportes').addClass('active');//aplica estilo al menu activo
     institucionDAO.cargarInstitucionValidaG(sistema.llenaSelectGrupo,'slct_instituto','','Instituto');
     institucionDAO.cargarFilialValidadaG(sistema.llenaSelectGrupo,'slct_filial','','Filial');
-    $("#slct_filial").multiselect({
+    $("#slct_instituto, #slct_filial").multiselect({
+        selectedList: 4,
+        click: function(event, ui){
+            cargarCarrera("");
+        },
+        checkAll: function(){
+            cargarCarrera("");
+        },
+        uncheckAll: function(){
+            cargarCarrera("");
+        }, // 0-based index
+        optgrouptoggle: function(){
+            cargarCarrera("");
+        },
+        afterSelect: function(value){
+            cargarCarrera("");
+        }
+    }).multiselectfilter();
+
+    $("#slct_carrera").multiselect({
         selectedList: 4 // 0-based index
     }).multiselectfilter();
 
@@ -15,15 +34,21 @@ $(document).ready(function(){
         prevText:'Anterior'
     });
 
-    $("#slct_filial").change(function(){cargarCarrera("");});
-    $("#slct_instituto").change(function(){cargarCarrera("");});
-//
+    //$("#slct_filial").change(function(){cargarCarrera("");});
+    //$("#slct_instituto").change(function(){cargarCarrera("");});
+
 
 })
 
 
-cargarCarrera=function(marcado){ //tendra "marcado" en select luego cargar
-    carreraDAO.cargarCarreraG(sistema.llenaSelect,'slct_carrera',marcado);
+cargarCarrera=function(marcado){
+    var cfilial=$("#slct_filial").multiselect("getChecked").map(function(){return this.value;}).get();
+    var cinstit=$("#slct_instituto").multiselect("getChecked").map(function(){return this.value;}).get();
+
+    if (cfilial && cinstit) {
+        carreraDAO.cargarCarreraInstitucionMultiple(sistema.llenaSelectGrupo,'slct_carrera', "", "Carreras");
+
+    }
 }
 
 
@@ -47,5 +72,17 @@ ExportarDatosIngresantes = function () {
     var fechfin=$("#txt_fecha_fin").val();
 
     window.location='../reporte/excel/EXCELingresantes.php?cfilial='
+    +cfilial+'&cinstit='+cinstit+'&ccarrer='+ccarrer+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
+}
+
+
+ExportarDatosResultados = function () {
+    var cfilial=$("#slct_filial").val().join(",");
+    var cinstit=$("#slct_instituto").val().join(",");
+    var ccarrer=$("#slct_carrera").val().join(",");
+    var fechini=$("#txt_fecha_inicio").val();
+    var fechfin=$("#txt_fecha_fin").val();
+
+    window.location='../reporte/excel/EXCELresultados.php?cfilial='
     +cfilial+'&cinstit='+cinstit+'&ccarrer='+ccarrer+'&usuario='+$("#hd_idUsuario").val()+'&fechini='+fechini+'&fechfin='+fechfin;
 }
