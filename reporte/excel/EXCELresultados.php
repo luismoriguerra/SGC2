@@ -45,7 +45,7 @@ $fechini = $_GET['fechini'];
 $fechfin = $_GET['fechfin'];
 
 $where='';
-//$order=" ORDER BY f.dfilial, ins.dinstit, ca.dcarrer, p.dappape, p.dapmape, p.dnomper ";
+$order=" ORDER BY f.dfilial, ins.dinstit, c.dcarrer, p.dappape asc, p.dapmape asc , p.dnomper  asc ";
 
 if ($cfilial) {
     $where .= " and g.cfilial in ('".$cfilial."') ";
@@ -86,7 +86,7 @@ inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
 inner join instita ins on ins.cinstit = i.cinstit
 where 1 = 1
- ". $where;
+ ". $where . " " . $order;
 
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
