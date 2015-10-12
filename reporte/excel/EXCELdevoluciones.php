@@ -48,33 +48,31 @@ if($fechini!='' and $fechfin!=''){
     $where .=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 }
 
-$sql="select
-
-p.dappape a
-,p.dapmape b
-,p.dnomper c
-, it.dinstit d
-, c.dcarrer e
-, g.finicio f
-
-, d.concept g
-, DATE(d.fdocpag)  h
-,d.cdocpag  i
-,d.ctippag  j
-,d.monpag  k
-
-
-, dt.concepto l
-, DATE(dt.fecbole) m
-, dt.bolserie n
-, dt.tipbolet o
-, dt.monbole p
-
-, d.pordesc  q
-, d.descripc r
-, f.dfilial s
-
+$sql="
+select
+@curRow := @curRow + 1 AS indice
+, CONCAT_WS(' ', p.dappape ,p.dapmape ,p.dnomper  ) nombres
+, f.dfilial
+, it.dinstit
+, c.dcarrer
+, g.finicio
+, d.concept
+, DATE(d.fdocpag)
+,d.cdocpag
+,d.ctippag
+,d.monpag
+, dt.concepto
+, DATE(dt.fecbole)
+, dt.bolserie
+, dt.tipbolet
+, dt.monbole
+, d.pordesc
+, d.descripc
+, f.dfilial
+, dt.cgruaca 1hide
+, dt.cingalu 2hide
 from devoldet dt
+JOIN (SELECT @curRow := 0) r
 left join devolucim d on d.gruaca = dt.cgruaca and dt.cingalu = d.codalu
 left join gracprp g on g.cgracpr = dt.cgruaca
 left join ingalum i on i.cingalu = dt.cingalu
@@ -82,7 +80,8 @@ left join personm p on p.cperson = i.cperson
 left join instita it on it.cinstit = g.cinstit
 left join carrerm c on c.ccarrer = g.ccarrer
 left join filialm f on f.cfilial = g.cfilial
-  where d.devoluc = 'si' ". $where;
+  where d.devoluc = 'si' "
+    . $where;
 
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
@@ -220,32 +219,50 @@ $objPHPExcel->getActiveSheet()->getStyle('A4:R5')->applyFromArray($styleAlignmen
 $pos=1;
 $valorinicial=5;
 $cont=0;
+
+function combinar($objPHPExcel, $az, $rowini, $rowfin) {
+    for ($i = 0; $i < 11; $i++) {
+        $objPHPExcel->getActiveSheet()->mergeCells($az[$i].$rowini.':'.$az[$i].$rowfin);
+    }
+}
+
+$mixkey = '';
+$rowini = 6;
+$rowfin = 5;
+$combinaciones = array();
 foreach($control As $r){
     $cont++;
     $valorinicial++; // INICIA EN 6
     $paz=0;
 
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$cont);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['a'] ." ".$r['b']. " ".$r['c']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['s']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['d']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['e']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['f']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['g']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['h']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['i']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['j']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['k']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['l']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['m']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['n']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['o']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['p']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['q']);$paz++;
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial,$r['r']);$paz++;
+    foreach ($r as $key => $value)  {
+        if (!strpos($key, "hide")) {
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $value); $paz++;
+         }
+    }
 
-
+    if ($mixkey != $r['1hide'].$r['2hide']) {
+        // empienza un nuevo grupo , mergear el anterior
+        if (!empty($mixkey))
+            $combinaciones[] = array($rowini, $rowfin);
+        // inistancio nuevos datos
+        $mixkey = $r['1hide'].$r['2hide'];
+        $rowini=$valorinicial;
+        $rowfin=$valorinicial;
+    } else {
+        $rowfin = $valorinicial;
+    }
 }
+// registra el ultimo grupo
+$combinaciones[] = array($rowini, $rowfin);
+
+$indice = 1;
+foreach($combinaciones as $c) {
+    combinar($objPHPExcel, $az, $c[0], $c[1]);
+    // agrega el nuevo indice luego de tener las filas mergeadas
+    $objPHPExcel->getActiveSheet()->setCellValue("A".$c[0], $indice++);
+}
+
 $objPHPExcel->getActiveSheet()->getStyle('A4:R'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Documentos');
@@ -254,7 +271,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirect output to a client's web browser (Excel2007)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="DEVOLUCIONES'.date("Y-m-d_His").'.xlsx"');
+header('Content-Disposition: attachment;filename="ReporteDevoluciones.'.date("Y-m-d_His").'.xlsx"');
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

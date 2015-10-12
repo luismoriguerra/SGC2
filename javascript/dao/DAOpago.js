@@ -54,7 +54,7 @@ var pagoDAO={
 					sistema.msjAdvertencia(obj.msj,4000);
 					$('.cont-der input[type="text"],.cont-der input[type="hidden"],.cont-der select').val('');			
 					$('#frmRetiro').css('display','none');
-					$("#txt_dscto").val('0.30');
+					$("#txt_dscto").val('30');
                 }
 				else{
                     sistema.msjErrorCerrar(obj.msj);
@@ -184,7 +184,7 @@ var pagoDAO={
 				fechaop:sistema.getFechaActual('yyyy-mm-dd'),
 
                 dfretiro:$("#txt_fecha_ret").val(),
-                dfdevolu:$("#txt_fecha_dev").val(),
+                dfdevolu:$("#txt_fecha_bol").val(), // la fecha de devolucion sera la de boleta ahora
                 dautoriz:$("#txt_autoriza").val(),
                 dtipodev: $("#slct_tip_dev").val(),
                 ddescrip: $("#txt_des").val(),
@@ -195,7 +195,7 @@ var pagoDAO={
                 dboltipo: $("#slct_tip_pag").val(),
                 dbolmont: $("#txt_bol_mon").val(),
                 dfboleta: $("#txt_fecha_bol").val(),
-                dconcept: $("#txt_concepto").val(),
+                dconcept: $("#slct_concepto").val().join(","), // concepto es un select multiple
                 showdevo: $("#slct_devolucion_seccion").val(),
 
 
@@ -211,7 +211,7 @@ var pagoDAO={
                     sistema.msjOk(obj.msj);
 					$('.cont-der input[type="text"],.cont-der input[type="hidden"],.cont-der select').val('');			
 					$('#frmRetiro').css('display','none');
-					$("#txt_dscto").val('0.30');
+					$("#txt_dscto").val('30');
 					$("#table_persona_ingalum").trigger('reloadGrid');
                     $("#btn_registrar_retiro").hide();
                     LimpiarFormulario();

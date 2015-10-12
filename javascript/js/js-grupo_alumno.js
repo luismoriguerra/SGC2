@@ -26,6 +26,10 @@ $(document).ready(function(){
 
 	});
 
+	$("#slct_concepto").multiselect({
+		selectedList: 4 // 0-based index
+	});
+
 })
 
 

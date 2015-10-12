@@ -8,11 +8,15 @@
 
 		<link rel="stylesheet" type="text/css" href="../css/temas/default/css-sistema.php">
 		<link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/jqgrid-4.3.2/css/ui.jqgrid.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="../javascript/includes/multiselect/css/jquery.multiselect.filter.css" />
 
 		<script type="text/javascript" src="../javascript/includes/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="../javascript/includes/jquery-ui-1.8.18.custom.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
+        <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.filter.min.js"></script>
+        <script type="text/javascript" src="../javascript/includes/multiselect/js/jquery.multiselect.min.js"></script>
 
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
@@ -124,7 +128,7 @@
                                             </td>
 
                                             <td class="t-left label" >
-                                                <b>Devolucion</b>
+                                                <b>Devolucion de dinero: </b>
                                             </td>
                                             <td class="t-left">
                                                 <select id="slct_devolucion_seccion" style="width:220px" onChange="MostrarDevolucionSeccion(this.value);">
@@ -199,12 +203,12 @@
                                         <table cellspacing="1" cellpadding="2" border="0" style="table-layout:fixed;" class="EditTable">
                                             <tr class="FormData">
 
-                                                <td class="t-left label" >
-                                                    <b>Fecha de Devolucion</b>
-                                                </td>
-                                                <td class="t-left">
-                                                    <input type="text" id="txt_fecha_dev" class="input-mediun" >
-                                                </td>
+<!--                                                <td class="t-left label" >-->
+<!--                                                    <b>Fecha de Devolucion</b>-->
+<!--                                                </td>-->
+<!--                                                <td class="t-left">-->
+<!--                                                    <input type="text" id="txt_fecha_dev" class="input-mediun" >-->
+<!--                                                </td>-->
                                                 <td class="t-left label" >
                                                     <b>Tipo de Devolucion</b>
                                                 </td>
@@ -214,12 +218,12 @@
                                                         <option value="T">Transferencia</option>
                                                     </select>
                                                 </td>
-                                                <td class="t-left label" >
-                                                    <b>Autoriza</b>
-                                                </td>
-                                                <td class="t-left" colspan="2">
-                                                    <input type="text" id="txt_autoriza" class="input-xlarge" >
-                                                </td>
+<!--                                                <td class="t-left label" >-->
+<!--                                                    <b>Autoriza</b>-->
+<!--                                                </td>-->
+<!--                                                <td class="t-left" colspan="2">-->
+<!--                                                    <input type="text" id="txt_autoriza" class="input-xlarge" >-->
+<!--                                                </td>-->
                                             </tr>
                                             <tr class="FormData">
                                                 <td class="t-left label" >
@@ -229,7 +233,7 @@
                                                     <input type="text" id="txt_mon_ret" class="input-mediun" disabled>
                                                 </td>
                                                 <td class="t-left label" >
-                                                    <b>% Descuento</b>
+                                                    <b>% Dscto</b>
                                                 </td>
                                                 <td class="t-left">
                                                     <input type="text" id="txt_por_des" class="input-xlarge" disabled>
@@ -253,11 +257,11 @@
                                                 </td>
                                                 <td class="t-left">
                                                     <select id="slct_tip_pag" style="width:220px">
-                                                        <option value="B" selected>Boleta</option>
-                                                        <option value="V">Voucher</option>
-                                                        <option value="F">Facturas</option>
-                                                        <option value="BV">Boleta de venta</option>
-                                                        <option value="E">Recibo de egreso</option>
+                                                        <option value="B" selected>B</option>
+                                                        <option value="V">V</option>
+                                                        <option value="F">F</option>
+                                                        <option value="BV">BV</option>
+                                                        <option value="E">R</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -278,7 +282,12 @@
                                                     <b>Concepto</b>
                                                 </td>
                                                 <td class="t-left">
-                                                    <input type="text" id="txt_concepto" class="input-xlarge" >
+<!--                                                    <input type="text" id="txt_concepto" class="input-xlarge" >-->
+                                                    <select id="slct_concepto" style="width:220px; display:none;" MULTIPLE>
+                                                        <option value="MATRICULA" selected>MATRICULA</option>
+                                                        <option value="INSCRIPCION">INSCRIPCION</option>
+
+                                                    </select>
                                                 </td>
                                             </tr>
                                         </table>
