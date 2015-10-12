@@ -915,5 +915,111 @@ if($data['testalu']!="RE"){
 		$db->commitTransaccion();
 		return array('rst'=>'1','msj'=>'Persona registrada correctamente');exit();
 	}
+
+
+	function cargarPostulantes($data) {
+		$db=creadorConexion::crear('MySql');
+
+
+		$cfilial = $data['cfilial'];
+		$cinstit =  $data['cinstit'];
+		$ccarrer =  $data['ccarrer'];
+
+
+		$fechini = $data['fechini'];
+		$fechfin = $data['fechfin'];
+
+		$where='';
+	$order=" ORDER BY  p.dappape, p.dapmape, p.dnomper ";
+
+		if ($cfilial) {
+			$where .= " and g.cfilial in ('".$cfilial."') ";
+		}
+		if ($cinstit) {
+			$where .= " and g.cinstit in ('".$cinstit."') ";
+		}
+
+		if ($ccarrer) {
+			$where .= " and g.ccarrer in ('".$ccarrer."') ";
+		}
+
+
+		if($fechini!='' and $fechfin!=''){
+			$where .=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
+		}
+
+
+		$sql="
+select
+@curRow := @curRow + 1 AS id
+, i.dcodlib inscripcion
+,CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
+, pn.nota
+from gracprp g
+JOIN (SELECT @curRow := 0) r
+inner join conmatp co on co.cgruaca = g.cgracpr
+inner join ingalum i on i.cingalu = co.cingalu
+inner join personm p on p.cperson = i.cperson
+inner join carrerm c on c.ccarrer = g.ccarrer
+inner join modinga mo on mo.cmoding = i.cmoding
+inner join filialm f on f.cfilial = g.cfilial
+left join posnota pn on pn.codlib = i.dcodlib
+where 1 = 1
+
+ ". $where . " $order";
+
+		$db->setQuery($sql);
+		return $db->loadObjectList();
+
+
+	}
+
+	function guardarPostulantesNotas($data) {
+		$db=creadorConexion::crear('MySql');
+		$db->iniciaTransaccion();
+		$rows =json_decode(stripslashes($data["data"]));
+
+
+		foreach ($rows as $postul) {
+
+			$sql = "select * from posnota where codlib='".$postul->inscripcion."'";
+			$db->setQuery($sql);
+			$pos = $db->loadObjectList();
+
+			if($pos[0]["codlib"] == $postul->inscripcion) {
+				if($pos[0]["nota"] != $postul->nota) {
+
+					if (!$postul->nota)
+						$postul->nota = 0;
+
+					$sql = "UPDATE posnota set nota = " .  $postul->nota
+						. " where codlib = '". $postul->inscripcion ."'";
+					$db->setQuery($sql);
+					if(!$db->executeQuery()){
+						$db->rollbackTransaccion();
+						return array('rst'=>'3','msj'=>'Error al actualizar nota','sql'=>$sql);exit();
+					}
+				}
+
+			} else {
+
+				if ($postul->nota > -1) {
+					$sql = "insert into posnota set
+						codlib='".$postul->inscripcion."',
+						nota=".$postul->nota."
+						";
+					$db->setQuery($sql);
+					if(!$db->executeQuery()){
+						$db->rollbackTransaccion();
+						return array('rst'=>'3','msj'=>'Error al Registrar Nota','sql'=>$sql);exit();
+					}
+				}
+
+			}
+		}
+
+		$db->commitTransaccion();
+		return array('rst'=>'1','msj'=>'Nota de los Postulantes han sido actualizados');exit();
+	}
 }
 ?>

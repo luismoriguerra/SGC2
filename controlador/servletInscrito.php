@@ -138,6 +138,13 @@ class servletInscrito extends controladorComandos{
 				break;
                 echo json_encode(array('rst'=>3,'msj'=>'Accion POST no encontrada'));
 				break;
+			case "guardarPostulantesNotas":
+				$data = array();
+				$data["data"]=trim($_POST['data']);
+				$data['cfilial']=trim($_POST['cfilial']);
+				$data['cusuari']=trim($_POST['cusuari']);
+				echo json_encode($daoInscrito->guardarPostulantesNotas($data));
+				break;
 		}
 	}
 	public function doGet(){
@@ -222,6 +229,9 @@ class servletInscrito extends controladorComandos{
                 $response["rows"]=$dataRow;
                 echo json_encode($response);
 
+				break;
+			case "cargarPostulantes":
+				echo json_encode($daoInscrito->cargarPostulantes($_GET));
 				break;
 			default:
                 echo json_encode(array('rst'=>3,'msj'=>'Accion GET no encontrada'));

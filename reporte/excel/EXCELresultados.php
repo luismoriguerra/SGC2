@@ -70,7 +70,7 @@ i.dcodlib inscripcion
 ,p.dapmape
 ,p.dnomper
 ,'' asistencia
-,'' nota_final
+,pn.nota nota_final
 ,'' condicion
 , f.dfilial filial
 , ins.dinstit
@@ -85,6 +85,7 @@ inner join carrerm c on c.ccarrer = g.ccarrer
 inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
 inner join instita ins on ins.cinstit = i.cinstit
+left join posnota pn on pn.codlib = i.dcodlib
 where 1 = 1
  ". $where . " " . $order;
 

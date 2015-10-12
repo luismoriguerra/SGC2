@@ -522,6 +522,34 @@ var grupoAcademicoDAO={
         });
 
     },
+    guardarPostulantesNotas: function (data) {
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando: 'inscrito',
+                accion: 'guardarPostulantesNotas',
+                cfilial:$('#hd_idFilial').val(),
+                cusuari: $('#hd_idUsuario').val(),
+                data: data
+            },
+            beforeSend : function ( ) {
+                sistema.abreCargando();
+            },
+            success : function ( obj ) {
+                sistema.cierraCargando();
+                if(obj.rst=='1'){
+                    sistema.msjOk(obj.msj,3000);
+                } else {
+                    this.msjErrorAjax
+                }
+            },
+            error: this.msjErrorAjax
+        });
+
+    },
 	msjErrorAjax:function(){
         sistema.msjErrorCerrar('Error General, pongase en contacto con Sistemas');
     }
