@@ -478,7 +478,9 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
             
             //validar fechas registradas dentro del rango de fechas permitido para validar
             // hoy , ayer y anteayer
-            if( fasist == data.ayer || fasist == data.anteayer  ){
+            if( //fasist == data.ayer || fasist == data.anteayer  
+              1==1
+            ){
                 
                 if(flatasist == 1){
                     checked = "checked";
@@ -503,7 +505,9 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
         }//fin for
       
         //FECHA A REGISTRAR
-        if(data.registrar == 1){
+        /*if(//data.registrar == 1
+          1==1
+        ){
             var checked = ''
             var flat_hoy = asistenciaAlumno(codseing,data.fhoy);
             var flat_hoy_value = 1;
@@ -514,7 +518,7 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
             
          chk = '<input class="iu_chk" type="checkbox" idse="'+ e.id +'" f="'+ data.fhoy +'" value="'+flat_hoy_value+'" '+ checked +'>';   
          cuerpo +="<td>"+ chk +"</td>";
-        }
+        }*/
         
         
         cuerpo +="</tr>";

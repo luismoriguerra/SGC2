@@ -191,6 +191,7 @@ from gracprp g where g.cgracpr = '$cgrupo';
 
         $data->nroclase = $clase;
 $asis_sql= "";
+$clase=15;
 for($i = 0 ; $i<$clase;$i++){
 
     $asis_sql .=", ( select estasist from aluasist where idseing = s.id and fecha = '".$dfechas[$i]."' ) as dia$i";

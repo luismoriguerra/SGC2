@@ -91,8 +91,10 @@ order by  conceptos desc ,p.dappape ASC;
             }
         }
         
-        $data->nroclase = $clase;
-        $data->registrados = $clase - $data->registrar;
+        //$data->nroclase = $clase;
+        $data->nroclase = 15 - $data->registrar;
+        //$data->registrados = $clase - $data->registrar;
+        $data->registrados = 15;
         $data->ayer = $ayer;
         $data->anteayer = $anteayer;
         
