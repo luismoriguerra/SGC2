@@ -115,6 +115,9 @@
                             <tr>
                                 <th class="label">Nro</th>
                                 <th class="label">Inscripcion</th>
+                                <th class="label">ODE</th>
+                                <th class="label">Institución</th>
+                                <th class="label">Carrera</th>
                                 <th class="label">Nombre</th>
                                 <th class="label">nota</th>
                             </tr>
@@ -122,6 +125,9 @@
                             <tr ng-repeat="postulante in postulantes">
                                 <td>{{$index + 1}}</td>
                                 <td>{{postulante.inscripcion}}</td>
+                                <td>{{postulante.dfilial}}</td>
+                                <td>{{postulante.dinstit}}</td>
+                                <td>{{postulante.dcarrer}}</td>
                                 <td>{{postulante.nombres}}</td>
                                 <td>
                                     <input type="text"

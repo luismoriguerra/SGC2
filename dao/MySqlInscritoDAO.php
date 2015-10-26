@@ -921,16 +921,16 @@ if($data['testalu']!="RE"){
 		$db=creadorConexion::crear('MySql');
 
 
-		$cfilial = $data['cfilial'];
-		$cinstit =  $data['cinstit'];
-		$ccarrer =  $data['ccarrer'];
+		$cfilial =  implode("','", explode(",", $data['cfilial']));
+		$cinstit =  implode("','", explode(",", $data['cinstit']));
+		$ccarrer =  implode("','", explode(",", $data['ccarrer']));
 
 
 		$fechini = $data['fechini'];
 		$fechfin = $data['fechfin'];
 
 		$where='';
-	$order=" ORDER BY  p.dappape, p.dapmape, p.dnomper ";
+	$order=" ORDER BY f.dfilial, g.cinstit ,c.dcarrer, p.dappape, p.dapmape, p.dnomper ";
 
 		if ($cfilial) {
 			$where .= " and g.cfilial in ('".$cfilial."') ";
@@ -954,6 +954,9 @@ select
 @curRow := @curRow + 1 AS id
 , i.dcodlib inscripcion
 ,CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
+, c.dcarrer
+, f.dfilial
+, ins.dinstit
 , pn.nota
 from gracprp g
 JOIN (SELECT @curRow := 0) r
@@ -964,6 +967,7 @@ inner join carrerm c on c.ccarrer = g.ccarrer
 inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
 left join posnota pn on pn.codlib = i.dcodlib
+left join instita ins on ins.cinstit = g.cinstit
 where 1 = 1
 
  ". $where . " $order";

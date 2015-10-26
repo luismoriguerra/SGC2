@@ -29,9 +29,10 @@ $where.=" AND v.tvended like '%".$tvended."%'";
 $sql="	select v.dapemat,v.dapepat,v.dnombre,v.ndocper,v.dtelefo,v.demail,v.ddirecc,
 		(select u.nombre from ubigeo u 
 		where u.coddpto=v.coddpto and u.codprov=v.codprov and u.coddist=v.coddist) as distrito,
-		v.fingven,t.dtipcap as tvended,v.codintv
+		v.fingven,t.dtipcap as tvended,v.codintv, f.dfilial copen
 		from vendedm v
 		inner join tipcapa t on (v.tvended=t.didetip and t.dclacap=2)
+		left join filialm f on f.cfilial = v.copeven
 		WHERE 1=1 ".$where;
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
@@ -143,10 +144,10 @@ $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
 $objPHPExcel->getActiveSheet()->setCellValue("A2","LISTADO DE VENDEDORES");
 $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
-$objPHPExcel->getActiveSheet()->mergeCells('A2:L2');
-$objPHPExcel->getActiveSheet()->getStyle('A2:L2')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
+$objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmentBold);
 
-$cabecera=array('N°','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','DIRECCION','DISTRITO','FECHA DE INGRESO A TELESUP','TIPO VENDEDOR','CODIGO INT');
+$cabecera=array('N°','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','DIRECCION','DISTRITO','FECHA DE INGRESO A TELESUP','TIPO VENDEDOR','CODIGO INT', "CENTRO DE OPERACION");
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."3",$cabecera[$i]);
@@ -179,8 +180,9 @@ $objPHPExcel->getActiveSheet()->setCellValue("I".$valorinicial,$r['distrito']);
 $objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,$r['fingven']);
 $objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial,$r['tvended']);
 $objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial,$r['codintv']);
+$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial,$r['copen']);
 }
-$objPHPExcel->getActiveSheet()->getStyle('A2:L'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A2:M'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Lista_Vendedores');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet

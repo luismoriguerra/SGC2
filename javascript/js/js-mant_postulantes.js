@@ -53,9 +53,9 @@ $(document).ready(function(){
                 $scope.loaded = false;
 
 
-                var cfilial=$("#slct_filial").multiselect("getChecked").map(function(){return this.value;}).get().join("','");
-                var cinstit=$("#slct_instituto").multiselect("getChecked").map(function(){return this.value;}).get().join("','");
-                var ccarrer=$("#slct_carrera").multiselect("getChecked").map(function(){return this.value;}).get().join("','");
+                var cfilial=$("#slct_filial").multiselect("getChecked").map(function(){return this.value;}).get().join(",");
+                var cinstit=$("#slct_instituto").multiselect("getChecked").map(function(){return this.value;}).get().join(",");
+                var ccarrer=$("#slct_carrera").multiselect("getChecked").map(function(){return this.value;}).get().join(",");
                 var fechini=$("#txt_fecha_inicio").val();
                 var fechfin=$("#txt_fecha_fin").val();
 
