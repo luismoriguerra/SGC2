@@ -107,7 +107,7 @@ function color(){
 	
 	$styleColorFunction = array(
 	'fill' => array(
-		'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,		
+		'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
 		'startcolor' => array(
 			'argb' => $num,
 			),
