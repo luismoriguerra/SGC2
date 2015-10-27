@@ -113,7 +113,14 @@ VisualizarDetalleHTML=function(obj){
 		'		<a onClick="ExportarGrupoPDF('+"'"+obj[i].id+"','"+obj[i].cingalu+"','1'"+')" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)">'+
         '        	PDF'+
         '       </a>'+
-        ' 	</div>'+
+        ' 	</div>' +
+
+
+		'	<div style="margin:15px 0px 10px 0px;">'+
+		'		<a onClick="ExportarGrupoWORD('+"'"+obj[i].id+"','"+obj[i].cingalu+"','1'"+')" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)">'+
+		'        	Word'+
+		'       </a>'+
+		' 	</div>'+
 
 		'</td>';
 	}
@@ -237,6 +244,25 @@ ExportarGrupoPDF=function(grupo,alumno,t){
 					'&csemaca='+$("#slct_semestre").val()+
 					'&cfilial='+$("#slct_filial").val()+
 					'&cinstit='+$("#slct_instituto").val() , "_blank");				
+	// }
+	// else{
+	// sistema.msjAdvertencia("El max para enviar es de 30 ud tiene "+t,3000);
+	// }
+}
+
+ExportarGrupoWORD=function(grupo,alumno,t){
+	// if(t<=30){
+	// window.location='../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
+	//                	+grupo+'&cingalu='+alumno+
+	// 				'&csemaca='+$("#slct_semestre").val()+
+	// 				'&cfilial='+$("#slct_filial").val()+
+	// 				'&cinstit='+$("#slct_instituto").val();
+
+	window.open('../reporte/word/WORDConstanciaIngreso.php?cgracpr='
+	+grupo+'&cingalu='+alumno+
+	'&csemaca='+$("#slct_semestre").val()+
+	'&cfilial='+$("#slct_filial").val()+
+	'&cinstit='+$("#slct_instituto").val() , "_blank");
 	// }
 	// else{
 	// sistema.msjAdvertencia("El max para enviar es de 30 ud tiene "+t,3000);

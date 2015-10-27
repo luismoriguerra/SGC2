@@ -54,6 +54,12 @@
                 </td>
             </tr>
             <tr>
+                <td class="t-left label">Resolucion:</td>
+                <td class="t-left">
+                    <input type="text" id="txt_resolucion_edit" style="width:65px">
+                </td>
+            </tr>
+            <tr>
                 <td colspan="4" align="center">
                   <a class="button fm-button ui-corner-all fm-button-icon-left" style="margin-top: 10px;width: 70px;" onclick="Actualizar();">
                   <span id="spanBtnFormGruposAca">Actualizar</span><span class="icon-hdd"></span>

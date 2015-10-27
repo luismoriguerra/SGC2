@@ -152,6 +152,7 @@ class servletCarrera extends controladorComandos{
 				$data['ffinmat']=trim($_POST['ffinmat']);
 				$data['fechgra']=trim($_POST['fechgra']);
 				$data['fechext']=trim($_POST['fechext']);
+				$data['resoluc']=trim($_POST['resoluc']);
 				$data['cusuari']=trim($_POST['cusuari']);
 				$data['cfilialx']=trim($_POST['cfilialx']);
 				$data['datos']=trim($_POST['datos']);

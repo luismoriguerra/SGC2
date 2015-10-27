@@ -484,6 +484,7 @@ class MySqlCarreraDAO{
 				AND ffinsem= '".$r['ffinsem']."'
                 AND ffinmat= '".$r['ffinmat']."'
                 AND fechgra= '".$r['fechgra']."'
+                AND resoluc= '".$r['resoluc']."'
 				AND fechext= '".$r['fechext']."'";
 	        $db->setQuery($sql);
 			$data=$db->loadObjectList();
@@ -502,6 +503,7 @@ class MySqlCarreraDAO{
                         ffinmat= '".$r['ffinmat']."',
                         fechgra= '".$r['fechgra']."',
 						fechext= '".$r['fechext']."',
+						resoluc= '".$r['resoluc']."',
 						fusuari= 'now()',
 						cusuari= '".$r['cusuari']."'
 						WHERE csemaca='".$d[0]."' 
@@ -566,6 +568,7 @@ class MySqlCarreraDAO{
                                               ffinmat= '".$datalimpia[5]."',
                                               fechgra= '".$datalimpia[6]."',
 										      fechext= '".$datalimpia[7]."',
+										      resoluc= '".$datalimpia[8]."',
 										      fusuari= 'now()',
 										  	  cusuari= '".$r['cusuari']."'
 										  WHERE cfilial='".$cfilial."' 
@@ -585,7 +588,7 @@ class MySqlCarreraDAO{
 									}	
 							}else{
 								
-									$sql="INSERT INTO semacan  (csemaca, cfilial, ctipcar, cmodali, cinicio, cinstit, finisem, ffinsem, finimat, ffinmat , fechgra , fechext, cestado, fusuari,cusuari )
+									$sql="INSERT INTO semacan  (csemaca, cfilial, ctipcar, cmodali, cinicio, cinstit, finisem, ffinsem, finimat, ffinmat , fechgra , fechext, resoluc, cestado, fusuari,cusuari )
 										  VALUES ('".$datalimpia[0]."',
 												  '".$cfilial."',
 												  '2',
@@ -598,6 +601,7 @@ class MySqlCarreraDAO{
                                                   '".$datalimpia[5]."',
                                                   '".$datalimpia[6]."',
 												  '".$datalimpia[7]."',
+												  '".$datalimpia[8]."',
 												  '1',
 												  now(),
 												  '".$r['cusuari']."')";	
@@ -1072,7 +1076,8 @@ s.finimat as fimat,
 s.ffinmat as ffmat,
 s.fechgra as fegra,
 s.fechext as feext,
-s.cestado as estado,s.csemaca
+s.cestado as estado,s.csemaca,
+s.resoluc as resolucion
 FROM semacan  as s    
     WHERE s.cfilial in (".$data['cfilial'].") AND s.cinstit in (".$data['cinstit'].")"; 
 $db->setQuery($sql);
