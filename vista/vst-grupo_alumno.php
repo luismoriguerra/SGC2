@@ -257,11 +257,10 @@
                                                 </td>
                                                 <td class="t-left">
                                                     <select id="slct_tip_pag" style="width:220px">
-                                                        <option value="B" selected>B</option>
-                                                        <option value="V">V</option>
-                                                        <option value="F">F</option>
-                                                        <option value="BV">BV</option>
-                                                        <option value="E">R</option>
+                                                        <option value="B" selected>BOLETA</option>
+                                                        <option value="V">VOUCHER</option>
+                                                        <option value="F">FACTURA</option>
+                                                        <option value="E">RECIBO EGRESO</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -286,7 +285,7 @@
                                                     <select id="slct_concepto" style="width:220px; display:none;" MULTIPLE>
                                                         <option value="MATRICULA" selected>MATRICULA</option>
                                                         <option value="INSCRIPCION">INSCRIPCION</option>
-
+                                                        <option value="PENSION">PENSION</option>
                                                     </select>
                                                 </td>
                                             </tr>
