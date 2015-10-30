@@ -222,8 +222,14 @@ $cont=0;
 
 function combinar($objPHPExcel, $az, $rowini, $rowfin) {
     for ($i = 0; $i < 11; $i++) {
+        // Mergea de manera horizontal
         $objPHPExcel->getActiveSheet()->mergeCells($az[$i].$rowini.':'.$az[$i].$rowfin);
     }
+
+    $objPHPExcel->getActiveSheet()->mergeCells("Q".$rowini.':'."Q".$rowfin);
+    $objPHPExcel->getActiveSheet()->mergeCells("R".$rowini.':'."R".$rowfin);
+
+
 }
 
 $mixkey = '';
