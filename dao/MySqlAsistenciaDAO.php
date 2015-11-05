@@ -108,6 +108,10 @@ order by  conceptos desc ,p.dappape ASC;
 
     function actualizarPosiciones() {
         $db=creadorConexion::crear('MySql');
+        $set = 'SET SESSION group_concat_max_len = 1000000';
+        $db->setQuery($set);
+        $db->executeQuery();
+
         $sql = "select cgrupo, GROUP_CONCAT(id SEPARATOR '\',\'') ids
                 from seinggr
                 where cgrupo <> ''
