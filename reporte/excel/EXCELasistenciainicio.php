@@ -13,6 +13,18 @@ $fechas =" DATE(gr.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin
 $fechas2 =" DATE(g2.finicio) between '".$_GET['fechini']."' and '".$_GET['fechfin']."'"; 
 $cinstit=str_replace(",","','",$_GET['cinstit']);
 
+$asis_sql = '';
+for($i=1; $i < 16; $i++ ) {
+$asis_sql .= "
+ ,ifnull((SELECT count(DISTINCT s.cingalu) ta
+				FROM aluasist a
+				INNER JOIN seinggr s ON (s.id=a.idseing)
+				WHERE s.cgrupo=con.cgruaca and a.posicion = $i
+				),0)				as asis_$i
+";
+}
+
+
 $sql="	SELECT 
 			 fil.dfilial 					as filial
 			,ins.dinstit					as instituto
@@ -40,96 +52,7 @@ $sql="	SELECT
 				INNER JOIN seinggr s ON (s.id=a.idseing)
 				WHERE s.cgrupo=gr.cgracpr
 				AND a.fecha=gr.finicio) t1_1
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 0,1),0)				as asis_01
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 1,1),0)				as asis_02
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 2,1),0)				as asis_03
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 3,1),0)				as asis_04
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 4,1),0)				as asis_05
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 5,1),0)				as asis_06
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 6,1),0)				as asis_07
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 7,1),0)				as asis_08
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 8,1),0)				as asis_09
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 9,1),0)				as asis_10
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 10,1),0) 				as asis_11
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 11,1),0) 				as asis_12
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 12,1),0) 				as asis_13
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 13,1),0) 				as asis_14
-			,ifnull((SELECT count(s.cingalu) ta
-				FROM aluasist a
-				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 14,1) ,0)				as asis_15
+			$asis_sql
 		From gracprp	gr
 		INNER JOIN  filialm fil On gr.cfilial = fil.cfilial
 		INNER JOIN  instita ins On gr.cinstit = ins.cinstit
@@ -431,15 +354,15 @@ if(count($rpt)>0){
 
 		$objPHPExcel->getActiveSheet()->setCellValue($az[12].$valorinicial,$mat);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[13].$valorinicial,$r["pag_cuo"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[14].$valorinicial,$r["asis_01"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[15].$valorinicial,$r["asis_02"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[16].$valorinicial,$r["asis_03"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[17].$valorinicial,$r["asis_04"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[18].$valorinicial,$r["asis_05"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[19].$valorinicial,$r["asis_06"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[20].$valorinicial,$r["asis_07"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[21].$valorinicial,$r["asis_08"]);
-		$objPHPExcel->getActiveSheet()->setCellValue($az[22].$valorinicial,$r["asis_09"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[14].$valorinicial,$r["asis_1"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[15].$valorinicial,$r["asis_2"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[16].$valorinicial,$r["asis_3"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[17].$valorinicial,$r["asis_4"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[18].$valorinicial,$r["asis_5"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[19].$valorinicial,$r["asis_6"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[20].$valorinicial,$r["asis_7"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[21].$valorinicial,$r["asis_8"]);
+		$objPHPExcel->getActiveSheet()->setCellValue($az[22].$valorinicial,$r["asis_9"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[23].$valorinicial,$r["asis_10"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[24].$valorinicial,$r["asis_11"]);
 		$objPHPExcel->getActiveSheet()->setCellValue($az[25].$valorinicial,$r["asis_12"]);

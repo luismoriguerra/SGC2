@@ -105,6 +105,40 @@ order by  conceptos desc ,p.dappape ASC;
             return array('rst'=>'2','msj'=>'No se encontraron fechas del grupo','data'=>"",'sql'=>$sql);
         }
     }//fin function rangoFechasGrupo
+
+    function actualizarPosiciones() {
+        $db=creadorConexion::crear('MySql');
+        $sql = "select cgrupo, GROUP_CONCAT(id SEPARATOR '\',\'') ids
+                from seinggr
+                where cgrupo <> ''
+                group by cgrupo";
+        $db->setQuery($sql);
+        $data=$db->loadObjectList();
+        $db->iniciaTransaccion();
+        foreach($data as $row) {
+            $f= $this->rangoFechasGrupo($row["cgrupo"]);
+            $fechas = $f["data"]->fechas;
+            $cont = 0;
+            foreach($fechas as $fecha) {
+                $cont++;
+                $sql = "update aluasist set posicion = $cont where fecha = '$fecha'  and idseing in ('".$row["ids"]."')";
+                $db->setQuery($sql);
+
+                if(!$db->executeQuery()){
+                    $db->rollbackTransaccion();
+                    return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql'=>$sql);exit();
+                }else if(!MySqlTransaccionDAO::insertarTransaccion($sql,"") ){
+                    $db->rollbackTransaccion();
+                    return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sql);exit();
+                }else{
+                    $db->commitTransaccion();
+                }
+            }
+        }
+        return array('rst'=>'1','msj'=>'Datos registrados correctamente');exit();
+
+    }
+
     
     //ACTUALIZA LA SECCION DE LOS alumnos de un grupo
     public function actualizarSeccionGrupo($post){
@@ -172,7 +206,7 @@ order by  conceptos desc ,p.dappape ASC;
     
     
     //REGISTRA LA ASISTENCIA DE UN ALUMNO
-    public function registrarAsistencia($idse,$estado,$fecha,$post){
+    public function registrarAsistencia($idse,$estado,$fecha,$post,$posicion){
         $db=creadorConexion::crear('MySql');
         
         //PREGUNTA SI EXISTE
@@ -194,6 +228,7 @@ order by  conceptos desc ,p.dappape ASC;
                     idseing = '".$idse."' , 
                     estasist = '".$estado."' ,
                     fecha='".$fecha."',
+                    posicion = $posicion,
                     fusuari = NOW(),
                     cusuari = '".$post["usuario"]."'
                 ";
