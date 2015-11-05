@@ -241,10 +241,10 @@ require_once('ifrm-valida-sesion.php')
     		</div>
             	</div>
 			</div>
-        <div>
-            <a id="" class='btn btn-azul sombra-3d t-blanco' onclick="actualizarPosiciones()" >
-                <i class='icon-white  icon-list'></i> Actualizar posiciones</a>
-        </div>
+<!--        <div>-->
+<!--            <a id="" class='btn btn-azul sombra-3d t-blanco' onclick="actualizarPosiciones()" >-->
+<!--                <i class='icon-white  icon-list'></i> Actualizar posiciones</a>-->
+<!--        </div>-->
         <?require_once('frmGruposAca.php')?>
 		
         <div id="capaMensaje" class="capaMensaje" style="display:none"></div>		
