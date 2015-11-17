@@ -12,6 +12,9 @@ class servletAsistencia extends controladorComandos{
 				$cgrupo=trim($_POST['cgrupo']);
 				echo json_encode($daoAsistencia->rangoFechasGrupo($cgrupo));
 			break;
+			case 'actualizarPosiciones':
+				echo json_encode($daoAsistencia->actualizarPosiciones());
+				break;
                         case 'mostrarListadoCheck':
 				$cgrupo=trim($_POST['cgrupo']);
                                 $seccion=trim($_POST['seccion']);
@@ -26,9 +29,10 @@ class servletAsistencia extends controladorComandos{
                                 $idse=trim($_POST['idse']);
                                 $estado=trim($_POST['estado']);
                                 $fecha=trim($_POST['fecha']);
+                                $posicion=trim($_POST['posicion']);
                                 $data["cfilialx"]=trim($_POST['cfilialx']);
                                 $data["usuario"]=trim($_POST['usuario']);
-				echo json_encode($daoAsistencia->registrarAsistencia($idse,$estado,$fecha,$data));
+				echo json_encode($daoAsistencia->registrarAsistencia($idse,$estado,$fecha,$data,$posicion));
                         break;
                     case 'actualizarSeccionGrupo':
                                 $data = array();

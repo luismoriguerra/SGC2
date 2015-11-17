@@ -29,10 +29,10 @@ $where.=" AND v.tvended like '%".$tvended."%'";
 $sql="	select v.dapemat,v.dapepat,v.dnombre,v.ndocper,v.dtelefo,v.demail,v.ddirecc,
 		(select u.nombre from ubigeo u 
 		where u.coddpto=v.coddpto and u.codprov=v.codprov and u.coddist=v.coddist) as distrito,
-		v.fingven,t.dtipcap as tvended,v.codintv, f.dfilial copen
+		v.fingven,t.dtipcap as tvended,v.codintv, o.dopeven copen
 		from vendedm v
 		inner join tipcapa t on (v.tvended=t.didetip and t.dclacap=2)
-		left join filialm f on f.cfilial = v.copeven
+		left join opevena o on o.copeven = v.copeven
 		WHERE 1=1 ".$where;
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();

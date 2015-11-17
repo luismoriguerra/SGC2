@@ -88,7 +88,7 @@ var asistenciaDAO = {
         });
          
      },
-     registrarAsistencia:function(idse,estasist,fecha){
+     registrarAsistencia:function(idse,estasist,fecha,posicion){
          $.ajax({
             url : this.url,
             type : 'POST',
@@ -101,6 +101,7 @@ var asistenciaDAO = {
                 idse:idse,
                 estado:estasist,
                 fecha:fecha,
+                posicion:posicion,
                 //DATOS TRANSACCIONALES
                 cfilialx:$("#hd_idFilial").val(),
 		usuario: $("#hd_idUsuario").val()

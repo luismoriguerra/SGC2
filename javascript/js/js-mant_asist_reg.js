@@ -472,6 +472,7 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
         //FECHAS REGISTRADAS
         //Fechas registradas de los usuarios
         var codseing =e.id;
+        var pos = 0;
         for(var i=0;i < data.registrados; i++){
             var fasist  = data.fechas[i];
             var flatasist = asistenciaAlumno(codseing,fasist);
@@ -489,9 +490,9 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
                     checked = ""; 
                     flat_hoy_value = 1;
                 }
-                
-                
-                 chk = '<input class="iu_chk" type="checkbox" idse="'+ codseing +'" f="'+ fasist +'" value="'+flat_hoy_value+'" '+ checked +'>';   
+
+                 pos++;
+                 chk = '<input class="iu_chk" type="checkbox" pos="' +pos+ '" idse="'+ codseing +'" f="'+ fasist +'" value="'+flat_hoy_value+'" '+ checked +'>';
                  cuerpo +="<td>"+ chk +"</td>";
                  
                  
@@ -532,8 +533,10 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
          var idse = chk.attr("idse");
          var estasist = chk.val();
          var fecha = chk.attr("f");
+         var posicion = chk.attr("pos");
+
          window.console.log("se registrara asistencia del dia "+fecha);
-         asistenciaDAO.registrarAsistencia(idse,estasist,fecha);
+         asistenciaDAO.registrarAsistencia(idse,estasist,fecha,posicion);
         
         //CAMBIO DE VALOR AL HACER CLICK
         if(chk.val() == 1){

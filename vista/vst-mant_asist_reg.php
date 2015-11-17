@@ -35,6 +35,24 @@ require_once('ifrm-valida-sesion.php')
                     .text-left{ text-align: left;}
                 </style>		
 	</head>
+    <script>
+        actualizarPosiciones = function() {
+            $.ajax({
+                url : '../controlador/controladorSistema.php',
+                type : 'POST',
+                async:false,//no ejecuta otro ajax hasta q este termine
+                dataType : 'json',
+                data : {
+                    comando:'asistencia',
+                    accion:'actualizarPosiciones'
+
+                },
+                success : function ( obj ) {
+                    window.console.log(obj);
+                }
+            });
+        }
+    </script>
 
 	<body>
 		<div id="capaOscura" class="capaOscura" style="display:none"></div>
@@ -223,6 +241,10 @@ require_once('ifrm-valida-sesion.php')
     		</div>
             	</div>
 			</div>
+<!--        <div>-->
+<!--            <a id="" class='btn btn-azul sombra-3d t-blanco' onclick="actualizarPosiciones()" >-->
+<!--                <i class='icon-white  icon-list'></i> Actualizar posiciones</a>-->
+<!--        </div>-->
         <?require_once('frmGruposAca.php')?>
 		
         <div id="capaMensaje" class="capaMensaje" style="display:none"></div>		
