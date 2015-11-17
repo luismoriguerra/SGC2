@@ -19,7 +19,7 @@ $asis_sql .= "
  ,ifnull((SELECT count(DISTINCT s.cingalu) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=con.cgruaca and a.posicion = $i
+				WHERE s.cgrupo=con.cgruaca and a.posicion = $i and a.estasist = 1
 				),0)				as asis_$i
 ";
 }
@@ -46,7 +46,7 @@ $sql="	SELECT
 			,ifnull((SELECT count(DISTINCT(s.cingalu)) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
-				WHERE s.cgrupo=gr.cgracpr),0) 	as cant_asist
+				WHERE s.cgrupo=gr.cgracpr and a.estasist = 1),0) 	as cant_asist
 			,(SELECT count(s.cingalu) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
