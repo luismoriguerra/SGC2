@@ -43,15 +43,16 @@ $sql="	SELECT
 			,ifnull((SELECT count(s.cingalu) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
+                INNER JOIN gracprp g2 ON (g2.cgracpr=s.cgruaca)
 				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 0,1),0)				as asis_01
+                AND g2.finicio=gr.finicio
+				GROUP BY s.cgrupo),0)				as asis_01
 			,ifnull((SELECT count(s.cingalu) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
 				WHERE s.cgrupo=con.cgruaca AND s.cingalu=con.cingalu
-				GROUP BY s.cgrupo,a.fecha
-				limit 1,1),0)				as asis_02
+                AND g2.finicio=ADDDATE(gr.finicio, interval 1 day)
+				GROUP BY s.cgrupo),0)				as asis_02
 			,ifnull((SELECT count(s.cingalu) ta
 				FROM aluasist a
 				INNER JOIN seinggr s ON (s.id=a.idseing)
