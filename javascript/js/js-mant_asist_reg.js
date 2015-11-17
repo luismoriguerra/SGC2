@@ -584,7 +584,7 @@ asistenciaAlumno = function(codseing,fasist){
     $.ajax({
             url : '../controlador/controladorSistema.php',
             type : 'POST',
-            async:false,//no ejecuta otro ajax hasta q este termine
+            async:true,//no ejecuta otro ajax hasta q este termine
             dataType : 'json',
             data : {
             	comando:'asistencia',
