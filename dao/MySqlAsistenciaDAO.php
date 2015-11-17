@@ -186,11 +186,17 @@ order by  conceptos desc ,p.dappape ASC;
 
     //LISTADO DE ALUMNOS DE UNA SECCION
     public function mostrarListadoCheck($cgrupo,$secc){
-        
+
+        $sql_posiciones = "";
+        for ($i = 1; $i < 16; $i++) {
+            $sql_posiciones .= " , (select a.estasist from aluasist a where  a.posicion = $i and a.idseing = s.id) pos$i ";
+        }
+
         //OBTENIENDO ALUMNOS
         $sql = "select s.*,
                 CONCAT_WS(' ',p.dappape,p.dapmape,p.dnomper) nombres
                 ,CONCAT(p.ntelpe2,' | ',p.ntelper) telefono , i.dcodlib
+                $sql_posiciones
                 from seinggr s 
                 inner join personm p on p.cperson = s.cperson
                 inner join ingalum i on (i.cingalu=s.cingalu)

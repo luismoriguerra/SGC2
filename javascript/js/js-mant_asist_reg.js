@@ -475,7 +475,7 @@ mostrarListadoCheckHtml = function(obj,cgrupo){
         var pos = 0;
         for(var i=0;i < data.registrados; i++){
             var fasist  = data.fechas[i];
-            var flatasist = asistenciaAlumno(codseing,fasist);
+            var flatasist = e["pos"+ (i + 1)];
             
             //validar fechas registradas dentro del rango de fechas permitido para validar
             // hoy , ayer y anteayer
@@ -584,7 +584,7 @@ asistenciaAlumno = function(codseing,fasist){
     $.ajax({
             url : '../controlador/controladorSistema.php',
             type : 'POST',
-            async:true,//no ejecuta otro ajax hasta q este termine
+            async:false,//no ejecuta otro ajax hasta q este termine
             dataType : 'json',
             data : {
             	comando:'asistencia',
