@@ -65,6 +65,7 @@ class servletPago extends controladorComandos{
 				$data["dfboleta"]=$_POST['dfboleta'];
 				$data["dconcept"]=$_POST['dconcept'];
 				$data["showdevo"]=$_POST['showdevo'];
+				$data["tareadet"]=$_POST['tareadet'];
 
 				$data["cusuari"]=$_POST['cusuari'];
 				$data["cfilial"]=$_POST['cfilial'];

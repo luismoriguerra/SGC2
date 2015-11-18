@@ -160,13 +160,42 @@ require_once('ifrm-valida-sesion.php')?>
                    <div class="auto-asig">
                        <div class="auto-secc">
                            <table>
-                               <tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th></th></tr>
+                               <tr><th>A</th><th>B</th><th>C</th><th>D</th>
+                                   <th>E</th>
+                                   <th>F</th>
+                                   <th>G</th>
+                                   <th>H</th>
+                                   <th>I</th>
+                                   <th>J</th>
+                                   <th>K</th>
+                                   <th>L</th>
+                                   <th>M</th>
+                                   <th>N</th>
+                                   <th>O</th>
+                                   <th>P</th>
+                                   <th>Q</th>
+                                   <th>R</th>
+                                   <th></th>
+                               </tr>
                                <tr class="auto-casillas">
-                                   <td><input class="au-sec-cant " type="text" id="serc-a" secc="A" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-a" secc="A" value="0" onkeypress='validate(event)'></td>
                                    <td><input class="au-sec-cant" type="text" id="serc-b" secc="B" value="0" onkeypress='validate(event)'></td>
                                    <td><input class="au-sec-cant" type="text" id="serc-c" secc="C" value="0" onkeypress='validate(event)'></td>
                                    <td><input class="au-sec-cant" type="text" id="serc-d" secc="D" value="0" onkeypress='validate(event)'></td>
                                    <td><input class="au-sec-cant" type="text" id="serc-e" secc="E" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-f" secc="F" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-g" secc="G" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-h" secc="H" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-i" secc="I" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-j" secc="J" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-k" secc="K" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-l" secc="L" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-m" secc="M" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-n" secc="N" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-o" secc="O" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-p" secc="P" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-q" secc="Q" value="0" onkeypress='validate(event)'></td>
+                                   <td><input class="au-sec-cant" type="text" id="serc-r" secc="R" value="0" onkeypress='validate(event)'></td>
                                    <td><div>
                        <a id="btnAsignarAuto" class='btn btn-azul sombra-3d t-blanco'  ><i class='icon-white  icon-list'></i> Asignar Secciones</a>
                    </div>  </td>
@@ -208,6 +237,19 @@ require_once('ifrm-valida-sesion.php')?>
                            <option value="B">B</option>
                            <option value="C">C</option>
                            <option value="D">D</option>
+                           <option value="E">E</option>
+                           <option value="F">F</option>
+                           <option value="G">G</option>
+                           <option value="I">I</option>
+                           <option value="J">J</option>
+                           <option value="K">K</option>
+                           <option value="L">L</option>
+                           <option value="M">M</option>
+                           <option value="N">N</option>
+                           <option value="O">O</option>
+                           <option value="P">P</option>
+                           <option value="Q">Q</option>
+                           <option value="R">R</option>
                        </select>
                                <input type="hidden" id="chgrupo" value="">
                                </th>

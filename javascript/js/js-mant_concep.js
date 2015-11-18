@@ -170,11 +170,11 @@ ListarConceptos=function(obj){
 		htm+="<td class='t-left'>"+total+"</td>";
 		htm+="<td class='t-left'><input type='hidden' id='txt_fil_"+value.cconcep+"' value='"+value.cfilial+"'>"+value.dfilial+"</td>";
 		htm+="<td class='t-left'><input type='hidden' id='txt_car_"+value.cconcep+"' value='"+value.ccarrer+"'>"+value.dcarrer+"</td>";
-		htm+="<td class='t-left'><input type='text' id='txt_des_"+value.cconcep+"' value='"+value.dconcep+"' disabled class='input-xxlarge' onKeyPress='return sistema.validaAlfanumerico(event)'/></td>";
-		htm+="<td class='t-center'><input type='text' id='txt_cuo_"+value.cconcep+"' value='"+value.ncuotas+"' disabled class='input-mini' onKeyPress='return sistema.validaNumeros(event)' /></td>";
-		htm+="<td class='t-center'><input type='text' id='txt_pre_"+value.cconcep+"' value='"+value.nprecio+"' disabled class='input-mini' onKeyPress='return sistema.validaNumeros(event)' /></td>";
-		htm+="<td class='t-center'><input type='text' id='txt_cta_"+value.cconcep+"' value='"+value.ctaprom+"' disabled class='input-mini' onKeyPress='return sistema.validaNumeros(event)' onKeyUp='sistema.validaNumeroMayor("+'"'+"txt_cuo_"+value.cconcep+'","'+"txt_cta_"+value.cconcep+'"'+");' /></td>";
-		htm+="<td class='t-center'><input type='text' id='txt_mto_"+value.cconcep+"' value='"+value.mtoprom+"' disabled class='input-mini' onKeyPress='return sistema.validaNumeros(event)' onKeyUp='sistema.validaNumeroMayor("+'"'+"txt_pre_"+value.cconcep+'","'+"txt_mto_"+value.cconcep+'"'+");' /></td>";
+		htm+="<td class='t-left'><input type='text' id='txt_des_"+value.cconcep+"' value='"+value.dconcep+"'  class='input-xxlarge' onKeyPress='return sistema.validaAlfanumerico(event)'/></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_cuo_"+value.cconcep+"' value='"+value.ncuotas+"'  class='input-mini' onKeyPress='return sistema.validaNumeros(event)' /></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_pre_"+value.cconcep+"' value='"+value.nprecio+"'  class='input-mini' onKeyPress='return sistema.validaNumeros(event)' /></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_cta_"+value.cconcep+"' value='"+value.ctaprom+"'  class='input-mini' onKeyPress='return sistema.validaNumeros(event)' onKeyUp='sistema.validaNumeroMayor("+'"'+"txt_cuo_"+value.cconcep+'","'+"txt_cta_"+value.cconcep+'"'+");' /></td>";
+		htm+="<td class='t-center'><input type='text' id='txt_mto_"+value.cconcep+"' value='"+value.mtoprom+"'  class='input-mini' onKeyPress='return sistema.validaNumeros(event)' onKeyUp='sistema.validaNumeroMayor("+'"'+"txt_pre_"+value.cconcep+'","'+"txt_mto_"+value.cconcep+'"'+");' /></td>";
 		htm+="<td class='t-center'>";
 		htm+="	<select id='slct_est_"+value.cconcep+"' class='input-medium'>";
 		if(value.cestado == "1"){

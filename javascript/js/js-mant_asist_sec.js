@@ -418,6 +418,19 @@ editarSeccion  = function(obj){
                     <option value='C-"+ datag+"'>C</option>\n\
                     <option value='D-"+ datag+"'>D</option>\n\
                     <option value='E-"+ datag+"'>E</option>\n\
+                    <option value='F-"+ datag+"'>E</option>\n\
+                    <option value='G-"+ datag+"'>E</option>\n\
+                    <option value='H-"+ datag+"'>E</option>\n\
+                    <option value='I-"+ datag+"'>E</option>\n\
+                    <option value='J-"+ datag+"'>E</option>\n\
+                    <option value='K-"+ datag+"'>E</option>\n\
+                    <option value='L-"+ datag+"'>E</option>\n\
+                    <option value='M-"+ datag+"'>E</option>\n\
+                    <option value='N-"+ datag+"'>E</option>\n\
+                    <option value='O-"+ datag+"'>E</option>\n\
+                    <option value='P-"+ datag+"'>E</option>\n\
+                    <option value='Q-"+ datag+"'>E</option>\n\
+                    <option value='R-"+ datag+"'>E</option>\n\
                  </select>";
     var cerrar = '<a id="remove_alu_edit_sec" class=\'btn btn-azul sombra-3d t-blanco\' ><i class=\'icon-white  icon-remove\'></i></a>';
     

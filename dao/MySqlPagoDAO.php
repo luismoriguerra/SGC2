@@ -459,6 +459,7 @@ class MySqlPagoDAO{
 				 fdocpag='".$array['dfboleta']."',
 				 monpag=".$array['dbolmont'].",
 				 concept='".$array['dconcept']."',
+				 tareadet='".$array['tareadet']."',
 				 devoluc='".strtolower($array['showdevo'])."' ,
 				 cusuari='".$array['cusuari']."',
 				 fusuari=now()";

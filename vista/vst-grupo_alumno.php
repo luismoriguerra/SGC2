@@ -289,6 +289,14 @@
                                                     </select>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="t-left label" >
+                                                    <b>Retiro detale</b>
+                                                </td>
+                                                <td class="t-left">
+                                                    <textarea name="tarea_detalle" id="tarea_detalle" cols="30" rows="10"></textarea>
+                                                </td>
+                                            </tr>
                                         </table>
                                     </td>
                                 </tr>

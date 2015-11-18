@@ -197,6 +197,7 @@ var pagoDAO={
                 dfboleta: $("#txt_fecha_bol").val(),
                 dconcept: $("#slct_concepto").val().join(","), // concepto es un select multiple
                 showdevo: $("#slct_devolucion_seccion").val(),
+                tareadet: $("#tarea_detalle").val(),
 
 
                 cusuari: $('#hd_idUsuario').val(),

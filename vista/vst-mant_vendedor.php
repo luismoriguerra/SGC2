@@ -14,11 +14,13 @@
 		<script type="text/javascript" src="../javascript/includes/jquery-ui-1.8.18.custom.min.js"></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/i18n/grid.locale-es.js" ></script>
         <script type="text/javascript" src="../javascript/includes/jqgrid-4.3.2/js/jquery.jqGrid.min.js" ></script>
+        <script type="text/javascript" src="../javascript/includes/angular.min.js" ></script>
 
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
 		<script type="text/javascript" src="../javascript/dao/DAOubigeo.js"></script>
-         <script type="text/javascript" src="../javascript/jqGrid/JqGridMantVendedor.js"></script>
+        <script type="text/javascript" src="../javascript/dao/DAOinstitucion.js"></script>
+        <script type="text/javascript" src="../javascript/jqGrid/JqGridMantVendedor.js"></script>
          <script type="text/javascript" src="../javascript/dao/DAOpersona.js"></script>
         <script type="text/javascript" src="../javascript/js/js-persona.js"></script>
         <script type="text/javascript" src="../javascript/js/js-persona2.js"></script>

@@ -12,7 +12,7 @@ require_once '../../conexion/configMySql.php';
 $cn=MySqlConexion::getInstance();
 $meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre");
 $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
-$azcount=array(5,20,24.5,9,9,11,11,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+$azcount=array(5,20,24.5,9,25,11,11,11,11,7,9,8,6,6,6,11,4,4,4,4,4,11,11,11,6,11,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 $letras=array(
 	'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 // AUMENTAMOS LA CANTIDAD DE COLUMNAS
@@ -60,7 +60,13 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 	$sql_column_count .= " ,count(IF(g.i$cam=i.cinstit,g.f$cam,NULL)) c$cam ";
 	if ($i <= 20) {
 	$query1 = "
-		SELECT v.cvended,o.dopeven,i.cinstit,g.cpromot,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor,v.fretven,i.dinstit,o.ctipcap,v.cestado, IFNULL(v.horari,'') horari, IFNULL(v.descto,'') descto, IFNULL(v.montele,0) ntelefo,IFNULL(v.dinstit,'') vinstit,
+		SELECT v.cvended,o.dopeven,i.cinstit,g.cpromot
+		,CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre) AS vendedor
+		,v.fretven,i.dinstit,o.ctipcap
+		,v.cestado
+		, IFNULL(v.horari,'') horari
+		, IFNULL(v.descto,'') descto
+		, IFNULL(v.montele,0) ntelefo,IFNULL(v.dinstit,'') vinstit,
 			count(IF(g.it=i.cinstit,g.ft,NULL)) c0,count(g.cconmat) ctf
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
@@ -262,7 +268,7 @@ $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_
 $objPHPExcel->getActiveSheet()->setCellValue("A1","MATRÍCULAS DE ".$dvendedor);
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 // primermas columnas simples
-$cabecera=array('N°','CENTRO VENTA','VENDEDOR','CÓDIGO','ESTADO', "HORARIO","INST VENDE",'INICIO','TERMINO','BÁSICO','DESCUENTO','DIAS LABORADOS','DIAS NO LABORADOS','TELÉFONO','PLANILLA','COSTO POR ALUMNO','PROMEDIO DIARIO');
+$cabecera=array('N°','CENTRO VENTA','VENDEDOR','CÓDIGO','FECHA INGRESO / ESTADO', "HORARIO","INST VENDE",'INICIO','TERMINO','BÁSICO','DESCUENTO','DIAS LABORADOS','DIAS NO LABORADOS','TELÉFONO','PLANILLA','COSTO POR ALUMNO','PROMEDIO DIARIO');
 // total de columnas simples 11 , de aqui empeizan las dinamicas
 $iniciadinamica = 17;
 // index
@@ -378,6 +384,13 @@ foreach ($rpt as $r) {
 		if( ($fecharet=='' or $fecharet=='0000-00-00') or $r['fretven']>$diaFinalDeCalculo ){
 			$fecharet = $diaFinalDeCalculo;
 		}
+
+		// estado labora o no labora depende de la fecha de retiro
+		$estado = "RETIRADO";
+		if ($fecharet >= $diaFinalDeCalculo) {	$estado="LABORA";		}
+		$objPHPExcel->getActiveSheet()->setCellValue("E".$valorinicial, $r['fingven'] . " / " . $estado);
+
+
 		$objPHPExcel->getActiveSheet()->setCellValue("I".$valorinicial, $fecharet);
 		// ESTE PAGO COMO SE CUALCULA ?
 		$pago = ($r["pago"]) ? $r["pago"] : 0;

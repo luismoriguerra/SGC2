@@ -33,7 +33,7 @@ $sql="	select v.dapemat,v.dapepat,v.dnombre,v.ndocper,v.dtelefo,v.demail,v.ddire
 		from vendedm v
 		inner join tipcapa t on (v.tvended=t.didetip and t.dclacap=2)
 		left join opevena o on o.copeven = v.copeven
-		WHERE 1=1 ".$where;
+		WHERE v.cestado = 1 ".$where;
 $cn->setQuery($sql);
 $control=$cn->loadObjectList();
 /*

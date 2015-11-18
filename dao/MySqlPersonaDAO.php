@@ -422,7 +422,7 @@ class MySqlPersonaDAO{
 				v.fingven,t.dtipcap as tvended,v.codintv
 				from vendedm v
 				inner join tipcapa t on (v.tvended=t.didetip and t.dclacap=2)
-				WHERE 1=1 ".$where;
+				WHERE v.cestado = 1 ".$where;
 		$db->setQuery($sql);
         $data=$db->loadObjectList();
         if(count($data)>0){

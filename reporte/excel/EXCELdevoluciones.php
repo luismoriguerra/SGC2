@@ -66,8 +66,9 @@ select
 , dt.bolserie
 , dt.tipbolet
 , dt.monbole
-, d.pordesc
+, concat(d.pordesc, '%')
 , d.descripc
+, d.tareadet
 , f.dfilial
 , dt.cgruaca 1hide
 , dt.cingalu 2hide
@@ -193,16 +194,17 @@ $objPHPExcel->getActiveSheet()->setCellValue("C4", "DATOS ACADEMICOS");
 $objPHPExcel->getActiveSheet()->setCellValue("G4", "COMPROBANTE DE PAGOS EMITIDOS");
 $objPHPExcel->getActiveSheet()->setCellValue("L4", "DEVOLUCION");
 
-
+// MERGEO DE MANERA VERTICAL 2 FILA 4 Y 5
 $objPHPExcel->getActiveSheet()->mergeCells('Q4:Q5');
 $objPHPExcel->getActiveSheet()->mergeCells('R4:R5');
+$objPHPExcel->getActiveSheet()->mergeCells('S4:S5');
 
 
 $cabecera=array('N°',"APELLIDOS Y NOMBRES", "ODE",
     "INST.", "CARRERA","FECHA DE INICIO",
     "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
     "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
-    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION");
+    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION", "RETIRO DETALLE");
 
 for($i=0;$i<count($cabecera);$i++){
     $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);
@@ -211,11 +213,17 @@ for($i=0;$i<count($cabecera);$i++){
 }
 
 $objPHPExcel->getActiveSheet()->setCellValue("A4", "NRO");
-$objPHPExcel->getActiveSheet()->setCellValue("Q4", "DSCTO GASTOS ADMINI");
+
+$objPHPExcel->getActiveSheet()->setCellValue("Q4", "DSCTO GASTOS ADMIN");
 $objPHPExcel->getActiveSheet()->getStyle("Q4")->getAlignment()->setWrapText(true);
+
 $objPHPExcel->getActiveSheet()->setCellValue("R4", "MOTIVO DE DEVOLUCION");
 $objPHPExcel->getActiveSheet()->getStyle("R4")->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->getStyle('A4:R5')->applyFromArray($styleAlignmentBold);
+
+$objPHPExcel->getActiveSheet()->setCellValue("S4", "RETIRO DETALLE");
+$objPHPExcel->getActiveSheet()->getStyle("S4")->getAlignment()->setWrapText(true);
+
+$objPHPExcel->getActiveSheet()->getStyle('A4:S5')->applyFromArray($styleAlignmentBold);
 $pos=1;
 $valorinicial=5;
 $cont=0;
@@ -228,6 +236,7 @@ function combinar($objPHPExcel, $az, $rowini, $rowfin) {
 
     $objPHPExcel->getActiveSheet()->mergeCells("Q".$rowini.':'."Q".$rowfin);
     $objPHPExcel->getActiveSheet()->mergeCells("R".$rowini.':'."R".$rowfin);
+    $objPHPExcel->getActiveSheet()->mergeCells("S".$rowini.':'."S".$rowfin);
 
 
 }
@@ -269,7 +278,8 @@ foreach($combinaciones as $c) {
     $objPHPExcel->getActiveSheet()->setCellValue("A".$c[0], $indice++);
 }
 
-$objPHPExcel->getActiveSheet()->getStyle('A4:R'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A4:S'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A4:S'.$valorinicial)->getAlignment()->setWrapText(true);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Documentos');
 // Set active sheet index to the first sheet, so Excel opens this As the first sheet
