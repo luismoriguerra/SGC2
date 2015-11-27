@@ -7,7 +7,7 @@ class MySqlOpevenDAO{
 		$sql="select o.copeven id ,  o.dopeven nombre 
                 from opevena o
                 inner join tipcapa t on o.ctipcap = t.ctipcap
-                where t.didetip = '$didetip'";
+                where o.cestado = 1 and t.didetip = '$didetip'";
         $db=creadorConexion::crear('MySql');
 
         $db->setQuery($sql);
