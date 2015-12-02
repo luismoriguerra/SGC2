@@ -191,8 +191,8 @@ $objPHPExcel->getActiveSheet()->mergeCells('G4:K4');
 $objPHPExcel->getActiveSheet()->mergeCells('L4:P4');
 $objPHPExcel->getActiveSheet()->setCellValue("B4", "ALUMNO");
 $objPHPExcel->getActiveSheet()->setCellValue("C4", "DATOS ACADEMICOS");
-$objPHPExcel->getActiveSheet()->setCellValue("G4", "COMPROBANTE DE PAGOS EMITIDOS");
-$objPHPExcel->getActiveSheet()->setCellValue("L4", "DEVOLUCION");
+$objPHPExcel->getActiveSheet()->setCellValue("G4", "DEVOLUCION");
+$objPHPExcel->getActiveSheet()->setCellValue("L4", "PAGOS REALIZADOS");
 
 // MERGEO DE MANERA VERTICAL 2 FILA 4 Y 5
 $objPHPExcel->getActiveSheet()->mergeCells('Q4:Q5');
@@ -204,7 +204,7 @@ $cabecera=array('N°',"APELLIDOS Y NOMBRES", "ODE",
     "INST.", "CARRERA","FECHA DE INICIO",
     "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
     "CONCEPTO", "FECHA", "SERIE", "TIPO", "MONTO",
-    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION", "RETIRO DETALLE");
+    "DSCTO GASTOS ADMIN", "MOTIVO DE DEVOLUCION", "DETALLE DEVOLUCION");
 
 for($i=0;$i<count($cabecera);$i++){
     $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."5",$cabecera[$i]);

@@ -170,7 +170,7 @@ $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A2:U2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:U2')->applyFromArray($styleAlignmentBold);
 
-$cabecera=array('N°','ODE','INSTITUCION','CARRERA','PENSION','FREC','HORA','SEMESTRE','INICIO','FECHA INICIO','MATRIC.EN LOS ULT 2 DIAS','','INSCRITOS','META MÁXIMA','META MÍNIMA','INCIO CAMPAÑA','DIAS CAMPAÑA','INDICE POR DÍA','DIAS QUE FALTA','PROY. DIAS FALTANTES','PROY. FINAL','FALTA PARA LOGRAR META');
+$cabecera=array('N°','ODE','INSTITUCION','CARRERA','PENSION','FREC','HORA','SEMESTRE','INICIO','FECHA INICIO','MATRIC.EN LOS ULT 2 DIAS','','INSCRITOS','META MÁXIMA','META MÍNIMA','INCIO CAMPAÑA','DIAS CAMPAÑA','INDICE POR DÍA','DIAS QUE FALTA','PROY. DIAS FALTANTES','PROY. FINAL','FALTA PARA LOGRAR META', 'OBSERVACION');
 
 
 	for($i=0;$i<count($cabecera);$i++){
@@ -201,8 +201,8 @@ $objPHPExcel->getActiveSheet()->setCellValue("L4","AL");
 $objPHPExcel->getActiveSheet()->getStyle('L4')->applyFromArray($styleAlignmentRight);
 $objPHPExcel->getActiveSheet()->setCellValue("M4",$_GET['fechfin']);
 
-$objPHPExcel->getActiveSheet()->getStyle('A5:V5')->applyFromArray($styleAlignmentBold);
-$objPHPExcel->getActiveSheet()->getStyle("A5:V5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
+$objPHPExcel->getActiveSheet()->getStyle('A5:W5')->applyFromArray($styleAlignmentBold);
+$objPHPExcel->getActiveSheet()->getStyle("A5:W5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFEBF1DE');
 //$objPHPExcel->getActiveSheet()->getStyle("Q5:V5")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFF0F000');	
 
 $valorinicial=5;
@@ -227,8 +227,8 @@ foreach($rpt as $r){
 		$valorinicial++;			
 		$objPHPExcel->getActiveSheet()->getRowDimension($valorinicial)->setRowHeight(15.5); // altura
 		$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,"TOTALES");
-		$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."V".$valorinicial)->applyFromArray($styleAlignmentRight);
-		$objPHPExcel->getActiveSheet()->getStyle("A".$valorinicial.":"."V".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
+		$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."W".$valorinicial)->applyFromArray($styleAlignmentRight);
+		$objPHPExcel->getActiveSheet()->getStyle("A".$valorinicial.":"."W".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
 		
 		$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial,"=SUM(K".($valorinicial-$cont).":K".($valorinicial-1).")");
 		$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial,"=SUM(L".($valorinicial-$cont).":L".($valorinicial-1).")");
@@ -332,8 +332,8 @@ $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $mat_falt_
 $valorinicial++;
 $objPHPExcel->getActiveSheet()->getRowDimension($valorinicial)->setRowHeight(15.5); // altura
 	$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,"TOTALES");
-	$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."V".$valorinicial)->applyFromArray($styleAlignmentRight);
-	$objPHPExcel->getActiveSheet()->getStyle("A".$valorinicial.":"."V".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
+	$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."W".$valorinicial)->applyFromArray($styleAlignmentRight);
+	$objPHPExcel->getActiveSheet()->getStyle("A".$valorinicial.":"."W".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
 	
 	$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial,"=SUM(K".($valorinicial-$cont).":K".($valorinicial-1).")");
 	$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial,"=SUM(L".($valorinicial-$cont).":L".($valorinicial-1).")");
@@ -351,19 +351,24 @@ $objPHPExcel->getActiveSheet()->getRowDimension($valorinicial)->setRowHeight(15.
 	$objPHPExcel->getActiveSheet()->mergeCells( "C".($valorinicial-$cont).":C".($valorinicial-1) );
 	$objPHPExcel->getActiveSheet()->getStyle( "B".($valorinicial-$cont).":C".($valorinicial-1) )->applyFromArray($styleAlignment);
 	*/
-$objPHPExcel->getActiveSheet()->getStyle('A5:V'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A5:W'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 $valorinicial++;$valorinicial++;
 $objPHPExcel->getActiveSheet()->getRowDimension($valorinicial)->setRowHeight(15.5); // altura
 	$objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,"TOTALES");
-	$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."O".$valorinicial)->applyFromArray($styleAlignmentRight);
-	$objPHPExcel->getActiveSheet()->getStyle("J".$valorinicial.":"."O".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
+	$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."W".$valorinicial)->applyFromArray($styleAlignmentRight);
+	$objPHPExcel->getActiveSheet()->getStyle("J".$valorinicial.":"."W".$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFD8E4BC');
 	$objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial,"=K".implode("+K",$sumatotal));
 	$objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial,"=L".implode("+L",$sumatotal));
 	$objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial,"=M".implode("+M",$sumatotal));
 	$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial,"=N".implode("+N",$sumatotal));
 	$objPHPExcel->getActiveSheet()->setCellValue("O".$valorinicial,"=O".implode("+O",$sumatotal));
-$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."O".$valorinicial)->getFont()->setSize(10);
-$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."O".$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+	$objPHPExcel->getActiveSheet()->setCellValue("R".$valorinicial,"=R".implode("+R",$sumatotal));
+	$objPHPExcel->getActiveSheet()->setCellValue("T".$valorinicial,"=T".implode("+T",$sumatotal));
+	$objPHPExcel->getActiveSheet()->setCellValue("U".$valorinicial,"=U".implode("+U",$sumatotal));
+	$objPHPExcel->getActiveSheet()->setCellValue("V".$valorinicial,"=V".implode("+V",$sumatotal));
+
+$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."W".$valorinicial)->getFont()->setSize(10);
+$objPHPExcel->getActiveSheet()->getStyle('J'.$valorinicial.":"."W".$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 
 $objPHPExcel->getActiveSheet()->getStyle('M6:M'.$valorinicial)->applyFromArray($styleAlignmentRight);
 //$objPHPExcel->getActiveSheet()->getStyle('AA4:AA'.$valorinicial)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
