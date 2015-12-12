@@ -29,7 +29,7 @@ $where.=" AND v.tvended like '%".$tvended."%'";
 $sql="	select v.dapemat,v.dapepat,v.dnombre,v.ndocper,v.dtelefo,v.demail,v.ddirecc,
 		(select u.nombre from ubigeo u 
 		where u.coddpto=v.coddpto and u.codprov=v.codprov and u.coddist=v.coddist) as distrito,
-		v.fingven,t.dtipcap as tvended,v.codintv, o.dopeven copen
+		v.fingven,t.dtipcap as tvended,v.codintv, o.dopeven copen, v.fretven
 		from vendedm v
 		inner join tipcapa t on (v.tvended=t.didetip and t.dclacap=2)
 		left join opevena o on o.copeven = v.copeven
@@ -147,7 +147,7 @@ $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A2:M2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:M2')->applyFromArray($styleAlignmentBold);
 
-$cabecera=array('N°','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','DIRECCION','DISTRITO','FECHA DE INGRESO A TELESUP','TIPO VENDEDOR','CODIGO INT', "CENTRO DE OPERACION");
+$cabecera=array('N°','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','DIRECCION','DISTRITO','FECHA DE INGRESO A TELESUP','TIPO VENDEDOR','CODIGO INT', "CENTRO DE OPERACION", 'FECHA DE RETIRO');
 
 	for($i=0;$i<count($cabecera);$i++){
 	$objPHPExcel->getActiveSheet()->setCellValue($az[$i]."3",$cabecera[$i]);
@@ -181,8 +181,9 @@ $objPHPExcel->getActiveSheet()->setCellValue("J".$valorinicial,$r['fingven']);
 $objPHPExcel->getActiveSheet()->setCellValue("K".$valorinicial,$r['tvended']);
 $objPHPExcel->getActiveSheet()->setCellValue("L".$valorinicial,$r['codintv']);
 $objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial,$r['copen']);
+$objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial,$r['fretven']);
 }
-$objPHPExcel->getActiveSheet()->getStyle('A2:M'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A2:N'.$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Lista_Vendedores');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
