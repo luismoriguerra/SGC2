@@ -284,9 +284,9 @@ for ($i = 1; $i<= $cantidadDias /*+ 1*/; $i++) {
         array_push($cabecera, $r['dinstit']);
     }
 }
-array_push($cabecera,"TOTAL \n COMISION");$cantidadaz++;
-array_push($cabecera,"TOTAL \n A COBRAR");$cantidadaz++;
-array_push($cabecera,"FIRMA");$cantidadaz++;
+array_push($cabecera,"TOTAL \n COMISION");
+array_push($cabecera,"TOTAL \n A COBRAR");
+array_push($cabecera,"FIRMA");
 try {
     for ($i = 0; $i < count($cabecera); $i++) {
         // COLOCA LOS VALORES DE LA CABECERA
@@ -398,7 +398,7 @@ foreach ($rpt as $r) {
     }
 
 }
-$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz+3].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
 /*
 $objPHPExcel->getActiveSheet()->getStyle('A7:G'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 $objPHPExcel->getActiveSheet()->getStyle('H7:I'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
@@ -406,7 +406,8 @@ $objPHPExcel->getActiveSheet()->getStyle('J7:K'.$valorinicial)->applyFromArray($
 $objPHPExcel->getActiveSheet()->getStyle('L7:M'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 $objPHPExcel->getActiveSheet()->getStyle('N7:O'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 */
-$objPHPExcel->getActiveSheet()->getStyle('H7:R'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('H7:H'.$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle('I7:'.$az[$cantidadaz].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
 /*
 $objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz]."6")->applyFromArray($styleThickBlackBorderOutline);
 $objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[$iniciadinamica].$valorinicial)->applyFromArray($styleBold);
@@ -425,7 +426,7 @@ $objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[($iniciad
 }*/
 //$objPHPExcel->getActiveSheet()->getStyle('B5:B5')->applyFromArray($styleThinBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('H5:'.$az[$cantidadaz]."5")->applyFromArray($styleThickBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle('A6:R6')->applyFromArray($styleThickBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz+3].'6')->applyFromArray($styleThickBlackBorderAllborders); // LINEA INICIAL
 $valorinicial++;
 $cantidadaz = 16 ;
 /*for ($i = 1; $i <= $cantidadDias + 1; $i++) {
@@ -443,20 +444,21 @@ $cantidadaz = 16 ;
 }
 //AGREGAMOS SUMATORIA de INVERSION
     $objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=SUM(M7:M".($valorinicial-1).")");
-    $objPHPExcel->getActiveSheet()->setCellValue("N".$valorinicial, "=SUM(N7:N".($valorinicial-1).")");
-
-    $objPHPExcel->getActiveSheet()->getStyle("M".$valorinicial.":N".$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
+    
 */
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz+2].$valorinicial, "=SUM(T7:T".($valorinicial-1).")");
+
+    $objPHPExcel->getActiveSheet()->getStyle($az[$cantidadaz+2].$valorinicial.":"$az[$cantidadaz+2].$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
 //AGREGAMOS LA ULTIMA SUMATORIA
 //$cantidadaz++;
 //$objPHPExcel->getActiveSheet()->setCellValue(
 //  $az[$cantidadaz].$valorinicial,
 //  "=SUM(".$az[$cantidadaz]."7:".$az[$cantidadaz].($valorinicial-1).")");
-
-$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
-$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
-$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz].$valorinicial)->applyFromArray($styleBold);
-////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz+3].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz+3].$valorinicial)->applyFromArray($styleThickBlackBorderOutline);
+$objPHPExcel->getActiveSheet()->getStyle($az[($iniciadinamica)].$valorinicial.":".$az[$cantidadaz+3].$valorinicial)->applyFromArray($styleBold);
+*/////////////////////////////////////////////////////////////////////////////////////////////////
 
 $objPHPExcel->getActiveSheet()->setTitle('Reporte_Vendedores_comision');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet

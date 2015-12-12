@@ -96,7 +96,7 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr style="display:">
+                                    <tr style="display:none">
                                         <td class="t-left label input-large">Rango de días:</td>
                                         <td class="t-left">
                                             <select id="DiaIni"
