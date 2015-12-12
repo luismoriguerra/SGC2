@@ -448,7 +448,7 @@ $cantidadaz = 16 ;
 */
     $objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz+2].$valorinicial, "=SUM(T7:T".($valorinicial-1).")");
 
-    $objPHPExcel->getActiveSheet()->getStyle($az[$cantidadaz+2].$valorinicial.":"$az[$cantidadaz+2].$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
+    $objPHPExcel->getActiveSheet()->getStyle($az[$cantidadaz+2].$valorinicial.":".$az[$cantidadaz+2].$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
 //AGREGAMOS LA ULTIMA SUMATORIA
 //$cantidadaz++;
 //$objPHPExcel->getActiveSheet()->setCellValue(
