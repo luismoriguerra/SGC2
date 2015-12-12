@@ -428,8 +428,8 @@ $objPHPExcel->getActiveSheet()->getStyle($az[$iniciadinamica]."6:".$az[($iniciad
 $objPHPExcel->getActiveSheet()->getStyle('H5:'.$az[$cantidadaz]."5")->applyFromArray($styleThickBlackBorderAllborders);
 $objPHPExcel->getActiveSheet()->getStyle('A6:'.$az[$cantidadaz+3].'6')->applyFromArray($styleThickBlackBorderAllborders); // LINEA INICIAL
 $valorinicial++;
-$cantidadaz = 16 ;
-/*for ($i = 1; $i <= $cantidadDias + 1; $i++) {
+/*$cantidadaz = 16 ;
+for ($i = 1; $i <= $cantidadDias + 1; $i++) {
     $cantidadaz++;
     $objPHPExcel->getActiveSheet()->setCellValue(
         $az[$cantidadaz].$valorinicial,
@@ -446,7 +446,7 @@ $cantidadaz = 16 ;
     $objPHPExcel->getActiveSheet()->setCellValue("M".$valorinicial, "=SUM(M7:M".($valorinicial-1).")");
     
 */
-    $objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz+2].$valorinicial, "=SUM(T7:T".($valorinicial-1).")");
+    $objPHPExcel->getActiveSheet()->setCellValue($az[$cantidadaz+2].$valorinicial, "=SUM(".$az[$cantidadaz+2]."7:".$az[$cantidadaz+2].($valorinicial-1).")");
 
     $objPHPExcel->getActiveSheet()->getStyle($az[$cantidadaz+2].$valorinicial.":".$az[$cantidadaz+2].$valorinicial)->applyFromArray($styleThickBlackBorderAllborders);
 //AGREGAMOS LA ULTIMA SUMATORIA
