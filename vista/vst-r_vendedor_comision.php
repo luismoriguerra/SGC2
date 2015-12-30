@@ -117,6 +117,17 @@
 <!--                                            <input type="text" id="txt_pago_mensual" class="input-medium" value="">-->
 <!--                                            </td>-->
 <!--                                       </tr>    -->
+                                        <tr>
+                                            <td class="t-left label">Vendedor:</td>
+                                            <td class="t-left">
+                                                <select id="slct_tipo_comision" class="input-large">
+                                                    <option value="">--Selecione--</option>
+                                                    <option value="I">Solo Inscripción</option>
+                                                    <option value="M">Hasta Matrícula</option>
+                                                    <option value="P">Hasta 1ra Cuota</option>
+                                                </select>
+                                            </td>
+                                        </tr>
                                     </table>
                                 <!--fin talba-->                                
                                 <br>

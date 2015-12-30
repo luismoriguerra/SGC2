@@ -103,7 +103,8 @@ Exportar=function(){
                     +'&mes='+$("#matriculaMes").val()
                     +'&ini='+$("#DiaIni option:selected").attr("label")
                     +'&fin='+$("#DiaFin option:selected").attr("label")
-                    +'&usuario='+$("#hd_idUsuario").val();
+                    +'&usuario='+$("#hd_idUsuario").val()
+                    +'&tipo='+$("#slct_tipo_comision").val();
     }
 }
 
