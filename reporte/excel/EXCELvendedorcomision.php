@@ -24,6 +24,7 @@ for ($i = 0; $letras[$i]; $i++) {
 }
 $tvended=$_GET['tvended'];
 $dvendedor=$_GET['dvendedor'];
+$tipo = $_GET['tipo'];
 
 $copeven=str_replace(",","','",$_GET['copeven']);
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
@@ -52,6 +53,41 @@ $query1 = "";
 $query2 = "";
 $cantidadDias = $_GET["fin"] - $_GET["ini"] + 1;
 
+$adicionalTipo="";
+if( $tipo=='M' ){
+    $adicionalTipo= "INNER JOIN (
+                        SELECT i2.cingalu,r2.tdocpag,r2.cdocpag
+                        FROM conmatp c2
+                        INNER JOIN ingalum i2 ON i2.cingalu=c2.cingalu
+                        INNER JOIN recacap r2 ON (r2.cingalu=c2.cingalu AND r2.cgruaca=c2.cgruaca AND i2.cconcep=r2.cconcep)
+                        WHERE c2.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia' 
+                        AND ( r2.testfin in ('C','P') OR (r2.cdocpag!='' and r2.testfin='S') )
+                        GROUP BY i2.cingalu
+                        HAVING min(r2.cdocpag)!=''
+                    ) t on t.cingalu=i.cingalu ";
+}
+elseif( $tipo=='P' ){
+    $adicionalTipo= "INNER JOIN (
+                        SELECT i2.cingalu,r2.tdocpag,r2.cdocpag
+                        FROM conmatp c2
+                        INNER JOIN ingalum i2 ON i2.cingalu=c2.cingalu
+                        INNER JOIN recacap r2 ON (r2.cingalu=c2.cingalu AND r2.cgruaca=c2.cgruaca)
+                        WHERE c2.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia' 
+                        AND ( r2.testfin in ('C','P') OR (r2.cdocpag!='' and r2.testfin='S') )
+                        AND r2.ccuota < 2
+                        GROUP BY i2.cingalu
+                        HAVING min(r2.cdocpag)!=''
+                    ) t on t.cingalu=i.cingalu ";
+}
+
+$relacion="g.cpromot=v.cvended AND g.ctipcap=o.ctipcap";
+$inner="";$campo="";
+if( $tvended=='R' ){
+    $relacion="g.crecepc=v.cvended ";
+    $inner=" INNER JOIN postulm p ON p.cingalu=i.cingalu ";
+    $campo=" ,crecepc ";
+}
+
 for ($i = 0; $i < $cantidadDias ; $i++) {
     $cam = $i + 1;
     $dia = date("Y-m-d" , strtotime("-$i day",strtotime($fechafin)));
@@ -76,16 +112,18 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
         INNER JOIN opevena o ON o.copeven=v.copeven
         LEFT JOIN
         (
-            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric
+            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric $campo
              $sql_dias_column
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            $inner 
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
             INNER JOIN filialm f ON f.cfilial=g.cfilial
+            $adicionalTipo
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
-        ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
+        ) g ON ( $relacion )
         WHERE v.tvended='$tvended'
         AND v.fingven<='$mesUltimoDia'
         AND o.copeven IN ('$copeven')
@@ -108,16 +146,18 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
                 INNER JOIN opevena o ON o.copeven=v.copeven
         LEFT JOIN
         (
-            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric
+            SELECT c.cconmat,i.ctipcap,i.cpromot,f.dfilial,g.cfilial ft,g.cinstit it,c.fmatric $campo
             $sql_dias_column
             FROM conmatp c
             INNER JOIN ingalum i ON c.cingalu=i.cingalu
+            $inner 
             INNER JOIN gracprp g ON g.cgracpr=c.cgruaca
             INNER JOIN filialm f ON f.cfilial=g.cfilial
+            $adicionalTipo
             $sql_dias
             WHERE c.fmatric BETWEEN '$mesPrimerDia' and '$mesUltimoDia'
             GROUP BY c.cconmat
-        ) g ON (g.cpromot=v.cvended AND g.ctipcap=o.ctipcap)
+        ) g ON ( $relacion )
         WHERE v.tvended='$tvended'
         AND o.copeven IN ('$copeven')
         AND v.cestado='1'

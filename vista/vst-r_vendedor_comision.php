@@ -118,7 +118,7 @@
 <!--                                            </td>-->
 <!--                                       </tr>    -->
                                         <tr>
-                                            <td class="t-left label">Vendedor:</td>
+                                            <td class="t-left label">Tipo:</td>
                                             <td class="t-left">
                                                 <select id="slct_tipo_comision" class="input-large">
                                                     <option value="">--Selecione--</option>

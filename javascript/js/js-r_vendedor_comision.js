@@ -91,8 +91,8 @@ Exportar=function(){
     }else if( $("#txt_fecha_matric").val() == "" ){
         sistema.msjAdvertencia("Ingrese Fecha Matricula",2000);
         $("#txt_fecha_matric").focus();
-    }else if( $("#txt_pago_mensual").val() == "" ){
-        sistema.msjAdvertencia("Ingrese Pago Mensual",2000);
+    }else if( $("#slct_tipo_comision").val() == "" ){
+        sistema.msjAdvertencia("Seleccione tipo comision",2000);
         $("#txt_pago_mensual").focus();
     }else{
     window.location='../reporte/excel/EXCELvendedorcomision.php?cinstit='+$("#slct_instituto").val().join(",")
