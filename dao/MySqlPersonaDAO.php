@@ -452,21 +452,21 @@ class MySqlPersonaDAO{
             WHERE i.cingalu IS NOT NULL 
 			$where";
 		$db->setQuery($sql);
-		$data=$db->loadObjectList();
-		if( count($data)>0 ){
+        $data=$db->loadObjectList();
+        if( count($data)>0 ){
             return $data;
         }else{
             return array(array('COUNT'=>0));
         }
-	}
-	
-	public function JQGRIDRowsPersonaIngAlum ( $sidx, $sord, $start, $limit, $where) {
-	$sql="	SELECT i.cingalu,p.cperson,p.dnomper,p.dappape,p.dapmape,p.ndniper,ca.dcarrer,g.csemaca,f.dfilial,ins.dinstit,g.cgracpr,g.cinicio,DATE(g.finicio) finicio,
+    }
+    
+    public function JQGRIDRowsPersonaIngAlum ( $sidx, $sord, $start, $limit, $where) {
+    $sql="  SELECT i.cingalu,p.cperson,p.dnomper,p.dappape,p.dapmape,p.ndniper,ca.dcarrer,g.csemaca,f.dfilial,ins.dinstit,g.cgracpr,g.cinicio,DATE(g.finicio) finicio,
             CONCAT( (SELECT GROUP_CONCAT(d.dnemdia SEPARATOR '-') FROM diasm d WHERE FIND_IN_SET (d.cdia,REPLACE(g.cfrecue,'-',','))  >  0),' de ' ,h.hinici,'-',h.hfin) AS dhorari,
             IF(i.cestado='1','Activo','Retirado') AS cestado,
             i.nfotos,i.certest,i.sermatr,i.partnac,i.dcodlib,i.fotodni,i.otrodni,i.cpais,i.tinstip,i.dinstip,i.dcarrep,i.ultanop,i.dciclop,i.ddocval,i.cmoding,i.cdevolu,i.fdevolu,mo.dmoding
             ,t.dtipcap
-            ,t.dclacap
+            ,t.dclacap,i.finscri,i.fusuari,
             ,CONCAT(ve.dapepat,' ',ve.dapemat,', ',ve.dnombre)  AS recepcionista
             ,IF(i.cpromot!='',CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre),
                 IF(i.cmedpre!='', m.dmedpre,
@@ -487,23 +487,24 @@ class MySqlPersonaDAO{
             INNER JOIN instita ins ON (ins.cinstit=g.cinstit)
             INNER JOIN horam h ON (h.chora  = g.chora)
             WHERE i.cingalu IS NOT NULL
-			 $where
+             $where
             ORDER BY $sidx $sord
             LIMIT $start , $limit ";
         $db=creadorConexion::crear('MySql');
         $db->setQuery($sql);
         $data=$db->loadObjectList();
+        //echo $sql;
         return $data;
     }
-	public function JQGridCountPersonaConcepto($where){
-		$db=creadorConexion::crear('MySql');
-		$sql="SELECT count(*) as count 
-			FROM personm p left join ingalum i on (p.cperson=i.cperson )
-			inner join conmatp c on (c.cingalu=i.cingalu)
-			inner join gracprp g on (g.cgracpr=c.cgruaca)
-			inner join carrerm ca on (ca.ccarrer=g.ccarrer)
-			inner join filialm f on (f.cfilial=g.cfilial)
-			inner join instita ins on (ins.cinstit=g.cinstit)
+    public function JQGridCountPersonaConcepto($where){
+        $db=creadorConexion::crear('MySql');
+        $sql="SELECT count(*) as count 
+            FROM personm p left join ingalum i on (p.cperson=i.cperson )
+            inner join conmatp c on (c.cingalu=i.cingalu)
+            inner join gracprp g on (g.cgracpr=c.cgruaca)
+            inner join carrerm ca on (ca.ccarrer=g.ccarrer)
+            inner join filialm f on (f.cfilial=g.cfilial)
+            inner join instita ins on (ins.cinstit=g.cinstit)
 			inner join recacap r on (r.cingalu=i.cingalu)
 			inner join concepp con on (con.cconcep=r.cconcep)
 			inner join bitacop b on (b.cingalu=c.cingalu and b.cgracpr=c.cgruaca)
