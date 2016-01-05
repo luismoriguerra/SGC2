@@ -291,6 +291,12 @@ class servletPersona extends controladorComandos{
 				if(isset($_GET['cestado']) && trim($_GET['cestado'])!=''){
                     $where.=" AND i.cestado='".trim($_GET['cestado'])."' ";
                 }
+                if(isset($_GET['finscri']) && trim($_GET['finscri'])!=''){
+                    $where.=" AND date(i.finscri)='".strtoupper(trim($_GET['finscri']))."'";
+                }
+                if(isset($_GET['fusuari']) && trim($_GET['fusuari'])!=''){
+                    $where.=" AND date(i.fusuari)='".strtoupper(trim($_GET['fusuari']))."'";
+                }
                 if(isset($_GET['dnomper']) && trim($_GET['dnomper'])!=''){
                     $where.=" AND upper(p.dnomper) LIKE '%".strtoupper(trim($_GET['dnomper']))."%' ";
                 }
@@ -369,6 +375,8 @@ class servletPersona extends controladorComandos{
                 for($i=0;$i<count($data);$i++){
                     array_push($dataRow, array("id"=>$data[$i]['cingalu']."-".$data[$i]['cgracpr'],"cell"=>array(
 							$data[$i]['cestado'],
+							$data[$i]['finscri'],
+							$data[$i]['fusuari'],
 							$data[$i]['dfilial'],
 							$data[$i]['dinstit'],
 							$data[$i]['dcarrer'],

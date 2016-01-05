@@ -466,7 +466,7 @@ class MySqlPersonaDAO{
             IF(i.cestado='1','Activo','Retirado') AS cestado,
             i.nfotos,i.certest,i.sermatr,i.partnac,i.dcodlib,i.fotodni,i.otrodni,i.cpais,i.tinstip,i.dinstip,i.dcarrep,i.ultanop,i.dciclop,i.ddocval,i.cmoding,i.cdevolu,i.fdevolu,mo.dmoding
             ,t.dtipcap
-            ,t.dclacap,i.finscri,i.fusuari,
+            ,t.dclacap,date(i.finscri) finscri,date(i.fusuari) fusuari
             ,CONCAT(ve.dapepat,' ',ve.dapemat,', ',ve.dnombre)  AS recepcionista
             ,IF(i.cpromot!='',CONCAT(v.dapepat,' ',v.dapemat,', ',v.dnombre),
                 IF(i.cmedpre!='', m.dmedpre,
