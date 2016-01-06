@@ -72,10 +72,12 @@ var jqGridPersona={
 			datatype:this.type,
 			gridview:true,
 			height:240,
-			colNames:['Estado','Filial','Institucion','Carrera','Inicio','Fecha Inicio','Horario','Semestre','cperson','Serie Matricula','Paterno','Materno','Nombres','DNI','cingalu','Codigo Libro','Medio Captacion','Responsable Captacion','Recepcionista','Codigo Responsable'],
+			colNames:['Estado','Fecha Matricula','Fecha Digitacion','Filial','Institucion','Carrera','Inicio','Fecha Inicio','Horario','Semestre','cperson','Serie Matricula','Paterno','Materno','Nombres','DNI','cingalu','Codigo Libro','Medio Captacion','Responsable Captacion','Recepcionista','Codigo Responsable'],
 			colModel:[
 				{name:'cestado',index:'cestado',align:'center',width:80,editable:true,editrules:{required:true},stype:"select",edittype:"select",editoptions:{value:" : ;1:Activo;0:Retirado"}},
-				{name:'dfilial',index:'dfilial',align:'left',width:110},
+				{name:'finscri',index:'finscri',align:'center',width:100},
+                {name:'fusuari',index:'fusuari',align:'center',width:100},
+                {name:'dfilial',index:'dfilial',align:'left',width:110},
 				{name:'dinstit',index:'dinstit',align:'left',width:100},
 				{name:'dcarrer',index:'dcarrer',align:'left',width:250},
 				{name:'cinicio',index:'cinicio',align:'center',width:70},
@@ -115,7 +117,7 @@ var jqGridPersona={
         });
 		$("#table_persona_ingalum").jqGrid('navButtonAdd',"#pager_table_persona_ingalum",{
             caption:"",
-            title:"Cargar Pagos", 
+            title:"Cargar", 
             buttonicon :'icon-ok-sign', 
             onClickButton:function(){
 				eventoClick();
