@@ -46,8 +46,7 @@ class MySqlInscritoDAO{
 	public function InsertarInscripcion($data){
 	$db=creadorConexion::crear('MySql');
 	
-	$sqlconsulta2="SELECT * FROM gracprp
-				  WHERE cgracpr='".$data['cgruaca']."'";
+	$sqlconsulta2="SELECT * FROM gracprp  WHERE cgracpr='".$data['cgruaca']."'";
 	$db->setQuery($sqlconsulta2);	
 	$data2=$db->loadObjectList();		
 	$data2['cgrupo']="01";
@@ -65,23 +64,13 @@ class MySqlInscritoDAO{
 		return array('rst'=>'2','msj'=>"La persona ya existe como alumno en la carrera seleccionada",'sql'=>$sqlver2);exit();
 		}
 		
-	$sqlver2="SELECT * 
-			  FROM ingalum 
-			  where dcodlib='".$data['dcodlib']."'";
+	$sqlver2="SELECT *   FROM ingalum  where dcodlib='".$data['dcodlib']."'";
 	$db->setQuery($sqlver2);	
     $valsql2=$db->loadObjectList();
 		if(count($valsql2)>0){
 		return array('rst'=>'2','msj'=>"Codigo de Libro ya Existe en la BD",'sql'=>$sqlver2);exit();
 		}
-  
-	/*$sqlver2="SELECT * 
-			  FROM ingalum 
-			  where sermatr='".$data['sermatr']."'";			  
-	$db->setQuery($sqlver2);	
-    $valsql2=$db->loadObjectList();
-		if(count($valsql2)>0){
-		return array('rst'=>'2','msj'=>"Serie de Matricula ya Existe en la BD",'sql'=>$sqlver2);exit();
-		}*/
+
 
 $codigopago="S";
 if($data['persona_elegida']==''){
@@ -266,7 +255,8 @@ $codigopago="C";
 			
 			
 		$sqlinsmat="INSERT INTO conmatp 
-(cconmat,fmatric,cingalu,testmat,nnomina,cgruaca,cgracan,fusuari,cusuari,tgrupo,testalu,titptra,tforpag,cpromot,cfilial,sermatr,dproeco) VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."','',now(),'".$data['cusuari']."','2','".$data['testalu']."','I','C','".$data['cvended']."','".$data['locestu']."','".$data['sermatr']."','".$data['dproeco']."')";
+(cconmat,fmatric,cingalu,testmat,nnomina,cgruaca,cgracan,fusuari,cusuari,tgrupo,testalu,titptra,tforpag,cpromot,cfilial,sermatr,dproeco)
+VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."','',now(),'".$data['cusuari']."','2','".$data['testalu']."','I','C','".$data['cvended']."','".$data['locestu']."','".$data['sermatr']."','".$data['dproeco']."')";
 		$db->setQuery($sqlinsmat);
 			if(!$db->executeQuery()){
 				$db->rollbackTransaccion();
@@ -651,10 +641,7 @@ if($data['testalu']!="RE"){
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlinsdetbol);exit();
 			}
 			
-		$sqlupdate="UPDATE recacap
-				    SET cdocpag='".$newcodbol."',tdocpag='B',
-					testfin='C',cestpag='C'
-					WHERE crecaca in (".$listacodigos."'0')";
+		$sqlupdate="UPDATE recacap   SET cdocpag='".$newcodbol."',tdocpag='B', testfin='C',cestpag='C' WHERE crecaca in (".$listacodigos."'0')";
 		
 		$db->setQuery($sqlupdate);
 			if(!$db->executeQuery()){

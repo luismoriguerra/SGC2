@@ -18,6 +18,9 @@
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
 
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script type="text/javascript" src="../javascript/inscripcion/inscripcionCtrl.js"></script>
+
 		<script type="text/javascript" src="../javascript/dao/DAOinscripcion.js"></script>
         <script type="text/javascript" src="../javascript/dao/DAOgrupoAcademico.js"></script>
 		<script type="text/javascript" src="../javascript/dao/DAOconcepto.js"></script>
@@ -31,7 +34,7 @@
 
 	</head>
 
-	<body>
+	<body ng-app="inscripcion">
 		<div id="capaOscura" class="capaOscura" style="display:none"></div>
 		<div id="capaCargando" class="capaCargando" style="display:none"><div class="girando"><div class="estrella"></div></div></div>
 		<?require_once('ifrm-header.php')?>	
@@ -44,7 +47,10 @@
 					</ul>
 				</div>
 				<div id="secc-divi" class="secc-divi secc-divi-izq"><i class="icon-white icon-der"></i></div>
-				<div class="secc-der" id="secc-der">
+				<div class="secc-der" id="secc-der" ng-controller="inscripcionCtrl">
+                    <div class="well">
+                        {{ data }}
+                    </div>
 					<div id="panel_inscripcion" style="display:block">
 						<div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>FICHA DE INSCRIPCIÓN DEL POSTULANTE A LA UNIVERSIDAD PRIVADA TELESUP</b></div>         
 					  <div class="cont-der">
@@ -56,16 +62,16 @@
                             <td class="ui-state-default"><span class="t-rojo">*</span>
                             <input type="hidden" id="cciclo" value="01">
                             ODE</td>
-                            <td><input type="text" id="txt_ode" class="input-large" disabled></td>
+                            <td><input type="text" id="txt_ode" class="input-large"  ng-model="data.txt_ode"></td>
                         </tr>
                         <tr>
                             <td class="ui-state-default"><span class="t-rojo">*</span>Centro de Captación</td>
-                            <td><select id="slct_centro_captacion"><option value="">--Seleccione--</option></select></td>
+                            <td><select id="slct_centro_captacion" ng-model="data.centro_captacion"><option value="">--Seleccione--</option></select></td>
                         </tr>                        
                         <tr>
                             <td class="ui-state-default input-medium"><span class="t-rojo">*</span>Local Estudio:</td>
                             <td>
-                            	<select id="slct_local_estudio" class="input-medium">
+                            	<select id="slct_local_estudio" class="input-medium" ng-model="data.local_estudio">
                                 <option value="">--Selecione--</option>
                                 </select>
                             </td>

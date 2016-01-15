@@ -15,7 +15,8 @@ $(document).ready(function(){
 
 eventoClick=function(){
     var ids=$("#table_persona_ingalum").jqGrid("getGridParam",'selrow');
-    var data = $("#table_persona_ingalum").jqGrid('getRowData',ids);    
-
-    alert(ids + ' | ' +data.finscri);
+    var data = $("#table_persona_ingalum").jqGrid('getRowData',ids);
+    console.log(data);
+    var params = decodeURIComponent($.param(data));
+    window.open('../reporte/pdf/PDFFichaInscripcion.php?' + params, "_blank");
 }
