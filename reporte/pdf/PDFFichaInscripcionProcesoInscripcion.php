@@ -38,6 +38,27 @@ $variables = array(
     "{{centro_captacion}}"=> $_REQUEST["centro_captacion"],
 //    "{{oficina_enlace}}"=> "",
     "{{codlib}}"=> $_REQUEST['codlib'],
+    "{{estado_civil}}"=> $_REQUEST['estado_civil'],
+    "{{documento}}"=> $_REQUEST['documento'],
+    "{{fecha_nacimiento}}"=> $_REQUEST['fecha_nac'],
+    "{{genero}}"=> $_REQUEST["genero"],
+
+    // LUGAR DE NACIMIENTO DEL POSTULANTE
+//    "{{pais}}"=> $_REQUEST[""],
+//    "{{region}}"=> $_REQUEST[""],
+//    "{{provincia}}"=> $_REQUEST[""],
+//    "{{distrito}}"=> $_REQUEST[""],
+
+    // DATOS DEL POSTULANTE
+    "{{email}}"=> $_REQUEST["email"],
+    "{{celular}}"=> $_REQUEST["celular"],
+    "{{telf_casa}}"=> $_REQUEST["tel_casa"],
+    "{{telf_trabajo}}"=> $_REQUEST["tel_tra"],
+    "{{direccion}}"=> $_REQUEST[""],
+    "{{urb}}"=> $_REQUEST[""],
+    "{{tenencia}}"=> "PROPIO/ALQUILADO",
+
+
 
 );
 
