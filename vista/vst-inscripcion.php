@@ -17,9 +17,11 @@
 
 		<script type="text/javascript" src="../javascript/sistema.js"></script>
 		<script type="text/javascript" src="../javascript/templates.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-        <script type="text/javascript" src="../javascript/inscripcion/inscripcionCtrl.js"></script>
+<!--        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+<!--        <script type="text/javascript" src="../javascript/inscripcion/inscripcionCtrl.js"></script>-->
 
 		<script type="text/javascript" src="../javascript/dao/DAOinscripcion.js"></script>
         <script type="text/javascript" src="../javascript/dao/DAOgrupoAcademico.js"></script>
@@ -48,9 +50,7 @@
 				</div>
 				<div id="secc-divi" class="secc-divi secc-divi-izq"><i class="icon-white icon-der"></i></div>
 				<div class="secc-der" id="secc-der" ng-controller="inscripcionCtrl">
-                    <div class="well">
-                        {{ data }}
-                    </div>
+
 					<div id="panel_inscripcion" style="display:block">
 						<div class="barra1"><i class="icon-gray icon-list-alt"></i> <b>FICHA DE INSCRIPCIÓN DEL POSTULANTE A LA UNIVERSIDAD PRIVADA TELESUP</b></div>         
 					  <div class="cont-der">
@@ -734,12 +734,17 @@
                         </TABLE>
                        </td></tr>
                        <tr><td>
-                        <div class="formBotones">
-							<a href="javascript:void(0)" onClick="RegistrarInscrito();" class="btn btn-azul sombra-3d t-blanco">
-							<i class="icon-white icon-download-alt"></i>
-							<span>Registrar</span>
-							</a>
-						</div>
+
+                               <div class="formBotones">
+                                   <a href="javascript:void(0)" onClick="ExportarPDF();" class="btn btn-azul sombra-3d t-blanco">
+                                       <i class="fa fa-download"></i>
+                                       <span>Exportar en PDF</span>
+                                   </a> &nbsp;&nbsp;
+                                   <a href="javascript:void(0)" onClick="RegistrarInscrito();" class="btn btn-azul sombra-3d t-blanco">
+                                       <i class="fa fa-floppy-o"></i>
+                                       <span>Registrar</span>
+                                   </a>
+                               </div>
                        </td></tr></table>
 					  </div><!-- Cont Der-->
                       

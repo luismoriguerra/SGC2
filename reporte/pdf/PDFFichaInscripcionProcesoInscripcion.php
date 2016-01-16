@@ -1,7 +1,36 @@
+<?php
+set_time_limit(0);
+ini_set('memory_limit','1024M');
+
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 
 
-    <style>
-        
+//$idencuesta=$_GET['idenc'];
+//$empresa=$_GET['empresa'];
+
+/*conexion*/
+require_once '../../conexion/MySqlConexion.php';
+require_once '../../conexion/configMySql.php';
+/*crea obj conexion*/
+$cn=MySqlConexion::getInstance();
+
+
+
+if (trim($cingalu) != "") {
+    $listAlum = str_replace(",", "','", $cingalu);
+    $alumno = " AND co.cingalu in ('" . $listAlum . "')";
+}
+
+
+
+// inhibit DOMPDF's auto-loader
+define('DOMPDF_ENABLE_AUTOLOAD', false);
+require_once("../../php/includes/dompdf/dompdf_config.inc.php");
+require_once('../../php/includes/dompdf/include/autoload.inc.php');
+$html = <<<EOD
+ <style>
+
         body {
             font-size: 0.75em;
         }
@@ -87,8 +116,6 @@
         }
 
     </style>
-
-</head>
 <body>
 <div class="container left top right">
     <!--cabecera-->
@@ -110,7 +137,7 @@
             <div class="row bordeado">
                 <div class="col-sm-10 col-sm-offset-2">
                     <div class="row">
-                        <div class="col-sm-12 h2">SERIE: 001-</div>
+                        <div class="col-sm-12 h2">SERIE: {{serie}}</div>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-3 small">Ap Pat: </div>
@@ -142,24 +169,9 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-3"><div class="row">CODIGO DEL LIBRO:</div> </div>
-                        <div class="col-sm-9">
-                            <div class="row">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div class="col-sm-6"><div class="row">CODIGO DEL LIBRO:</div> </div>
+                        <div class="col-sm-6">
+                           {{cod_lib}}
                         </div>
                     </div>
                 </div>
@@ -485,24 +497,56 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
 </div><!--fin container-->
+</body>
+EOD;
+
+$sql = 'select cc.description
+from postulm  p
+inner join cencapm cc on cc.ccencap = p.ccencap
+where p.cingalu = "032CARGA01300000002"';
+
+$cn->setQuery($sql);
+$data = $cn->loadObjectList();
+$centro_captacion = $data[0]['description'];
+
+
+$variables = array(
+    "{{fecha}}",
+    "{{paterno}}",
+    "{{materno}}",
+    "{{nombres}}",
+    "{{centro_captacion}}",
+    "{{oficina_enlace}}",
+    "{{cod_lib}}",
+    "{{serie}}"
+);
+
+$valores = array(
+    $_REQUEST["finscri"],
+    $_REQUEST["dappape"],
+    $_REQUEST["dapmape"],
+    $_REQUEST["dnomper"],
+    $centro_captacion,
+    $oficina_enlace,
+    $_REQUEST['dcodlib'],
+    $_REQUEST['sermatr'],
+
+);
+
+$html = str_replace($variables, $valores, $html);
+$html = file_get_contents('template/fichaInscripcion.php');
 
 
 
+//print $html;
+$dompdf = new DOMPDF();
+$dompdf->load_html($html);
+$dompdf->render();
+
+$dompdf->stream("fichaInscripcion.pdf", array("Attachment"=>0));
+
+exit(0);
 
 
-
-
-
-
-
+?>

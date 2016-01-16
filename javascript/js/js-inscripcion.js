@@ -912,6 +912,78 @@ RegistrarInscrito=function(){
   }
 }
 
+ExportarPDF = function () {
+
+	var data = {
+		fecha: $("#txt_fecha").val(),
+		serie: $("#txt_codigo_ficha_insc1").val() + "-" + $("#txt_codigo_ficha_insc2").val(),
+		paterno:$("#txt_paterno_c").val(),
+		materno:$('#txt_materno_c').val(),
+		nombres:$("#txt_nombre_c").val(),
+		centro_captacion: $("#slct_centro_captacion option:selected").text(),
+		codlib:$("#txt_codigo_libro_cod").val() + "-" + $("#txt_codigo_libro").val(),
+		estado_civil: $("#slct_estado_civil_c option:selected").text(),
+		documento:  $("#txt_dni_c").val() ,
+		fecha_nac: $("#txt_fecha_nacimiento_c").val()  ,
+		genero:  $("#slct_sexo_c option:selected").text()  ,
+
+		npais: ""   ,
+		nregion: ""   ,
+		nprovincia:""   ,
+		ndistrito: "" ,
+
+		email: $("#txt_email_c").val(),
+		celular: $("#txt_celular_c").val(),
+		tel_casa: $("#txt_telefono_casa_c").val(),
+		tel_tra: $("#txt_telefono_oficina_c").val(),
+		avenida: "" ,
+		urba: "" ,
+		tenencia: "" ,
+		pregion:$("#slct_departamento_c option:selected").text()   ,
+		pprovincia:$("#slct_provincia_c option:selected").text()   ,
+		pdistrito:$("#slct_distrito_c option:selected").text()   ,
+		empresa: "",
+		em_direccion: "" ,
+	// datos del colegio
+	nombre_colegio: $("#txt_colegio_c").val() ,
+		colegio_ubi: $("#slct_departamento_c2 option:selected").text() == "--Seleccione--" ? "" : ("#slct_departamento_c2 option:selected").text() + " / " + $("#slct_provincia_c2 option:selected").text() == "--Seleccione--" ? "" : ("#slct_departamento_c2 option:selected").text() + " / " + $("#slct_distrito_c2 option:selected").text() == "--Seleccione--" ? "" : ("#slct_departamento_c2 option:selected").text()      ,
+		col_nac: "",
+		// datos de admison
+		//datos de carrera
+		carrera : "",
+		semestre : "",
+		fecha_ini : "",
+		mod_estudio : "",
+		frecuencia : "",
+		loc_estudio : "",
+		//modalidad ingreso
+		ordinario: "",
+		traslado: "",
+		convenio: "",
+		otra_mod: "",
+		cen_pre: "",
+		ex_pre: "",
+		pos_beca: "",
+		// documentos academicos obligatorios
+		dcarrera: "",
+		depar_nac: "",
+		dfoto_dni: "",
+		dotro: ""
+
+		// Pagos realizados
+
+
+
+
+
+}
+
+
+	var params = decodeURIComponent($.param(data));
+	window.open('../reporte/pdf/PDFFichaInscripcionProcesoInscripcion.php?' + params, "_blank");
+}
+
+
 LimpiarInscripcion=function(){
 $('.cont-der input[type="text"],.cont-der input[type="hidden"],.cont-der select').val('');
 $("#postula_beca").css("display","none");
