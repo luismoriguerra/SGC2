@@ -988,6 +988,17 @@ ExportarPDF = function () {
 		conv_serie : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_serie_boleta_convalida").val() + "-" + $("#txt_nro_boleta_convalida").val(): "",
 		conv_monto : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_monto_pagado_convalida").val(): "",
 
+		slct_medio_captacion: $("#slct_medio_captacion option:selected").text(),
+		txt_medio_captacion: $("#txt_medio_captacion").val(),
+		txt_recepcionista: $("#txt_recepcionista").val(),
+
+		// Pagos inscripcion
+		pen_fecha : $("#txt_fecha_pago_pension").val(),
+		pen_serie : $("#slct_tipo_documento_pension option:selected").text() != "Voucher" ? $("#txt_serie_boleta_pension").val() + "-" + $("#txt_nro_boleta_pension").val() : $("#txt_nro_voucher_pension").val() + "-" + $("#slct_banco_pension option:selected").text(),
+		pen_monto : $("#txt_monto_pagado_pension").val(),
+
+		pen_promo : $("#txt_promocion_economica").val()
+
 };
 
 

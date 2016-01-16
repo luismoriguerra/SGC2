@@ -35,8 +35,10 @@ $variables = array(
     "{{paterno}}"=> $_REQUEST["paterno"],
     "{{materno}}"=> $_REQUEST["materno"],
     "{{nombres}}"=> $_REQUEST["nombres"],
+    "{{serie}}"=> $_REQUEST["serie"],
+
     "{{centro_captacion}}"=> $_REQUEST["centro_captacion"],
-//    "{{oficina_enlace}}"=> "",
+    "{{oficina_enlace}}"=> "_",
     "{{codlib}}"=> $_REQUEST['codlib'],
     "{{estado_civil}}"=> $_REQUEST['estado_civil'],
     "{{documento}}"=> $_REQUEST['documento'],
@@ -54,8 +56,8 @@ $variables = array(
     "{{celular}}"=> $_REQUEST["celular"],
     "{{telf_casa}}"=> $_REQUEST["tel_casa"],
     "{{telf_trabajo}}"=> $_REQUEST["tel_tra"],
-//    "{{direccion}}"=> $_REQUEST[""],
-//    "{{urb}}"=> $_REQUEST[""],
+    "{{direccion}}"=> "_",
+    "{{urb}}"=> "_",
     "{{tenencia}}"=> "PROPIO/ALQUILADO",
     // datos del trabajo
     "{{p_region}}"=> "",
@@ -73,7 +75,7 @@ $variables = array(
     "{{carrera}}"=>$_REQUEST["carrera"],
     "{{semestre}}"=>$_REQUEST["semestre"],
     "{{fecha_inicio}}"=>$_REQUEST["fecha_ini"],
-//    "{{modalidad}}"=>$_REQUEST["mod_estudio"],
+    "{{modalidad}}"=> "_",
     "{{frecuencia}}"=>$_REQUEST["frecuencia"],
     "{{local_estudio}}"=>$_REQUEST["loc_estudio"],
     "{{tipo_ingreso}}"=>$_REQUEST["tipo_ingreso"],
@@ -110,6 +112,17 @@ $variables = array(
     "{{conv_serie}}" => $_REQUEST["conv_serie"],
     "{{conv_monto}}" => $_REQUEST["conv_monto"],
 
+    // recepcionista
+    "{{slct_medio_captacion}}" => $_REQUEST["slct_medio_captacion"],
+    "{{txt_medio_captacion}}" => $_REQUEST["txt_medio_captacion"],
+    "{{txt_recepcionista}}" => $_REQUEST["txt_recepcionista"],
+
+    // pago cuotas
+    "{{pen_fecha}}" => $_REQUEST["pen_fecha"],
+    "{{pen_serie}}" => $_REQUEST["pen_serie"],
+    "{{pen_monto}}" => $_REQUEST["pen_monto"],
+
+    "{{pen_promo}}" => $_REQUEST["pen_promo"],
 
 );
 

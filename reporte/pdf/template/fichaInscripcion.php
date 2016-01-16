@@ -44,7 +44,7 @@
         }
         
         .smaller {
-            font-size: 0.7em;
+            font-size: 0.8em;
         }
 
 
@@ -88,7 +88,21 @@
             width: 74.5%;
             display: inline-block;
         }
+        .firma {
+            width: 24%;
+            margin-right: 15px;
+            display: inline-block;
+            text-align: center;
+        
+            border-top: 1px solid #ccc;
 
+        }
+
+        .cuadrito {
+            padding-left: 10px;
+            display: inline-block;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -98,8 +112,8 @@
     <div class="row bordeado">
         <div class="col-sm-8 right oscuro">
             <div class="row">
-                <div class="col-sm-8 h3 text-center">FICHA DE INSCRIPCION A CARRERAS PROFESIONALES:</div>
-                <div class="col-sm-4">TELESUP</div>
+                <div class="col-sm-8 h3 text-center" style="font-size: 1.5em; text-align: center">FICHA DE INSCRIPCION A CARRERAS PROFESIONALES:</div>
+                <div class="col-sm-4"></div>
             </div>
         </div>
         <div class="col-sm-4 ">
@@ -107,13 +121,13 @@
         </div>
     </div>
     <!--parte 2 -->
-    <div class="row small">
+    <div class="row smaller">
         <div class="col-sm-6 small">PLANO DE UBICACION DEL DOMICILIO</div>
         <div class="col-sm-6">
             <div class="row bordeado">
                 <div class="col-sm-10 col-sm-offset-2">
                     <div class="row">
-                        <div class="col-sm-12 h2">SERIE: 001-</div>
+                        <div class="col-sm-12 h2">SERIE: {{serie}}</div>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-3 small">Ap Pat: </div>
@@ -322,7 +336,7 @@
             De no cumplir perderé mi condición de alumno y no se me permitirá matricularme al siguiente semetres académico. <br>Firma:
         </div>
     </div>
-    <div class="row">
+    <div class="row smaller">
         <div class="col-sm-6">
             <div class="row oscuro text-center">
                 PAGOS REALIZADOS
@@ -346,8 +360,14 @@
                 <div class="col-sm-2 text-center right">{{mat_monto}}</div>
             </div>
             <div class="row bottom">
-                <div class="col-sm-3 text-center right">CUOTAS DE </div>
-                <div class="col-sm-8 text-center right">{{cuotas}}</div>
+                <div class="col-sm-2 text-center right">CUOTAS DE </div>
+                <div class="col-sm-9 text-center right">{{cuotas}}</div>
+            </div>
+            <div class="row bottom">
+                <div class="col-sm-5 text-center right">DERECHO DE PENSION</div>
+                <div class="col-sm-2 text-center right">{{pen_fecha}}</div>
+                <div class="col-sm-3 text-center right">{{pen_serie}}</div>
+                <div class="col-sm-2 text-center right">{{pen_monto}}</div>
             </div>
             <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE CONVALID.:</div>
@@ -371,41 +391,41 @@
     <div class="row">
         <div class="col-sm-6  text-center right">
             <div class="row plomo">PROMOCION ECONOMICA DE LA ADMISION</div>
-            <div class="row bottom"></div>
+            <div class="row bottom">{{pen_promo}}</div>
         </div>
         <div class="col-sm-6  text-center">
-            <div class="row plomo">DOCUM. CONVALIDACIÓN <span class="small">(Cert. de estudios, silabos de asignacion y otros)</span></div>
+            <div class="row plomo smaller">DOCUM. CONVALIDACIÓN <span class="small">(Cert. de estudios, silabos de asignacion y otros)</span></div>
             <div class="row bottom">{{conv_docs}}</div>
             
         </div>
     </div>
-    <div class="row">
+    <div class="row smaller">
         <div class="col-sm-6 small">
             <div class="row">
                 <div class="col-sm-3">RECEPCIONISTA: </div>
-                <div class="col-sm-9 bottom">{{recepcionista}}</div>
+                <div class="col-sm-9 bottom">{{txt_recepcionista}}</div>
             </div>
             <div class="row">
                 <div class="col-sm-4">MEDIO DE CAPTACIÓN: </div>
-                <div class="col-sm-8 bottom">{{medio_captacion}}</div>
+                <div class="col-sm-8 bottom">{{slct_medio_captacion}}</div>
             </div>
         </div>
         <div class="col-sm-6 small">
             <div class="row">
                 <div class="col-sm-5">RESPONSABLE DE LA CAPTACIÓN: </div>
-                <div class="col-sm-7 bottom">{{responsable_cap}}</div>
+                <div class="col-sm-7 bottom"></div>
             </div>
             <div class="row">
                 <div class="col-sm-5">DESCRIPCIÓN DE LA CAPTACIÓN: </div>
-                <div class="col-sm-7 bottom">{{desc_cap}}</div>
+                <div class="col-sm-7 bottom">{{txt_medio_captacion}}</div>
             </div>
         </div>
     </div>
     <div class="row text-center oscuro">
         EL INSCRITO DECLARA CONOCER Y ACEPTAR LAS POLITICAS DEL PROCESO DE ADMISION
     </div>
-    <div class="row plomo">
-        <div class="col-sm-12">
+    <div class="row plomo" style="margin-bottom: 40px">
+        <div class="col-sm-12 smaller">
             <span>1.- </span>
             <span>
                 Se considera alumno matriculado y goza de todos los derechos como tal, aquel que ha realizado el pago de la matrícula
@@ -452,7 +472,21 @@
 
     </div>
 
+<div class="row">
+    <div class="firma">
+        COORDINADOR DE ODE<BR> FIRMA/NOMBRE
+    </div>
+     <div class="firma">
+       RECEPCION<BR> FIRMA/NOMBRE
+    </div>
+     <div class="firma">
+        POSTULANTE<BR> FIRMA
+    </div>
+     <div class="cuadrito">
+        USUARIO
+    </div>
 
+</div>
 
 
 
