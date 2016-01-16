@@ -950,38 +950,50 @@ ExportarPDF = function () {
 		col_nac: "",
 		// datos de admison
 		//datos de carrera
-		carrera : "",
-		semestre : "",
-		fecha_ini : "",
+		carrera : $("#lista_grupos .ui-state-highlight td").eq(1).text(),
+		semestre : $("#lista_grupos .ui-state-highlight td").eq(2).text() + "/" + $("#lista_grupos .ui-state-highlight td").eq(3).text(),
+		fecha_ini : $("#lista_grupos .ui-state-highlight td").eq(4).text(),
 		mod_estudio : "",
-		frecuencia : "",
-		loc_estudio : "",
+		frecuencia : $("#lista_grupos .ui-state-highlight td").eq(5).text(),
+		loc_estudio : $("#slct_local_estudio option:selected").text(),
 		//modalidad ingreso
-		ordinario: "",
-		traslado: "",
-		convenio: "",
-		otra_mod: "",
-		cen_pre: "",
-		ex_pre: "",
-		pos_beca: "",
+		tipo_ingreso: $("#slct_modalidad_ingreso option:selected").text(),
 		// documentos academicos obligatorios
-		dcarrera: "",
-		depar_nac: "",
-		dfoto_dni: "",
-		dotro: ""
+		depar_nac: $("#txt_cod_part_nac").val(),
+		dfoto_dni: $("#slct_rdo_fotoc_dni option:selected").text(),
+		dotro: $("#txt_otro_doc").val(),
 
-		// Pagos realizados
+		// Pagos inscripcion
+		ins_fecha : $("#txt_fecha_pago_ins").val(),
+		ins_serie : $("#slct_tipo_documento_ins option:selected").text() != "Voucher" ? $("#txt_serie_boleta_ins").val() + "-" + $("#txt_nro_boleta_ins").val() : $("#txt_nro_voucher_ins").val() + "-" + $("#slct_banco_ins option:selected").text(),
+		ins_monto : $("#txt_monto_pagado_ins").val(),
 
+// Pagos matricula
+		mat_fecha : $("#txt_fecha_pago").val(),
+		mat_serie : $("#slct_tipo_documento option:selected").text() != "Voucher" ? $("#txt_serie_boleta").val() + "-" + $("#txt_nro_boleta").val() : $("#txt_nro_voucher").val() + "-" + $("#slct_banco option:selected").text(),
+		mat_monto : $("#txt_monto_pagado").val(),
 
+		cuotas: $("#slct_concepto_pension option:selected").text(),
 
+		// convalidacion
+		conv_procedencia : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#slct_pais_procedencia option:selected").text() : "",
+		conv_tipo : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ? $("#slct_tipo_institucion option:selected").text(): "",
+		conv_inst : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ? $("#txt_institucion").val(): "",
+		conv_car : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ? $("#txt_carrera_procedencia").val(): "",
+		conv_ano : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ? $("#slct_ultimo_año option:selected").text() + "-" + $("#slct_ciclo option:selected").text() : "",
+		conv_docs : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ? $("#txt_docum_vali").val(): "",
 
+		// Pagos CONVALIDACION
+		conv_fecha : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_fecha_pago_convalida").val(): "",
+		conv_serie : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_serie_boleta_convalida").val() + "-" + $("#txt_nro_boleta_convalida").val(): "",
+		conv_monto : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_monto_pagado_convalida").val(): "",
 
-}
+};
 
 
 	var params = decodeURIComponent($.param(data));
 	window.open('../reporte/pdf/PDFFichaInscripcionProcesoInscripcion.php?' + params, "_blank");
-}
+};
 
 
 LimpiarInscripcion=function(){

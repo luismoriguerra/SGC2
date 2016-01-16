@@ -3,7 +3,7 @@
     <style>
         
         body {
-            font-size: 0.75em;
+            font-size: 0.7em;
         }
 
       .row div{
@@ -42,7 +42,10 @@
         .plomo {
             background: #e8e8e8;
         }
-
+        
+        .smaller {
+            font-size: 0.7em;
+        }
 
 
         .text-center {
@@ -104,7 +107,7 @@
         </div>
     </div>
     <!--parte 2 -->
-    <div class="row">
+    <div class="row small">
         <div class="col-sm-6 small">PLANO DE UBICACION DEL DOMICILIO</div>
         <div class="col-sm-6">
             <div class="row bordeado">
@@ -252,7 +255,7 @@
         <div class="col-sm-5 text-center">NOMBRE DE COLEGIO</div>
         <div class="col-sm-5 text-center">REGION/PROVINCIA/DISTRITO</div>
         <div class="col-sm-2 text-right small">
-            <div class="row">
+            <div class="row smaller">
                 NAC. PART.PARR.FF.AA.FF.PP
             </div>
         </div>
@@ -261,10 +264,10 @@
         DATOS DE ADMISION
     </div>
     <div class="row">
-        <div class="col-sm-6 bottom">
+        <div class="col-sm-6 bottom smaller" >
             <div class="row plomo text-center">DATOS DE LA CARRERA</div>
             <div class="row">
-                <div class="col-sm-4 text-right">
+                <div class="col-sm-6 text-right">
                     <div class="row">CARRERA: </div>
                     <div class="row">SEMESTRE/INICIO: </div>
                     <div class="row">FECHA INICIO: </div>
@@ -272,38 +275,20 @@
                     <div class="row">FRECUENCIA/HORARIO: </div>
                     <div class="row">LOCAL DE ESTUDIO: </div>
                 </div>
-                <div class="col-sm-8 right">
+                <div class="col-sm-6 right">
                     <div class="row bottom left text-center">{{carrera}}</div>
                     <div class="row bottom left text-center">{{semestre}}</div>
                     <div class="row bottom left text-center">{{fecha_inicio}}</div>
                     <div class="row bottom left text-center">{{modalidad}}</div>
                     <div class="row bottom left text-center">{{frecuencia}}</div>
-                    <div class="row  left text-center">{{local_estudio}}</div>
+                    <div class="row left text-center">{{local_estudio}}</div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 bottom">
             <div class="row plomo text-center">MODALIDAD DE INGRESO</div>
             <div class="row">
-                <div class="col-sm-4 text-right">ORDINARIO:</div>
-                <div class="col-sm-1 left right text-center bottom">x</div>
-                <div class="col-sm-6 text-right">CENTRO PRE-UNIVERSITARIO:</div>
-                <div class="col-sm-1 left bottom text-center">x</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 text-right">TRASLADO EXTERNO:</div>
-                <div class="col-sm-1 left right text-center bottom">x</div>
-                <div class="col-sm-6 text-right">EXAMEN PREFERENTE:</div>
-                <div class="col-sm-1 left  text-center bottom">x</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 text-right">CONVENIO:</div>
-                <div class="col-sm-1 left right text-center ">x</div>
-                <div class="col-sm-6 text-right"></div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 text-right">OTRA MODALIDAD:</div>
-                <div class="col-sm-8 left  text-center top bottom">x</div>
+                Tipo de ingreso : {{tipo_ingreso}}
             </div>
             <div class="row plomo text-center">
                 SOLO PARA MODALIDAD DE ESTUDIO PRESENCIAL
@@ -317,19 +302,19 @@
     <div class="row text-center oscuro">
         DOCUMENTOS ACADEMICOS OBLIGATORIOS PARA EL PROCESO DE ADMISION
     </div>
-    <div class="row">
+    <div class="row smaller">
         <div class="col-sm-6">
-            <div class="row">
+            <div class="row" >
                 <div class="col-sm-2 text-right"><div class="row">CARRERA:</div></div>
-                <div class="col-sm-4 bordeado">X</div>
-                <div class="col-sm-2 text-right"><div class="row">PART. NAC.</div></div>
-                <div class="col-sm-4 bordeado">X</div>
+                <div class="col-sm-3 bordeado">{{carrera}}</div>
+                <div class="col-sm-3 text-right"><div class="row">PART. NAC.</div></div>
+                <div class="col-sm-3 bordeado">{{partida_nacimiento}}</div>
             </div>
             <div class="row">
-                <div class="col-sm-2 text-right"><div class="row">FOT. DE DNI:</div></div>
-                <div class="col-sm-4 text-center">SI/NO</div>
+                <div class="col-sm-3 text-right"><div class="row">FOT. DE DNI:</div></div>
+                <div class="col-sm-2 text-center">{{tiene_foto}}</div>
                 <div class="col-sm-2 text-right"><div class="row">OTRO:</div></div>
-                <div class="col-sm-4 left right bottom">X</div>
+                <div class="col-sm-4 left right bottom">{{otros_documentos}}</div>
             </div>
         </div>
         <div class="col-sm-6 small">
@@ -350,73 +335,69 @@
             </div>
             <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE INSCRIPCION</div>
-                <div class="col-sm-2 text-center right">X</div>
-                <div class="col-sm-3 text-center right">X</div>
-                <div class="col-sm-2 text-center right">X</div>
+                <div class="col-sm-2 text-center right">{{ins_fecha}}</div>
+                <div class="col-sm-3 text-center right">{{ins_serie}}</div>
+                <div class="col-sm-2 text-center right">{{ins_monto}}</div>
             </div>
             <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE MATRICULA</div>
-                <div class="col-sm-2 text-center right">X</div>
-                <div class="col-sm-3 text-center right">X</div>
-                <div class="col-sm-2 text-center right">X</div>
+                <div class="col-sm-2 text-center right">{{mat_fecha}}</div>
+                <div class="col-sm-3 text-center right">{{mat_serie}}</div>
+                <div class="col-sm-2 text-center right">{{mat_monto}}</div>
             </div>
             <div class="row bottom">
-                <div class="col-sm-2 text-center right">CUOTAS</div>
-                <div class="col-sm-3 text-center right">DE</div>
-                <div class="col-sm-2 text-center right">X</div>
-                <div class="col-sm-3 text-center right">X</div>
-                <div class="col-sm-2 text-center right">X</div>
+                <div class="col-sm-3 text-center right">CUOTAS DE </div>
+                <div class="col-sm-8 text-center right">{{cuotas}}</div>
             </div>
             <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE CONVALID.:</div>
-                <div class="col-sm-2 text-center right">X</div>
-                <div class="col-sm-3 text-center right">X</div>
-                <div class="col-sm-2 text-center right">X</div>
+                 <div class="col-sm-2 text-center right">{{conv_fecha}}</div>
+                <div class="col-sm-3 text-center right">{{conv_serie}}</div>
+                <div class="col-sm-2 text-center right">{{conv_monto}}</div>
             </div>
         </div>
 
         <div class="col-sm-6">
             <div class="row oscuro">DATOS PARA EL PROCESO DE CONVALIDACION</div>
-            <div class="row">
-                <div class="col-sm-12 bottom">PAIS DE PROCEDENCIA:</div>
-                <div class="col-sm-12 bottom">TIPO DE INSTITUCION: UNIVERSIDAD / INSTITUCION</div>
-                <div class="col-sm-12 bottom">NOMBRE DE LA INSTITUCION</div>
-                <div class="col-sm-12 bottom">CARRERA DE PROCEDENCIA</div>
-                <div class="col-sm-12 bottom">ULTIMO AÑO DE ESTUDIOS Y CICLO</div>
+            <div class="row" smaller>
+                <div class="col-sm-12 bottom">PAIS DE PROCEDENCIA: {{conv_procedencia}}</div>
+                <div class="col-sm-12 bottom">TIPO DE INSTITUCION: UNIVERSIDAD / INSTITUCION {{conv_tipo}}</div>
+                <div class="col-sm-12 bottom">NOMBRE DE LA INSTITUCION :{{conv_inst}}</div>
+                <div class="col-sm-12 bottom">CARRERA DE PROCEDENCIA: {{conv_car}}</div>
+                <div class="col-sm-12 bottom">ULTIMO AÑO DE ESTUDIOS Y CICLO: {{conv_ano}}</div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6  text-center right">
             <div class="row plomo">PROMOCION ECONOMICA DE LA ADMISION</div>
-            <div class="row bottom">x</div>
-            <div class="row bottom">x</div>
+            <div class="row bottom"></div>
         </div>
         <div class="col-sm-6  text-center">
             <div class="row plomo">DOCUM. CONVALIDACIÓN <span class="small">(Cert. de estudios, silabos de asignacion y otros)</span></div>
-            <div class="row bottom">x</div>
-            <div class="row bottom">x</div>
+            <div class="row bottom">{{conv_docs}}</div>
+            
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6 small">
             <div class="row">
                 <div class="col-sm-3">RECEPCIONISTA: </div>
-                <div class="col-sm-9 bottom">X</div>
+                <div class="col-sm-9 bottom">{{recepcionista}}</div>
             </div>
             <div class="row">
                 <div class="col-sm-4">MEDIO DE CAPTACIÓN: </div>
-                <div class="col-sm-8 bottom">X</div>
+                <div class="col-sm-8 bottom">{{medio_captacion}}</div>
             </div>
         </div>
         <div class="col-sm-6 small">
             <div class="row">
                 <div class="col-sm-5">RESPONSABLE DE LA CAPTACIÓN: </div>
-                <div class="col-sm-7 bottom">X</div>
+                <div class="col-sm-7 bottom">{{responsable_cap}}</div>
             </div>
             <div class="row">
                 <div class="col-sm-5">DESCRIPCIÓN DE LA CAPTACIÓN: </div>
-                <div class="col-sm-7 bottom">X</div>
+                <div class="col-sm-7 bottom">{{desc_cap}}</div>
             </div>
         </div>
     </div>
