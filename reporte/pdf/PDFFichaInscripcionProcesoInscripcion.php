@@ -44,10 +44,10 @@ $variables = array(
     "{{genero}}"=> $_REQUEST["genero"],
 
     // LUGAR DE NACIMIENTO DEL POSTULANTE
-//    "{{pais}}"=> $_REQUEST[""],
-//    "{{region}}"=> $_REQUEST[""],
-//    "{{provincia}}"=> $_REQUEST[""],
-//    "{{distrito}}"=> $_REQUEST[""],
+    "{{pais}}"=> $_REQUEST[""],
+    "{{region}}"=> $_REQUEST[""],
+    "{{provincia}}"=> $_REQUEST[""],
+    "{{distrito}}"=> $_REQUEST[""],
 
     // DATOS DEL POSTULANTE
     "{{email}}"=> $_REQUEST["email"],
@@ -57,6 +57,21 @@ $variables = array(
     "{{direccion}}"=> $_REQUEST[""],
     "{{urb}}"=> $_REQUEST[""],
     "{{tenencia}}"=> "PROPIO/ALQUILADO",
+    // datos del trabajo
+    "{{p_region}}"=> "",
+    "{{p_provincia}}"=> "",
+    "{{p_distrito}}"=> "",
+    "{{p_distrito}}"=> "",
+    "{{p_empresa}}"=> "",
+    "{{p_empresa_direcicon}}"=> "",
+
+    // Datos del la carrera
+    "{{carrera}}"=>"",
+    "{{semestre}}"=>"",
+    "{{fecha_inicio}}"=>"",
+    "{{modalidad}}"=>"",
+    "{{frecuencia}}"=>"",
+    "{{local_estudio}}"=>"",
 
 
 
