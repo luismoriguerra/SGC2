@@ -144,22 +144,7 @@
                     <div class="row">
                         <div class="col-sm-3"><div class="row">CODIGO DEL LIBRO:</div> </div>
                         <div class="col-sm-9">
-                            <div class="row">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            {{codlib}}
                         </div>
                     </div>
                 </div>
