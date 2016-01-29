@@ -1,4 +1,4 @@
-<?
+<?php
 class servletLogin extends controladorComandos{
 	public function doPost(){
 		$daoLogin=creadorDAO::getLoginDAO();
