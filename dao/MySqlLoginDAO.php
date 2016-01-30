@@ -1,4 +1,4 @@
-<?
+<?php
 class MySqlLoginDAO{	
 	public function loginUsuario(dto_usuario $dtoUsuario){
 		$db=creadorConexion::crear('MySql');
