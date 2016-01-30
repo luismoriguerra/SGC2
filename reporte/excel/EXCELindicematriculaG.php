@@ -27,7 +27,7 @@ $sql="	SELECT f.dfilial,i.dinstit,c.dcarrer
 		,DATE_FORMAT(s.finimat, '%d/%m/%Y') AS inicamp
 		,DateDiff(curdate(),s.finimat) AS ndiacamp
 		,IF(DateDiff(curdate(),g.finicio) >=0,0,(DateDiff(g.finicio,curdate()) )) AS dias_falta
-		,MAX(CONCAT(cc.cestado,IF(cc.ccarrer='','000',cc.ccarrer),cc.fusuari,'|',cc.nprecio)) precio
+		,MAX(CONCAT(cc.cestado,IF(cc.ccarrer='','000',cc.ccarrer),cc.fusuari,'|',cc.nprecio)) precio , g.observacion
 		FROM gracprp g
 		INNER JOIN cropaga cr ON (cr.cgruaca=g.cgracpr AND cr.ccuota='2' AND cr.cestado='1')
 		INNER JOIN concepp cc ON (cc.cconcep=cr.cconcep AND (cc.ccarrer in ('',g.ccarrer)) )
@@ -170,7 +170,8 @@ $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 $objPHPExcel->getActiveSheet()->mergeCells('A2:U2');
 $objPHPExcel->getActiveSheet()->getStyle('A2:U2')->applyFromArray($styleAlignmentBold);
 
-$cabecera=array('N°','ODE','INSTITUCION','CARRERA','PENSION','FREC','HORA','SEMESTRE','INICIO','FECHA INICIO','MATRIC.EN LOS ULT 2 DIAS','','INSCRITOS','META MÁXIMA','META MÍNIMA','INCIO CAMPAÑA','DIAS CAMPAÑA','INDICE POR DÍA','DIAS QUE FALTA','PROY. DIAS FALTANTES','PROY. FINAL','FALTA PARA LOGRAR META', 'OBSERVACION');
+$cabecera=array('N°','ODE','INSTITUCION','CARRERA','PENSION','FREC','HORA','SEMESTRE','INICIO','FECHA INICIO','MATRIC.EN LOS ULT 2 DIAS',''
+,'INSCRITOS','META MÁXIMA','META MÍNIMA','INCIO CAMPAÑA','DIAS CAMPAÑA','INDICE POR DÍA','DIAS QUE FALTA','PROY. DIAS FALTANTES','PROY. FINAL','FALTA PARA LOGRAR META', 'OBSERVACION');
 
 
 	for($i=0;$i<count($cabecera);$i++){
@@ -321,8 +322,8 @@ elseif( $proy_fin_cam>=$r['nmetmin'] ){
 $objPHPExcel->getActiveSheet()->getStyle($az[($paz-1)].$valorinicial)->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB($color);
 $mat_falt_meta = $r['nmetmat'] - $proy_fin_cam;
 $objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $mat_falt_meta);$paz++;
+$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, $r['observacion']);$paz++;
 
-//$objPHPExcel->getActiveSheet()->setCellValue($az[$paz].$valorinicial, "$dia_ejec|$ind_xdia_act|$dias_falt|$mat_prog_xdia|$proy_fin_cam|$mat_falt_meta");$paz++;
 }
 
 	/*if($dcarrer!=''){
