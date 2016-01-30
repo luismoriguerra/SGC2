@@ -272,6 +272,7 @@ var grupoAcademicoDAO={
                 cinicio:$("#slct_inicio").val(),
                 cturno:$("#slct_turno").val(),
                 chora:$("#slct_horario").val(),
+                observacion:$("#txt_observacion").val(),
                 dias: dias,
                 finicio:$("#txt_fecha_inicio").val(),
                 ffinal:$("#txt_fecha_final").val(),
@@ -299,20 +300,21 @@ var grupoAcademicoDAO={
     },
 	ActualizarGrupoAcademico: function(dias,detalle){
   	$.ajax({
-		url : this.url,
+		url : this.url + '?testObservacion',
 		type : 'POST',
 		//async:false,//no ejecuta otro ajax hasta q este termine
 		dataType : 'json',
 		data : {
 			comando:'grupo_academico',
-			accion:'ActualizarGrupoAcademico',
+			accion:'ActualizarGrupoAcademico', //Applications/MAMP/htdocs/SGC2/controlador/servletGrupoAcademico.php
 			cgruaca:$("#cgruaca").val(),        
 			cturno:$("#slct_turno_edit").val(),
 			chora:$("#slct_horario_edit").val(),
 			nmetmat:$("#txt_meta_mat_edit").val(),
-            nmetmin:$("#txt_meta_min_edit").val(),
-			dias: dias,
-            valores:detalle,
+        nmetmin:$("#txt_meta_min_edit").val(),
+        observacion:$("#observacion").val(),
+			  dias: dias,
+        valores:detalle,
 			fechainiciosemestre:$("#fechainiciosemestre").val(),
 			fechafinsemestre:$("#fechafinsemestre").val(),
 			finicio:$("#txt_fecha_inicio_edit").val(),

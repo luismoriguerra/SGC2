@@ -327,7 +327,8 @@ EditarGrupoLLenarDatos = function(obj){
     });
 	//META A MATRIC	
 	$("#txt_meta_mat_edit").val(obj.nmetmat);
-	$("#txt_meta_min_edit").val(obj.nmetmin);
+	$("#txt_meta_min_edit").val(obj.nmetmin);console.log(observacion);
+	$("#observacion").val(obj.observacion);
     //FECHAS
     $("#txt_fecha_inicio_edit").val(obj.finicio);
     window.console.log(obj.finicio);

@@ -155,6 +155,13 @@ require_once('ifrm-valida-sesion.php')?>
                                             <input type="text" id="txt_meta_min" size="5" maxlength="3" onKeyPress="sistema.validaNumeros(return event);" style="width:65px">  
                                             </td>
                                         </tr>
+                                       <tr>
+                                           <td class="t-left label">Observacion:</td>
+                                           <td class="t-left">
+                                               <textarea name="observacion" id="txt_observacion" cols="30" rows="3"></textarea>
+                                           </td>
+
+                                       </tr>
                                         <tr>
                                         	<td colspan="4" style="text-align:center">
                                             <span class="formBotones">

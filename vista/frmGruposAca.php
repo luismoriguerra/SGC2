@@ -73,7 +73,12 @@
                                         <tr>
                                           <td colspan='2' class="t-center" id='secciones'>
 
-                                          </td>                                           
+                                          </td>
+                                            <td class="t-left label">Observacion:</td>
+                                            <td>
+                                                <textarea name="observacion" id="observacion" cols="30" rows="3"></textarea>
+                                            </td>
+
                                         </tr>
                                         <tr>
             <td colspan="4" align="center">

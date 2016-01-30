@@ -1027,7 +1027,7 @@ class MySqlCarreraDAO{
     }
 	
 	public function GetDatosGrupo($cgruaca){
-        $sql="  select g.* , GROUP_CONCAT(concat(d.ncapaci,'|',d.dseccio,'|',d.cestado) SEPARATOR '_') as detalle_grupo,count(d.cgracpr) as cantidad 
+        $sql="  select g.* , GROUP_CONCAT(concat(d.ncapaci,'|',d.dseccio,'|',d.cestado) SEPARATOR '_') as detalle_grupo,count(d.cgracpr) as cantidad
                 from gracprp g
                 inner join detgrap d on (g.cgracpr=d.cgracpr)
                 where g.cgracpr='$cgruaca'

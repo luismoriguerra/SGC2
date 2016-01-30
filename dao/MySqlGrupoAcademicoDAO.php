@@ -346,8 +346,6 @@ class MySqlGrupoAcademicoDAO{
 			}
 		}		
 
-		
-		
 		$db->iniciaTransaccion();
 		if($valorvalidado==true){
 			for($j=0;$j<count($carreras);$j++){
@@ -380,7 +378,7 @@ class MySqlGrupoAcademicoDAO{
 				$datag=$db->loadObjectList();		
 					if(count($datag)==0){
 						$grupos=$db->generarCodigo('gracprp','cgracpr',12,$data['usuario']);
-						$sql="INSERT INTO gracprp (cgracpr,csemaca,cfilial,cinstit,ctipcar,cmodali,cinicio,cturno,cfrecue,chora,ccarrer,cciclo,dseccio,ccurric,cesgrpr,fingrpr,finicio,ffin,dmotest,fesgrpr,cperson,cusuari,fusuari,ttiptra,trgrupo,nmetmat,nmetmin) VALUES 
+						$sql="INSERT INTO gracprp (cgracpr,csemaca,cfilial,cinstit,ctipcar,cmodali,cinicio,cturno,cfrecue,chora,ccarrer,cciclo,dseccio,ccurric,cesgrpr,fingrpr,finicio,ffin,dmotest,fesgrpr,cperson,cusuari,fusuari,ttiptra,trgrupo,nmetmat,nmetmin,observacion) VALUES
 							('$grupos',
 							'".$data["csemaca"]."',
 							'".$filiales[$i]."',
@@ -402,7 +400,7 @@ class MySqlGrupoAcademicoDAO{
 							'".$data['usuario']."',
 							'".$data['ffinal']."',
 							'','".$data['usuario']."',now(),'I','R',
-							'".$data['nmetmat']."','".$data['nmetmin']."');";
+							'".$data['nmetmat']."','".$data['nmetmin']."','".$data['observacion']."');";
 						$db->setQuery($sql);
 						if(!$db->executeQuery()){
 							$db->rollbackTransaccion();
@@ -542,6 +540,7 @@ class MySqlGrupoAcademicoDAO{
 
 	//if($valorvalidado==true){
 		//DATOS DEL GRUPO ACTUAL
+		// fase 2
 		$sqlGrupo = "select * from gracprp where cgracpr = '".$data["cgruaca"]."'";
 		$db->setQuery($sqlGrupo);
 		$grupo=$db->loadObject();
@@ -562,12 +561,13 @@ class MySqlGrupoAcademicoDAO{
 		$validagrupo .=" and ffin = '".$data["ffinal"]."' ";
 		$validagrupo .=" and nmetmat = '".$data["nmetmat"]."' ";
 		$validagrupo .=" and nmetmin = '".$data["nmetmin"]."' ";
-		
+		$validagrupo .=" and observacion = '".$data["observacion"]."' ";
+
 		$db->setQuery($validagrupo);
 		$datag=$db->loadObjectList();		
 			if( $datag[0]['cant']>0 ){			
 				$db->commitTransaccion();
-   				return array('rst'=>'1','msj'=>'Cambios guardadossss correctamente; ');exit();
+   				return array('rst'=>'1','msj'=>'Cambios guardados correctamente', 'fase'=>'fase 2');exit();
 			}
 		//Actualizar curso primero antes de cambiar grupos.	
 		$sql = "UPDATE cuprprp SET  ";
@@ -615,7 +615,8 @@ class MySqlGrupoAcademicoDAO{
 		$sql .="  fesgrpr = '".$data["ffinal"]."' , ";
 		$sql .="  nmetmat = '".$data["nmetmat"]."' ,";
 		$sql .="  nmetmin = '".$data["nmetmin"]."' ,";
-		$sql .="  cusuari = '".$data["usuario"]."' ,";	
+		$sql .="  observacion = '".$data["observacion"]."' ,";
+		$sql .="  cusuari = '".$data["usuario"]."' ,";
 		$sql .="  fusuari = NOW() ";
 		$sql .= "where csemaca = '".$grupo->csemaca."' ";
 		$sql .=" and cfilial ='".$grupo->cfilial."'  ";
@@ -649,7 +650,7 @@ class MySqlGrupoAcademicoDAO{
 	}*/
 	
    $db->commitTransaccion();
-   return array('rst'=>'1','msj'=>'Cambios guardados correctamente; ');exit();
+   return array('rst'=>'1','msj'=>'Cambios guardados correctamente;', 'fase'=>'final');exit();
   }
 
   public function cargarCursosAcademicos($array){

@@ -54,6 +54,7 @@ class servletGrupoAcademico extends controladorComandos{
 				$data['cinstit']=trim($_POST['cinstit']);
 				$data['cturno']=trim($_POST['cturno']);
 				$data['chora']=trim($_POST['chora']);
+				$data['observacion']=trim($_POST['observacion']);
 				$data['dias']=trim($_POST['dias']);
 				$data['usuario']=trim($_POST['usuario']);
 				$data['cfilialx']=trim($_POST['cfilialx']);
@@ -86,6 +87,7 @@ class servletGrupoAcademico extends controladorComandos{
 				$data['ffinal']=trim($_POST['ffinal']);
 				$data['nmetmat']=trim($_POST['nmetmat']);
 				$data['nmetmin']=trim($_POST['nmetmin']);
+				$data['observacion']=trim($_POST['observacion']);
 				$data['fechafinsemestre']=trim($_POST['fechafinsemestre']);
 				$data['fechainiciosemestre']=trim($_POST['fechainiciosemestre']);
 				$data['valores']=trim($_POST['valores']);
