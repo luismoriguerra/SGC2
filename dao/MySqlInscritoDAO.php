@@ -338,7 +338,7 @@ VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."
 			}			
 		
 		/*///////////////////INSCRIPCION////////////////////////*/	
-		if($data['tipo_documento_ins']=="B"){
+		if($data['tipo_documento_ins']=="B" AND $data['monto_pago_ins']>0){
 		$newcodbol=$db->generarCodigo('boletap','cboleta',14,$data['cusuari']);					
 		$sqlinsbol="INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('".$newcodbol."','".$data['serie_boleta_ins']."','".$data['numero_boleta_ins']."','".$data['cfilial']."','','','1','2','".$data['fecha_pago_ins']."','".$data['fecha_pago_ins']."','".$data['cusuari']."','".$data['cusuari']."',now(),'I','".$data['cinstit']."','".$data['monto_pago_ins']."')";
 							
@@ -376,7 +376,7 @@ VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlinsdetbol);exit();
 			}
 		}
-		elseif($data['tipo_documento_ins']=="V"){
+		elseif($data['tipo_documento_ins']=="V" AND $data['monto_pago_ins']>0){
 		$nvouche=$data["numero_voucher_ins"];
 		$cbanco=$data["banco_voucher_ins"];
 		$monto=$data['monto_pago_ins'];
@@ -426,7 +426,7 @@ VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."
 		if($data['monto_pago']>0 or ($data['monto_pago']==0 and $data['monto_deuda']==0)){
 		$pagare="si";
 		}
-		if($data['tipo_documento']=="B" and $pagare=="si"){			
+		if($data['tipo_documento']=="B" AND $data['monto_pago']>0 and $pagare=="si"){			
 		$newcodbol=$db->generarCodigo('boletap','cboleta',14,$data['cusuari']);					
 		$sqlinsbol="INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('".$newcodbol."','".$data['serie_boleta']."','".$data['numero_boleta']."','".$data['cfilial']."','','','1','2','".$data['fecha_pago']."','".$data['fecha_pago']."','".$data['cusuari']."','".$data['cusuari']."',now(),'I','".$data['cinstit']."','".$data['monto_pago']."')";
 		
@@ -464,7 +464,7 @@ VALUES('".$cconmat."','".$data['finscri']."','".$cingalu."','1','','".$cgruaca."
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlinsdetbol);exit();
 			}
 		}
-		elseif($data['tipo_documento']=="V"  and $data['monto_deuda_ins']==0 and $pagare=="si"){
+		elseif($data['tipo_documento']=="V" AND $data['monto_pago']>0 and $pagare=="si"){
 		$nvouche=$data["numero_voucher"];
 		$cbanco=$data["banco_voucher"];
 		$monto=$data['monto_pago'];
@@ -515,7 +515,7 @@ if($data['testalu']!="RE"){
 	$pagare="si";
 	}
 
-		if($data['tipo_documento_convalida']=="B" and $pagare=="si"){			
+		if($data['tipo_documento_convalida']=="B" AND $data['monto_pago_convalida']>0 and $pagare=="si"){			
 		$newcodbol=$db->generarCodigo('boletap','cboleta',14,$data['cusuari']);					
 		$sqlinsbol="INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('".$newcodbol."','".$data['serie_boleta_convalida']."','".$data['numero_boleta_convalida']."','".$data['cfilial']."','','','1','2','".$data['fecha_pago_convalida']."','".$data['fecha_pago_convalida']."','".$data['cusuari']."','".$data['cusuari']."',now(),'I','".$data['cinstit']."','".$data['monto_pago_convalida']."')";
 		
@@ -553,7 +553,7 @@ if($data['testalu']!="RE"){
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlinsdetbol);exit();
 			}
 		}
-		elseif($data['tipo_documento_convalida']=="V"  and $data['monto_deuda_ins']==0 and $pagare=="si"){
+		elseif($data['tipo_documento_convalida']=="V" AND $data['monto_pago_convalida']>0 and $pagare=="si"){
 		$nvouche=$data["numero_voucher_convalida"];
 		$cbanco=$data["banco_voucher_convalida"];
 		$monto=$data['monto_pago_convalida'];
@@ -603,7 +603,7 @@ if($data['testalu']!="RE"){
 		if($data['monto_pago_pension']>0 or ($data['monto_pago_pension']==0 and $data['monto_deuda_pension']==0)){
 		$pagare="si";
 		}
-		if($data['tipo_documento_pension']=="B" and $pagare=="si"){
+		if($data['tipo_documento_pension']=="B" AND $data['monto_pago_pension']>0 and $pagare=="si"){
 		$newcodbol=$db->generarCodigo('boletap','cboleta',14,$data['cusuari']);					
 		$sqlinsbol="INSERT INTO boletap (cboleta,dserbol,dnumbol,cfilial,dnomraz,dobsanu,cestini,cestfin,festini,festfin,cusuini,cusufin,fusuari,ttiptra,cinstit,ntotbol) VALUES ('".$newcodbol."','".$data['serie_boleta_pension']."','".$data['numero_boleta_pension']."','".$data['cfilial']."','','','1','2','".$data['fecha_pago_pension']."','".$data['fecha_pago_pension']."','".$data['cusuari']."','".$data['cusuari']."',now(),'I','".$data['cinstit']."','".$data['monto_pago_pension']."')";
 		
@@ -653,7 +653,7 @@ if($data['testalu']!="RE"){
 				return array('rst'=>'3','msj'=>'Error al Registrar Datos','sql2'=>$sqlupdate);exit();
 			}
 		}
-		elseif($data['tipo_documento_pension']=="V" and $pagare=="si"){
+		elseif($data['tipo_documento_pension']=="V"  AND $data['monto_pago_pension']>0 and $pagare=="si"){
 		$nvouche=$data["numero_voucher_pension"];
 		$cbanco=$data["banco_voucher_pension"];
 		$monto=$data['monto_pago_pension'];

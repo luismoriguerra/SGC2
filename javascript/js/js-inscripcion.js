@@ -127,18 +127,18 @@ ValidaMontoPagadoIns=function(){
 	else{
 	$("#txt_monto_deuda_ins").val((md*1-mp*1));
 	}
-	
+	/*
 	if((md*1-mp*1)>0){
 	$("#txt_monto_pagado").attr("disabled","true");
 	$("#slct_tipo_documento").attr("disabled","true");
 	$("#txt_nro_boleta").attr("disabled","true");
 	$("#txt_serie_boleta").attr("disabled","true");	
-	/**********************************************/
+	
 	$("#txt_monto_pagado_pension").attr("disabled","true");
 	$("#slct_tipo_documento_pension").attr("disabled","true");
 	$("#txt_nro_boleta_pension").attr("disabled","true");
 	$("#txt_serie_boleta_pension").attr("disabled","true");
-	/**********************************************/
+	
 	$("#txt_monto_pagado_convalida").attr("disabled","true");
 	$("#slct_tipo_documento_convalida").attr("disabled","true");
 	$("#txt_nro_boleta_convalida").attr("disabled","true");
@@ -153,7 +153,7 @@ ValidaMontoPagadoIns=function(){
 	$("#slct_tipo_documento").val("");
 	$("#txt_nro_boleta").val("");
 	$("#txt_serie_boleta").val("");
-	}
+	}*/
 }
 
 cargarConceptoIns=function(){
@@ -192,13 +192,13 @@ ValidaMontoPagado=function(){
 	else{
 	$("#txt_monto_deuda").val((md*1-mp*1));
 	}
-	
+	/*
 	if((md*1-mp*1)>0){
 	$("#txt_monto_pagado_pension").attr("disabled","true");
 	$("#slct_tipo_documento_pension").attr("disabled","true");
 	$("#txt_nro_boleta_pension").attr("disabled","true");
 	$("#txt_serie_boleta_pension").attr("disabled","true");
-	/**********************************************/
+
 	$("#txt_monto_pagado_convalida").attr("disabled","true");
 	$("#slct_tipo_documento_convalida").attr("disabled","true");
 	$("#txt_nro_boleta_convalida").attr("disabled","true");
@@ -213,7 +213,7 @@ ValidaMontoPagado=function(){
 	$("#slct_tipo_documento_pension").val("");
 	$("#txt_nro_boleta_pension").val("");
 	$("#txt_serie_boleta_pension").val("");
-	}	
+	}	*/
 }
 
 ValidaMontoPagadoPension=function(){
@@ -229,7 +229,7 @@ ValidaMontoPagadoPension=function(){
 	else{
 	$("#txt_monto_deuda_pension").val((md*1-mp*1));
 	}	
-	
+	/*
 	if((md*1-mp*1)>0){	
 	$("#txt_monto_pagado_convalida").attr("disabled","true");
 	$("#slct_tipo_documento_convalida").attr("disabled","true");
@@ -245,7 +245,7 @@ ValidaMontoPagadoPension=function(){
 	$("#slct_tipo_documento_convalida").val("");
 	$("#txt_nro_boleta_convalida").val("");
 	$("#txt_serie_boleta_convalida").val("");	
-	}
+	}*/
 }
 
 ValidaMontoPagadoConvalida=function(){
