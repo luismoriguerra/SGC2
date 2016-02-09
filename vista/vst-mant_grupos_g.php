@@ -206,6 +206,12 @@ require_once('ifrm-valida-sesion.php')?>
                                     <span style="display:inline-block;vertical-align:top">
                                     <input id="txtGruposAcademicos" class="input_buscar" type="text" style="width: 150px;display: none;" onkeyup="sistema.buscarEnTable(this.value,'lista_grupos')">
                                     </span>
+                                    <span>
+                                        <input type='checkbox' id='checkall' class='todo' onChange='AllCheck();'> Todos
+                                    </span>
+                                    <span class="hv_icon corner_all" style="margin:2px -3px 0px 0px;" onclick="editarFechas">
+                                    <i class="icon-gray icon-edit"></i>
+                                    </span>
                                 </div>
                             
                             
@@ -219,6 +225,7 @@ require_once('ifrm-valida-sesion.php')?>
             	</div>
 			</div>
         <?require_once('frmGruposAca.php')?>
+        <?require_once('frmGruposAcaFecha.php')?>
 		
         <div id="capaMensaje" class="capaMensaje" style="display:none"></div>		
 		<hr>

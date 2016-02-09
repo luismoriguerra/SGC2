@@ -204,6 +204,10 @@ ListarGrupos = function(){
     
 }
 
+editarFechas=function(){
+    $('#frmGruposAcaFecha').dialog('open');
+}
+
 ListarGruposHtml = function(obj){
     $("#lista_grupos").html("");
     var htm="";
@@ -212,6 +216,7 @@ ListarGruposHtml = function(obj){
             var estado = "";
             var accion = "";
             var editar = "";
+            var check = "";
             switch(value.cesgrpr){
 					case "5":
                       estado = "CANCELADO GENERAL";
@@ -223,6 +228,7 @@ ListarGruposHtml = function(obj){
                       break;
                     case "3":
                       estado = "EN EJECUCION";
+                      check = "<input type='checkbox' class='check' id='"+value.cgracpr+"'>";
 					  editar = "<a class='gru_editar btn btn-azul sombra-3d t-blanco' gru='"+value.cgracpr+"'><i class='icon-white icon-edit'></i></a>";
                       accion = "<a class='gru_accion btn btn-azul sombra-3d t-blanco' ces='5' gru='"+value.cgracpr+"'><i class='icon-white icon-remove'></i></a>";
                       break;
@@ -248,11 +254,22 @@ ListarGruposHtml = function(obj){
 		htm+="<td width='120' class='t-center'>"+value.hora+"</td>";
 		htm+="<td width='120' class='t-center'>"+value.dias+"</td>";
                 htm+="<td width='120' class='t-center'>"+value.gestado+"</td>";
-                htm+="<td width='120' class='t-center'>"+editar + " " + accion+"</td>";
+                htm+="<td width='120' class='t-center'>"+check+" "+editar + " " + accion+"</td>";
 		htm+="</tr>";
 	});
 	
      $("#lista_grupos ").html(htm);
+}
+
+AllCheck=function(){
+    if($("#checkall").attr('class')=='todo'){
+        $(".check").attr('checked','checked');
+        $("#checkall").removeClass('todo').addClass('vacio');
+    }
+    else{
+        $(".check").removeAttr('checked');
+        $("#checkall").removeClass('vacio').addClass('todo');
+    }
 }
 
 /*
