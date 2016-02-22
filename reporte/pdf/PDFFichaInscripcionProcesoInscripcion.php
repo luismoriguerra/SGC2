@@ -86,14 +86,14 @@ $variables = array(
     "{{otros_documentos}}"=>$_REQUEST["dotro"],
 
     // inscripcion
-    "{{ins_fecha}}" => $_REQUEST["ins_fecha"],
-    "{{ins_serie}}" => $_REQUEST["ins_serie"],
-    "{{ins_monto}}" => $_REQUEST["ins_monto"],
+    "{{ins_fecha}}" => $_REQUEST["ins_monto"]? $_REQUEST["ins_fecha"]: '',
+    "{{ins_serie}}" => $_REQUEST["ins_monto"]?$_REQUEST["ins_serie"]: '',
+    "{{ins_monto}}" => $_REQUEST["ins_monto"]?$_REQUEST["ins_monto"]: '',
 
     // matricula
-    "{{mat_fecha}}" => $_REQUEST["mat_fecha"],
-    "{{mat_serie}}" => $_REQUEST["mat_serie"],
-    "{{mat_monto}}" => $_REQUEST["mat_monto"],
+    "{{mat_fecha}}" => $_REQUEST["mat_monto"] ? $_REQUEST["mat_fecha"] : '',
+    "{{mat_serie}}" =>  $_REQUEST["mat_monto"] ? $_REQUEST["mat_serie"] : '',
+    "{{mat_monto}}" =>  $_REQUEST["mat_monto"] ? $_REQUEST["mat_monto"] : '',
 
 
     "{{cuotas}}" => $_REQUEST["cuotas"],
@@ -108,9 +108,9 @@ $variables = array(
     "{{conv_docs}}" => $_REQUEST["conv_docs"],
 
     // pago convalidacion
-    "{{conv_fecha}}" => $_REQUEST["conv_fecha"],
-    "{{conv_serie}}" => $_REQUEST["conv_serie"],
-    "{{conv_monto}}" => $_REQUEST["conv_monto"],
+    "{{conv_fecha}}" => $_REQUEST["conv_monto"] ? $_REQUEST["conv_fecha"] : '',
+    "{{conv_serie}}" => $_REQUEST["conv_monto"] ? $_REQUEST["conv_serie"]: '',
+    "{{conv_monto}}" =>$_REQUEST["conv_monto"] ?  $_REQUEST["conv_monto"]: '',
 
     // recepcionista
     "{{slct_medio_captacion}}" => $_REQUEST["slct_medio_captacion"],
@@ -118,11 +118,18 @@ $variables = array(
     "{{txt_recepcionista}}" => $_REQUEST["txt_recepcionista"],
 
     // pago cuotas
-    "{{pen_fecha}}" => $_REQUEST["pen_fecha"],
-    "{{pen_serie}}" => $_REQUEST["pen_serie"],
-    "{{pen_monto}}" => $_REQUEST["pen_monto"],
+    "{{pen_fecha}}" => $_REQUEST["pen_monto"] ? $_REQUEST["pen_fecha"] : '',
+    "{{pen_serie}}" => $_REQUEST["pen_monto"] ? $_REQUEST["pen_serie"] : '',
+    "{{pen_monto}}" => $_REQUEST["pen_monto"] ? $_REQUEST["pen_monto"] : '',
 
     "{{pen_promo}}" => $_REQUEST["pen_promo"],
+
+    // escalas
+
+    "{{escala_matricula}}" => $_REQUEST["escala_matricula"],
+
+    "{{escala_inscripcion}}" => $_REQUEST["escala_inscripcion"]
+
 
 );
 

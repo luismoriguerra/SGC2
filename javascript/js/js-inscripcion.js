@@ -997,7 +997,11 @@ ExportarPDF = function () {
 		pen_serie : $("#slct_tipo_documento_pension option:selected").text() != "Voucher" ? $("#txt_serie_boleta_pension").val() + "-" + $("#txt_nro_boleta_pension").val() : $("#txt_nro_voucher_pension").val() + "-" + $("#slct_banco_pension option:selected").text(),
 		pen_monto : $("#txt_monto_pagado_pension").val(),
 
-		pen_promo : $("#txt_promocion_economica").val()
+		pen_promo : $("#txt_promocion_economica").val(),
+
+		// escalas
+		escala_inscripcion: $('#slct_concepto_ins option:selected').text(),
+		escala_matricula: $('#slct_concepto option:selected').text()
 
 };
 

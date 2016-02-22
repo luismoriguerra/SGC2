@@ -122,7 +122,7 @@
     </div>
     <!--parte 2 -->
     <div class="row smaller">
-        <div class="col-sm-6 small">PLANO DE UBICACION DEL DOMICILIO</div>
+        <div class="col-sm-6 small text-center"><img src="http://cpdtelesup.com/SGC2/reporte/excel/includes/LOGO.jpg" width="30%"></div>
         <div class="col-sm-6">
             <div class="row bordeado">
                 <div class="col-sm-10 col-sm-offset-2">
@@ -319,10 +319,9 @@
     <div class="row smaller">
         <div class="col-sm-6">
             <div class="row" >
-                <div class="col-sm-2 text-right"><div class="row">CARRERA:</div></div>
-                <div class="col-sm-3 bordeado">{{carrera}}</div>
+
                 <div class="col-sm-3 text-right"><div class="row">PART. NAC.</div></div>
-                <div class="col-sm-3 bordeado">{{partida_nacimiento}}</div>
+                <div class="col-sm-8 bordeado">{{partida_nacimiento}}</div>
             </div>
             <div class="row">
                 <div class="col-sm-3 text-right"><div class="row">FOT. DE DNI:</div></div>
@@ -348,10 +347,18 @@
                 <div class="col-sm-2 text-center right">MONTO</div>
             </div>
             <div class="row bottom">
+                <div class="col-sm-5 text-center right">ESCALA DE INSCRIPCION</div>
+                <div class="col-sm-6 text-center right">{{escala_inscripcion}}</div>
+            </div>
+            <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE INSCRIPCION</div>
                 <div class="col-sm-2 text-center right">{{ins_fecha}}</div>
                 <div class="col-sm-3 text-center right">{{ins_serie}}</div>
                 <div class="col-sm-2 text-center right">{{ins_monto}}</div>
+            </div>
+            <div class="row bottom">
+                <div class="col-sm-5 text-center right">ESCALA DE MATRICULA</div>
+                <div class="col-sm-6 text-center right">{{escala_matricula}}</div>
             </div>
             <div class="row bottom">
                 <div class="col-sm-5 text-center right">DERECHO DE MATRICULA</div>
@@ -424,7 +431,7 @@
     <div class="row text-center oscuro">
         EL INSCRITO DECLARA CONOCER Y ACEPTAR LAS POLITICAS DEL PROCESO DE ADMISION
     </div>
-    <div class="row plomo" style="margin-bottom: 40px">
+    <div class="row plomo" style="margin-bottom: 90px">
         <div class="col-sm-12 smaller">
             <span>1.- </span>
             <span>
@@ -459,7 +466,7 @@
             <br>
             <span>6.- </span>
             <span>
-               El alumno conoce y acepta todo lo estipulado en el reglamento aprobado con la Resolución  Nro 018-2015-UPTELESUP-CU.
+               Una vez realizado el pago, no hay devolución de dinero.
             </span>
             <br>
             <span>7.- </span>
