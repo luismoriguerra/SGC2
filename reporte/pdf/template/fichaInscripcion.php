@@ -37,7 +37,7 @@
 
         .oscuro {
             color: #fff;
-            background: rgba(0, 0, 0, 0.61);
+            background: rgba(5, 0, 52, 0.94);
         }
         .plomo {
             background: #e8e8e8;
