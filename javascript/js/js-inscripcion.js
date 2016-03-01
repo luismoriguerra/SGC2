@@ -953,7 +953,7 @@ ExportarPDF = function () {
 		carrera : $("#lista_grupos .ui-state-highlight td").eq(1).text(),
 		semestre : $("#lista_grupos .ui-state-highlight td").eq(2).text() + "/" + $("#lista_grupos .ui-state-highlight td").eq(3).text(),
 		fecha_ini : $("#lista_grupos .ui-state-highlight td").eq(4).text(),
-		mod_estudio : "",
+		modalidad : $('#slct_local_instituto option:selected').text(),
 		frecuencia : $("#lista_grupos .ui-state-highlight td").eq(5).text(),
 		loc_estudio : $("#slct_local_estudio option:selected").text(),
 		//modalidad ingreso
@@ -962,6 +962,7 @@ ExportarPDF = function () {
 		depar_nac: $("#txt_cod_part_nac").val(),
 		dfoto_dni: $("#slct_rdo_fotoc_dni option:selected").text(),
 		dotro: $("#txt_otro_doc").val(),
+		cert_estudio: $('#txt_cod_cert_est').val(),
 
 		// Pagos inscripcion
 		ins_fecha : $("#txt_fecha_pago_ins").val(),
