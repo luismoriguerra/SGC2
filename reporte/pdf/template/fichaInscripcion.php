@@ -108,7 +108,7 @@
     <div class="row bordeado">
         <div class="col-sm-8 right oscuro">
             <div class="row">
-                <div class="col-sm-8 h3 text-center" style="font-size: 1.5em; text-align: center">FICHA DE INSCRIPCION A CARRERAS PROFESIONALES:</div>
+                <div class="col-sm-8 h3 text-center" style="font-size: 1.5em; text-align: center">FICHA DE INSCRIPCION:</div>
                 <div class="col-sm-4"></div>
             </div>
         </div>

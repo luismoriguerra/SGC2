@@ -990,7 +990,7 @@ ExportarPDF = function () {
 		conv_monto : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_monto_pagado_convalida").val(): "",
 
 		slct_medio_captacion: $("#slct_medio_captacion option:selected").text(),
-		txt_medio_captacion: $("#txt_medio_captacion").val(),
+		txt_medio_captacion: $("#slct_medio_captacion").val() + ' ' + $("#txt_medio_captacion").val(),
 		txt_recepcionista: $("#txt_recepcionista").val(),
 
 		// Pagos inscripcion
