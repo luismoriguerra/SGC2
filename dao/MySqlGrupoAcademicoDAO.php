@@ -2,64 +2,31 @@
 class MySqlGrupoAcademicoDAO{
 	public function cargarGrupoAcademicoMatri($data){
 	$validaadmin="";
-	if($data['validaadmin']==''){
-	//$validaadmin=" AND date(g.finicio) + INTERVAL 7 day >=curdate() ";
+	if($data['cinicio']==''){
+		$cinicio=" AND g.cinicio='".$data['cinicio']."'";
 	}
 	$sql="SELECT  f.dfilial,ins.dinstit,t.dturno,c.dcarrer,g.csemaca,g.cinicio,g.finicio,g.ffin,concat( 
 		(select GROUP_CONCAT(d.dnemdia SEPARATOR '-') 
 		from diasm d 
 		where FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0), 
 		' de ',h.hinici,' - ',h.hfin) as horario,GROUP_CONCAT(DISTINCT(IF(g.trgrupo='R',g.cgracpr,null))) as id,
-			(select count(*)
-			from gracprp g2
-			inner join conmatp co on (co.cgruaca=g2.cgracpr)
-			where FIND_IN_SET (g2.cgracpr,GROUP_CONCAT(DISTINCT(g.cgracpr)))  >  0
-			) as total,cu.dtitulo as dcurric,nmetmat,
-			(select count(*)
-			from gracprp g2
-			inner join conmatp co on (co.cgruaca=g2.cgracpr)
-			inner join (select r2.cingalu,r2.cgruaca
-									from recacap r2	
-									inner join concepp co2 on (co2.cconcep=r2.cconcep)
-									inner join conmatp conm2 on (conm2.cingalu=r2.cingalu and conm2.cgruaca=r2.cgruaca)
-									where (r2.ccuota='' or r2.ccuota=1)
-									and r2.testfin='P'
-									and co2.cctaing like '701.03%'
-									and (IF(substring(conm2.dproeco,1,3)='Pro',(co2.mtoprom/2),co2.nprecio/2))>=r2.nmonrec
-									GROUP BY r2.cgruaca,r2.cingalu
-									) rec on (rec.cingalu=co.cingalu and rec.cgruaca=co.cgruaca)
-			WHERE (FIND_IN_SET (g2.cgracpr,GROUP_CONCAT(g.cgracpr SEPARATOR ','))  >  0)					
-			) as mayor,
-			(select count(*)
-			from gracprp g2
-			inner join conmatp co on (co.cgruaca=g2.cgracpr)
-			inner join (select r2.cingalu,r2.cgruaca
-									from recacap r2	
-									inner join concepp co2 on (co2.cconcep=r2.cconcep)
-									inner join conmatp conm2 on (conm2.cingalu=r2.cingalu and conm2.cgruaca=r2.cgruaca)
-									where (r2.ccuota='' or r2.ccuota=1)
-									and r2.testfin='P'
-									and co2.cctaing like '701.03%'
-									and (IF(substring(conm2.dproeco,1,3)='Pro',(co2.mtoprom/2),co2.nprecio/2))<r2.nmonrec
-									GROUP BY r2.cgruaca,r2.cingalu
-									) rec on (rec.cingalu=co.cingalu and rec.cgruaca=co.cgruaca)
-			WHERE (FIND_IN_SET (g2.cgracpr,GROUP_CONCAT(g.cgracpr SEPARATOR ','))  >  0)					
-			) as menor
+		nmetmat
 		FROM gracprp g 
 		INNER JOIN curricm cu on (cu.ccurric=g.ccurric)
 		INNER JOIN filialm f on (f.cfilial=g.cfilial)
 		INNER JOIN instita ins on (ins.cinstit=g.cinstit)
 		INNER JOIN turnoa t on (g.cturno=t.cturno) 
 		INNER JOIN horam h on (h.chora=g.chora) 
-		INNER JOIN carrerm c on (c.ccarrer=g.ccarrer) 		
+		INNER JOIN carrerm c on (c.ccarrer=g.ccarrer) 
 		WHERE g.cciclo='".$data['cciclo']."' 
 		AND g.cfilial='".$data['cfilial']."' 
 		and g.cinstit='".$data['cinstit']."'
 		AND g.csemaca='".$data['csemaca']."'
-		AND g.cesgrpr in ('3')
+		".$cinicio."
+		AND g.cesgrpr='3'
 		".$validaadmin."
 		GROUP by g.csemaca,g.cfilial,g.cinstit,g.ccarrer,g.cciclo,g.cinicio,g.cfrecue,g.cturno,g.chora,g.finicio,g.ffin
-		order by total desc,mayor desc,menor desc,c.dcarrer,g.cinicio,g.finicio";
+		order by c.dcarrer,g.cinicio,g.finicio";
 		$db=creadorConexion::crear('MySql');
 
         $db->setQuery($sql);

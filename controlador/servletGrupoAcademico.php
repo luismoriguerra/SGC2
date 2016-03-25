@@ -10,6 +10,9 @@ class servletGrupoAcademico extends controladorComandos{
 				$data['cinstit']=trim($_POST['cinstit']);
 				$data['cciclo']=trim($_POST['cciclo']);
 				$data['csemaca']=trim($_POST['csemaca']);
+				if(isset($_POST['cinicio'])){
+					$data['cinicio']=trim($_POST['cinicio']);
+				}
                 echo json_encode($daoGrupoAcademico->cargarGrupoAcademicoMatri($data));
 			break;
             case 'cargar_grupo_academico':

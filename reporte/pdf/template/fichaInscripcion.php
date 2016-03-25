@@ -123,7 +123,6 @@
             <div class="row bordeado">
                 <div class="col-sm-10 col-sm-offset-2">
                     <div class="row">
-                        <div class="col-sm-12 h2">SERIE: {{serie}}</div>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-3 small">Ap Pat: </div>
@@ -475,6 +474,11 @@
             <span>8.- </span>
             <span>
                 Los planes de estudio serán actualizados de acuerdo al avance tecnológico
+            </span>
+            <br>
+            <span>9.- </span>
+            <span>
+                Por ningún motivo podrán ser retirados los documentos de los alumnos ingresantes a la universidad, por constituir evidencia en cumplimiento de los requisitos.
             </span>
             <br/>
             <span>* Estoy de acuerdo con el contenido de la Ficha de Inscripción:</span>

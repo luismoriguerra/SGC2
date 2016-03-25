@@ -21,8 +21,11 @@ var grupoAcademicoDAO={
         });
     },
 	cargarGrupoAcademicoMatri:function(evento){
-		var cfil="";
+		var cfil="";var cini="";
 		var cins="";var cmod="";
+        if( $("#cinicio").val()!=undefined ){
+            cini=$("#cinicio").val();
+        }
 		if($("#slct_local_estudio").val()!=""){
 		cfil=$("#slct_local_estudio").val();
 		}
@@ -42,7 +45,8 @@ var grupoAcademicoDAO={
 				cinstit:cins,
 				cmodali:cmod,
 				csemaca:$("#slct_semestre").val(),
-				cciclo:$("#cciclo").val()				
+				cciclo:$("#cciclo").val(),
+                cinicio:cini,
             },
             beforeSend : function ( ) {
 				sistema.abreCargando();

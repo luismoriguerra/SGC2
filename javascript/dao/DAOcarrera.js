@@ -96,6 +96,47 @@ var carreraDAO={
             error: this.msjErrorAjax
         });
     },
+    cargarSemestreIns: function(fxllena,slct_dest,id_slct){
+        var cfil="";
+        var cins="";
+        if($.trim($("#slct_local_estudio").val())!=""){
+        cfil=$("#slct_local_estudio").val();
+        }
+        else if($("#slct_filial").val()!=""){
+        cfil=$("#slct_filial").val();
+        }
+        else{
+        cfil=$('#hd_idFilial').val();
+        }
+        
+        if($.trim($("#slct_local_instituto").val())!=""){
+        cins=$("#slct_local_instituto").val().split("-")[0];
+        }
+        else{
+        cins=$('#slct_instituto').val();
+        }       
+        
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : {
+                comando:'carrera',
+                accion:'cargar_semestre_ins',
+                cinstit:cins,
+                cfilial:cfil
+            },
+            beforeSend : function ( ) {
+            },
+            success : function ( obj ) {
+                if( obj.length!=0 ){
+                    fxllena(obj.data,slct_dest,id_slct);
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },
 	cargarSemestre: function(fxllena,slct_dest,id_slct){
 		var cfil="";
 		var cins="";

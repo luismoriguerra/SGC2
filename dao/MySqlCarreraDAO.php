@@ -64,6 +64,25 @@ class MySqlCarreraDAO{
             return array('rst'=>'2','msj'=>'No existen Carreras','data'=>$data,'sql'=>$sql);
         }
     }
+
+    public function cargarSemestreIns($cinstit,$cfilial){
+        $sql="  SELECT csemaca id,CONCAT(csemaca,'|',cinicio) nombre
+                FROM semacan
+                WHERE cfilial='".$cfilial."' 
+                AND cinstit='".$cinstit."' 
+                AND cestado=1
+                GROUP BY csemaca,cinicio
+                ORDER BY csemaca,cinicio";
+        $db=creadorConexion::crear('MySql');
+
+        $db->setQuery($sql);
+        $data=$db->loadObjectList();
+        if(count($data)>0){
+            return array('rst'=>'1','msj'=>'Semestres cargados','data'=>$data);
+        }else{
+            return array('rst'=>'2','msj'=>'No existen Semestres','data'=>$data,'sql'=>$sql);
+        }
+    }
 	
 	public function cargarSemestre($cinstit,$cfilial){
         $sql="SELECT DISTINCT(csemaca) as id,csemaca as nombre

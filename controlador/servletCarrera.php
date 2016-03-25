@@ -25,6 +25,11 @@ class servletCarrera extends controladorComandos{
 				$cfilial=trim($_POST['cfilial']);
 				echo json_encode($daoCarrera->cargarSemestre($cinstit,$cfilial));			
 			break;
+			case 'cargar_semestre_ins':
+				$cinstit=trim($_POST['cinstit']);
+				$cfilial=trim($_POST['cfilial']);
+				echo json_encode($daoCarrera->cargarSemestreIns($cinstit,$cfilial));			
+			break;
 			case 'cargar_semestre_r':
 				$cinstit=trim($_POST['cinstit']);
 				$cfilial=trim($_POST['cfilial']);

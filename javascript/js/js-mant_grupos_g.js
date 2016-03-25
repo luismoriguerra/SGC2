@@ -48,6 +48,13 @@ $(document).ready(function(){
         modal:true,
         width:'auto',height:'auto'
   	});
+
+    $('#frmGruposAcaFecha').dialog({
+        autoOpen : false,
+        show : 'fade',hide : 'fade',
+        modal:true,
+        width:'auto',height:'auto'
+    });
 	
 	$("#btnFormGruposAca").click(function(){
 		ActualizarGrupo();
