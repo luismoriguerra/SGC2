@@ -75,10 +75,11 @@ $variables = array(
     "{{carrera}}"=>$_REQUEST["carrera"],
     "{{semestre}}"=>$_REQUEST["semestre"],
     "{{fecha_inicio}}"=>$_REQUEST["fecha_ini"],
-    "{{modalidad}}"=> "_",
+    "{{modalidad}}"=>$_REQUEST["modalidad"],
     "{{frecuencia}}"=>$_REQUEST["frecuencia"],
     "{{local_estudio}}"=>$_REQUEST["loc_estudio"],
     "{{tipo_ingreso}}"=>$_REQUEST["tipo_ingreso"],
+    "{{cert_estudio}}"=>$_REQUEST["cert_estudio"],
 
     // DOCUMENTOS OBLIGATORIOS
     "{{partida_nacimiento}}"=>$_REQUEST["depar_nac"],

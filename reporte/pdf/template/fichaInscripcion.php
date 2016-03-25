@@ -37,7 +37,7 @@
 
         .oscuro {
             color: #fff;
-            background: rgba(0, 0, 0, 0.61);
+            background: rgba(5, 0, 52, 0.94);
         }
         .plomo {
             background: #e8e8e8;
@@ -54,10 +54,6 @@
         .text-right {
             text-align: right;
         }
-
-
-
-
         .col-sm-2 {
             width: 15.5%;
             display: inline-block;
@@ -112,12 +108,12 @@
     <div class="row bordeado">
         <div class="col-sm-8 right oscuro">
             <div class="row">
-                <div class="col-sm-8 h3 text-center" style="font-size: 1.5em; text-align: center">FICHA DE INSCRIPCION A CARRERAS PROFESIONALES:</div>
+                <div class="col-sm-8 h3 text-center" style="font-size: 1.5em; text-align: center">FICHA DE INSCRIPCION:</div>
                 <div class="col-sm-4"></div>
             </div>
         </div>
-        <div class="col-sm-4 ">
-            Fecha:{{fecha}}
+        <div class="col-sm-4 " style="font-size:2em; text-align: center">
+            Fecha: {{fecha}}
         </div>
     </div>
     <!--parte 2 -->
@@ -319,7 +315,6 @@
     <div class="row smaller">
         <div class="col-sm-6">
             <div class="row" >
-
                 <div class="col-sm-3 text-right"><div class="row">PART. NAC.</div></div>
                 <div class="col-sm-8 bordeado">{{partida_nacimiento}}</div>
             </div>
@@ -328,6 +323,10 @@
                 <div class="col-sm-2 text-center">{{tiene_foto}}</div>
                 <div class="col-sm-2 text-right"><div class="row">OTRO:</div></div>
                 <div class="col-sm-4 left right bottom">{{otros_documentos}}</div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-3 text-right"><div class="row">CERT. EST.</div></div>
+                <div class="col-sm-8 bordeado">{{cert_estudio}}</div>
             </div>
         </div>
         <div class="col-sm-6 small">
@@ -431,7 +430,7 @@
     <div class="row text-center oscuro">
         EL INSCRITO DECLARA CONOCER Y ACEPTAR LAS POLITICAS DEL PROCESO DE ADMISION
     </div>
-    <div class="row plomo" style="margin-bottom: 90px">
+    <div class="row plomo" style="margin-bottom: 70px">
         <div class="col-sm-12 smaller">
             <span>1.- </span>
             <span>
@@ -441,9 +440,8 @@
             <br/>
             <span>2.- </span>
             <span>
-                El alumno matriculado en fecha extenporanea, que ha cumplido con todos los pagos y ha entregado los documentos solicitados,
-                deberá esperar 7 días después de inciado las clases para gozar de todos los derechos como alumno matriculado y se somete a
-                la disponibilidad de inicios, asignaturas, ambientes, horarios y frecuencias de estudio.
+                El alumno matriculado en fecha extemporánea deberá esperar siete (7) días después de iniciado las clases para gozar de los derechos como alumno,
+                 debiendo estar supeditado a la disponibilidad de asignaturas programadas, ambiente y frecuencia de estudios.
             </span>
             <br/>
             <span>3.- </span>
@@ -472,6 +470,11 @@
             <span>7.- </span>
             <span>
                 Las pensiones no son congeladas, se adecuan a los incrementos gubernamentales de la UIT (Unidad Impositiva Tributaria anualmente)
+            </span>
+            <br>
+            <span>8.- </span>
+            <span>
+                Los planes de estudio serán actualizados de acuerdo al avance tecnológico
             </span>
             <br/>
             <span>* Estoy de acuerdo con el contenido de la Ficha de Inscripción:</span>
