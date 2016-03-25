@@ -912,14 +912,19 @@ RegistrarInscrito=function(){
 ExportarPDF = function () {
 	var desc= $("#slct_medio_captacion").val().split("-")[1];
 	var ddesc="";
+	var codigorep='';
+	var ids=$("#table_jqgrid_vended").jqGrid("getGridParam",'selrow');
+	var getids = $("#table_jqgrid_vended").jqGrid('getRowData',ids);
+
+
 	if( desc==1 ){
 		ddesc=$("#txt_medio_captacion").val();
 	}
 	else if( desc==2 ){
-
+		ddesc=getids.codintv+" | "+$("#txt_jqgrid_vended").val();
 	}
 	else if( desc==3 ){
-
+		ddesc=$("#slct_medio_prensa option:selected").text();
 	}
 
 	var data = {
@@ -998,7 +1003,7 @@ ExportarPDF = function () {
 		conv_monto : $("#slct_modalidad_ingreso option:selected").text() != "ORDINARIO" ?  $("#txt_monto_pagado_convalida").val(): "",
 
 		slct_medio_captacion: $("#slct_medio_captacion option:selected").text(),
-		txt_medio_captacion: $("#txt_medio_captacion").val(),
+		txt_medio_captacion: ddesc,
 		txt_recepcionista: $("#txt_recepcionista").val(),
 
 		// Pagos inscripcion
