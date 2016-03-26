@@ -2,7 +2,7 @@
 class MySqlGrupoAcademicoDAO{
 	public function cargarGrupoAcademicoMatri($data){
 	$validaadmin="";
-	if($data['cinicio']==''){
+	if( isset($data['cinicio']) ){
 		$cinicio=" AND g.cinicio='".$data['cinicio']."'";
 	}
 	$sql="SELECT  f.dfilial,ins.dinstit,t.dturno,c.dcarrer,g.csemaca,g.cinicio,g.finicio,g.ffin,concat( 

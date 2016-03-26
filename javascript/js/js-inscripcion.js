@@ -36,7 +36,7 @@ $(document).ready(function(){
 })
 
 CargarInicio=function(){
-	var datos=$("#slct_semestre>option[value=\""+$("#slct_semestre").val()+"\"]").text();
+	var datos=$("#slct_semestre option:selected").text();
 	$("#cinicio").val( datos.split("|")[1] );
 }
 
