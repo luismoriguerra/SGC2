@@ -19,8 +19,7 @@ $az=array(  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 ,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
 ,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
 ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU');
-$azcount=array( 5,15,40,15,35,15,10,20,15,15,15,
-    15,15,20,15,15,15,15,15,15,15,15,15,19,40,20,20,20,20,20,20,20,20,20,15,15
+$azcount=array( 5,15,40,15,35,15,10,20,15,15,15,28,40,15,15,15,28,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
@@ -61,10 +60,10 @@ if($fechini!='' and $fechfin!=''){
 }
 
 $sql="
-select
+SELECT 
 @curRow := @curRow + 1 AS indice
 , i.dcodlib inscripcion
-,CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
+, CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
 , f.dfilial
 , c.dcarrer
 , g.csemaca
@@ -72,16 +71,29 @@ select
 , p.ndniper dni
 , mo.dmoding modalidad
 , g.finicio
-from gracprp g
+, ins.dinstit
+, p.email1
+, p.ddirper
+, p.ntelper
+, p.ntelpe2
+, CONCAT(
+    (SELECT GROUP_CONCAT(d.dnemdia SEPARATOR '-') 
+     FROM diasm d 
+     WHERE FIND_IN_SET (d.cdia,replace(g.cfrecue,'-',','))  >  0
+    ), 
+     ' de ',h.hinici,' - ',h.hfin
+  ) as horario
+FROM gracprp g
 JOIN (SELECT @curRow := 0) r
-inner join conmatp co on co.cgruaca = g.cgracpr
-inner join ingalum i on i.cingalu = co.cingalu
-inner join personm p on p.cperson = i.cperson
-inner join carrerm c on c.ccarrer = g.ccarrer
-inner join modinga mo on mo.cmoding = i.cmoding
-inner join filialm f on f.cfilial = g.cfilial
+INNER JOIN horam h on h.chora=g.chora 
+INNER JOIN conmatp co on co.cgruaca = g.cgracpr
+INNER JOIN ingalum i on i.cingalu = co.cingalu
+INNER JOIN personm p on p.cperson = i.cperson
+INNER JOIN carrerm c on c.ccarrer = g.ccarrer
+INNER JOIN modinga mo on mo.cmoding = i.cmoding
+INNER JOIN filialm f on f.cfilial = g.cfilial
+INNER JOIN instita ins on ins.cinstit=g.cinstit
 where 1 = 1
-
  ". $where;
 
 $cn->setQuery($sql);
@@ -210,7 +222,14 @@ $cabecera = array(
     "NRO DE DOCUMENTO",
     "MODALIDAD",
     "FECHA DE INICIO",
+    "INSTITUCION",
+    "EMAIL",
+    "DIRECCION",
+    "TELEFONO",
+    "CELULAR",
+    "HORARIO"
 );
+
 $row=7;
 $col=0;
 
