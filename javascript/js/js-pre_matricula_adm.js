@@ -35,11 +35,15 @@ CargaSemestre=function(){
 	}	
 	//carreraDAO.cargarSemestreG(sistema.llenaSelect,'slct_semestre','');	
 }
-
+/**
+ * Fila del grupo
+ * @param obj
+ * @constructor
+ */
 VisualizarGruposHTML=function(obj){
 	var htm="";	
 	for(i=0;i<obj.length;i++){
-	htm+="<tr id='trg-"+obj[i].id.split(",").join("-")+"' class='ui-widget-content jqgrow ui-row-ltr' "+ 
+	htm+="<tr id='trg-"+obj[i].id.split(",").join("-")+"' class='vGrupo ui-widget-content jqgrow ui-row-ltr' "+
 			 "onClick='sistema.selectorClass(this.id,"+'"'+"lista_grupos"+'"'+");' "+
 			 "onMouseOut='sistema.mouseOut(this.id)' onMouseOver='sistema.mouseOver(this.id)'>";
 	htm+="<td width='90' class='t-center'>"+obj[i].dfilial+"</td>";
@@ -67,6 +71,11 @@ VisualizarGruposHTML=function(obj){
         '        	 PDF'+
         '       </a>'+
         ' 	</div>'+
+
+
+		'	<div style="margin:15px 0px 10px 0px;">'+ // Button constancia Ingreso
+		'		<a onClick="ExportarGrupoConstancias('+"'"+obj[i].id+"','','"+obj[i].total+"'"+')" class="btn btn-azul sombra-3d t-blanco" href="javascript:void(0)">'+ ' CONSTANCIAS'+ '</a>'+
+		'</div>'+
 		'</td>';
 	htm+="</tr>";
 	}
@@ -81,11 +90,16 @@ VisualizarDetalle=function(ids){
 	grupoAcademicoDAO.cargarAlumnos(VisualizarDetalleHTML,ids);
 }
 
+/**
+ * Vista del detalle del grupo
+ * @param obj
+ * @constructor
+ */
 VisualizarDetalleHTML=function(obj){
 	var htm="";	
 	var idgrupo='';
 	for(i=0;i<obj.length;i++){
-	htm+="<tr id='trg-"+obj[i].cingalu+"' class='ui-widget-content jqgrow ui-row-ltr' "+ 
+	htm+="<tr id='trg-"+obj[i].cingalu+"' class='vdetalle ui-widget-content jqgrow ui-row-ltr' "+
 			 "onClick='sistema.selectorClass(this.id,"+'"'+"lista_alumnos"+'"'+");' "+
 			 "onMouseOut='sistema.mouseOut(this.id)' onMouseOver='sistema.mouseOver(this.id)'>";
 	if(obj[i].cestado=='Activo'){
@@ -196,23 +210,14 @@ ExportarGrupo2PDF=function(grupo){
 		return this.value;		
 		}
     }).get().join(",");
-	//alert(alumnos);
-	
+
 	if(act==true && contador<=30){
-	// window.location='../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
- //                	+grupo+'&cingalu='+alumnos+
-	// 				'&csemaca='+$("#slct_semestre").val()+
-	// 				'&cfilial='+$("#slct_filial").val()+
-	// 				'&cinstit='+$("#slct_instituto").val();
 	window.open('../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
                 	+grupo+'&cingalu='+alumnos+
 					'&csemaca='+$("#slct_semestre").val()+
 					'&cfilial='+$("#slct_filial").val()+
 					'&cinstit='+$("#slct_instituto").val(), "_blank");
 	}
-	// else if(act==true && contador>30){
-	// sistema.msjAdvertencia("El max para enviar es de 30 ud selecciono "+contador,3000);
-	// }
 	else{
 	sistema.msjAdvertencia("Seleccione almenos un registro",3000);
 	}
@@ -232,39 +237,33 @@ ExportarGrupo=function(grupo,alumno,t){
 }
 
 ExportarGrupoPDF=function(grupo,alumno,t){
-	// if(t<=30){
-	// window.location='../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
- //                	+grupo+'&cingalu='+alumno+
-	// 				'&csemaca='+$("#slct_semestre").val()+
-	// 				'&cfilial='+$("#slct_filial").val()+
-	// 				'&cinstit='+$("#slct_instituto").val();
 
 	window.open('../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
                 	+grupo+'&cingalu='+alumno+
 					'&csemaca='+$("#slct_semestre").val()+
 					'&cfilial='+$("#slct_filial").val()+
 					'&cinstit='+$("#slct_instituto").val() , "_blank");				
-	// }
-	// else{
-	// sistema.msjAdvertencia("El max para enviar es de 30 ud tiene "+t,3000);
-	// }
+
+}
+
+ExportarGrupoConstancias=function(grupo){
+
+	window.open('../reporte/pdf/PDFConstanciaIngreso.php?' +
+		'cgracpr='+grupo+
+		'&csemaca='+$("#slct_semestre").val()+
+		'&txt_resolucion='+$("#txt_resolucion").val()+
+		'&txt_fecha_constancia='+$("#txt_fecha_constancia").val()+
+		'&txt_nombre_institucion='+$("#txt_nombre_institucion").val()
+		, "_blank");
+
 }
 
 ExportarGrupoWORD=function(grupo,alumno,t){
-	// if(t<=30){
-	// window.location='../reporte/pdf/PDFpreMatriculaAdm.php?cgracpr='
-	//                	+grupo+'&cingalu='+alumno+
-	// 				'&csemaca='+$("#slct_semestre").val()+
-	// 				'&cfilial='+$("#slct_filial").val()+
-	// 				'&cinstit='+$("#slct_instituto").val();
 
 	window.open('../reporte/word/WORDConstanciaIngreso.php?cgracpr='
 	+grupo+'&cingalu='+alumno+
 	'&csemaca='+$("#slct_semestre").val()+
 	'&cfilial='+$("#slct_filial").val()+
 	'&cinstit='+$("#slct_instituto").val() , "_blank");
-	// }
-	// else{
-	// sistema.msjAdvertencia("El max para enviar es de 30 ud tiene "+t,3000);
-	// }
+
 }
