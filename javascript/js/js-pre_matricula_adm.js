@@ -248,7 +248,13 @@ ExportarGrupoPDF=function(grupo,alumno,t){
 
 ExportarGrupoConstancias=function(grupo){
 
-	window.open('../reporte/pdf/PDFConstanciaIngreso.php?cgracpr='+grupo+'&csemaca='+$("#slct_semestre").val(), "_blank");
+	window.open('../reporte/pdf/PDFConstanciaIngreso.php?' +
+		'cgracpr='+grupo+
+		'&csemaca='+$("#slct_semestre").val()+
+		'&txt_resolucion='+$("#txt_resolucion").val()+
+		'&txt_fecha_constancia='+$("#txt_fecha_constancia").val()+
+		'&txt_nombre_institucion='+$("#txt_nombre_institucion").val()
+		, "_blank");
 
 }
 

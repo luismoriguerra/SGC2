@@ -52,19 +52,17 @@ $meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto
 
 $cgracpr = $_GET['cgracpr'];
 
-//$cingalu = $_GET['cingalu'];
 $semestre = $_GET['csemaca'];
+
+$txt_resolucion = $_GET['txt_resolucion'];
+$txt_fecha_constancia = $_GET['txt_fecha_constancia'];
+$txt_nombre_institucion = $_GET['txt_nombre_institucion'];
 
 //Carrera del grupo
 $sql = "select c.dcarrer carrera from gracprp g inner join carrerm c on c.ccarrer = g.ccarrer where g.cgracpr = '$cgracpr'";
 $cn->setQuery($sql);
 $carrera=$cn->loadObjectList();
 
-// Resolucion del grupo
-$sql = "select s.resoluc from semacan s inner join gracprp g on g.csemaca = s.csemaca where s.csemaca = g.csemaca
-    and s.cinicio = g.cinicio and g.cfilial = s.cfilial and g.cinstit = s.cinstit and g.cgracpr = '$cgracpr' limit 1";
-$cn->setQuery($sql);
-$res=$cn->loadObjectList();
 
 $url_template = 'template/constanciaMatricula.php';
 $html_template = file_get_contents($url_template);
@@ -86,11 +84,12 @@ foreach ($alumnos as $row ) {
     $variables = array(
         "{{nombre}}"=> $nombre[0]["nombre"],
         "{{carrera}}"=> $carrera[0]["carrera"],
-        "{{resoluc}}"=> $res[0]["resoluc"],
+        "{{resoluc}}"=> $txt_resolucion,
         "{{semestre}}"=> explode("|", $semestre)[0],
-        "{{dia}}"=> date('d'),
-        "{{mes}}"=> $meses[date('m')*1],
-        "{{anio}}"=> date('Y'),
+        "{{dia}}"=> explode('-',$txt_fecha_constancia)[2],
+        "{{mes}}"=> $meses[explode('-',$txt_fecha_constancia)[1]*1],
+        "{{anio}}"=> explode('-',$txt_fecha_constancia)[0],
+        "{{nombre_institucion}}"=> $txt_nombre_institucion,
     );
 
     $html = str_replace(array_keys($variables), array_values($variables), $html_template);

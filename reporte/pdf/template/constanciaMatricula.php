@@ -20,7 +20,7 @@
     <br>
 
     <div style="font-size: 2em; font-weight: bold;">
-        LA UNIVERSIDAD PRIVADA TELESUP
+        {{nombre_institucion}}
     </div>
 
     <br>
