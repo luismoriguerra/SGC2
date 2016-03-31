@@ -83,6 +83,7 @@ SELECT
     ), 
      ' de ',h.hinici,' - ',h.hfin
   ) as horario
+, IF(i.cestado=1,'Activo','Inactivo') estado
 FROM gracprp g
 JOIN (SELECT @curRow := 0) r
 INNER JOIN horam h on h.chora=g.chora 
@@ -227,7 +228,8 @@ $cabecera = array(
     "DIRECCION",
     "TELEFONO",
     "CELULAR",
-    "HORARIO"
+    "HORARIO",
+    "ESTADO"
 );
 
 $row=7;

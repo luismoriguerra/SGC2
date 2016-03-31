@@ -42,6 +42,11 @@ $(document).ready(function(){
 	
 })
 
+CargarInicio=function(){
+	var datos=$("#slct_semestre option:selected").text();
+	$("#cinicio").val( datos.split("|")[1] );
+}
+
 seleccionarboletas= function(){
 $("#slct_tipo_documento_ins").val("B");
 $("#slct_tipo_documento").val("B");
@@ -73,7 +78,7 @@ cargarModalidadIngreso=function(){
 
 listarSemestre=function(){
 	if($.trim($("#slct_local_instituto").val())!="" && $.trim($("#slct_local_estudio").val())!=""){
-	carreraDAO.cargarSemestre(sistema.llenaSelect,'slct_semestre','');
+	carreraDAO.cargarSemestreIns(sistema.llenaSelect,'slct_semestre','');
 	}
 }
 
@@ -93,24 +98,16 @@ ListarGrupoAcademico=function(obj){
 	var htm="";
 	var totalmatriculados,vacantes,indices;
 	$.each(obj,function(index,value){
-		htm+="<tr id='trg-"+value.id+"' class='ui-widget-content jqgrow ui-row-ltr' "+ 
+		htm+="<tr style='height:35px;' id='trg-"+value.id+"' class='ui-widget-content jqgrow ui-row-ltr' "+ 
 			 "onClick='sistema.selectorClass(this.id,"+'"'+"lista_grupos"+'"'+");cargarConcepto();cargarConceptoIns();PrepararPagos();Limpiarpagos();' "+
 			 "onMouseOut='sistema.mouseOut(this.id)' onMouseOver='sistema.mouseOver(this.id)'>";
-		htm+="<td width='80px' class='t-center'>"+value.dturno+"</td>";
-		htm+="<td width='205px' class='t-left'>"+value.dcarrer+"</td>";
-		htm+="<td width='100px' class='t-center'>"+value.csemaca+"</td>";
-		htm+="<td width='55px' class='t-center'>"+value.cinicio+"</td>";
-		htm+="<td width='100px' class='t-center'>"+value.finicio+"</td>";
+		htm+="<td width='78px' class='t-center'>"+value.dturno+"</td>";
+		htm+="<td width='240px' class='t-left'>"+value.dcarrer+"</td>";
+		htm+="<td width='83px' class='t-center'>"+value.csemaca+"</td>";
+		htm+="<td width='45px' class='t-center'>"+value.cinicio+"</td>";
+		htm+="<td width='95px' class='t-center'>"+value.finicio+"</td>";
 		htm+="<td width='210px' class='t-left'>"+value.horario+"</td>";
-		htm+="<td width='80px' class='t-center'>"+value.nmetmat+"</td>";
-		htm+="<td width='80px' class='t-center'>"+value.menor+"</td>";
-		htm+="<td width='80px' class='t-center'>"+value.mayor+"</td>";
-		totalmatriculados=value.total-(value.mayor*1+value.menor*1);
-		vacantes=value.nmetmat-totalmatriculados-(value.mayor/2);
-		indices=Math.round((1-(vacantes/value.nmetmat))*100);
-		htm+="<td width='80px' class='t-center'>"+totalmatriculados+"</td>";
-		htm+="<td width='80px' class='t-center'>"+vacantes+"</td>";
-		htm+="<td width='80px' class='t-center'>"+indices+" %"+"</td>";
+		htm+="<td width='69px' class='t-center'>"+value.nmetmat+"</td>";
 		htm+="</tr>";
 	});
 	$("#lista_grupos").html(htm);
@@ -821,7 +818,7 @@ seleccionarboletas();
   sistema.msjAdvertencia('Ingrese <b>Código del Libro</b> a inscribir');
   error="ok";
   }
-  else if($.trim($("#txt_codigo_ficha_insc1").val())==""){
+  /*else if($.trim($("#txt_codigo_ficha_insc1").val())==""){
   $("#txt_codigo_ficha_insc1").focus();
   sistema.msjAdvertencia('Ingrese <b>Serie : Código Ficha de Inscripción</b> a inscribir');
   error="ok";
@@ -830,7 +827,7 @@ seleccionarboletas();
   $("#txt_codigo_ficha_insc2").focus();
   sistema.msjAdvertencia('Ingrese <b>Número : Código Ficha de Inscripción</b> a inscribir');
   error="ok";
-  }
+  }*/
   else if($.trim($("#id_cperson").val())==""){
   sistema.msjAdvertencia('Busque y seleccione <b>Persona</b> a inscribir');
   error="ok";

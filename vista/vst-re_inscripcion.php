@@ -108,9 +108,10 @@
                         <tr>
                             <td class="ui-state-default"><span class="t-rojo">*</span>Ciclo Académico:</td>
                             <td>
-                            	<select id="slct_semestre" class="input-medium">
+                            	<select id="slct_semestre" onChange='CargarInicio();' class="input-medium">
                                 <option value="">--Selecione--</option>
                                 </select>
+                                <input type='hidden' id='cinicio' value=''>
                             </td>
                         </tr>                        
                         <tr>
@@ -121,19 +122,14 @@
                                	<div class="corner_top ui-state-default" style="font-weight:bold">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr class="" align="center">                              
-                                        <td class="t-center " width="65px">TURNO</td>
-                                        <td class="t-center " width="195px" >CARRERA</td>
-                                        <td class="t-center " width="55px">CICLO ACADEMICO</td>
+                                        <td class="t-center " width="75px">TURNO</td>
+                                        <td class="t-center " width="250px" >CARRERA</td>
+                                        <td class="t-center " width="70px">CICLO ACADEMICO</td>
                                         <td class="t-center " width="42px" >INICIO</td>
-                                        <td class="t-center " width="95px" >FECHA<BR>INICIO</td>
-                                        <td class="t-center " width="170px" >HORARIO</td>
-                                        <td class="t-center " width="55px" >META A<BR>MATR.</td>
-                                        <td class="t-center " width="40px" >INSC. SIN<BR>POSI. A<BR>MATRIC</td>
-                                        <td class="t-center " width="40px" >INSC. CON<BR>POSI. A<BR>MATRIC</td>
-                                        <td class="t-center " width="40px" >MATRIC.</td>
-                                        <td class="t-center " width="40px" >VACANTES</td>
-                                        <td class="t-center " width="40px" >INDICE<BR>MATRIC.</td>
-                                   	</tr>
+                                        <td class="t-center " width="95px" >FECHA INICIO</td>
+                                        <td class="t-center " width="200px" >HORARIO</td>
+                                        <td class="t-center " width="70px" >META A MATR.</td>
+                                    </tr>
                                 </table>
                                 </div>
                                 <div class="ui-widget-content_jqgrid" style="overflow: auto;height: 200px">
@@ -154,7 +150,7 @@
                             <td class="ui-state-default"><span class="t-rojo">*</span>Código de Libro:</td>
                             <td><input type="text" id="txt_codigo_libro_cod" maxlength="5" class="input-mini" disabled><input type="text" onKeyPress="return sistema.validaNumeros(event)" onBlur="sistema.lpad(this.id,'0',5)" id="txt_codigo_libro" maxlength="5" class="input-mini"></td>
                         </tr>
-                        <tr>
+                        <tr style='display:none'>
                             <td class="ui-state-default"><span class="t-rojo">*</span>Código de Ficha Insc.:</td>
                             <td>SERIE<input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" id="txt_codigo_ficha_insc1" onBlur="sistema.lpad(this.id,'0',3)" maxlength="3" class="input-mini">&nbsp;NRO<input type="text" onKeyPress="return sistema.validaAlfanumerico(event)" onBlur="sistema.lpad(this.id,'0',8)" id="txt_codigo_ficha_insc2" maxlength="8" class="input-mini"></td>
                         </tr>
