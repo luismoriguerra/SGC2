@@ -53,6 +53,10 @@ $meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto
 $cgracpr = $_GET['cgracpr'];
 
 $semestre = $_GET['csemaca'];
+$sem=explode("|", $semestre)[0];
+$buscar=array('-1','-2','-3','-4');
+$reemplazar=array('-I','-II','-III','-IV');
+$sem=str_replace($buscar,$reemplazar,$sem);
 
 $txt_resolucion = $_GET['txt_resolucion'];
 $txt_fecha_constancia = $_GET['txt_fecha_constancia'];
@@ -85,7 +89,7 @@ foreach ($alumnos as $row ) {
         "{{nombre}}"=> $nombre[0]["nombre"],
         "{{carrera}}"=> $carrera[0]["carrera"],
         "{{resoluc}}"=> $txt_resolucion,
-        "{{semestre}}"=> explode("|", $semestre)[0],
+        "{{semestre}}"=> $sem,
         "{{dia}}"=> explode('-',$txt_fecha_constancia)[2],
         "{{mes}}"=> $meses[explode('-',$txt_fecha_constancia)[1]*1],
         "{{anio}}"=> explode('-',$txt_fecha_constancia)[0],

@@ -19,7 +19,7 @@ $az=array(  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 ,'BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL'
 ,'CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP'
 ,'DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ','EA','EB','EC','ED','EF','EG','EH','EI','EJ','EK','EL','EM','EN','EO','EP','EQ','ER','ES','ET','EU');
-$azcount=array( 5,15,40,15,35,15,10,20,15,15,15,28,40,15,15,15,28,15,15,15,15,15,15,15,15,15,15,15,15,15
+$azcount=array( 5,15,40,8.5,15,35,15,10,20,15,15,15,28,40,15,15,15,28,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
@@ -64,6 +64,7 @@ SELECT
 @curRow := @curRow + 1 AS indice
 , i.dcodlib inscripcion
 , CONCAT(p.dappape, ' ',p.dapmape , ' ',p.dnomper ) nombres
+, p.tsexo
 , f.dfilial
 , c.dcarrer
 , g.csemaca
@@ -224,6 +225,7 @@ $cabecera = array(
    "NRO",
    "NRO DE INSCRIPCION",
     "APELLIDOS Y NOMBRES",
+    "GENERO",
     "ODE",
     "CARRERA A LA POSTULA",
     "SEMESTRE",

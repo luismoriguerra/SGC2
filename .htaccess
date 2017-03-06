@@ -1,0 +1,22 @@
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Configure el paquete “ea-php70” como el lenguaje de programación predeterminado “PHP”.
+<IfModule mod_php7.c>
+  php_value upload_max_filesize 513M
+  php_value post_max_size 513M
+  php_value memory_limit 512M
+  php_value mbstring.func_overload 0
+  php_value default_charset 'UTF-8'
+  php_value output_buffering 0
+  php_value short_open_tag 1
+  <IfModule mod_env.c>
+    SetEnv htaccessWorking true
+  </IfModule>
+</IfModule>
+ <IfModule mod_php5.c>
+   php_value short_open_tag 1
+ </IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

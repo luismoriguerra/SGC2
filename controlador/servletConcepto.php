@@ -25,10 +25,7 @@ class servletConcepto extends controladorComandos{
 				$data['cgruaca']=trim($_POST['cgruaca']);
 				$data['nprecio']=trim($_POST['nprecio']);
                 echo json_encode($daoConcepto->cargarConceptoPension($data));
-            break;			
-    		default:
-                echo json_encode(array('rst'=>3,'msj'=>'Accion POST no encontrada'));
-				break;
+            break;
 			case 'cargar_cuentas_ingreso':
 				$data=array();
 				$data['validacuentas']=trim($_POST['validacuentas']);			

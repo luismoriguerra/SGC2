@@ -11,35 +11,28 @@
     <br>
     <br>
     <br>
-    <h1 style="font-size: 3.5em; padding-top: 300px;">
-        CONSTANCIA DE
-    </h1>
-    <h1 style="font-size: 3.5em; line-height: 0.1em;">
-        INGRESO
+    <h1 style="font-size: 1.7em; font-weight: bold; padding-top: 300px;">
+        LA UNIVERSIDAD PRIVADA TELESUP OTORGA LA PRESENTE
     </h1>
     <br>
-
-    <div style="font-size: 2em; font-weight: bold;">
-        {{nombre_institucion}}
-    </div>
-
+    <br>
     <br>
     <div style="font-size: 2.5em; font-weight: bold;">
-        HACE CONSTAR:
+        CONSTANCIA DE INGRESO
     </div>
 
     <br>
 
     <div style="font-size: 1.5em; line-height: 1.5em; text-align: justify;">
-        Que el(a) Sr(ta). <strong>{{nombre}}</strong>,
-        ha ingresado a la  UNIVERSIDAD PRIVADA TELESUP a la Carrera Profesional de
-        <strong>{{carrera}}</strong> mediante proceso de ADMISION en el semestre
-        <strong>{{semestre}}</strong>, refrendada mediante
+        A el(a) Sr(ta). <strong>{{nombre}}</strong>,
+        por haber ingresado a la Carrera Profesional de
+        <strong>{{carrera}}</strong> en el proceso de admisión del semestre académico 
+        <strong>{{semestre}}</strong>, conforme consta de la 
         <strong>Resolución Nº {{resoluc}}</strong>.
         <br>
         <br>
         Se expide la presente <strong>CONSTANCIA</strong>,
-        a solicitud del (a) interesado(a) para los fines que estime conveniente.
+        para los fines que el(a) interesado(a) estime convenientes.
         <br>
        <div style="text-align: right">
            Lima, {{dia}} de {{mes}} del {{anio}}
@@ -57,10 +50,10 @@
     <br>
 
     <div style="font-size: 1.4em; font-weight: bold;">
-        <hr style="width: 28%">
-        Dr. Luis Colan Villegas
+        <hr style="width: 50%">
+        ABG. CARMELA DEL PILAR ALAY PAZ
         <br>
-        Vice Rector
+        Vicerrectora Académica(e)
         <br>
         Universidad Privada Telesup
     </div>

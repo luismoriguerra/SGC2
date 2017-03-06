@@ -28,10 +28,9 @@ $dvendedor=$_GET['dvendedor'];
 $copeven=str_replace(",","','",$_GET['copeven']);
 $fechafin = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["fin"];
 $fechainicio = $_GET['anio'] . "-" . str_pad((int)$_GET["mes"] + 1 , 2, '0',STR_PAD_LEFT) . "-" . $_GET["ini"];
+$diaFinalDeCalculo = date("Y-m-t", strtotime($fechainicio));
 if (date("m") == date("m", strtotime($fechainicio))){
 	$diaFinalDeCalculo = date("Y-m-d");
-} else {
-	$diaFinalDeCalculo = date("Y-m-t", strtotime($fechainicio));
 }
 $diastotales = date("Y-m-d" , strtotime("+1 month",strtotime($fechainicio)));
 $diastotales = date("d" , strtotime("-1 day",strtotime($diastotales)));
@@ -71,7 +70,7 @@ for ($i = 0; $i < $cantidadDias ; $i++) {
 			 $sql_column_count
 			,v.codintv,v.fingven, v.sueldo pago
 			,(select count(*) faltas from venfala
-				where cvended = v.cvended and cestado = 1 and diafalt between '$mesPrimerDia' and '$mesUltimoDia'
+				where cvended = v.cvended and cestado = 1 and diafalt between '$mesPrimerDia' and '$diaFinalDeCalculo'
 			) faltas
         FROM instita i
 		INNER JOIN vendedm v
