@@ -127,5 +127,15 @@ class MySqlCronogramaDAO{
 			return array('rst'=>'1','msj'=>'Cambios guardados correctamente');exit();
 		}
 	}
+
+	public function autoCronograma($r){
+        $db=creadorConexion::crear('MySql');
+		
+		$sqlmodal = "CALL Cronoauto('".$r['semestre']."')";
+		$db->setQuery($sqlmodal);
+		$r=$db->loadObjectList();
+
+		return array('rst'=>'1','msj'=>'Cronograma Realizado automáticamente');exit();
+	}
 }
 ?>

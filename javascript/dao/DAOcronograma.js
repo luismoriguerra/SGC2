@@ -46,7 +46,26 @@ var cronogramaDAO={
             },
             error: this.msjErrorAjax
         });
-	},	
+	},
+    autoCronograma: function(datos){
+        $.ajax({
+            url : this.url,
+            type : 'POST',
+            async:false,//no ejecuta otro ajax hasta q este termine
+            dataType : 'json',
+            data : datos,
+            beforeSend : function ( ) {
+                sistema.abreCargando();
+            },
+            success : function ( obj ) {
+                sistema.cierraCargando();
+                if(obj.rst=='1'){
+                    sistema.msjOk(obj.msj);
+                }
+            },
+            error: this.msjErrorAjax
+        });
+    },	
 	
 	msjErrorAjax:function(){
         sistema.msjErrorCerrar('Error General, pongase en contacto con Sistemas');

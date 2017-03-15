@@ -24,6 +24,11 @@ class servletCronograma extends controladorComandos{
 				$data['cfilialx']=trim($_POST['cfilialx']);
                 echo json_encode($daoCronograma->insertarCronograma($data));
             break;
+            case 'autocronograma':
+            	$data=array();
+            	$data['semestre']=trim($_POST['semestre']);
+            	echo json_encode($daoCronograma->autoCronograma($data));
+            break;
     		default:
                 echo json_encode(array('rst'=>3,'msj'=>'Accion POST no encontrada'));
 				break;
