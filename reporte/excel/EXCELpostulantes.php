@@ -93,16 +93,23 @@ SELECT
     )
 ) tcolegi
 ,dcolpro
+,u.nombre distrito
+,t.dtipcap
+,If(i.cpromot!='',(Select concat(v.codintv,' - ',v.dapepat,' ',v.dapemat,', ',v.dnombre) From vendedm v Where v.cvended=i.cpromot),
+    If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
+        If(i.destica!='',i.destica,''))) As detalle_captacion
 FROM gracprp g
 JOIN (SELECT @curRow := 0) r
 INNER JOIN horam h on h.chora=g.chora 
 INNER JOIN conmatp co on co.cgruaca = g.cgracpr
 INNER JOIN ingalum i on i.cingalu = co.cingalu
+INNER JOIN tipcapa t On (i.ctipcap = t.ctipcap)
 INNER JOIN personm p on p.cperson = i.cperson
 INNER JOIN carrerm c on c.ccarrer = g.ccarrer
 INNER JOIN modinga mo on mo.cmoding = i.cmoding
 INNER JOIN filialm f on f.cfilial = g.cfilial
 INNER JOIN instita ins on ins.cinstit=g.cinstit
+LEFT JOIN ubigeo u ON u.coddist=p.coddist AND u.codprov=p.codprov AND u.coddpto=p.coddpto
 where 1 = 1
  ". $where;
 
@@ -242,6 +249,9 @@ $cabecera = array(
     "ESTADO",
     "REGIMEN",
     "COLEGIO DE PROCEDENCIA",
+    "DISTRITO",
+    'MEDIO DE CAPTACION',
+    'RESPONSABLE DE CAPTACION'
 );
 
 $row=7;

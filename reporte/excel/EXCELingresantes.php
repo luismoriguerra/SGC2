@@ -72,6 +72,7 @@ select
 , p.ndniper dni
 , mo.dmoding modalidad
 , g.finicio
+, u.nombre distrito
 ,(select max(estasist) asistio from aluasist where idseing=s.id) asistio
 from gracprp g
 JOIN (SELECT @curRow := 0) r
@@ -82,6 +83,7 @@ inner join carrerm c on c.ccarrer = g.ccarrer
 inner join modinga mo on mo.cmoding = i.cmoding
 inner join filialm f on f.cfilial = g.cfilial
 left JOIN seinggr s On (s.cgrupo = g.cgracpr and s.cingalu = i.cingalu)
+LEFT JOIN ubigeo u ON u.coddist=p.coddist AND u.codprov=p.codprov AND u.coddpto=p.coddpto
 where 1 = 1
 
  ". $where;
@@ -212,6 +214,7 @@ $cabecera = array(
     "NRO DE DOCUMENTO",
     "MODALIDAD",
     "FECHA DE INICIO",
+    "DISTRITO",
 );
 $row=7;
 $col=0;
