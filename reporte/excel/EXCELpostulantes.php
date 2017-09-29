@@ -75,6 +75,9 @@ SELECT
 , ins.dinstit
 , p.email1
 , p.ddirper
+, ud.nombre distrito
+, up.nombre provincia
+, ut.nombre departamento
 , p.ntelper
 , p.ntelpe2
 , CONCAT(
@@ -93,13 +96,17 @@ SELECT
     )
 ) tcolegi
 ,dcolpro
-,u.nombre distrito
+,ud2.nombre distrito2
+,up2.nombre provincia2
+,ut2.nombre departamento2
 ,t.dtipcap
 ,If(i.cpromot!='',(Select concat(v.codintv,' - ',v.dapepat,' ',v.dapemat,', ',v.dnombre) From vendedm v Where v.cvended=i.cpromot),
     If(i.cmedpre!='',(Select m.dmedpre From medprea m Where m.cmedpre=i.cmedpre limit 1),
         If(i.destica!='',i.destica,''))) As detalle_captacion
+,ep.desgrpr est_grupo
 FROM gracprp g
 JOIN (SELECT @curRow := 0) r
+INNER JOIN esgrpra ep on ep.cesgrpr=g.cesgrpr
 INNER JOIN horam h on h.chora=g.chora 
 INNER JOIN conmatp co on co.cgruaca = g.cgracpr
 INNER JOIN ingalum i on i.cingalu = co.cingalu
@@ -109,7 +116,12 @@ INNER JOIN carrerm c on c.ccarrer = g.ccarrer
 INNER JOIN modinga mo on mo.cmoding = i.cmoding
 INNER JOIN filialm f on f.cfilial = g.cfilial
 INNER JOIN instita ins on ins.cinstit=g.cinstit
-LEFT JOIN ubigeo u ON u.coddist=p.coddist AND u.codprov=p.codprov AND u.coddpto=p.coddpto
+LEFT JOIN ubigeo ud ON ud.coddist=p.coddist AND ud.codprov=p.codprov AND ud.coddpto=p.coddpto
+LEFT JOIN ubigeo up ON up.coddist=0 AND up.codprov=p.codprov AND up.coddpto=p.coddpto
+LEFT JOIN ubigeo ut ON ut.coddist=0 AND ut.codprov=0 AND ut.coddpto=p.coddpto
+LEFT JOIN ubigeo ud2 ON ud2.coddist=p.cdiscol AND ud2.codprov=p.cprvcol AND ud2.coddpto=p.cdptcol
+LEFT JOIN ubigeo up2 ON up2.coddist=0 AND up2.codprov=p.cprvcol AND up2.coddpto=p.cdptcol
+LEFT JOIN ubigeo ut2 ON ut2.coddist=0 AND ut2.codprov=0 AND ut2.coddpto=p.cdptcol
 where 1 = 1
  ". $where;
 
@@ -243,13 +255,18 @@ $cabecera = array(
     "INSTITUCION",
     "EMAIL",
     "DIRECCION",
+    "DISTRITO",
+    "PROVINCIA",
+    "DEPARTAMENTO",
     "TELEFONO",
     "CELULAR",
     "HORARIO",
     "ESTADO",
     "REGIMEN",
     "COLEGIO DE PROCEDENCIA",
-    "DISTRITO",
+    "DISTRITO2",
+    "PROVINCIA2",
+    "DEPARTAMENTO2",
     'MEDIO DE CAPTACION',
     'RESPONSABLE DE CAPTACION'
 );
