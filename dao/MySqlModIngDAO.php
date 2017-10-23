@@ -50,7 +50,7 @@ class MySqlModIngDAO{
 		
         if(count($data)>0){echo json_encode(array('rst'=>'2','msj'=>'<b>Modalidad de Ingreso</b> ya existe'));exit();}
         /********************/	
-		$sqlver1="SELECT RIGHT(CONCAT('00',CONVERT( IFNULL(MAX(cmoding),'0')+1, CHAR)),2) As cmoding
+		$sqlver1="SELECT RIGHT(CONCAT('000',CONVERT( IFNULL(MAX(cmoding),'0')+1, CHAR)),3) As cmoding
 				  FROM modinga";
 		$db->setQuery($sqlver1);
 		$cmoding=$db->loadObjectList();	 
@@ -74,7 +74,7 @@ class MySqlModIngDAO{
             return array('rst'=>'1','msj'=>'Modalidad de Ingreso Ingresado');
         }else{
 			$db->rollbackTransaccion();
-            return array('rst'=>'3','msj'=>'Error al procesar Query');
+            return array('rst'=>'3','msj'=>'Error al procesar Query','sql'=>$sql);
         }   
     }
 	
