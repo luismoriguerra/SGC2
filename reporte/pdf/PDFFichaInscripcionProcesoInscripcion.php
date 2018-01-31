@@ -24,12 +24,18 @@ if (isset($cingalu) AND trim($cingalu) != "") {
 
 
 // inhibit DOMPDF's auto-loader
-define('DOMPDF_ENABLE_AUTOLOAD', false);
 /*
+define('DOMPDF_ENABLE_AUTOLOAD', false);
 require_once('../../php/includes/dompdf/include/autoload.inc.php');
-*/
 require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/autoload.inc.php');
+*/
+
+require_once 'dompdf/lib/html5lib/Parser.php';
+require_once 'dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once 'dompdf/lib/php-svg-lib/src/autoload.php';
+require_once 'dompdf/src/Autoloader.php';
+Dompdf\Autoloader::register();
 
 
 $variables = array(
@@ -136,12 +142,14 @@ $variables = array(
 
 );
 
+use Dompdf\Dompdf;
+
 $html = file_get_contents('template/fichaInscripcion.php');
 $html = str_replace(array_keys($variables), array_values($variables), $html);
 //print $html;
 //die();
 $dompdf = new Dompdf();
-$dompdf->load_html($html);
+$dompdf->loadHtml($html);
 $dompdf->render();
 
 $dompdf->stream("fichaInscripcion.pdf", array("Attachment"=>0));
