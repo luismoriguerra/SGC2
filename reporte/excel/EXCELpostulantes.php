@@ -27,8 +27,15 @@ $azcount=array( 5,15,40,8.5,15,35,15,10,20,15,15,15,28,40,15,15,15,28,15,15,15,1
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15
 ,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
 
-$cingalu=$_GET['cingalu'];
-$cgracpr=$_GET['cgracpr'];
+
+$cingalu='';
+$cgracpr='';
+if( isset($_GET['cingalu']) ){
+    $cingalu=$_GET['cingalu'];
+}
+if( isset($_GET['cingalu']) ){
+    $cgracpr=$_GET['cgracpr'];
+}
 $cusuari=$_GET['usuario'];
 $alumno="";
 
