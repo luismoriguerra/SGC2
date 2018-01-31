@@ -41,33 +41,30 @@ $fechfin=$_GET['fechfin'];
 $where='';
 $order=" ORDER BY p.dappape ASC, p.dapmape ASC, p.dnomper ASC, p.cperson DESC";
 
-if($cingalu!=""){
-$alumno=" AND c.cingalu='".$cingalu."' ";
-}
 
 if($cgracpr!=''){
-$where=" WHERE c.cgruaca in ('".str_replace(",","','",$cgracpr)."') ".$alumno;
+	$where=" WHERE c.cgruaca in ('".str_replace(",","','",$cgracpr)."') ".$alumno;
 }
 else{//AND CONCAT(g.csemaca,' | ',g.cinicio) in ('".$csemaca."')
-$where=" 	WHERE g.cfilial in ('".$cfilial."') 
-			AND g.cinstit in ('".$cinstit."')";		 
-
+	$where=" 	WHERE g.cfilial in ('".$cfilial."') 
+				AND g.cinstit in ('".$cinstit."')";		 
 	if($fechini!='' and $fechfin!=''){
-$where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
+		$where.=" AND date(g.finicio) between '".$fechini."' and '".$fechfin."' ";
 	}
+}
 
-	if($orden!=''){
-$order=" ORDER BY ".$orden;
-	}
-	else{
-$where.=" AND g.cinstit='".$cinstit."' ";
-	}
-		 
+if($orden!=''){
+	$order=" ORDER BY ".$orden;
+}
+
+if($cingalu!=""){
+	$alumno=" AND c.cingalu='".$cingalu."' ";
 }
 
 
 //DATA DE LAS CLASES DEL GRUPO
-$sql="select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue from gracprp g where g.cgracpr = '$cgracpr';";
+$sql="	select CONCAT(finicio,'|',ffin) fgrupos ,DATE_FORMAT(now(),'%Y-%m-%d') fhoy ,if(finicio> now() , 0,1) estado ,cfrecue 
+		from gracprp g ".$where;
 
 $cn->setQuery($sql);
 $data=$cn->loadObject();
