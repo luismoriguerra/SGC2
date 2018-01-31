@@ -31,10 +31,10 @@ require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/autoload.inc.php');
 */
 
-require_once 'dompdf/lib/html5lib/Parser.php';
-require_once 'dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
-require_once 'dompdf/lib/php-svg-lib/src/autoload.php';
-require_once 'dompdf/src/Autoloader.php';
+require_once '../../php/includes/dompdf/lib/html5lib/Parser.php';
+require_once '../../php/includes/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once '../../php/includes/dompdf/lib/php-svg-lib/src/autoload.php';
+require_once '../../php/includes/dompdf/src/Autoloader.php';
 Dompdf\Autoloader::register();
 
 
