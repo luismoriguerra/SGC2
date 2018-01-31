@@ -4,9 +4,10 @@ set_time_limit(3000);
 ini_set('memory_limit','1024M');
 
 //
+/*
 error_reporting(E_ALL);
 ini_set("display_errors", true);
-
+*/
 
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
@@ -310,7 +311,7 @@ $objPHPExcel->getActiveSheet()->getStyle(colrow($az, 0, 3) . ":" .  colrow($az, 
 $row = 7;
 $col = 0;
 $cont = 0;
-/*foreach($control As $r){
+foreach($control As $r){
     $row++; // INICIA EN 4
     $paz=0; // columna
     $cont++;
@@ -320,7 +321,7 @@ $cont = 0;
 
     }
 }
-*/
+
 $objPHPExcel->getActiveSheet()->getStyle('A7:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Postulantes');
