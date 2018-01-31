@@ -4,8 +4,8 @@ set_time_limit(3000);
 ini_set('memory_limit','3072M');
 
 //
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 
 require_once '../../conexion/MySqlConexion.php';
