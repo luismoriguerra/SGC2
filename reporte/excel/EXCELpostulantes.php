@@ -310,7 +310,7 @@ $objPHPExcel->getActiveSheet()->getStyle(colrow($az, 0, 3) . ":" .  colrow($az, 
 $row = 7;
 $col = 0;
 $cont = 0;
-foreach($control As $r){
+/*foreach($control As $r){
     $row++; // INICIA EN 4
     $paz=0; // columna
     $cont++;
@@ -320,7 +320,7 @@ foreach($control As $r){
 
     }
 }
-
+*/
 $objPHPExcel->getActiveSheet()->getStyle('A7:'.$az[$finalCol].$row)->applyFromArray($styleThinBlackBorderAllborders);
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $objPHPExcel->getActiveSheet()->setTitle('Postulantes');
