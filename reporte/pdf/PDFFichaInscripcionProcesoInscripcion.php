@@ -26,8 +26,10 @@ if (isset($cingalu) AND trim($cingalu) != "") {
 
 // inhibit DOMPDF's auto-loader
 define('DOMPDF_ENABLE_AUTOLOAD', false);
-require_once("../../php/includes/dompdf/dompdf_config.inc.php");
+/*require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/include/autoload.inc.php');
+*/
+require_once('../../php/includes/dompdf/autoload.inc.php');
 
 
 $variables = array(
