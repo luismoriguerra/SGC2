@@ -24,7 +24,7 @@ if (isset($cingalu) AND trim($cingalu) != "") {
 
 
 // inhibit DOMPDF's auto-loader
-//define('DOMPDF_ENABLE_AUTOLOAD', false);
+define('DOMPDF_ENABLE_AUTOLOAD', false);
 /*require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/include/autoload.inc.php');
 */
@@ -139,7 +139,7 @@ $html = file_get_contents('template/fichaInscripcion.php');
 $html = str_replace(array_keys($variables), array_values($variables), $html);
 //print $html;
 //die();
-$dompdf = new DOMPDF();
+$dompdf = new Dompdf();
 $dompdf->load_html($html);
 $dompdf->render();
 
