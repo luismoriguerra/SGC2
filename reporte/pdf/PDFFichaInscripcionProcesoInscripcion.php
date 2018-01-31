@@ -8,7 +8,8 @@ ini_set('memory_limit','1024M');
 
 //$idencuesta=$_GET['idenc'];
 //$empresa=$_GET['empresa'];
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 /*conexion*/
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
@@ -25,7 +26,7 @@ if (isset($cingalu) AND trim($cingalu) != "") {
 
 
 // inhibit DOMPDF's auto-loader
-define('DOMPDF_ENABLE_AUTOLOAD', false);
+//define('DOMPDF_ENABLE_AUTOLOAD', false);
 /*require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/include/autoload.inc.php');
 */
