@@ -17,7 +17,7 @@ $cn=MySqlConexion::getInstance();
 
 
 
-if (trim($cingalu) != "") {
+if (isset($cingalu) AND trim($cingalu) != "") {
     $listAlum = str_replace(",", "','", $cingalu);
     $alumno = " AND co.cingalu in ('" . $listAlum . "')";
 }
