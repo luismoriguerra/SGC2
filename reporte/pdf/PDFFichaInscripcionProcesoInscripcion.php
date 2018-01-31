@@ -2,14 +2,12 @@
 set_time_limit(0);
 ini_set('memory_limit','1024M');
 
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 
 //$idencuesta=$_GET['idenc'];
 //$empresa=$_GET['empresa'];
-use Dompdf\Dompdf;
-use Dompdf\Options;
 /*conexion*/
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
