@@ -9,10 +9,10 @@ ini_set("display_errors", 1);
 //$idencuesta=$_GET['idenc'];
 //$empresa=$_GET['empresa'];
 /*conexion*/
-require_once '../../conexion/MySqlConexion.php';
-require_once '../../conexion/configMySql.php';
+//require_once '../../conexion/MySqlConexion.php';
+//require_once '../../conexion/configMySql.php';
 /*crea obj conexion*/
-$cn=MySqlConexion::getInstance();
+//$cn=MySqlConexion::getInstance();
 
 
 
