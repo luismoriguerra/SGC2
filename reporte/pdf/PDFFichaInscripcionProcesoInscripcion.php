@@ -25,15 +25,15 @@ if (isset($cingalu) AND trim($cingalu) != "") {
 
 // inhibit DOMPDF's auto-loader
 /*
-define('DOMPDF_ENABLE_AUTOLOAD', false);
 require_once('../../php/includes/dompdf/include/autoload.inc.php');
 require_once("../../php/includes/dompdf/dompdf_config.inc.php");
 require_once('../../php/includes/dompdf/autoload.inc.php');
 */
 
+define("DOMPDF_ENABLE_AUTOLOAD", false);
 require_once '../../php/includes/dompdf/lib/html5lib/Parser.php';
-require_once '../../php/includes/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
-require_once '../../php/includes/dompdf/lib/php-svg-lib/src/autoload.php';
+//require_once '../../php/includes/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+//require_once '../../php/includes/dompdf/lib/php-svg-lib/src/autoload.php';
 require_once '../../php/includes/dompdf/src/Autoloader.php';
 Dompdf\Autoloader::register();
 
