@@ -1,7 +1,7 @@
 <?php
 /*conexion*/
-set_time_limit(3000);
-ini_set('memory_limit','512M');
+set_time_limit(0);
+ini_set('memory_limit','1024M');
 require_once '../../conexion/MySqlConexion.php';
 require_once '../../conexion/configMySql.php';
 
