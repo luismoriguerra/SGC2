@@ -1006,9 +1006,8 @@ class MySqlCarreraDAO{
 						$db->setQuery($sqlver1);
 						$cfilcar=$db->loadObjectList();
 		
-						$sql="INSERT INTO filcarp (cfilcar, cfilial, ccarrer, ctipcar, cestado, festado, cusuari, fusuari, ttiptra)
-							  VALUES ('".$cfilcar[0]['cfilcar']."',
-									  '".$cfilial."',
+						$sql="INSERT INTO filcarp ( cfilial, ccarrer, ctipcar, cestado, festado, cusuari, fusuari, ttiptra)
+							  VALUES ('".$cfilial."',
 									  '".$codcarrer."',
 									  '".$r['ctipcar']."',
 									  '1',
