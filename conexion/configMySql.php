@@ -14,7 +14,12 @@ class configMySql{
 
     public function __construct(){
 
-        $this->host='localhost';
+        if( $_SERVER["HTTP_HOST"]=='localhost' ){
+            $this->host='cpd-telesup.com';
+        }
+        else{
+            $this->host='localhost';
+        }
         $this->user='cpdteles_sgc';
 		//$this->user='root';
 		//$this->pass='';
