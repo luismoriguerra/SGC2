@@ -50,7 +50,7 @@ class MySqlModIngDAO{
 		
         if(count($data)>0){echo json_encode(array('rst'=>'2','msj'=>'<b>Modalidad de Ingreso</b> ya existe'));exit();}
         /********************/	
-		$sqlver1="SELECT RIGHT(CONCAT('000',CONVERT( IFNULL(MAX(cmoding),'0')+1, CHAR)),3) As cmoding
+		$sqlver1="SELECT RIGHT(CONCAT('000',CONVERT( IFNULL(MAX(cmoding*1),'0')+1, CHAR)),3) As cmoding
 				  FROM modinga";
 		$db->setQuery($sqlver1);
 		$cmoding=$db->loadObjectList();	 
