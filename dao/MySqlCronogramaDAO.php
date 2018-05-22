@@ -133,7 +133,7 @@ class MySqlCronogramaDAO{
 		
 		$sqlmodal = "CALL Cronoauto('".$r['semestre']."')";
 		$db->setQuery($sqlmodal);
-		$r=$db->loadObjectList();
+		$r=$db->execute();
 
 		return array('rst'=>'1','msj'=>'Cronograma Realizado automáticamente');exit();
 	}
