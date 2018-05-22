@@ -49,6 +49,10 @@
                                     <option value="2017-1">2017-1</option>
                                     <option value="2017-2">2017-2</option>
                                     <option value="2018-1">2018-1</option>
+                                    <option value="2018-2">2018-2</option>
+                                    <option value="2018-3">2018-2</option>
+                                    <option value="2019-1">2018-2</option>
+                                    <option value="2019-2">2018-2</option>
                                 </select>
                             </div>
                             
